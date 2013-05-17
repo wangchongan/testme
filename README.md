@@ -9,5 +9,5 @@ virgo 3.0.3
 开发环境：
 Spring Tool suite 3.2.0
 
-依赖bundle:
+依赖bundle：
 下载地址：
