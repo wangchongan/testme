@@ -104,16 +104,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>central</id>
-			<name>taobao releases</name>
-			<url>http://mvnrepo.taobao.ali.com/mvn/repository</url>
-		</repository>
-		<repository>
-			<id>snapshots</id>
-			<name>taobao snapshots</name>
-			<url>http://mvnrepo.taobao.ali.com/mvn/repository</url>
-		</repository>
 	</repositories>
 
 	<pluginRepositories>
