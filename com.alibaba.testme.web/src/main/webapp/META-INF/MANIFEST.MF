@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ClassPath: WEB-INF/classes,.
+Tool: Bundlor 1.1.0.RELEASE
+Bundle-Name: com.alibaba.testme.web
+Import-Library: org.springframework.spring;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
+Web-ContextPath: testme
+Import-Bundle: com.springsource.org.apache.taglibs.standard;version="[1.1.2.v20110517,1.1.2.v20110517]"
+Bundle-Vendor: Alibaba
+Built-By: chongan.wangca
+Bundle-Version: 1.0.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.alibaba.testme.web
+Import-Package: 
+ javax.servlet;version="[3.0.0,3.0.0]",
+ javax.servlet.http;version="[3.0.0,3.0.0]",
+ javax.servlet.jsp.jstl.core;version="[1.2.0.v20110728,1.2.0.v20110728]",
+ org.apache.velocity,
+ org.eclipse.virgo.web.dm;version="[3.0.3.RELEASE,3.0.3.RELEASE]",
+ org.slf4j;version="[1.6.1,1.6.1]",
+ org.springframework.web.context;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
+ org.springframework.web.servlet;version="3.0.5.RELEASE",
+ org.springframework.web.servlet.mvc;version="3.0.5.RELEASE",
+ com.alibaba.testme.service,
+ com.alibaba.testme.domain.dataobject,
+ com.alibaba.testme.domain.query

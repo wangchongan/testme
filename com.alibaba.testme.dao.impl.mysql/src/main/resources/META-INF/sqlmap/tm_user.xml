@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="user" >
+
+  <typeAlias alias="userDO" type="com.alibaba.testme.domain.dataobject.UserDO" />
+  <typeAlias alias="userQuery" type="com.alibaba.testme.domain.query.UserQuery" />
+
+  <resultMap id="userDOResultMap" class="userDO" >
+    <result property="id" column="id" />
+    <result property="userName" column="user_name" />
+ 
+  </resultMap>
+ 
+  <sql id="user_columns" >
+    a1.id, a1.user_name
+  </sql>
+
+  <sql id="user_queryParams" >
+    <dynamic prepend="WHERE" >
+      <isNotNull property="id" prepend="AND" >
+        <![CDATA[  
+        id = #id#  
+        ]]>  
+      </isNotNull>
+      <isNotNull property="userName" prepend="AND" >
+        <![CDATA[  
+        user_name = #userName#  
+        ]]>  
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <insert id="user.add" parameterClass="userDO" >
+    INSERT INTO tm_user(user_name
+      )
+     VALUES (#userName#
+      )
+    <selectKey keyProperty="id" resultClass="java.lang.Long" >
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey>
+  </insert>
+
+  <update id="user.update" parameterClass="userDO" >
+    UPDATE tm_user   
+    <dynamic prepend="SET" >
+      <isNotNull property="userName" prepend="," >
+        <![CDATA[  
+        user_name = #userName#  
+        ]]>  
+      </isNotNull>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="user.findById" parameterClass="java.lang.Long" resultMap="userDOResultMap" >
+     SELECT 
+    <include refid="user_columns" />
+    <![CDATA[  
+     FROM tm_user a1 WHERE id = #id#
+    ]]>  
+  </select>
+
+  <delete id="user.deleteById" parameterClass="java.lang.Long" >
+    <![CDATA[  
+     DELETE FROM tm_user WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="user.findList" resultMap="userDOResultMap" parameterClass="userQuery" >
+     SELECT 
+    <include refid="user_columns" />
+     FROM tm_user a1 
+    <include refid="user_queryParams" />
+  </select>
+  
+</sqlMap>

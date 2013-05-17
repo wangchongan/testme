@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.1.0.M04
+Bundle-Name: com.alibaba.testme.datasource
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.alibaba.testme.datasource
+Import-Package: com.mysql.jdbc;version="[5.1.6,5.1.6]",
+ com.mysql.jdbc.jdbc2.optional;version="[5.1.6,5.1.6]",
+ javax.sql,
+ org.apache.commons.dbcp;version="[1.2.2.osgi,1.2.2.osgi]",
+ org.apache.commons.dbcp.datasources;version="[1.2.2.osgi,1.2.2.osgi]"
+

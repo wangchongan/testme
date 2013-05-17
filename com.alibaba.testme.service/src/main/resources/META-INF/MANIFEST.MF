@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: com.alibaba.testme.service
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.1.0.M04
+Bundle-Name: com.alibaba.testme.service
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.alibaba.testme.service
+Import-Package: com.alibaba.testme.common,
+ com.alibaba.testme.common.baseservice,
+ com.alibaba.testme.domain,
+ com.alibaba.testme.domain.dataobject,
+ com.alibaba.testme.domain.query
+

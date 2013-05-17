@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.alibaba.testme</groupId>
+		<version>1.0.0.SNAPSHOT</version>
+		<artifactId>com.alibaba.testme</artifactId>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>com.alibaba.testme.service.impl</artifactId>
+	<version>1.0.1.SNAPSHOT</version>
+	<name>com.alibaba.testme.service.impl</name>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba.testme</groupId>
+			<artifactId>com.alibaba.testme.domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.testme</groupId>
+			<artifactId>com.alibaba.testme.dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.testme</groupId>
+			<artifactId>com.alibaba.testme.service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.testme</groupId>
+			<artifactId>com.alibaba.testme.common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+</project>

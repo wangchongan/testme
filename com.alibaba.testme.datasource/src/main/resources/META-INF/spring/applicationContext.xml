@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/context 
+				http://www.springframework.org/schema/context/spring-context.xsd
+				http://www.springframework.org/schema/tx
+				http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+				http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	 <context:property-placeholder location="classpath:META-INF/spring/db.properties"/>
+
+     <bean id="dataSourceLocalhost" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url.localhost}"/>
+        <property name="username" value="${jdbc.username.localhost}"/>
+        <property name="password" value="${jdbc.password.localhost}"/>
+	 </bean>
+	 
+	 <!--  
+     <bean id="dataSourceLocalhost" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" lazy-init="false" destroy-method="close">
+        <property name="connectionPoolDataSource" ref="mysqlDataSourceLocalhost"/>
+		<property name="maxActive" value="20"/>
+		<property name="maxIdle" value="3"/>
+	 </bean>
+	
+	<bean id="mysqlDataSourceLocalhost" class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+		<property name="createDatabaseIfNotExist" value="true"/>
+		<property name="url" value="${jdbc.url.localhost}"/>
+		<property name="user" value="${jdbc.username.localhost}"/>
+		<property name="password" value="${jdbc.password.localhost}"/>
+	</bean>
+	-->
+	<!--  
+     <bean id="dataSourceOnline" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" lazy-init="false" destroy-method="close">
+        <property name="connectionPoolDataSource" ref="mysqlDataSourceOnline"/>
+		<property name="maxActive" value="20"/>
+		<property name="maxIdle" value="3"/>
+	 </bean>
+	
+	<bean id="mysqlDataSourceOnline" class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+		<property name="createDatabaseIfNotExist" value="true"/>
+		<property name="url" value="${jdbc.url.online}"/>
+		<property name="user" value="${jdbc.username.online}"/>
+		<property name="password" value="${jdbc.password.online}"/>
+	</bean>
+	-->
+		
+</beans>
