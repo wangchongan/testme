@@ -27,7 +27,7 @@ public class HomeController {
 	@RequestMapping(value="/userinfo/{id}", method=RequestMethod.GET)
 	public ModelAndView showAllFiles(ModelMap modelMap,@PathVariable("id") long id) {
 		
-		logger.info("Test.....");
+		logger.info("Test log.....");
 	    UserDO userDO =	userService.findById(id);
 	    modelMap.put("userName", userDO.getUserName());
 	    

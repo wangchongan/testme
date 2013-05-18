@@ -11,15 +11,15 @@ Bundle-Version: 1.0.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.web
 Import-Package: 
+ com.alibaba.testme.domain.dataobject,
+ com.alibaba.testme.domain.query,
+ com.alibaba.testme.service,
  javax.servlet;version="[3.0.0,3.0.0]",
  javax.servlet.http;version="[3.0.0,3.0.0]",
  javax.servlet.jsp.jstl.core;version="[1.2.0.v20110728,1.2.0.v20110728]",
  org.apache.velocity,
- org.eclipse.virgo.web.dm;version="[3.0.3.RELEASE,3.0.3.RELEASE]",
- org.slf4j;version="[1.6.1,1.6.1]",
- org.springframework.web.context;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
- org.springframework.web.servlet;version="3.0.5.RELEASE",
- org.springframework.web.servlet.mvc;version="3.0.5.RELEASE",
- com.alibaba.testme.service,
- com.alibaba.testme.domain.dataobject,
- com.alibaba.testme.domain.query
+ org.eclipse.virgo.web.dm;version="[3.0.3.RELEASE,3.6.0.RELEASE]",
+ org.slf4j;version="[1.6.1,1.6.4]",
+ org.springframework.web.context;version="[3.0.5.RELEASE,3.6.0.RELEASE]",
+ org.springframework.web.servlet;version="[3.0.5.RELEASE,3.6.0.RELEASE)",
+ org.springframework.web.servlet.mvc;version="[3.0.5.RELEASE,3.6.0.RELEASE)"

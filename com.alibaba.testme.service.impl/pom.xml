@@ -32,5 +32,11 @@
 			<artifactId>com.alibaba.testme.common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<!-- logger -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

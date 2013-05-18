@@ -9,6 +9,9 @@ package com.alibaba.testme.service.impl.base;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.alibaba.testme.common.basedao.GenericDao;
 import com.alibaba.testme.common.baseservice.GenericService;
 import com.alibaba.testme.common.page.PageControler;
@@ -17,7 +20,9 @@ import com.alibaba.testme.common.page.PageControler;
  * @author chongan.wangca
  */
 public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ> {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(GenericServiceImpl.class);
+	
     private GenericDao<T, TQ> genericDao;
 
     /*
@@ -49,6 +54,7 @@ public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ>
      */
     @Override
     public T findById(Long id) {
+    	logger.info("...........................");
         return genericDao.findById(id);
     }
 
