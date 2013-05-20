@@ -1,9 +1,9 @@
 package com.alibaba.testme.domain.dataobject;
 import java.util.Date;
 /**
- * UserDO
+ * TestunitParamExtDO
  */
-public class UserDO {
+public class TestunitParamExtDO {
 
 	/**
 	 *id
@@ -31,19 +31,19 @@ public class UserDO {
 	private String modifier;
 	   
 	/**
-	 *userName
+	 *valueName
 	 */
-	private String userName;
+	private String valueName;
 	   
 	/**
-	 *password
+	 *value
 	 */
-	private String password;
+	private String value;
 	   
 	/**
-	 *wangwang
+	 *testunitParamId
 	 */
-	private String wangwang;
+	private Integer testunitParamId;
 	   
 
 
@@ -87,28 +87,28 @@ public class UserDO {
 	   return this.modifier; 
 	} 
 
-	public void setUserName(String userName){ 
-	   this.userName = userName; 
+	public void setValueName(String valueName){ 
+	   this.valueName = valueName; 
 	}
 	
-	public String getUserName(){ 
-	   return this.userName; 
+	public String getValueName(){ 
+	   return this.valueName; 
 	} 
 
-	public void setPassword(String password){ 
-	   this.password = password; 
+	public void setValue(String value){ 
+	   this.value = value; 
 	}
 	
-	public String getPassword(){ 
-	   return this.password; 
+	public String getValue(){ 
+	   return this.value; 
 	} 
 
-	public void setWangwang(String wangwang){ 
-	   this.wangwang = wangwang; 
+	public void setTestunitParamId(Integer testunitParamId){ 
+	   this.testunitParamId = testunitParamId; 
 	}
 	
-	public String getWangwang(){ 
-	   return this.wangwang; 
+	public Integer getTestunitParamId(){ 
+	   return this.testunitParamId; 
 	} 
 
 }

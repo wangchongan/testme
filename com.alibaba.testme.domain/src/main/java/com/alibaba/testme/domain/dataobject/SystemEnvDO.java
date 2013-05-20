@@ -1,9 +1,9 @@
 package com.alibaba.testme.domain.dataobject;
 import java.util.Date;
 /**
- * UserDO
+ * SystemEnvDO
  */
-public class UserDO {
+public class SystemEnvDO {
 
 	/**
 	 *id
@@ -31,19 +31,24 @@ public class UserDO {
 	private String modifier;
 	   
 	/**
-	 *userName
+	 *userId
 	 */
-	private String userName;
+	private Integer userId;
 	   
 	/**
-	 *password
+	 *systemId
 	 */
-	private String password;
+	private Integer systemId;
 	   
 	/**
-	 *wangwang
+	 *configName
 	 */
-	private String wangwang;
+	private String configName;
+	   
+	/**
+	 *isDefault
+	 */
+	private String isDefault;
 	   
 
 
@@ -87,28 +92,36 @@ public class UserDO {
 	   return this.modifier; 
 	} 
 
-	public void setUserName(String userName){ 
-	   this.userName = userName; 
+	public void setUserId(Integer userId){ 
+	   this.userId = userId; 
 	}
 	
-	public String getUserName(){ 
-	   return this.userName; 
+	public Integer getUserId(){ 
+	   return this.userId; 
 	} 
 
-	public void setPassword(String password){ 
-	   this.password = password; 
+	public void setSystemId(Integer systemId){ 
+	   this.systemId = systemId; 
 	}
 	
-	public String getPassword(){ 
-	   return this.password; 
+	public Integer getSystemId(){ 
+	   return this.systemId; 
 	} 
 
-	public void setWangwang(String wangwang){ 
-	   this.wangwang = wangwang; 
+	public void setConfigName(String configName){ 
+	   this.configName = configName; 
 	}
 	
-	public String getWangwang(){ 
-	   return this.wangwang; 
+	public String getConfigName(){ 
+	   return this.configName; 
+	} 
+
+	public void setIsDefault(String isDefault){ 
+	   this.isDefault = isDefault; 
+	}
+	
+	public String getIsDefault(){ 
+	   return this.isDefault; 
 	} 
 
 }

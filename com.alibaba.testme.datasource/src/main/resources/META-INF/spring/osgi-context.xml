@@ -9,7 +9,11 @@
 		http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--  
 	<osgi:service ref="dataSourceLocalhost" interface="javax.sql.DataSource"/>
+	-->
+	
+	<osgi:service ref="dataSourceOnline" interface="javax.sql.DataSource"/>
  
 	<!--  
 	<osgi:service id="dataSourceLocalhost" ref="dataSourceLocalhost">

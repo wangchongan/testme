@@ -19,33 +19,11 @@
         <property name="password" value="${jdbc.password.localhost}"/>
 	 </bean>
 	 
-	 <!--  
-     <bean id="dataSourceLocalhost" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" lazy-init="false" destroy-method="close">
-        <property name="connectionPoolDataSource" ref="mysqlDataSourceLocalhost"/>
-		<property name="maxActive" value="20"/>
-		<property name="maxIdle" value="3"/>
+     <bean id="dataSourceOnline" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url.online}"/>
+        <property name="username" value="${jdbc.username.online}"/>
+        <property name="password" value="${jdbc.password.online}"/>
 	 </bean>
-	
-	<bean id="mysqlDataSourceLocalhost" class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-		<property name="createDatabaseIfNotExist" value="true"/>
-		<property name="url" value="${jdbc.url.localhost}"/>
-		<property name="user" value="${jdbc.username.localhost}"/>
-		<property name="password" value="${jdbc.password.localhost}"/>
-	</bean>
-	-->
-	<!--  
-     <bean id="dataSourceOnline" class="org.apache.commons.dbcp.datasources.SharedPoolDataSource" lazy-init="false" destroy-method="close">
-        <property name="connectionPoolDataSource" ref="mysqlDataSourceOnline"/>
-		<property name="maxActive" value="20"/>
-		<property name="maxIdle" value="3"/>
-	 </bean>
-	
-	<bean id="mysqlDataSourceOnline" class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
-		<property name="createDatabaseIfNotExist" value="true"/>
-		<property name="url" value="${jdbc.url.online}"/>
-		<property name="user" value="${jdbc.username.online}"/>
-		<property name="password" value="${jdbc.password.online}"/>
-	</bean>
-	-->
 		
 </beans>

@@ -1,9 +1,9 @@
 package com.alibaba.testme.domain.dataobject;
 import java.util.Date;
 /**
- * UserDO
+ * TestunitFlowDetailDO
  */
-public class UserDO {
+public class TestunitFlowDetailDO {
 
 	/**
 	 *id
@@ -31,19 +31,24 @@ public class UserDO {
 	private String modifier;
 	   
 	/**
-	 *userName
+	 *testunitFlowId
 	 */
-	private String userName;
+	private Integer testunitFlowId;
 	   
 	/**
-	 *password
+	 *testunitId
 	 */
-	private String password;
+	private Integer testunitId;
 	   
 	/**
-	 *wangwang
+	 *preTestunitId
 	 */
-	private String wangwang;
+	private Integer preTestunitId;
+	   
+	/**
+	 *nextTestunitId
+	 */
+	private Integer nextTestunitId;
 	   
 
 
@@ -87,28 +92,36 @@ public class UserDO {
 	   return this.modifier; 
 	} 
 
-	public void setUserName(String userName){ 
-	   this.userName = userName; 
+	public void setTestunitFlowId(Integer testunitFlowId){ 
+	   this.testunitFlowId = testunitFlowId; 
 	}
 	
-	public String getUserName(){ 
-	   return this.userName; 
+	public Integer getTestunitFlowId(){ 
+	   return this.testunitFlowId; 
 	} 
 
-	public void setPassword(String password){ 
-	   this.password = password; 
+	public void setTestunitId(Integer testunitId){ 
+	   this.testunitId = testunitId; 
 	}
 	
-	public String getPassword(){ 
-	   return this.password; 
+	public Integer getTestunitId(){ 
+	   return this.testunitId; 
 	} 
 
-	public void setWangwang(String wangwang){ 
-	   this.wangwang = wangwang; 
+	public void setPreTestunitId(Integer preTestunitId){ 
+	   this.preTestunitId = preTestunitId; 
 	}
 	
-	public String getWangwang(){ 
-	   return this.wangwang; 
+	public Integer getPreTestunitId(){ 
+	   return this.preTestunitId; 
+	} 
+
+	public void setNextTestunitId(Integer nextTestunitId){ 
+	   this.nextTestunitId = nextTestunitId; 
+	}
+	
+	public Integer getNextTestunitId(){ 
+	   return this.nextTestunitId; 
 	} 
 
 }

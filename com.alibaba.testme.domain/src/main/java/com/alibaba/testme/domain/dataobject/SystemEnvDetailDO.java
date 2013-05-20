@@ -1,9 +1,9 @@
 package com.alibaba.testme.domain.dataobject;
 import java.util.Date;
 /**
- * UserDO
+ * SystemEnvDetailDO
  */
-public class UserDO {
+public class SystemEnvDetailDO {
 
 	/**
 	 *id
@@ -31,19 +31,29 @@ public class UserDO {
 	private String modifier;
 	   
 	/**
-	 *userName
+	 *systemId
 	 */
-	private String userName;
+	private Integer systemId;
 	   
 	/**
-	 *password
+	 *propKey
 	 */
-	private String password;
+	private String propKey;
 	   
 	/**
-	 *wangwang
+	 *propValue
 	 */
-	private String wangwang;
+	private String propValue;
+	   
+	/**
+	 *remark
+	 */
+	private String remark;
+	   
+	/**
+	 *configType
+	 */
+	private String configType;
 	   
 
 
@@ -87,28 +97,44 @@ public class UserDO {
 	   return this.modifier; 
 	} 
 
-	public void setUserName(String userName){ 
-	   this.userName = userName; 
+	public void setSystemId(Integer systemId){ 
+	   this.systemId = systemId; 
 	}
 	
-	public String getUserName(){ 
-	   return this.userName; 
+	public Integer getSystemId(){ 
+	   return this.systemId; 
 	} 
 
-	public void setPassword(String password){ 
-	   this.password = password; 
+	public void setPropKey(String propKey){ 
+	   this.propKey = propKey; 
 	}
 	
-	public String getPassword(){ 
-	   return this.password; 
+	public String getPropKey(){ 
+	   return this.propKey; 
 	} 
 
-	public void setWangwang(String wangwang){ 
-	   this.wangwang = wangwang; 
+	public void setPropValue(String propValue){ 
+	   this.propValue = propValue; 
 	}
 	
-	public String getWangwang(){ 
-	   return this.wangwang; 
+	public String getPropValue(){ 
+	   return this.propValue; 
+	} 
+
+	public void setRemark(String remark){ 
+	   this.remark = remark; 
+	}
+	
+	public String getRemark(){ 
+	   return this.remark; 
+	} 
+
+	public void setConfigType(String configType){ 
+	   this.configType = configType; 
+	}
+	
+	public String getConfigType(){ 
+	   return this.configType; 
 	} 
 
 }
