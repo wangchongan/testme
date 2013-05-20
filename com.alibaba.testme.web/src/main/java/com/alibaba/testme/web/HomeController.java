@@ -31,9 +31,10 @@ public class HomeController {
 	    UserDO userDO =	userService.findById(id);
 	    modelMap.put("userName", userDO.getUserName());
 	    
-	    UserDO userDO2 = new UserDO();
+	    
+	    /*UserDO userDO2 = new UserDO();
 	    userDO2.setUserName("xiaopenzi");
-	    userService.add(userDO2);
+	    userService.add(userDO2);*/
 	    
 		return new ModelAndView("user_info", modelMap);
 	}
