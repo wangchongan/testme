@@ -20,10 +20,10 @@ import com.alibaba.testme.common.page.PageControler;
  * @author chongan.wangca
  */
 public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ> {
-	
-	private static final Logger logger = LoggerFactory.getLogger(GenericServiceImpl.class);
-	
-    private GenericDao<T, TQ> genericDao;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GenericServiceImpl.class);
+
+    private GenericDao<T, TQ>   genericDao;
 
     /*
      * @see com.taobaiji.base.service.GenericService#add(java.lang.Object)
@@ -54,7 +54,6 @@ public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ>
      */
     @Override
     public T findById(Long id) {
-    	logger.info("...........................");
         return genericDao.findById(id);
     }
 
@@ -83,7 +82,9 @@ public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ>
     }
 
     /*
-     * @see com.taobaiji.base.service.GenericService#findByPage(java.lang.Object, java.lang.Long, java.lang.Long)
+     * @see
+     * com.taobaiji.base.service.GenericService#findByPage(java.lang.Object,
+     * java.lang.Long, java.lang.Long)
      */
     @Override
     public PageControler<T> findByPage(TQ query, Long page, Long pageSize) {
@@ -99,10 +100,13 @@ public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ>
     }
 
     /*
-     * @see com.taobaiji.base.service.GenericService#findByPage(java.lang.Object, java.lang.Long, java.lang.Long)
+     * @see
+     * com.taobaiji.base.service.GenericService#findByPage(java.lang.Object,
+     * java.lang.Long, java.lang.Long)
      */
     @Override
-    public PageControler<T> findByPage(TQ query, String sqlId, String countSqlId, Long page, Long pageSize) {
+    public PageControler<T> findByPage(TQ query, String sqlId, String countSqlId, Long page,
+                                       Long pageSize) {
         return genericDao.findByPage(query, sqlId, countSqlId, page, pageSize);
     }
 
@@ -115,11 +119,13 @@ public abstract class GenericServiceImpl<T, TQ> implements GenericService<T, TQ>
     }
 
     /*
-     * @see com.taobaiji.base.service.GenericService#findByPage(java.lang.Object, java.lang.Long, java.lang.Long)
+     * @see
+     * com.taobaiji.base.service.GenericService#findByPage(java.lang.Object,
+     * java.lang.Long, java.lang.Long)
      */
     @Override
-    public PageControler<T> findByPage(Map<String, Object> queryMap, String sqlId, String countSqlId, Long page,
-                                       Long pageSize) {
+    public PageControler<T> findByPage(Map<String, Object> queryMap, String sqlId,
+                                       String countSqlId, Long page, Long pageSize) {
         return genericDao.findByPage(queryMap, sqlId, countSqlId, page, pageSize);
     }
 

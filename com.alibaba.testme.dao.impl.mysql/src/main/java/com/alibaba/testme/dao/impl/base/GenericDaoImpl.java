@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.alibaba.testme.common.basedao.GenericDao;
@@ -20,10 +22,13 @@ import com.alibaba.testme.common.page.PageControler;
  * 
  * @author chongan.wangca
  */
-public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport implements GenericDao<T, TQ> {
+public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport implements
+        GenericDao<T, TQ> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GenericDaoImpl.class);
 
     /* 命名空间 */
-    public String NS = getNameSpace();
+    public String               NS     = getNameSpace();
 
     public abstract String getNameSpace();
 
@@ -69,6 +74,7 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
         if (id == null) {
             return null;
         }
+        LOGGER.info("dao impl........");
         return (T) getSqlMapClientTemplate().queryForObject(NS + ".findById", id);
     }
 
@@ -102,7 +108,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
         } else if (list.size() == 0) {
             return null;
         } else {
-            throw new RuntimeException("Find by query has more than one result. result count:" + list.size());
+            throw new RuntimeException("Find by query has more than one result. result count:"
+                    + list.size());
         }
     }
 
@@ -117,7 +124,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
             return null;
         }
         Map<String, Object> map = new HashMap<String, Object>();
-        String name = query.getClass().getName().substring(query.getClass().getName().lastIndexOf(".") + 1);
+        String name = query.getClass().getName()
+                .substring(query.getClass().getName().lastIndexOf(".") + 1);
         map.put(name, query);
         // 标记是处理计算总数，如果有该标记，则在计算总是时候不需要加上排序环节
         map.put("isDealCount", "1");
@@ -126,7 +134,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
 
     /*
      * 分页查询
-     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object, java.lang.Long)
+     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object,
+     * java.lang.Long)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -154,7 +163,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
 
         Map<String, Object> map = new HashMap<String, Object>();
         // 查询对象使用类名字做为MAP的KEY
-        String name = query.getClass().getName().substring(query.getClass().getName().lastIndexOf(".") + 1);
+        String name = query.getClass().getName()
+                .substring(query.getClass().getName().lastIndexOf(".") + 1);
         map.put(name, query);
         map.put("pageControler", pageControler);
         map.put("isDealCount", "0");
@@ -174,7 +184,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
             return null;
         }
         Map<String, Object> map = new HashMap<String, Object>();
-        String name = query.getClass().getName().substring(query.getClass().getName().lastIndexOf(".") + 1);
+        String name = query.getClass().getName()
+                .substring(query.getClass().getName().lastIndexOf(".") + 1);
         map.put(name, query);
         // 标记是处理计算总数，如果有该标记，则在计算总是时候不需要加上排序环节
         map.put("isDealCount", "1");
@@ -183,11 +194,13 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
 
     /*
      * 分页查询
-     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object, java.lang.Long)
+     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object,
+     * java.lang.Long)
      */
     @SuppressWarnings("unchecked")
     @Override
-    public PageControler<T> findByPage(TQ query, String sqlId, String countSqlId, Long page, Long pageSize) {
+    public PageControler<T> findByPage(TQ query, String sqlId, String countSqlId, Long page,
+                                       Long pageSize) {
 
         if (query == null) {
             return null;
@@ -211,7 +224,8 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
 
         Map<String, Object> map = new HashMap<String, Object>();
         // 查询对象使用类名字做为MAP的KEY
-        String name = query.getClass().getName().substring(query.getClass().getName().lastIndexOf(".") + 1);
+        String name = query.getClass().getName()
+                .substring(query.getClass().getName().lastIndexOf(".") + 1);
         map.put(name, query);
         map.put("pageControler", pageControler);
         map.put("isDealCount", "0");
@@ -237,12 +251,13 @@ public abstract class GenericDaoImpl<T, TQ> extends SqlMapClientDaoSupport imple
 
     /*
      * 分页查询
-     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object, java.lang.Long)
+     * @see com.taobaiji.base.dao.GenericDao#findByPage(java.lang.Object,
+     * java.lang.Long)
      */
     @SuppressWarnings("unchecked")
     @Override
-    public PageControler<T> findByPage(Map<String, Object> queryMap, String sqlId, String countSqlId, Long page,
-                                       Long pageSize) {
+    public PageControler<T> findByPage(Map<String, Object> queryMap, String sqlId,
+                                       String countSqlId, Long page, Long pageSize) {
 
         if (queryMap == null) {
             return null;

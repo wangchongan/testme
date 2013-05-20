@@ -19,23 +19,25 @@ import com.alibaba.testme.service.UserService;
  */
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@Autowired @Qualifier("userService") private UserService userService;
-	
-	@RequestMapping(value="/userinfo/{id}", method=RequestMethod.GET)
-	public ModelAndView showAllFiles(ModelMap modelMap,@PathVariable("id") long id) {
-		
-		logger.info("Test log.....");
-	    UserDO userDO =	userService.findById(id);
-	    modelMap.put("userName", userDO.getUserName());
-	    
-	    UserDO userDO2 = new UserDO();
-	    userDO2.setUserName("xiaopenzi");
-	    userService.add(userDO2);
-	    
-		return new ModelAndView("user_info", modelMap);
-	}
-	
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+
+    @Autowired
+    @Qualifier("userService")
+    private UserService         userService;
+
+    @RequestMapping(value = "/userinfo/{id}", method = RequestMethod.GET)
+    public ModelAndView showAllFiles(ModelMap modelMap, @PathVariable("id") long id) {
+
+        LOGGER.info("Test log.....");
+        UserDO userDO = userService.findById(id);
+        modelMap.put("userName", userDO.getUserName());
+
+        UserDO userDO2 = new UserDO();
+        userDO2.setUserName("xiaopenzi");
+        userService.add(userDO2);
+
+        return new ModelAndView("user_info", modelMap);
+    }
+
 }
