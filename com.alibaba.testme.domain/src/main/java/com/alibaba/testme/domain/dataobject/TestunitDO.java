@@ -1,166 +1,179 @@
 package com.alibaba.testme.domain.dataobject;
+
 import java.util.Date;
+
 /**
  * TestunitDO
  */
 public class TestunitDO {
 
-	/**
-	 *id
-	 */
-	private Integer id;
-	   
-	/**
-	 *gmtCreate
-	 */
-	private Date gmtCreate;
-	   
-	/**
-	 *creator
-	 */
-	private String creator;
-	   
-	/**
-	 *gmtModified
-	 */
-	private Date gmtModified;
-	   
-	/**
-	 *modifier
-	 */
-	private String modifier;
-	   
-	/**
-	 *code
-	 */
-	private String code;
-	   
-	/**
-	 *name
-	 */
-	private String name;
-	   
-	/**
-	 *workSpaceId
-	 */
-	private Integer workSpaceId;
-	   
-	/**
-	 *classQualifiedName
-	 */
-	private String classQualifiedName;
-	   
-	/**
-	 *tag
-	 */
-	private String tag;
-	   
-	/**
-	 *userId
-	 */
-	private Integer userId;
-	   
-	/**
-	 *remark
-	 */
-	private String remark;
-	   
+    /**
+     * id
+     */
+    private Integer id;
 
+    /**
+     * gmtCreate
+     */
+    private Date    gmtCreate;
 
-	public void setId(Integer id){ 
-	   this.id = id; 
-	}
-	
-	public Integer getId(){ 
-	   return this.id; 
-	} 
+    /**
+     * creator
+     */
+    private String  creator;
 
-	public void setGmtCreate(Date gmtCreate){ 
-	   this.gmtCreate = gmtCreate; 
-	}
-	
-	public Date getGmtCreate(){ 
-	   return this.gmtCreate; 
-	} 
+    /**
+     * gmtModified
+     */
+    private Date    gmtModified;
 
-	public void setCreator(String creator){ 
-	   this.creator = creator; 
-	}
-	
-	public String getCreator(){ 
-	   return this.creator; 
-	} 
+    /**
+     * modifier
+     */
+    private String  modifier;
 
-	public void setGmtModified(Date gmtModified){ 
-	   this.gmtModified = gmtModified; 
-	}
-	
-	public Date getGmtModified(){ 
-	   return this.gmtModified; 
-	} 
+    /**
+     * code
+     */
+    private String  code;
 
-	public void setModifier(String modifier){ 
-	   this.modifier = modifier; 
-	}
-	
-	public String getModifier(){ 
-	   return this.modifier; 
-	} 
+    /**
+     * name
+     */
+    private String  name;
 
-	public void setCode(String code){ 
-	   this.code = code; 
-	}
-	
-	public String getCode(){ 
-	   return this.code; 
-	} 
+    /**
+     * workSpaceId
+     */
+    private Integer workSpaceId;
 
-	public void setName(String name){ 
-	   this.name = name; 
-	}
-	
-	public String getName(){ 
-	   return this.name; 
-	} 
+    /**
+     * classQualifiedName
+     */
+    private String  classQualifiedName;
 
-	public void setWorkSpaceId(Integer workSpaceId){ 
-	   this.workSpaceId = workSpaceId; 
-	}
-	
-	public Integer getWorkSpaceId(){ 
-	   return this.workSpaceId; 
-	} 
+    /**
+     * version
+     */
+    private String  version;
 
-	public void setClassQualifiedName(String classQualifiedName){ 
-	   this.classQualifiedName = classQualifiedName; 
-	}
-	
-	public String getClassQualifiedName(){ 
-	   return this.classQualifiedName; 
-	} 
+    /**
+     * tag
+     */
+    private String  tag;
 
-	public void setTag(String tag){ 
-	   this.tag = tag; 
-	}
-	
-	public String getTag(){ 
-	   return this.tag; 
-	} 
+    /**
+     * userId
+     */
+    private Integer userId;
 
-	public void setUserId(Integer userId){ 
-	   this.userId = userId; 
-	}
-	
-	public Integer getUserId(){ 
-	   return this.userId; 
-	} 
+    /**
+     * remark
+     */
+    private String  remark;
 
-	public void setRemark(String remark){ 
-	   this.remark = remark; 
-	}
-	
-	public String getRemark(){ 
-	   return this.remark; 
-	} 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtCreate() {
+        return this.gmtCreate;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getCreator() {
+        return this.creator;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public Date getGmtModified() {
+        return this.gmtModified;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
+    public String getModifier() {
+        return this.modifier;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setWorkSpaceId(Integer workSpaceId) {
+        this.workSpaceId = workSpaceId;
+    }
+
+    public Integer getWorkSpaceId() {
+        return this.workSpaceId;
+    }
+
+    public void setClassQualifiedName(String classQualifiedName) {
+        this.classQualifiedName = classQualifiedName;
+    }
+
+    public String getClassQualifiedName() {
+        return this.classQualifiedName;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return this.tag;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getUserId() {
+        return this.userId;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
 
 }
