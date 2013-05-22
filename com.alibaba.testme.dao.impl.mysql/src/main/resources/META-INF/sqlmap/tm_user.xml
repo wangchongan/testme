@@ -8,12 +8,26 @@
 
   <resultMap id="userDOResultMap" class="userDO" >
     <result property="id" column="id" />
-    <result property="userName" column="user_name" />
- 
+    <result property="gmt_create" column="gmtCreate" />
+    <result property="creator" column="creator" />
+    <result property="gmt_modified" column="gmtModified" />
+    <result property="modifier" column="modifier" />
+    <result property="user_name" column="userName" />
+    <result property="password" column="password" />
+    <result property="wangwang" column="wangwang" />
   </resultMap>
  
   <sql id="user_columns" >
-    a1.id, a1.user_name
+   		<![CDATA[  
+		  `ID`,
+		  `gmt_create`,
+		  `creator`,
+		  `gmt_modified`,
+		  `modifier`,
+		  `user_name`,
+		  `password`,
+		  `wangwang`
+	    ]]>  
   </sql>
 
   <sql id="user_queryParams" >
@@ -32,10 +46,23 @@
   </sql>
 
   <insert id="user.add" parameterClass="userDO" >
-    INSERT INTO tm_user(user_name
-      )
-     VALUES (#userName#
-      )
+   		<![CDATA[  
+			insert into `tm_user`
+			            (`gmt_create`,
+			             `creator`,
+			             `gmt_modified`,
+			             `modifier`,
+			             `user_name`,
+			             `password`,
+			             `wangwang`)
+			values (now(),
+			        #creator#,
+			        now(),
+			        #modifier#,
+			        #userName#,
+			        #password#,
+			        #wangwang#)
+		]]>  
     <selectKey keyProperty="id" resultClass="java.lang.Long" >
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
@@ -57,7 +84,7 @@
      SELECT 
     <include refid="user_columns" />
     <![CDATA[  
-     FROM tm_user a1 WHERE id = #id#
+     FROM tm_user WHERE id = #id#
     ]]>  
   </select>
 
@@ -70,7 +97,7 @@
   <select id="user.findList" resultMap="userDOResultMap" parameterClass="userQuery" >
      SELECT 
     <include refid="user_columns" />
-     FROM tm_user a1 
+     FROM tm_user 
     <include refid="user_queryParams" />
   </select>
   
