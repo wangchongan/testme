@@ -2,17 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:context="http://www.springframework.org/schema/context"
+xmlns:util="http://www.springframework.org/schema/util"
 xmlns:mvc="http://www.springframework.org/schema/mvc"
 xsi:schemaLocation="http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<!-- 开启Spring MVC @Controller 编程模型 -->
-	<mvc:annotation-driven/>
+	<context:annotation-config /> 
+	<context:component-scan base-package="com.alibaba.testme.web" />
+		
 	
 	<!-- 静态资源提供目录 -->
 	<mvc:resources mapping="/res/**" location="/res/"/>
@@ -38,31 +42,39 @@ http://www.springframework.org/schema/context/spring-context.xsd">
             </props>        
         </property>                 
     </bean>
-
+ 
+ 
+ 	<!-- DefaultAnnotationHandlerMapping 优先调用 -->
+ 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+ 		<property name="order" value="1"/>
+ 	</bean>
+ 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
-			<list>
-				<ref bean="fastJsonHttpMessageConverter"/>
-			</list>
+			<util:list id="messageConverters">
+				<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+					<property name="features">
+						<list>
+							<value>WriteMapNullValue</value>
+							<value>QuoteFieldNames</value>
+						</list>
+					</property>
+				</bean>			
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+				<!-- <bean class="org.springframework.http.converter.StringHttpMessageConverter"/> -->		
+				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter"/>
+				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+				
+			</util:list>			
 		</property>
 	</bean>
-
-		<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-						<property name="supportedMediaTypes">
-							<list>
-								<value>application/json;charset=UTF-8</value>
-								<value>text/html;charset=UTF-8</value>
-							</list>
-						</property>
-						<property name="features">
-							<list>
-								<value>WriteMapNullValue</value>
-								<value>QuoteFieldNames</value>
-							</list>
-						</property>
-					</bean>
-
-	
-	<context:component-scan base-package="com.alibaba.testme.web" />
 	
 </beans>

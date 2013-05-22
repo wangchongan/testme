@@ -69,6 +69,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 	    <dependency>

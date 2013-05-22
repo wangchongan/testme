@@ -38,6 +38,11 @@ import com.alibaba.testme.service.UserService;
 @Controller
 @RequestMapping(value = "/user/*")
 public class UserController {
+    public UserController() {
+        super();
+        System.out.println("hello init ");
+    }
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @Resource
@@ -107,7 +112,8 @@ public class UserController {
         UserQuery userQuery = new UserQuery();
         userQuery.setUserName("李四");
         List<UserDO> userList = userService.findList(userQuery);
-       return userList;
+//        JSON.toJSONString(userList);
+       return  userList;
     }
     
 }
