@@ -19,16 +19,16 @@ import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
 import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
 
 /**
- * TestunitFlowÇëÇó´¦Àí½Ó¿Ú<br/>
- * TestunitFlowHandlerÖ»½ÓÊÜÒÑÉú³ÉÊµÀıµÄ²âÊÔÇëÇó£¬ËùÒÔtestunitFlowCaseId±Ø´«<br/>
- * ¶ÔÓÚÊ×´ÎÖ´ĞĞ£¬Éú³ÉTestunitFlowCaseÊı¾İµÄÖ°ÔğÓÉ½ÓÈë²ãÀ´ÅĞ¶Ï²¢³Ğµ£Êı¾İÉú³ÉµÄ¹¦ÄÜ¡£
+ * TestunitFlowè¯·æ±‚å¤„ç†æ¥å£<br/>
+ * TestunitFlowHandleråªæ¥å—å·²ç”Ÿæˆå®ä¾‹çš„æµ‹è¯•è¯·æ±‚ï¼Œæ‰€ä»¥testunitFlowCaseIdå¿…ä¼ <br/>
+ * å¯¹äºé¦–æ¬¡æ‰§è¡Œï¼Œç”ŸæˆTestunitFlowCaseæ•°æ®çš„èŒè´£ç”±æ¥å…¥å±‚æ¥åˆ¤æ–­å¹¶æ‰¿æ‹…æ•°æ®ç”Ÿæˆçš„åŠŸèƒ½ã€‚
  * 
  * @author chongan.wangca
  */
 public interface TestunitFlowHandler<TR extends TestRequestDTO, TFR extends TestunitFlowResult> {
 
     /**
-     * ÇëÇó´¦Àí×ÜÈë¿Ú
+     * è¯·æ±‚å¤„ç†æ€»å…¥å£
      * 
      * @param testRequestDTO
      * @return

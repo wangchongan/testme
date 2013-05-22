@@ -26,10 +26,10 @@ import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
  */
 public class TestunitFlowResult {
 
-    //ִ�н��״̬
-    public TestunitDealStatusEnum status;
+    //测试单元执行结果状态
+    private TestunitDealStatusEnum status;
 
-    public List<String>           errorMsgsList;
+    private List<String>           errorMsgsList;
 
     public TestunitDealStatusEnum getStatus() {
         return status;

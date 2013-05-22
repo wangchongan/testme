@@ -18,17 +18,15 @@ package com.alibaba.testme.core.testunitflow.dto;
 import java.util.Map;
 
 /**
- * ²âÊÔÇëÇóDTO
+ * æµ‹è¯•è¯·æ±‚æ•°æ®å°è£…å¯¹è±¡
  * 
  * @author chongan.wangca
  */
 public class TestRequestDTO {
 
-    //²âÊÔÁ÷³ÌÊµÀıID
-    public Integer             testunitFlowCaseId;
+    private Integer             testunitFlowCaseId;
 
-    //ÊäÈë²ÎÊı
-    public Map<String, String> inputParamsMap;
+    private Map<String, String> inputParamsMap;
 
     public Integer getTestunitFlowCaseId() {
         return testunitFlowCaseId;

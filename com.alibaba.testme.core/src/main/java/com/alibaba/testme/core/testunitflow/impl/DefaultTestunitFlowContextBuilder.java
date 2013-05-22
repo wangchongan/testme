@@ -16,12 +16,26 @@
 package com.alibaba.testme.core.testunitflow.impl;
 
 import com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder;
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
+import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
 
 /**
  * TODO Comment of TestunitFlowContextBuilder
  * 
  * @author chongan.wangca
  */
-public class DefaultTestunitFlowContextBuilder implements TestunitFlowContextBuilder {
+public class DefaultTestunitFlowContextBuilder implements
+        TestunitFlowContextBuilder<DefaultTestRequestDTO> {
+
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder#build
+     * (com.alibaba.testme.core.testunitflow.dto.TestRequestDTO)
+     */
+    @Override
+    public TestunitFlowContext build(DefaultTestRequestDTO testRequestDTO) {
+        return null;
+    }
 
 }

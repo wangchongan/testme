@@ -18,8 +18,6 @@ package com.alibaba.testme.core.testunitflow.impl;
 import com.alibaba.testme.core.testunitflow.TestunitFlowDispatcher;
 
 /**
- * 单一流程Testunit调度分发器
- * 
  * @author chongan.wangca
  */
 public class DefaultTestunitInvokeDispatcher implements TestunitFlowDispatcher {

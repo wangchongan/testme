@@ -18,19 +18,23 @@ package com.alibaba.testme.core.testunitflow.impl;
 import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
+import com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder;
 import com.alibaba.testme.core.testunitflow.TestunitFlowHandler;
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestunitFlowResult;
 
 /**
- * µ¥ÏòÁ÷³ÌTestunitFlow´¦Àí×ÜÈë¿Ú
+ * å•å‘æµç¨‹TestunitFlowå¤„ç†æ€»å…¥å£
  * 
  * @author chongan.wangca
  */
 public class DefaultTestunitFlowHandler implements
         TestunitFlowHandler<DefaultTestRequestDTO, DefaultTestunitFlowResult> {
 
-    public BaseChecker<DefaultTestRequestDTO> testRequestChecker;
+    private BaseChecker<DefaultTestRequestDTO>                testRequestChecker;
+
+    private TestunitFlowContextBuilder<DefaultTestRequestDTO> defaultTestunitFlowContextBuilder;
 
     /*
      * (non-Javadoc)
@@ -43,12 +47,16 @@ public class DefaultTestunitFlowHandler implements
 
         DefaultTestunitFlowResult testunitFlowResult = new DefaultTestunitFlowResult();
 
-        //¶ÔÊäÈë²ÎÊı½øĞĞĞ£Ñé
+        //1ã€å¯¹è¾“å…¥å‚æ•°è¿›è¡Œæ ¡éªŒ
         CheckResult testRequestCheckResult = testRequestChecker.check(testRequestDTO);
         if (testRequestCheckResult.getResult() == CheckResultEnum.FAIL) {
             testunitFlowResult.addAllErrorMsgs(testRequestCheckResult.getErrorMsgsList());
             return testunitFlowResult;
         }
+
+        //2ã€æ„å»ºcontext
+        TestunitFlowContext testunitFlowContext = defaultTestunitFlowContextBuilder
+                .build(testRequestDTO);
 
         return null;
     }

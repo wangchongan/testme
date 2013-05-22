@@ -22,8 +22,8 @@ package com.alibaba.testme.core.common.enums;
  */
 public enum CheckResultEnum {
 
-    SUCCESS("SUCCESS", "校验成功"),
-    FAIL("FAIL", "校验失败");
+    SUCCESS("SUCCESS", "鏍￠獙鎴愬姛"),
+    FAIL("FAIL", "鏍￠獙澶辫触");
 
     private String key;
     private String name;

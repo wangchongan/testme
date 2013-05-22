@@ -38,7 +38,7 @@ public class TestRequestChecker implements BaseChecker<DefaultTestRequestDTO> {
         CheckResult checkResult = new CheckResult();
         if (obj.getTestunitFlowCaseId() == null || obj.getTestunitFlowCaseId().intValue() <= 0) {
             checkResult.setResult(CheckResultEnum.FAIL);
-            checkResult.addErrorMsg("TestunitFlowCaseId²»ÄÜÎª¿Õ");
+            checkResult.addErrorMsg("TestunitFlowCaseIdä¸èƒ½ä¸ºç©º");
             return checkResult;
         }
         return checkResult;

@@ -21,7 +21,7 @@ import java.util.List;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 
 /**
- * 校验结果
+ * 澶勭悊缁撴灉
  * 
  * @author chongan.wangca
  */

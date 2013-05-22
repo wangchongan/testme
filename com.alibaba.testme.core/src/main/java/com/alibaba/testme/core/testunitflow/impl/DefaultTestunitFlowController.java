@@ -18,8 +18,6 @@ package com.alibaba.testme.core.testunitflow.impl;
 import com.alibaba.testme.core.testunitflow.TestunitFlowController;
 
 /**
- * TestunitFlow×Ü¿ØÆ÷
- * 
  * @author chongan.wangca
  */
 public class DefaultTestunitFlowController implements TestunitFlowController {

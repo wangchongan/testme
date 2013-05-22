@@ -15,11 +15,16 @@
  */
 package com.alibaba.testme.core.testunitflow;
 
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
+import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
+
 /**
  * TODO Comment of TestunitFlowContextBuilder
+ * 
  * @author chongan.wangca
- *
  */
-public interface TestunitFlowContextBuilder {
+public interface TestunitFlowContextBuilder<T extends TestRequestDTO> {
+
+    public TestunitFlowContext build(T testRequestDTO);
 
 }
