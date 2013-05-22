@@ -15,11 +15,35 @@
  */
 package com.alibaba.testme.core.testunitflow.dto;
 
+import java.util.Map;
+
 /**
- * TODO Comment of TestRequestDTO
+ * 测试请求DTO
+ * 
  * @author chongan.wangca
- *
  */
 public class TestRequestDTO {
+
+    //测试流程实例ID
+    public Integer             testunitFlowCaseId;
+
+    //输入参数
+    public Map<String, String> inputParamsMap;
+
+    public Integer getTestunitFlowCaseId() {
+        return testunitFlowCaseId;
+    }
+
+    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
+        this.testunitFlowCaseId = testunitFlowCaseId;
+    }
+
+    public Map<String, String> getInputParamsMap() {
+        return inputParamsMap;
+    }
+
+    public void setInputParamsMap(Map<String, String> inputParamsMap) {
+        this.inputParamsMap = inputParamsMap;
+    }
 
 }

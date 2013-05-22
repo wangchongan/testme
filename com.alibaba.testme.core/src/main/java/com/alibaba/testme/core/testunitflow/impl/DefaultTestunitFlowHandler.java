@@ -15,6 +15,9 @@
  */
 package com.alibaba.testme.core.testunitflow.impl;
 
+import com.alibaba.testme.core.common.dto.CheckResult;
+import com.alibaba.testme.core.common.enums.CheckResultEnum;
+import com.alibaba.testme.core.common.interfaces.BaseChecker;
 import com.alibaba.testme.core.testunitflow.TestunitFlowHandler;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestunitFlowResult;
@@ -27,6 +30,8 @@ import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestunitFlowResult;
 public class DefaultTestunitFlowHandler implements
         TestunitFlowHandler<DefaultTestRequestDTO, DefaultTestunitFlowResult> {
 
+    public BaseChecker<DefaultTestRequestDTO> testRequestChecker;
+
     /*
      * (non-Javadoc)
      * @see
@@ -35,7 +40,16 @@ public class DefaultTestunitFlowHandler implements
      */
     @Override
     public DefaultTestunitFlowResult deal(DefaultTestRequestDTO testRequestDTO) {
+
+        DefaultTestunitFlowResult testunitFlowResult = new DefaultTestunitFlowResult();
+
+        //对输入参数进行校验
+        CheckResult testRequestCheckResult = testRequestChecker.check(testRequestDTO);
+        if (testRequestCheckResult.getResult() == CheckResultEnum.FAIL) {
+            testunitFlowResult.addAllErrorMsgs(testRequestCheckResult.getErrorMsgsList());
+            return testunitFlowResult;
+        }
+
         return null;
     }
-
 }
