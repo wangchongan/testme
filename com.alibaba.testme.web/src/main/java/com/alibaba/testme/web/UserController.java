@@ -27,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.testme.domain.dataobject.UserDO;
@@ -59,11 +60,10 @@ public class UserController {
     }
     
     
-    @RequestMapping(method=RequestMethod.GET, value="/user/init")
+    @RequestMapping(value="/user/init")
     public String init() {
         LOGGER.info("Test user init .....");
         try {
-            
             UserDO entity = new UserDO();
             entity.setCreator("SYS");
             entity.setModifier("SYS");
@@ -76,19 +76,28 @@ public class UserController {
         return "user/userList";
     }
     
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = "/user/userList")
-    public String userList(Model model) {
-         String result = "";
-        
+    
+    @RequestMapping(method=RequestMethod.POST,value="/user/save")
+    public String save(@RequestParam(value="password") String password) {
+        LOGGER.info("Test user init .....");
         try {
-            List<UserDO> userList = userService.findList(null);
-            
+            UserDO entity = new UserDO();
+            entity.setCreator("SYS");
+            entity.setModifier("SYS");
+            entity.setPassword(password);
+            userService.add(entity );
             
         } catch (Exception ex) {
             LOGGER.error("listAll", ex);
         }
-        return result;
+        return "user/userList";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/user/userList")
+    public List<UserDO> userList(Model model) {
+        List<UserDO> userList = userService.findList(null);
+       return userList;
     }
     
 }
