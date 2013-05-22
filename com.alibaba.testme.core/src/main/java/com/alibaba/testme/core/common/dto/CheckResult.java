@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-20
+ * File Created at 2013-5-21
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,30 +13,30 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow.dto;
+package com.alibaba.testme.core.common.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
+import com.alibaba.testme.core.common.enums.CheckResultEnum;
 
 /**
- * TODO Comment of TestunitFlowResultDTO
+ * 校验结果
  * 
  * @author chongan.wangca
  */
-public class TestunitFlowResult {
+public class CheckResult {
 
-    //执行结果状态
-    public TestunitDealStatusEnum status;
+    public CheckResultEnum result        = CheckResultEnum.SUCCESS;
 
-    public List<String>           errorMsgsList;
+    public List<String>    errorMsgsList = new ArrayList<String>();
 
-    public TestunitDealStatusEnum getStatus() {
-        return status;
+    public CheckResultEnum getResult() {
+        return result;
     }
 
-    public void setStatus(TestunitDealStatusEnum status) {
-        this.status = status;
+    public void setResult(CheckResultEnum result) {
+        this.result = result;
     }
 
     public List<String> getErrorMsgsList() {
@@ -49,6 +49,10 @@ public class TestunitFlowResult {
 
     public void addAllErrorMsgs(List<String> errorMsgsList) {
         this.errorMsgsList.addAll(errorMsgsList);
+    }
+
+    public void addErrorMsg(String errorMsg) {
+        this.errorMsgsList.add(errorMsg);
     }
 
 }

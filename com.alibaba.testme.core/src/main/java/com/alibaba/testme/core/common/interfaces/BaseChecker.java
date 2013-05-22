@@ -1,7 +1,7 @@
 /**
- * Project: com.alibaba.testme.client
+ * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-20
+ * File Created at 2013-5-21
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,13 +13,17 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.client.testunit;
+package com.alibaba.testme.core.common.interfaces;
+
+import com.alibaba.testme.core.common.dto.CheckResult;
 
 /**
- * TODO Comment of TestunitHandler
+ * TODO Comment of BaseChecker
  * 
  * @author chongan.wangca
  */
-public interface TestunitHandler {
+public interface BaseChecker<T> {
+
+    public CheckResult check(T obj);
 
 }
