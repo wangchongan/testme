@@ -17,3 +17,4 @@ target
 /com.alibaba.testme.domain/.classpath
 /com.alibaba.testme.service.impl/.classpath
 /com.alibaba.testme.web/.classpath
+/com.alibaba.testme.service/*.classpath
