@@ -24,14 +24,25 @@ import java.util.Map;
  */
 public class TestunitFlowContext {
 
-    private TestunitFlowCaseExtend testunitFlowCaseExtend;
+    private Integer             testunitFlowCaseId;
 
-    private TestunitExtend         testunitExtend;
+    private String              testunitFlowCaseStatus;
 
-    private TestunitFlowExtend     testunitFlowExtend;
+    private Integer             userId;
 
-    // ‰»Î≤Œ ˝
-    private Map<String, String>    inputParamsMap;
+    private Integer             testunitFlowCaseDetailId;
+
+    private Integer             testunitFlowDetailId;
+
+    private String              testunitFlowCaseDetailStatus;
+
+    private Map<String, String> inputParamsMap;
+
+    private Map<String, String> outputParamsMap;
+
+    private String              testunitClassQualifiedName;
+
+    private String              testunitVersion;
 
     public Map<String, String> getInputParamsMap() {
         return inputParamsMap;
@@ -41,28 +52,76 @@ public class TestunitFlowContext {
         this.inputParamsMap = inputParamsMap;
     }
 
-    public TestunitFlowCaseExtend getTestunitFlowCaseExtend() {
-        return testunitFlowCaseExtend;
+    public Integer getTestunitFlowCaseId() {
+        return testunitFlowCaseId;
     }
 
-    public void setTestunitFlowCaseExtend(TestunitFlowCaseExtend testunitFlowCaseExtend) {
-        this.testunitFlowCaseExtend = testunitFlowCaseExtend;
+    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
+        this.testunitFlowCaseId = testunitFlowCaseId;
     }
 
-    public TestunitExtend getTestunitExtend() {
-        return testunitExtend;
+    public String getTestunitFlowCaseStatus() {
+        return testunitFlowCaseStatus;
     }
 
-    public void setTestunitExtend(TestunitExtend testunitExtend) {
-        this.testunitExtend = testunitExtend;
+    public void setTestunitFlowCaseStatus(String testunitFlowCaseStatus) {
+        this.testunitFlowCaseStatus = testunitFlowCaseStatus;
     }
 
-    public TestunitFlowExtend getTestunitFlowExtend() {
-        return testunitFlowExtend;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setTestunitFlowExtend(TestunitFlowExtend testunitFlowExtend) {
-        this.testunitFlowExtend = testunitFlowExtend;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getTestunitFlowCaseDetailId() {
+        return testunitFlowCaseDetailId;
+    }
+
+    public void setTestunitFlowCaseDetailId(Integer testunitFlowCaseDetailId) {
+        this.testunitFlowCaseDetailId = testunitFlowCaseDetailId;
+    }
+
+    public Integer getTestunitFlowDetailId() {
+        return testunitFlowDetailId;
+    }
+
+    public void setTestunitFlowDetailId(Integer testunitFlowDetailId) {
+        this.testunitFlowDetailId = testunitFlowDetailId;
+    }
+
+    public String getTestunitFlowCaseDetailStatus() {
+        return testunitFlowCaseDetailStatus;
+    }
+
+    public void setTestunitFlowCaseDetailStatus(String testunitFlowCaseDetailStatus) {
+        this.testunitFlowCaseDetailStatus = testunitFlowCaseDetailStatus;
+    }
+
+    public Map<String, String> getOutputParamsMap() {
+        return outputParamsMap;
+    }
+
+    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
+        this.outputParamsMap = outputParamsMap;
+    }
+
+    public String getTestunitClassQualifiedName() {
+        return testunitClassQualifiedName;
+    }
+
+    public void setTestunitClassQualifiedName(String testunitClassQualifiedName) {
+        this.testunitClassQualifiedName = testunitClassQualifiedName;
+    }
+
+    public String getTestunitVersion() {
+        return testunitVersion;
+    }
+
+    public void setTestunitVersion(String testunitVersion) {
+        this.testunitVersion = testunitVersion;
     }
 
 }

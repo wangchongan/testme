@@ -20,6 +20,7 @@ import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
 import com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder;
 import com.alibaba.testme.core.testunitflow.TestunitFlowHandler;
+import com.alibaba.testme.core.testunitflow.TestunitFlowWorker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
 import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestunitFlowResult;
@@ -35,6 +36,8 @@ public class DefaultTestunitFlowHandler implements
     private BaseChecker<DefaultTestRequestDTO>                testRequestChecker;
 
     private TestunitFlowContextBuilder<DefaultTestRequestDTO> defaultTestunitFlowContextBuilder;
+
+    private TestunitFlowWorker<DefaultTestunitFlowResult>     defaultTestunitFlowWorker;
 
     /*
      * (non-Javadoc)
@@ -58,6 +61,9 @@ public class DefaultTestunitFlowHandler implements
         TestunitFlowContext testunitFlowContext = defaultTestunitFlowContextBuilder
                 .build(testRequestDTO);
 
-        return null;
+        //3、交由核心处理器进行处理
+        testunitFlowResult = defaultTestunitFlowWorker.doWork(testunitFlowContext);
+
+        return testunitFlowResult;
     }
 }

@@ -8,13 +8,5 @@ target
 *.bak
 .settings
 .project
-/com.alibaba.testme.client/*.classpath
-/com.alibaba.testme.common/*.classpath
-/com.alibaba.testme.core/*.classpath
-/com.alibaba.testme.dao/.classpath
-/com.alibaba.testme.dao.impl.mysql/.classpath
-/com.alibaba.testme.datasource/.classpath
-/com.alibaba.testme.domain/.classpath
-/com.alibaba.testme.service.impl/.classpath
-/com.alibaba.testme.web/.classpath
-/com.alibaba.testme.service/*.classpath
+.classpath
+bin

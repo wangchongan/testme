@@ -25,7 +25,9 @@ import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO;
  * 
  * @author chongan.wangca
  */
-public class TestunitFlowCaseExtend extends TestunitFlowCaseDO {
+public class TestunitFlowCaseExtend {
+
+    private TestunitFlowCaseDO             testunitFlowCaseDO;
 
     private List<TestunitFlowCaseDetailDO> testunitFlowCaseDetailDOList;
 
@@ -35,6 +37,14 @@ public class TestunitFlowCaseExtend extends TestunitFlowCaseDO {
 
     public void setTestunitFlowCaseDetailDOList(List<TestunitFlowCaseDetailDO> testunitFlowCaseDetailDOList) {
         this.testunitFlowCaseDetailDOList = testunitFlowCaseDetailDOList;
+    }
+
+    public TestunitFlowCaseDO getTestunitFlowCaseDO() {
+        return testunitFlowCaseDO;
+    }
+
+    public void setTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
+        this.testunitFlowCaseDO = testunitFlowCaseDO;
     }
 
 }
