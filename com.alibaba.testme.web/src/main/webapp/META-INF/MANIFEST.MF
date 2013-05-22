@@ -14,6 +14,7 @@ Import-Package:
  com.alibaba.testme.domain.dataobject,
  com.alibaba.testme.domain.query,
  com.alibaba.testme.service,
+ javax.annotation,
  javax.servlet;version="[3.0.0,3.0.0]",
  javax.servlet.http;version="[3.0.0,3.0.0]",
  javax.servlet.jsp.jstl.core;version="[1.2.0.v20110728,1.2.0.v20110728]",

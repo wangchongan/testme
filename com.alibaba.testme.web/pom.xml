@@ -71,6 +71,13 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 		
+	    <dependency>
+	      <groupId>javax.servlet</groupId>
+	      <artifactId>com.springsource.javax.servlet</artifactId>
+	      <version>2.5.0</version>
+	      <scope>provided</scope>
+	    </dependency>		
+		
 		<!-- velocity -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>

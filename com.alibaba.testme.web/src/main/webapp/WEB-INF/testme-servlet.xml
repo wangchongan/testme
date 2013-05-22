@@ -15,7 +15,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<mvc:annotation-driven/>
 	
 	<!-- 静态资源提供目录 -->
-	<mvc:resources mapping="/resources/**" location="/resources/"/>
+	<mvc:resources mapping="/res/**" location="/WEB-INF/res/"/>
 
 	<!-- 接收请求并解析渲染页面 -->
 	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">

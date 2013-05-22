@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Content-Language" content="zh-CN"/>
+		
+		<link rel="stylesheet" type="text/css" href="${request.ContextPath}/res/js/extjs/resources/css/ext-all.css">
+
+		<script language="javascript" type="text/javascript" src="${request.ContextPath}/res/js/extjs/ext-all.js"></script>
+		<script language="javascript" type="text/javascript" src="${request.ContextPath}/res/js/jquery/jquery.min.js"></script>
+
+		<script language="javascript" type="text/javascript" src="${request.ContextPath}/res/js/testme/userList.js"></script>		
+		
+		<title>Bundle Upload Console</title>
+	</head>
+    
+    <body onLoad="f_hideLoadHint();">
+    	<h1>Hello, TestMe! userName: ${userName}</h1>
+    	
+    	
+    	<div id="load_hint" style="font-size: 15px;">亲，努力加载中，请稍候...</div>
+    	    <div id="dbTypeCombo"></div>
+    	    <div id="tree-div"></div>
+    	    <div id="templateGroupCombo"></div>
+    	    <div id="tabs1"></div>
+    	    <div id="codeFilter" style="display:none;"></div>
+    </body>
+    
+</html>
