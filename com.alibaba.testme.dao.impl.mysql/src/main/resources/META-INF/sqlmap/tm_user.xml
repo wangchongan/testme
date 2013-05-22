@@ -8,11 +8,11 @@
 
   <resultMap id="userDOResultMap" class="userDO" >
     <result property="id" column="id" />
-    <result property="gmt_create" column="gmtCreate" />
+    <result property="gmtCreate" column="gmt_create" />
     <result property="creator" column="creator" />
-    <result property="gmt_modified" column="gmtModified" />
+    <result property="gmtModified" column="gmt_modified" />
     <result property="modifier" column="modifier" />
-    <result property="user_name" column="userName" />
+    <result property="userName" column="user_name" />
     <result property="password" column="password" />
     <result property="wangwang" column="wangwang" />
   </resultMap>
@@ -55,9 +55,9 @@
 			             `user_name`,
 			             `password`,
 			             `wangwang`)
-			values (now(),
+			values (#gmtCreate#,
 			        #creator#,
-			        now(),
+			        #gmtModified#,
 			        #modifier#,
 			        #userName#,
 			        #password#,

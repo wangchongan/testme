@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.web;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.testme.domain.dataobject.UserDO;
+import com.alibaba.testme.domain.query.UserQuery;
 import com.alibaba.testme.service.UserService;
 
 @Controller
@@ -66,7 +68,10 @@ public class UserController {
         try {
             UserDO entity = new UserDO();
             entity.setCreator("SYS");
+            entity.setGmtCreate(new Date());
             entity.setModifier("SYS");
+            entity.setGmtModified(new Date());
+            entity.setUserName("李四");
             entity.setPassword("007");
             userService.add(entity );
             
@@ -83,7 +88,10 @@ public class UserController {
         try {
             UserDO entity = new UserDO();
             entity.setCreator("SYS");
+            entity.setGmtCreate(new Date());
             entity.setModifier("SYS");
+            entity.setGmtModified(new Date());
+            entity.setUserName("aaaaaa");
             entity.setPassword(password);
             userService.add(entity );
             
@@ -96,7 +104,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/user/userList")
     public List<UserDO> userList(Model model) {
-        List<UserDO> userList = userService.findList(null);
+        UserQuery userQuery = new UserQuery();
+        userQuery.setUserName("李四");
+        List<UserDO> userList = userService.findList(userQuery);
        return userList;
     }
     
