@@ -15,42 +15,45 @@
  */
 package com.alibaba.testme.core.testunitflow.context;
 
-import java.util.Map;
-
 /**
- * TODO Comment of TestunitFlowContext
+ * 测试实例上下文
  * 
  * @author chongan.wangca
  */
 public class TestunitFlowContext {
 
-    private Integer             testunitFlowCaseId;
+    //测试实例ID
+    private Integer                  testunitFlowCaseId;
 
-    private String              testunitFlowCaseStatus;
+    //测试实例状态
+    private String                   testunitFlowCaseStatus;
 
-    private Integer             userId;
+    //用户ID
+    private Integer                  userId;
 
-    private Integer             testunitFlowCaseDetailId;
+    //测试实例节点ID
+    private Integer                  testunitFlowCaseDetailId;
 
-    private Integer             testunitFlowDetailId;
+    //测试流程节点ID
+    private Integer                  testunitFlowDetailId;
 
-    private String              testunitFlowCaseDetailStatus;
+    //测试实例节点状态
+    private String                   testunitFlowCaseDetailStatus;
 
-    private Map<String, String> inputParamsMap;
+    //输入参数
+    private InputParams              inputParams;
 
-    private Map<String, String> outputParamsMap;
+    //输出参数
+    private OutputParams             outputParams;
 
-    private String              testunitClassQualifiedName;
+    //测试单元定义管理器
+    private TestunitDefParamsManager testunitDefParamsManager;
 
-    private String              testunitVersion;
+    //测试单元类路径
+    private String                   testunitClassQualifiedName;
 
-    public Map<String, String> getInputParamsMap() {
-        return inputParamsMap;
-    }
-
-    public void setInputParamsMap(Map<String, String> inputParamsMap) {
-        this.inputParamsMap = inputParamsMap;
-    }
+    //测试单元版本号
+    private String                   testunitVersion;
 
     public Integer getTestunitFlowCaseId() {
         return testunitFlowCaseId;
@@ -100,12 +103,20 @@ public class TestunitFlowContext {
         this.testunitFlowCaseDetailStatus = testunitFlowCaseDetailStatus;
     }
 
-    public Map<String, String> getOutputParamsMap() {
-        return outputParamsMap;
+    public InputParams getInputParams() {
+        return inputParams;
     }
 
-    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
-        this.outputParamsMap = outputParamsMap;
+    public void setInputParams(InputParams inputParams) {
+        this.inputParams = inputParams;
+    }
+
+    public OutputParams getOutputParams() {
+        return outputParams;
+    }
+
+    public void setOutputParams(OutputParams outputParams) {
+        this.outputParams = outputParams;
     }
 
     public String getTestunitClassQualifiedName() {
@@ -122,6 +133,14 @@ public class TestunitFlowContext {
 
     public void setTestunitVersion(String testunitVersion) {
         this.testunitVersion = testunitVersion;
+    }
+
+    public TestunitDefParamsManager getTestunitDefParamsManager() {
+        return testunitDefParamsManager;
+    }
+
+    public void setTestunitDefParamsManager(TestunitDefParamsManager testunitDefParamsManager) {
+        this.testunitDefParamsManager = testunitDefParamsManager;
     }
 
 }

@@ -20,9 +20,10 @@ import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
+import com.alibaba.testme.core.testunitflow.dto.ParamsMatchCheckResult;
 
 /**
- * TODO Comment of DefaultBeforeTestunitFlowWorkChecker
+ * 进入核心处理器前置校验
  * 
  * @author chongan.wangca
  */
@@ -31,6 +32,8 @@ public class DefaultBeforeTestunitFlowWorkChecker {
     private BaseChecker<String> testunitFlowCaseStatusChecker;
 
     /**
+     * 校验是否满足执行测试单元的需求
+     * 
      * @param testunitFlowContext
      * @return
      */
@@ -50,12 +53,23 @@ public class DefaultBeforeTestunitFlowWorkChecker {
 
         //2.如果测试实例状态处于暂停状态，则判断是否有传入参数
         if (TestunitFlowStatusEnum.PAUSED.getKey().equals(status)
-                && (testunitFlowContext.getInputParamsMap() == null || testunitFlowContext
-                        .getInputParamsMap().size() == 0)) {
+                && !testunitFlowContext.getInputParams().hasFromUserParams()) {
             checkResult.setResult(CheckResultEnum.FAIL);
             checkResult.addErrorMsg("测试实例处于等待用户录入参数状态，请务必录入参数再提交执行。");
             return checkResult;
         }
-        return null;
+
+        //3.校验输入的参数是否满足执行测试单元必需的参数
+        ParamsMatchCheckResult paramsMatchCheckResult = testunitFlowContext
+                .getTestunitDefParamsManager().isRequiredParamsMatch(
+                        testunitFlowContext.getInputParams());
+        if (!paramsMatchCheckResult.isMatch()) {
+            checkResult.setResult(CheckResultEnum.FAIL);
+            checkResult
+                    .addErrorMsg("缺少必需的参数:" + paramsMatchCheckResult.getAbsentParamsLabelNames());
+            return checkResult;
+        }
+
+        return checkResult;
     }
 }

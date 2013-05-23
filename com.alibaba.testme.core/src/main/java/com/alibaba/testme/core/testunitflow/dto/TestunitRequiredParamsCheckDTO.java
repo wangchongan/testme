@@ -15,7 +15,6 @@
  */
 package com.alibaba.testme.core.testunitflow.dto;
 
-import com.alibaba.testme.core.testunitflow.context.TestunitExtend;
 
 /**
  * TODO Comment of TestunitRequiredParamsCheckDTO
@@ -23,7 +22,5 @@ import com.alibaba.testme.core.testunitflow.context.TestunitExtend;
  * @author chongan.wangca
  */
 public class TestunitRequiredParamsCheckDTO {
-
-    private TestunitExtend testunitExtend;
 
 }

@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-22
+ * File Created at 2013-5-23
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -15,18 +15,24 @@
  */
 package com.alibaba.testme.core.testunitflow.context;
 
-import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
-import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO;
+import java.util.Map;
 
 /**
- * 本次执行的Testunit
+ * 输出参数
  * 
  * @author chongan.wangca
  */
-public class ActiveTestunit {
+public class OutputParams {
 
-    private TestunitFlowCaseDO       testunitFlowCaseDO;
-    private TestunitFlowCaseDetailDO testunitFlowCaseDetailDO;
-    private TestunitExtend           testunitExtend;
+    //输出参数
+    public Map<String, String> outputParamsMap;
+
+    public Map<String, String> getOutputParamsMap() {
+        return outputParamsMap;
+    }
+
+    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
+        this.outputParamsMap = outputParamsMap;
+    }
 
 }
