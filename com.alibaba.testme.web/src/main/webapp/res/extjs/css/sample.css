@@ -1,0 +1,20 @@
+/*
+ * Ext JS Library 2.0.2
+ * Copyright(c) 2006-2008, Ext JS, LLC.
+ * licensing£Àextjs.com
+ * 
+ * extjs.com/license
+ */
+
+html, body {
+    font:normal 14px verdana;
+    margin:0;
+    padding:0;
+    border:0 none;
+    overflow:hidden;
+    height:100%;
+}
+
+.x-panel-body p {
+    margin:5px;
+}
