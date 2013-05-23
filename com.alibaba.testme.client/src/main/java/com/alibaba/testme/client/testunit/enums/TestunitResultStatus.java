@@ -1,7 +1,7 @@
 /**
- * Project: com.alibaba.testme.common
+ * Project: com.alibaba.testme.client
  * 
- * File Created at 2013-5-22
+ * File Created at 2013-5-23
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,32 +13,30 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.common.enums;
+package com.alibaba.testme.client.testunit.enums;
 
 /**
- * 测试实例的状态枚举
+ * Testunit执行结果状态
  * 
  * @author chongan.wangca
  */
-public enum TestunitFlowStatusEnum {
+public enum TestunitResultStatus {
 
     SUCCESS("SUCCESS", "成功执行而完成"),
     FAIL("FAIL", "因异常执行失败而完成"),
     RETRY("RETRY", "稍后重试"),
-    PAUSED("PAUSED", "需要录入参数而暂停"),
-    RUNNING("RUNNING", "执行中"),
-    WAITING("WAITING", "未执行");
+    PAUSED("PAUSED", "需要录入参数而暂停");
 
     private String key;
     private String name;
 
-    private TestunitFlowStatusEnum(String key, String name) {
+    private TestunitResultStatus(String key, String name) {
         this.key = key;
         this.name = name;
     }
 
     static public String getName(String key) {
-        for (TestunitFlowStatusEnum obj : TestunitFlowStatusEnum.values()) {
+        for (TestunitResultStatus obj : TestunitResultStatus.values()) {
             if (obj.getKey().equals(key)) {
                 return obj.getName();
             }
@@ -53,4 +51,5 @@ public enum TestunitFlowStatusEnum {
     public String getName() {
         return name;
     }
+
 }

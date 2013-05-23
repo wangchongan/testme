@@ -15,11 +15,46 @@
  */
 package com.alibaba.testme.client.testunit.dto;
 
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
+
 /**
- * TODO Comment of TestunitResult
+ * 测试单元执行结果
+ * 
  * @author chongan.wangca
- *
  */
 public class TestunitResult {
+
+    private TestunitResultStatus status;
+
+    private List<String>         errorMsgsList;
+
+    private Map<String, String>  outputParamsMap;
+
+    public TestunitResultStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TestunitResultStatus status) {
+        this.status = status;
+    }
+
+    public List<String> getErrorMsgsList() {
+        return errorMsgsList;
+    }
+
+    public void setErrorMsgsList(List<String> errorMsgsList) {
+        this.errorMsgsList = errorMsgsList;
+    }
+
+    public Map<String, String> getOutputParamsMap() {
+        return outputParamsMap;
+    }
+
+    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
+        this.outputParamsMap = outputParamsMap;
+    }
 
 }

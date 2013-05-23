@@ -15,11 +15,23 @@
  */
 package com.alibaba.testme.client.testunit.dto;
 
+import java.util.Map;
+
 /**
- * TODO Comment of TestunitDTO
+ * TODO Comment of TestunitContext
+ * 
  * @author chongan.wangca
- *
  */
-public class TestunitInputDTO {
+public class TestunitContext {
+
+    private Map<String, String> inputParamsMap;
+
+    public Map<String, String> getInputParamsMap() {
+        return inputParamsMap;
+    }
+
+    public void setInputParamsMap(Map<String, String> inputParamsMap) {
+        this.inputParamsMap = inputParamsMap;
+    }
 
 }

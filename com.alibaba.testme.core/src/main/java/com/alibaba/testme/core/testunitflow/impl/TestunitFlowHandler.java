@@ -18,26 +18,25 @@ package com.alibaba.testme.core.testunitflow.impl;
 import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
-import com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder;
-import com.alibaba.testme.core.testunitflow.TestunitFlowHandler;
-import com.alibaba.testme.core.testunitflow.TestunitFlowWorker;
+import com.alibaba.testme.core.testunitflow.ITestunitFlowContextBuilder;
+import com.alibaba.testme.core.testunitflow.ITestunitFlowHandler;
+import com.alibaba.testme.core.testunitflow.ITestunitFlowWorker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
-import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
-import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestunitFlowResult;
+import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
+import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
 
 /**
  * 单向流程TestunitFlow处理总入口
  * 
  * @author chongan.wangca
  */
-public class DefaultTestunitFlowHandler implements
-        TestunitFlowHandler<DefaultTestRequestDTO, DefaultTestunitFlowResult> {
+public class TestunitFlowHandler implements ITestunitFlowHandler {
 
-    private BaseChecker<DefaultTestRequestDTO>                testRequestChecker;
+    private BaseChecker<TestRequestDTO> testRequestChecker;
 
-    private TestunitFlowContextBuilder<DefaultTestRequestDTO> defaultTestunitFlowContextBuilder;
+    private ITestunitFlowContextBuilder defaultTestunitFlowContextBuilder;
 
-    private TestunitFlowWorker<DefaultTestunitFlowResult>     defaultTestunitFlowWorker;
+    private ITestunitFlowWorker         defaultTestunitFlowWorker;
 
     /*
      * (non-Javadoc)
@@ -46,9 +45,9 @@ public class DefaultTestunitFlowHandler implements
      * .testme.core.testunitflow.dto.TestRequestDTO)
      */
     @Override
-    public DefaultTestunitFlowResult deal(DefaultTestRequestDTO testRequestDTO) {
+    public TestunitFlowResult deal(TestRequestDTO testRequestDTO) {
 
-        DefaultTestunitFlowResult testunitFlowResult = new DefaultTestunitFlowResult();
+        TestunitFlowResult testunitFlowResult = new TestunitFlowResult();
 
         //1、对输入参数进行校验
         CheckResult testRequestCheckResult = testRequestChecker.check(testRequestDTO);

@@ -13,18 +13,29 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow;
+package com.alibaba.testme.core.testunitflow.impl;
 
+import com.alibaba.testme.core.testunitflow.ITestunitRequestManager;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
 
 /**
- * TODO Comment of TestunitFlowController
+ * TODO Comment of TestunitInvoker
  * 
  * @author chongan.wangca
  */
-public interface TestunitFlowWorker<T extends TestunitFlowResult> {
+public class TestunitRequestManager implements ITestunitRequestManager {
 
-    public T doWork(TestunitFlowContext testunitFlowContext);
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.core.testunitflow.ITestunitRequestManager#doRequest
+     * (com.alibaba.testme.core.testunitflow.context.TestunitFlowContext)
+     */
+    @Override
+    public TestunitFlowResult doRequest(TestunitFlowContext testunitFlowContext) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

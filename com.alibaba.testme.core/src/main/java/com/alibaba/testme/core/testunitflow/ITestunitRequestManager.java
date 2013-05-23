@@ -13,15 +13,18 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow.dto.impl;
+package com.alibaba.testme.core.testunitflow;
 
-import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
+import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
 
 /**
- * TODO Comment of DefaultTestRequestDTO
+ * TODO Comment of TestunitInvoker
  * 
  * @author chongan.wangca
  */
-public class DefaultTestRequestDTO extends TestRequestDTO {
+public interface ITestunitRequestManager {
+
+    public TestunitFlowResult doRequest(TestunitFlowContext testunitFlowContext);
 
 }

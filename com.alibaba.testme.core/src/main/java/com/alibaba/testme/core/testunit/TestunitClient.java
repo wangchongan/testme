@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-22
+ * File Created at 2013-5-21
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,14 +13,17 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow.dto;
+package com.alibaba.testme.core.testunit;
 
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
 
 /**
- * TODO Comment of TestunitRequiredParamsCheckDTO
+ * TODO Comment of TestunitInvoker
  * 
  * @author chongan.wangca
  */
-public class TestunitRequiredParamsCheckDTO {
+public interface TestunitClient {
+
+    public TestunitResult invoke();
 
 }
