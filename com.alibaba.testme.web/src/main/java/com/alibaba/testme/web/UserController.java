@@ -45,6 +45,7 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
+    
     @Resource
     private UserService         userService;
 
@@ -115,5 +116,8 @@ public class UserController {
 //        JSON.toJSONString(userList);
        return  userList;
     }
+    
+    
+    
     
 }

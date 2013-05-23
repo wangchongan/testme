@@ -18,6 +18,7 @@
 		<module>com.alibaba.testme.client</module>
 		<module>com.alibaba.testme.core</module>
 		<module>com.alibaba.testme.web</module>
+		<module>com.alibaba.testme.remote.hsf</module>
 	</modules>
 	
 	<properties>
