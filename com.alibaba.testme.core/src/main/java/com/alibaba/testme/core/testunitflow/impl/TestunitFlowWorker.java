@@ -15,11 +15,13 @@
  */
 package com.alibaba.testme.core.testunitflow.impl;
 
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
 import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
 import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.testunitflow.ITestunitFlowWorker;
-import com.alibaba.testme.core.testunitflow.ITestunitRequestManager;
+import com.alibaba.testme.core.testunitflow.ITestunitRequester;
 import com.alibaba.testme.core.testunitflow.checker.BeforeTestunitFlowWorkChecker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
@@ -31,7 +33,7 @@ public class TestunitFlowWorker implements ITestunitFlowWorker {
 
     private BeforeTestunitFlowWorkChecker beforeTestunitFlowWorkChecker;
 
-    private ITestunitRequestManager       testunitRequestManager;
+    private ITestunitRequester            testunitRequester;
 
     /*
      * (non-Javadoc)
@@ -52,6 +54,10 @@ public class TestunitFlowWorker implements ITestunitFlowWorker {
             return result;
         }
 
+        TestunitResult testunitResult = testunitRequester.doRequest(testunitFlowContext);
+        if (testunitResult.getStatus() == TestunitResultStatus.SUCCESS) {
+
+        }
         return null;
     }
 

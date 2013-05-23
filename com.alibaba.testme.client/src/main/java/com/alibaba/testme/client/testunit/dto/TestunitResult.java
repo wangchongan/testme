@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.client.testunit.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,18 @@ public class TestunitResult {
     private List<String>         errorMsgsList;
 
     private Map<String, String>  outputParamsMap;
+
+    /**
+     * 添加异常信息
+     * 
+     * @param errorMsg
+     */
+    public void addErrorMsg(String errorMsg) {
+        if (errorMsgsList == null) {
+            errorMsgsList = new ArrayList<String>();
+        }
+        errorMsgsList.add(errorMsg);
+    }
 
     public TestunitResultStatus getStatus() {
         return status;

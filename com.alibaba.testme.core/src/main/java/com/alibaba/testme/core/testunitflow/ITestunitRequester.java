@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-21
+ * File Created at 2013-5-20
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,18 +13,18 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunit;
+package com.alibaba.testme.core.testunitflow;
 
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 
 /**
  * TODO Comment of TestunitInvoker
  * 
  * @author chongan.wangca
  */
-public interface TestunitClient {
+public interface ITestunitRequester {
 
-    public TestunitResult invoke(TestunitContext testunitContext);
+    public TestunitResult doRequest(TestunitFlowContext testunitFlowContext);
 
 }

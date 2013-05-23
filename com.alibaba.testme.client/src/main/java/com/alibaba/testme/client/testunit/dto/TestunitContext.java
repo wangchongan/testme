@@ -24,6 +24,10 @@ import java.util.Map;
  */
 public class TestunitContext {
 
+    //类路径
+    private String              classQualifiedName;
+
+    //输入参数
     private Map<String, String> inputParamsMap;
 
     public Map<String, String> getInputParamsMap() {
@@ -32,6 +36,14 @@ public class TestunitContext {
 
     public void setInputParamsMap(Map<String, String> inputParamsMap) {
         this.inputParamsMap = inputParamsMap;
+    }
+
+    public String getClassQualifiedName() {
+        return classQualifiedName;
+    }
+
+    public void setClassQualifiedName(String classQualifiedName) {
+        this.classQualifiedName = classQualifiedName;
     }
 
 }
