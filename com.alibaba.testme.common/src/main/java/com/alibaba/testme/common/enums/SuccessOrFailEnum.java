@@ -1,7 +1,7 @@
 /**
- * Project: com.alibaba.testme.client
+ * Project: com.alibaba.testme.common
  * 
- * File Created at 2013-5-23
+ * File Created at 2013-5-24
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,29 +13,28 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.client.testunit.enums;
+package com.alibaba.testme.common.enums;
 
 /**
- * Testunit执行结果状态
+ * TODO Comment of SuccessOrFailEnum
  * 
  * @author chongan.wangca
  */
-public enum TestunitResultStatus {
+public enum SuccessOrFailEnum {
 
-    SUCCESS("SUCCESS", "成功执行而完成"),
-    FAIL("FAIL", "因异常执行失败而完成"),
-    RETRY("RETRY", "稍后重试");
+    SUCCESS("SUCCESS", "成功"),
+    FAIL("FAIL", "失败");
 
     private String key;
     private String name;
 
-    private TestunitResultStatus(String key, String name) {
+    private SuccessOrFailEnum(String key, String name) {
         this.key = key;
         this.name = name;
     }
 
     static public String getName(String key) {
-        for (TestunitResultStatus obj : TestunitResultStatus.values()) {
+        for (SuccessOrFailEnum obj : SuccessOrFailEnum.values()) {
             if (obj.getKey().equals(key)) {
                 return obj.getName();
             }
@@ -50,5 +49,4 @@ public enum TestunitResultStatus {
     public String getName() {
         return name;
     }
-
 }

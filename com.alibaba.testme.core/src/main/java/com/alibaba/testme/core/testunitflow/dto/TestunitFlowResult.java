@@ -16,25 +16,27 @@
 package com.alibaba.testme.core.testunitflow.dto;
 
 import java.util.List;
-import java.util.Map;
 
+import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
+import com.alibaba.testme.common.basedto.BaseResult;
 import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
+import com.alibaba.testme.core.testunitflow.context.TestunitDefParam;
 
 /**
  * TODO Comment of TestunitFlowResultDTO
  * 
  * @author chongan.wangca
  */
-public class TestunitFlowResult {
+public class TestunitFlowResult extends BaseResult {
+
+    //测试单元实例ID
+    private Integer                testunitFlowCaseId;
 
     //测试单元执行结果状态
     private TestunitDealStatusEnum status;
 
-    //错误信息
-    private List<String>           errorMsgsList;
-
-    //输出参数
-    private Map<String, String>    outputParamsMap;
+    //缺少的必录参数
+    private List<TestunitDefParam> absentParamsList;
 
     public TestunitDealStatusEnum getStatus() {
         return status;
@@ -44,24 +46,41 @@ public class TestunitFlowResult {
         this.status = status;
     }
 
-    public List<String> getErrorMsgsList() {
-        return errorMsgsList;
+    public List<TestunitDefParam> getAbsentParamsList() {
+        return absentParamsList;
     }
 
-    public void setErrorMsgsList(List<String> errorMsgsList) {
-        this.errorMsgsList = errorMsgsList;
+    public void setAbsentParamsList(List<TestunitDefParam> absentParamsList) {
+        this.absentParamsList = absentParamsList;
     }
 
-    public void addAllErrorMsgs(List<String> errorMsgsList) {
-        this.errorMsgsList.addAll(errorMsgsList);
+    public Integer getTestunitFlowCaseId() {
+        return testunitFlowCaseId;
     }
 
-    public Map<String, String> getOutputParamsMap() {
-        return outputParamsMap;
+    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
+        this.testunitFlowCaseId = testunitFlowCaseId;
     }
 
-    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
-        this.outputParamsMap = outputParamsMap;
-    }
+    /**
+     * 根据Testunit执行结果的状态映射到TestunitFlow的状态
+     * 
+     * @param status
+     */
+    public void statusMapping(TestunitResultStatus status) {
 
+        if (status == TestunitResultStatus.SUCCESS) {
+            this.status = TestunitDealStatusEnum.SUCCESS;
+            return;
+        }
+        if (status == TestunitResultStatus.FAIL) {
+            this.status = TestunitDealStatusEnum.FAIL;
+            return;
+        }
+        if (status == TestunitResultStatus.RETRY) {
+            this.status = TestunitDealStatusEnum.RETRY;
+            return;
+        }
+
+    }
 }

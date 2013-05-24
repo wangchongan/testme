@@ -20,7 +20,6 @@ import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
-import com.alibaba.testme.core.testunitflow.dto.ParamsMatchCheckResult;
 
 /**
  * 进入核心处理器前置校验
@@ -56,17 +55,6 @@ public class BeforeTestunitFlowWorkChecker implements BaseChecker<TestunitFlowCo
                 && !testunitFlowContext.getInputParams().hasFromUserParams()) {
             checkResult.setResult(CheckResultEnum.FAIL);
             checkResult.addErrorMsg("测试实例处于等待用户录入参数状态，请务必录入参数再提交执行。");
-            return checkResult;
-        }
-
-        //3.校验输入的参数是否满足执行测试单元必需的参数
-        ParamsMatchCheckResult paramsMatchCheckResult = testunitFlowContext
-                .getTestunitDefParamsManager().isRequiredParamsMatch(
-                        testunitFlowContext.getInputParams());
-        if (!paramsMatchCheckResult.isMatch()) {
-            checkResult.setResult(CheckResultEnum.FAIL);
-            checkResult
-                    .addErrorMsg("缺少必需的参数:" + paramsMatchCheckResult.getAbsentParamsLabelNames());
             return checkResult;
         }
 
