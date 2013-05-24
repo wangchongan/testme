@@ -49,7 +49,7 @@ public class TestunitParamExtServiceImpl implements TestunitParamExtService {
      * @return
      */
     @Override
-    public int deleteTestunitParamExtDO(Long id) {
+    public int deleteTestunitParamExtDO(Integer id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitParamExtServiceImpl implements TestunitParamExtService {
      * @return
      */
     @Override
-    public TestunitParamExtDO findById(Long id) {
+    public TestunitParamExtDO findById(Integer id) {
         if (id == null || id == 0L) {
             return null;
         }

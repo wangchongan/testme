@@ -48,7 +48,7 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public int deleteTestunitFlowCaseDetailDO(Long id) {
+    public int deleteTestunitFlowCaseDetailDO(Integer id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
                 "testunitFlowCaseDetail.deleteById", id);
         if (result == null) {
@@ -62,7 +62,7 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public TestunitFlowCaseDetailDO findById(Long id) {
+    public TestunitFlowCaseDetailDO findById(Integer id) {
         return (TestunitFlowCaseDetailDO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitFlowCaseDetail.findById", id);
     }

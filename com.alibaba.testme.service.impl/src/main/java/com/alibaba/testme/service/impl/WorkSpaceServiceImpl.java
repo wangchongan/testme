@@ -49,7 +49,7 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public int deleteWorkSpaceDO(Long id) {
+    public int deleteWorkSpaceDO(Integer id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public WorkSpaceDO findById(Long id) {
+    public WorkSpaceDO findById(Integer id) {
         if (id == null || id == 0L) {
             return null;
         }

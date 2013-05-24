@@ -27,13 +27,13 @@ public interface TestunitFlowService {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowDO(Long id);
+    public int deleteTestunitFlowDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowDO findById(Long id);
+    public TestunitFlowDO findById(Integer id);
 
     /**
      * @param id

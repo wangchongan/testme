@@ -27,13 +27,13 @@ public interface TestunitFlowCaseDao {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowCaseDO(Long id);
+    public int deleteTestunitFlowCaseDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowCaseDO findById(Long id);
+    public TestunitFlowCaseDO findById(Integer id);
 
     /**
      * @param testunitFlowCaseDO

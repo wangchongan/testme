@@ -47,7 +47,7 @@ public class TestunitFlowDaoImpl extends SqlMapClientDaoSupport implements Testu
      * @return
      */
     @Override
-    public int deleteTestunitFlowDO(Long id) {
+    public int deleteTestunitFlowDO(Integer id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete("testunitFlow.deleteById",
                 id);
         if (result == null) {
@@ -61,7 +61,7 @@ public class TestunitFlowDaoImpl extends SqlMapClientDaoSupport implements Testu
      * @return
      */
     @Override
-    public TestunitFlowDO findById(Long id) {
+    public TestunitFlowDO findById(Integer id) {
         return (TestunitFlowDO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitFlow.findById", id);
     }

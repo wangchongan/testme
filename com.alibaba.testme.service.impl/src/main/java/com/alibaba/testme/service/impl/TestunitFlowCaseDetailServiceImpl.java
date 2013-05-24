@@ -49,7 +49,7 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
      * @return
      */
     @Override
-    public int deleteTestunitFlowCaseDetailDO(Long id) {
+    public int deleteTestunitFlowCaseDetailDO(Integer id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
      * @return
      */
     @Override
-    public TestunitFlowCaseDetailDO findById(Long id) {
+    public TestunitFlowCaseDetailDO findById(Integer id) {
         if (id == null || id == 0L) {
             return null;
         }

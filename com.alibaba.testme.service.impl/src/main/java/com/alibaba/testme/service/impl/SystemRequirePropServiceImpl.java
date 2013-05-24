@@ -49,7 +49,7 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public int deleteSystemRequirePropDO(Long id) {
+    public int deleteSystemRequirePropDO(Integer id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public SystemRequirePropDO findById(Long id) {
+    public SystemRequirePropDO findById(Integer id) {
         if (id == null || id == 0L) {
             return null;
         }

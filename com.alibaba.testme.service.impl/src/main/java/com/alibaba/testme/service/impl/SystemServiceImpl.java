@@ -49,7 +49,7 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public int deleteSystemDO(Long id) {
+    public int deleteSystemDO(Integer id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public SystemDO findById(Long id) {
+    public SystemDO findById(Integer id) {
         if (id == null || id == 0L) {
             return null;
         }

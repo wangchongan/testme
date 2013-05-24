@@ -45,7 +45,7 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public int deleteSystemDO(Long id) {
+    public int deleteSystemDO(Integer id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete("system.deleteById", id);
         if (result == null) {
             return 0;
@@ -58,7 +58,7 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public SystemDO findById(Long id) {
+    public SystemDO findById(Integer id) {
         return (SystemDO) this.getSqlMapClientTemplate().queryForObject("system.findById", id);
     }
 
