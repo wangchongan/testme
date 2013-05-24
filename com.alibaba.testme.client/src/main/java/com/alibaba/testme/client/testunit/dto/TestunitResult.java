@@ -28,10 +28,16 @@ import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
  */
 public class TestunitResult {
 
+    //执行结果状态
     private TestunitResultStatus status;
 
+    //异常日志信息
     private List<String>         errorMsgsList;
 
+    //正常日志信息
+    private List<String>         msgsList;
+
+    //输出参数
     private Map<String, String>  outputParamsMap;
 
     /**
@@ -68,6 +74,14 @@ public class TestunitResult {
 
     public void setOutputParamsMap(Map<String, String> outputParamsMap) {
         this.outputParamsMap = outputParamsMap;
+    }
+
+    public List<String> getMsgsList() {
+        return msgsList;
+    }
+
+    public void setMsgsList(List<String> msgsList) {
+        this.msgsList = msgsList;
     }
 
 }

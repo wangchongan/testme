@@ -25,8 +25,7 @@ public enum TestunitDealStatusEnum {
     SUCCESS("SUCCESS", "执行成功"),
     FAIL("FAIL", "执行失败"),
     RETRY("RETRY", "稍后重试"),
-    PAUSED("PAUSED", "需要录入参数而暂停"),
-    STOP("STOP", "中止执行而完成");
+    PAUSED("PAUSED", "需要录入参数而暂停");
 
     private String key;
     private String name;

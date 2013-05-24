@@ -17,7 +17,7 @@ package com.alibaba.testme.core.testunitflow.impl;
 
 import com.alibaba.testme.client.testunit.dto.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
-import com.alibaba.testme.core.testunit.TestunitClient;
+import com.alibaba.testme.core.testunit.ITestunitClient;
 import com.alibaba.testme.core.testunitflow.ITestunitRequester;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 
@@ -28,7 +28,7 @@ import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
  */
 public class TestunitRequester implements ITestunitRequester {
 
-    private TestunitClient testunitClient;
+    private ITestunitClient testunitClient;
 
     /*
      * (non-Javadoc)
@@ -44,7 +44,7 @@ public class TestunitRequester implements ITestunitRequester {
         return testunitClient.invoke(testunitContext);
     }
 
-    public void setTestunitClient(TestunitClient testunitClient) {
+    public void setTestunitClient(ITestunitClient testunitClient) {
         this.testunitClient = testunitClient;
     }
 

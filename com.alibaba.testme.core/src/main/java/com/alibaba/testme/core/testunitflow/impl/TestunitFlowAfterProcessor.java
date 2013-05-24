@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-20
+ * File Created at 2013-5-24
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -15,28 +15,27 @@
  */
 package com.alibaba.testme.core.testunitflow.impl;
 
-import java.util.Map;
-
-import com.alibaba.testme.core.testunitflow.ITestunitFlowContextBuilder;
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.core.testunitflow.ITestunitFlowAfterProcessor;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 
 /**
- * TODO Comment of TestunitFlowContextBuilder
+ * 生成后续测试单元实例节点信息
  * 
  * @author chongan.wangca
  */
-public class TestunitFlowContextBuilder implements ITestunitFlowContextBuilder {
+public class TestunitFlowAfterProcessor implements ITestunitFlowAfterProcessor {
 
     /*
      * (non-Javadoc)
      * @see
-     * com.alibaba.testme.core.testunitflow.ITestunitFlowContextBuilder#build
-     * (java.lang.Integer, java.util.Map)
+     * com.alibaba.testme.core.testunitflow.ITestunitFlowRouter#doRoute(com.
+     * alibaba.testme.core.testunitflow.context.TestunitFlowContext,
+     * com.alibaba.testme.client.testunit.dto.TestunitResult)
      */
     @Override
-    public TestunitFlowContext build(Integer testunitFlowCaseId, Map<String, String> inputParamsMap) {
+    public void doProcess(TestunitFlowContext testunitFlowContext, TestunitResult testunitResult) {
         // TODO Auto-generated method stub
-        return null;
     }
 
 }
