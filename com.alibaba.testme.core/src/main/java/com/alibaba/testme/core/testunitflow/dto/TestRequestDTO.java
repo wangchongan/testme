@@ -26,7 +26,7 @@ public class TestRequestDTO {
 
     private Integer             testunitFlowCaseId;
 
-    private Map<String, String> inputParamsMap;
+    private Map<String, String> userInputParamsMap;
 
     public Integer getTestunitFlowCaseId() {
         return testunitFlowCaseId;
@@ -36,12 +36,12 @@ public class TestRequestDTO {
         this.testunitFlowCaseId = testunitFlowCaseId;
     }
 
-    public Map<String, String> getInputParamsMap() {
-        return inputParamsMap;
+    public Map<String, String> getUserInputParamsMap() {
+        return userInputParamsMap;
     }
 
-    public void setInputParamsMap(Map<String, String> inputParamsMap) {
-        this.inputParamsMap = inputParamsMap;
+    public void setUserInputParamsMap(Map<String, String> userInputParamsMap) {
+        this.userInputParamsMap = userInputParamsMap;
     }
 
 }

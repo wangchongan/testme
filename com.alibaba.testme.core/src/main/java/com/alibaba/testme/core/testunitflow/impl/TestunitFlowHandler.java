@@ -56,7 +56,7 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
         TestunitFlowResult allTestunitFlowResult = new TestunitFlowResult();
 
         Integer testunitFlowCaseId = testRequestDTO.getTestunitFlowCaseId();
-        Map<String, String> inputParamsMap = testRequestDTO.getInputParamsMap();
+        Map<String, String> userInputParamsMap = testRequestDTO.getUserInputParamsMap();
         TestunitFlowResult stageTestunitFlowResult = null;
 
         //对输入参数进行校验,不合法则立即返回
@@ -78,7 +78,7 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
              * 1.构建context
              */
             TestunitFlowContext testunitFlowContext = defaultTestunitFlowContextBuilder.build(
-                    testunitFlowCaseId, inputParamsMap);
+                    testunitFlowCaseId, userInputParamsMap);
 
             /**
              * 2.交由核心处理器进行处理
@@ -94,7 +94,7 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
              * 4.清理动作<br/>
              * 由于下次运行时已无用户输入参数，所以该参数需要清空
              */
-            inputParamsMap = null;
+            userInputParamsMap = null;
 
         } while (testunitFlowHelper.hasExecutableNode(testunitFlowCaseId)
                 && stageTestunitFlowResult.getStatus() == TestunitDealStatusEnum.SUCCESS);
