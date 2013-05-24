@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-20
+ * File Created at 2013-5-23
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -15,17 +15,15 @@
  */
 package com.alibaba.testme.core.testunitflow;
 
-import java.util.Map;
-
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 
 /**
- * TODO Comment of TestunitFlowContextBuilder
+ * 后续测试单元路由
  * 
  * @author chongan.wangca
  */
-public interface ITestunitFlowContextBuilder {
+public interface ITestunitFlowAfterProcessor {
 
-    public TestunitFlowContext build(Integer testunitFlowCaseId, Map<String, String> inputParamsMap);
-
+    public void doProcess(TestunitFlowContext testunitFlowContext, TestunitResult testunitResult);
 }

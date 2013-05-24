@@ -15,11 +15,15 @@
  */
 package com.alibaba.testme.core.testunitflow.impl;
 
+import java.util.Map;
+
+import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
 import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
 import com.alibaba.testme.core.testunitflow.ITestunitFlowContextBuilder;
 import com.alibaba.testme.core.testunitflow.ITestunitFlowHandler;
+import com.alibaba.testme.core.testunitflow.ITestunitFlowHelper;
 import com.alibaba.testme.core.testunitflow.ITestunitFlowWorker;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
@@ -38,6 +42,8 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
 
     private ITestunitFlowWorker         defaultTestunitFlowWorker;
 
+    private ITestunitFlowHelper         testunitFlowHelper;
+
     /*
      * (non-Javadoc)
      * @see
@@ -47,22 +53,65 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
     @Override
     public TestunitFlowResult deal(TestRequestDTO testRequestDTO) {
 
-        TestunitFlowResult testunitFlowResult = new TestunitFlowResult();
+        TestunitFlowResult allTestunitFlowResult = new TestunitFlowResult();
 
-        //1、对输入参数进行校验
+        Integer testunitFlowCaseId = testRequestDTO.getTestunitFlowCaseId();
+        Map<String, String> inputParamsMap = testRequestDTO.getInputParamsMap();
+        TestunitFlowResult stageTestunitFlowResult = null;
+
+        //对输入参数进行校验,不合法则立即返回
         CheckResult testRequestCheckResult = testRequestChecker.check(testRequestDTO);
         if (testRequestCheckResult.getResult() == CheckResultEnum.FAIL) {
-            testunitFlowResult.addAllErrorMsgs(testRequestCheckResult.getErrorMsgsList());
-            return testunitFlowResult;
+            allTestunitFlowResult.setStatus(TestunitDealStatusEnum.FAIL);
+            allTestunitFlowResult.addAllErrorMsgs(testRequestCheckResult.getErrorMsgsList());
+            return allTestunitFlowResult;
         }
 
-        //2、构建context
-        TestunitFlowContext testunitFlowContext = defaultTestunitFlowContextBuilder
-                .build(testRequestDTO);
+        /**
+         * 依次处理每个测试实例节点
+         */
+        do {
 
-        //3、交由核心处理器进行处理
-        testunitFlowResult = defaultTestunitFlowWorker.doWork(testunitFlowContext);
+            stageTestunitFlowResult = new TestunitFlowResult();
 
-        return testunitFlowResult;
+            /**
+             * 1.构建context
+             */
+            TestunitFlowContext testunitFlowContext = defaultTestunitFlowContextBuilder.build(
+                    testunitFlowCaseId, inputParamsMap);
+
+            /**
+             * 2.交由核心处理器进行处理
+             */
+            stageTestunitFlowResult = defaultTestunitFlowWorker.doWork(testunitFlowContext);
+
+            /**
+             * 3.汇总结果
+             */
+            stage2All(stageTestunitFlowResult, allTestunitFlowResult);
+
+            /**
+             * 4.清理动作<br/>
+             * 由于下次运行时已无用户输入参数，所以该参数需要清空
+             */
+            inputParamsMap = null;
+
+        } while (testunitFlowHelper.hasExecutableNode(testunitFlowCaseId)
+                && stageTestunitFlowResult.getStatus() == TestunitDealStatusEnum.SUCCESS);
+
+        allTestunitFlowResult.setStatus(stageTestunitFlowResult.getStatus());
+        return allTestunitFlowResult;
+    }
+
+    /**
+     * 将阶段节点的结果添加至总结果集中
+     * 
+     * @param stage
+     * @param all
+     */
+    public void stage2All(TestunitFlowResult stageResult, TestunitFlowResult allResult) {
+        allResult.addAllMsgs(stageResult.getMsgsList());
+        allResult.addAllErrorMsgs(stageResult.getErrorMsgsList());
+        allResult.setAbsentParamsList(stageResult.getAbsentParamsList());
     }
 }
