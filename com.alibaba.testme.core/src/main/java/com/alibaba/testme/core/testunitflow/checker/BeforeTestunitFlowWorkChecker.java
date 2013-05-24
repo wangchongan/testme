@@ -13,7 +13,7 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow.impl;
+package com.alibaba.testme.core.testunitflow.checker;
 
 import com.alibaba.testme.common.enums.TestunitFlowStatusEnum;
 import com.alibaba.testme.core.common.dto.CheckResult;
@@ -27,7 +27,7 @@ import com.alibaba.testme.core.testunitflow.dto.ParamsMatchCheckResult;
  * 
  * @author chongan.wangca
  */
-public class DefaultBeforeTestunitFlowWorkChecker {
+public class BeforeTestunitFlowWorkChecker implements BaseChecker<TestunitFlowContext> {
 
     private BaseChecker<String> testunitFlowCaseStatusChecker;
 
@@ -72,4 +72,9 @@ public class DefaultBeforeTestunitFlowWorkChecker {
 
         return checkResult;
     }
+
+    public void setTestunitFlowCaseStatusChecker(BaseChecker<String> testunitFlowCaseStatusChecker) {
+        this.testunitFlowCaseStatusChecker = testunitFlowCaseStatusChecker;
+    }
+
 }

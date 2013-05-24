@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-22
+ * File Created at 2013-5-20
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -15,23 +15,26 @@
  */
 package com.alibaba.testme.core.testunitflow.impl;
 
+import com.alibaba.testme.core.testunitflow.ITestunitFlowContextBuilder;
 import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
+import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
 
 /**
- * TODO Comment of ParamsManager
+ * TODO Comment of TestunitFlowContextBuilder
  * 
  * @author chongan.wangca
  */
-public class ParamsManager {
+public class TestunitFlowContextBuilder implements ITestunitFlowContextBuilder {
 
-    /**
-     * 校验参数是否满足本次执行的需求<br/>
-     * 只会校验本次即将执行的Testunit
-     * 
-     * @param testunitFlowContext
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.core.testunitflow.TestunitFlowContextBuilder#build
+     * (com.alibaba.testme.core.testunitflow.dto.TestRequestDTO)
      */
-    public void checkRequiredParams(TestunitFlowContext testunitFlowContext) {
-
+    @Override
+    public TestunitFlowContext build(TestRequestDTO testRequestDTO) {
+        return null;
     }
 
 }

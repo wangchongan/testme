@@ -18,14 +18,14 @@ package com.alibaba.testme.core.testunitflow.checker;
 import com.alibaba.testme.core.common.dto.CheckResult;
 import com.alibaba.testme.core.common.enums.CheckResultEnum;
 import com.alibaba.testme.core.common.interfaces.BaseChecker;
-import com.alibaba.testme.core.testunitflow.dto.impl.DefaultTestRequestDTO;
+import com.alibaba.testme.core.testunitflow.dto.TestRequestDTO;
 
 /**
  * TODO Comment of TestRequestChecker
  * 
  * @author chongan.wangca
  */
-public class TestRequestChecker implements BaseChecker<DefaultTestRequestDTO> {
+public class TestRequestChecker implements BaseChecker<TestRequestDTO> {
 
     /*
      * (non-Javadoc)
@@ -34,7 +34,7 @@ public class TestRequestChecker implements BaseChecker<DefaultTestRequestDTO> {
      * .Object)
      */
     @Override
-    public CheckResult check(DefaultTestRequestDTO obj) {
+    public CheckResult check(TestRequestDTO obj) {
         CheckResult checkResult = new CheckResult();
         if (obj.getTestunitFlowCaseId() == null || obj.getTestunitFlowCaseId().intValue() <= 0) {
             checkResult.setResult(CheckResultEnum.FAIL);

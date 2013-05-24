@@ -22,4 +22,12 @@ package com.alibaba.testme.client.testunit;
  */
 public interface TestunitHandler {
 
+    /**
+     * 测试单元调用入口
+     * 
+     * @param context
+     * @return
+     */
+    public String deal(String context);
+
 }

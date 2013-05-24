@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-20
+ * File Created at 2013-5-23
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,15 +13,17 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunitflow.dto.impl;
+package com.alibaba.testme.core.testunitflow;
 
-import com.alibaba.testme.core.testunitflow.dto.TestunitFlowResult;
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
 
 /**
- * TODO Comment of DefaultTestunitFlowResult
+ * 后续测试单元路由
  * 
  * @author chongan.wangca
  */
-public class DefaultTestunitFlowResult extends TestunitFlowResult {
+public interface ITestunitFlowRouter {
 
+    public void doRoute(TestunitFlowContext testunitFlowContext, TestunitResult testunitResult);
 }

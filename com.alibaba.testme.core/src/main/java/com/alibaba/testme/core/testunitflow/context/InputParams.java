@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.core.testunitflow.context;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -56,6 +57,26 @@ public class InputParams {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 获取所有的入参<br/>
+     * 
+     * @return
+     */
+    public Map<String, String> getAllParams() {
+        if (fromLastTestunitParamsMap == null && fromUserParamsMap == null) {
+            return null;
+        }
+        Map<String, String> allParamsMap = new HashMap<String, String>();
+        //先设置上个测试单元输出的参数
+        allParamsMap.putAll(fromLastTestunitParamsMap);
+        /**
+         * 再调用用户自定义输入的参数，用户设置的参数优先级高于上个测试单元输出的参数<br/>
+         * 即可能存在用户自定义输入的参数覆盖上个测试单元输出的参数的情况
+         */
+        allParamsMap.putAll(fromUserParamsMap);
+        return allParamsMap;
     }
 
     public Map<String, String> getFromLastTestunitParamsMap() {

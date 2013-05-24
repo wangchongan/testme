@@ -16,6 +16,7 @@
 package com.alibaba.testme.core.testunitflow.dto;
 
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.testme.common.enums.TestunitDealStatusEnum;
 
@@ -29,7 +30,11 @@ public class TestunitFlowResult {
     //测试单元执行结果状态
     private TestunitDealStatusEnum status;
 
+    //错误信息
     private List<String>           errorMsgsList;
+
+    //输出参数
+    private Map<String, String>    outputParamsMap;
 
     public TestunitDealStatusEnum getStatus() {
         return status;
@@ -49,6 +54,14 @@ public class TestunitFlowResult {
 
     public void addAllErrorMsgs(List<String> errorMsgsList) {
         this.errorMsgsList.addAll(errorMsgsList);
+    }
+
+    public Map<String, String> getOutputParamsMap() {
+        return outputParamsMap;
+    }
+
+    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
+        this.outputParamsMap = outputParamsMap;
     }
 
 }

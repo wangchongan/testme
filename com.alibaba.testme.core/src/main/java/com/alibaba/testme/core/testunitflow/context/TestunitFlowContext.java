@@ -52,9 +52,6 @@ public class TestunitFlowContext {
     //测试单元类路径
     private String                   testunitClassQualifiedName;
 
-    //测试单元版本号
-    private String                   testunitVersion;
-
     public Integer getTestunitFlowCaseId() {
         return testunitFlowCaseId;
     }
@@ -125,14 +122,6 @@ public class TestunitFlowContext {
 
     public void setTestunitClassQualifiedName(String testunitClassQualifiedName) {
         this.testunitClassQualifiedName = testunitClassQualifiedName;
-    }
-
-    public String getTestunitVersion() {
-        return testunitVersion;
-    }
-
-    public void setTestunitVersion(String testunitVersion) {
-        this.testunitVersion = testunitVersion;
     }
 
     public TestunitDefParamsManager getTestunitDefParamsManager() {

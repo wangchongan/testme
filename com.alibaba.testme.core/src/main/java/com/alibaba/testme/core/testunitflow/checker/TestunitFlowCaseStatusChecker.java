@@ -44,9 +44,7 @@ public class TestunitFlowCaseStatusChecker implements BaseChecker<String> {
         String status = obj;
         CheckResult checkResult = new CheckResult();
         if (status == null || TestunitFlowStatusEnum.SUCCESS.getKey().equals(status)
-                || TestunitFlowStatusEnum.FAIL.getKey().equals(status)
-                || TestunitFlowStatusEnum.RUNNING.getKey().equals(status)
-                || TestunitFlowStatusEnum.STOP.getKey().equals(status)) {
+                || TestunitFlowStatusEnum.RUNNING.getKey().equals(status)) {
             checkResult.setResult(CheckResultEnum.FAIL);
             checkResult.addErrorMsg("该测试实例状态(" + status + ")不满足可执行的条件。");
             return checkResult;
