@@ -22,6 +22,7 @@ Import-Package:
  com.alibaba.testme.domain.dataobject,
  com.alibaba.testme.domain.query,
  com.alibaba.testme.service,
+ com.alibaba.testme.core.bundle,
  javax.annotation,
  javax.servlet;version="[3.0.0,3.0.0]",
  javax.servlet.http;version="[3.0.0,3.0.0]",

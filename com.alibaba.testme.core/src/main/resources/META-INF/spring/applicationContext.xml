@@ -14,4 +14,7 @@
 
 	<context:component-scan base-package="com.alibaba.testme.core" />
 
+	<bean id="testMeBundleContextAware" class="com.alibaba.testme.core.bundle.TestMeBundleContextAwareImpl">
+	</bean>
+
 </beans>

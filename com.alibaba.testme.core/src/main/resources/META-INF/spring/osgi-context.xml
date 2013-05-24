@@ -5,5 +5,6 @@
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
+	<osgi:service ref="testMeBundleContextAware" interface="com.alibaba.testme.core.bundle.TestMeBundleContextAware"></osgi:service>
 
 </beans>
