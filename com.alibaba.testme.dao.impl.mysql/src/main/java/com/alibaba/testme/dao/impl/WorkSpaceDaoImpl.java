@@ -19,8 +19,8 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public Long addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("workSpace.add", workSpaceDO);
+    public Integer addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+        return (Integer) this.getSqlMapClientTemplate().insert("workSpace.add", workSpaceDO);
     }
 
     /**

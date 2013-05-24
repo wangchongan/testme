@@ -15,7 +15,7 @@ public interface TestunitParamExtService {
      * @param testunitParamExtDO
      * @return
      */
-    public Long addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
+    public Integer addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
 
     /**
      * @param DO

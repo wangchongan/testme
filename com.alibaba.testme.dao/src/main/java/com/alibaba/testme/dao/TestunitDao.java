@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.TestunitDO;
 
 /**
  * Testunit Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface TestunitDao {
@@ -14,7 +15,7 @@ public interface TestunitDao {
      * @param testunitDO
      * @return
      */
-    public Long addTestunitDO(TestunitDO testunitDO);
+    public Integer addTestunitDO(TestunitDO testunitDO);
 
     /**
      * @param testunitDO

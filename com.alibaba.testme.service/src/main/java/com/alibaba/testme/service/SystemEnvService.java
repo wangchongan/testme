@@ -15,7 +15,7 @@ public interface SystemEnvService {
      * @param systemEnvDO
      * @return
      */
-    public Long addSystemEnvDO(SystemEnvDO systemEnvDO);
+    public Integer addSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param DO

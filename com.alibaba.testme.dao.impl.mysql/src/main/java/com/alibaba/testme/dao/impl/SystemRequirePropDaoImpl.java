@@ -20,8 +20,8 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
+    public Integer addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+        return (Integer) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
                 systemRequirePropDO);
     }
 

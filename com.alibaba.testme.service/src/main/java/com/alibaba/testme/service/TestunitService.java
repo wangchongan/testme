@@ -15,7 +15,7 @@ public interface TestunitService {
      * @param testunitDO
      * @return
      */
-    public Long addTestunitDO(TestunitDO testunitDO);
+    public Integer addTestunitDO(TestunitDO testunitDO);
 
     /**
      * @param DO

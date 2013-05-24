@@ -15,7 +15,7 @@ public interface TestunitFlowCaseDetailService {
      * @param testunitFlowCaseDetailDO
      * @return
      */
-    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
+    public Integer addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
     /**
      * @param DO

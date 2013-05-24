@@ -20,8 +20,8 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("testunitFlowCaseDetail.add",
+    public Integer addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+        return (Integer) this.getSqlMapClientTemplate().insert("testunitFlowCaseDetail.add",
                 testunitFlowCaseDetailDO);
     }
 

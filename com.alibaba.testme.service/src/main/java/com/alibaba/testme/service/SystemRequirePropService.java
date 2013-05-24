@@ -15,7 +15,7 @@ public interface SystemRequirePropService {
      * @param systemRequirePropDO
      * @return
      */
-    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
+    public Integer addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
 
     /**
      * @param DO

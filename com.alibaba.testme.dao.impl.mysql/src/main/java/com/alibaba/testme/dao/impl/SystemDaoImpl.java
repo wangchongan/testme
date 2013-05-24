@@ -19,8 +19,8 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public Long addSystemDO(SystemDO systemDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("system.add", systemDO);
+    public Integer addSystemDO(SystemDO systemDO) {
+        return (Integer) this.getSqlMapClientTemplate().insert("system.add", systemDO);
     }
 
     /**

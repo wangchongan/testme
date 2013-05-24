@@ -15,7 +15,7 @@ public interface WorkSpaceService {
      * @param workSpaceDO
      * @return
      */
-    public Long addWorkSpaceDO(WorkSpaceDO workSpaceDO);
+    public Integer addWorkSpaceDO(WorkSpaceDO workSpaceDO);
 
     /**
      * @param DO

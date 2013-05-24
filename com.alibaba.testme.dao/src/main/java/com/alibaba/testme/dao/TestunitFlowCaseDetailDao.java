@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO;
 
 /**
  * TestunitFlowCaseDetail Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface TestunitFlowCaseDetailDao {
@@ -14,7 +15,7 @@ public interface TestunitFlowCaseDetailDao {
      * @param testunitFlowCaseDetailDO
      * @return
      */
-    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
+    public Integer addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
     /**
      * @param testunitFlowCaseDetailDO
