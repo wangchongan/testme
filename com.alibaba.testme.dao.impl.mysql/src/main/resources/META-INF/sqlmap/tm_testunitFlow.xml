@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="testunitFlow">
+<typeAlias alias="testunitFlowDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowDO" />
+
+  <resultMap id="testunitFlowDO_resultMap" class="testunitFlowDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="code" column="CODE" />
+    <result property="name" column="NAME" />
+    <result property="systemId" column="SYSTEM_ID" />
+    <result property="tag" column="TAG" />
+    <result property="userId" column="USER_ID" />
+    <result property="picUrl" column="PIC_URL" />
+    <result property="times" column="TIMES" />
+    <result property="envConfigRequired" column="ENV_CONFIG_REQUIRED" />
+    <result property="isActive" column="IS_ACTIVE" />
+    <result property="remark" column="REMARK" />
+  </resultMap>
+ 
+
+  <sql id="testunitFlow.column_List">
+			ID
+		   ,GMT_CREATE
+		   ,CREATOR
+		   ,GMT_MODIFIED
+		   ,MODIFIER
+		   ,CODE
+		   ,NAME
+		   ,SYSTEM_ID
+		   ,TAG
+		   ,USER_ID
+		   ,PIC_URL
+		   ,TIMES
+		   ,ENV_CONFIG_REQUIRED
+		   ,IS_ACTIVE
+		   ,REMARK
+  </sql>
+   
+  <sql id="testunitFlow.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="code" prepend="AND">
+        <![CDATA[  
+        CODE = #code#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="name" prepend="AND">
+        <![CDATA[  
+        NAME = #name#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="tag" prepend="AND">
+        <![CDATA[  
+        TAG = #tag#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="userId" prepend="AND">
+        <![CDATA[  
+        USER_ID = #userId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="picUrl" prepend="AND">
+        <![CDATA[  
+        PIC_URL = #picUrl#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="times" prepend="AND">
+        <![CDATA[  
+        TIMES = #times#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="envConfigRequired" prepend="AND">
+        <![CDATA[  
+        ENV_CONFIG_REQUIRED = #envConfigRequired#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="isActive" prepend="AND">
+        <![CDATA[  
+        IS_ACTIVE = #isActive#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="remark" prepend="AND">
+        <![CDATA[  
+        REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="testunitFlow.add" parameterClass="testunitFlowDO">
+    INSERT INTO tm_testunit_flow(
+   				GMT_CREATE
+   			   ,CREATOR
+   			   ,GMT_MODIFIED
+   			   ,MODIFIER
+   			   ,CODE
+   			   ,NAME
+   			   ,SYSTEM_ID
+   			   ,TAG
+   			   ,USER_ID
+   			   ,PIC_URL
+   			   ,TIMES
+   			   ,ENV_CONFIG_REQUIRED
+   			   ,IS_ACTIVE
+   			   ,REMARK) VALUES (
+   				now()
+   			   ,#creator#
+   			   ,now()
+   			   ,#modifier#
+   			   ,#code#
+   			   ,#name#
+   			   ,#systemId#
+   			   ,#tag#
+   			   ,#userId#
+   			   ,#picUrl#
+   			   ,#times#
+   			   ,#envConfigRequired# 
+   			   ,#isActive# 
+   			   ,#remark#)
+  
+    <selectKey keyProperty="id" resultClass="java.lang.Long">
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey>
+  
+  </insert>
+
+
+  <update id="testunitFlow.update" parameterClass="testunitFlowDO">
+    UPDATE tm_testunit_flow set GMT_MODIFIED=now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="code" prepend=",">
+        <![CDATA[  
+        CODE = #code#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="name" prepend=",">
+        <![CDATA[  
+        NAME = #name#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend=",">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="tag" prepend=",">
+        <![CDATA[  
+        TAG = #tag#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="userId" prepend=",">
+        <![CDATA[  
+        USER_ID = #userId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="picUrl" prepend=",">
+        <![CDATA[  
+        PIC_URL = #picUrl#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="times" prepend=",">
+        <![CDATA[  
+        TIMES = #times#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="envConfigRequired" prepend=",">
+        <![CDATA[  
+        ENV_CONFIG_REQUIRED = #envConfigRequired#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="是否可用" prepend=",">
+        <![CDATA[  
+        IS_ACTIVE = #isActive#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="remark" prepend=",">
+        <![CDATA[  
+        REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="testunitFlow.findById" parameterClass="java.lang.Long" resultMap="testunitFlowDO_resultMap">
+     SELECT 
+    <include refid="testunitFlow.column_List" />
+    <![CDATA[  
+     FROM tm_testunit_flow
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="testunitFlow.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_testunit_flow 
+      WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="testunitFlow.findList" resultMap="testunitFlowDO_resultMap" parameterClass="testunitFlowDO">
+     SELECT 
+    <include refid="testunitFlow.column_List" />
+     FROM tm_testunit_flow
+	WHERE 1=1
+    <include refid="testunitFlow.queryCondition" />
+  </select>
+  
+</sqlMap>

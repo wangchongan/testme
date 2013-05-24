@@ -13,5 +13,18 @@
 
     <bean id="userDao" class="com.alibaba.testme.dao.impl.UserDaoImpl" parent="genericDao">
     </bean>
+	
+	<bean id="systemDao" class="com.alibaba.testme.dao.impl.SystemDaoImpl" parent="baseDao" />
+    <bean id="systemEnvDao" class="com.alibaba.testme.dao.impl.SystemEnvDaoImpl" parent="baseDao" />
+    <bean id="systemEnvDetailDao" class="com.alibaba.testme.dao.impl.SystemEnvDetailDaoImpl" parent="baseDao" />
+	<bean id="systemRequirePropDao" class="com.alibaba.testme.dao.impl.SystemRequirePropDaoImpl" parent="baseDao" />
+	<bean id="testunitDao" class="com.alibaba.testme.dao.impl.TestunitDaoImpl" parent="baseDao" />
+	<bean id="testunitFlowDao" class="com.alibaba.testme.dao.impl.TestunitFlowDaoImpl" parent="baseDao" />
+	<bean id="testunitFlowCaseDao" class="com.alibaba.testme.dao.impl.TestunitFlowCaseDaoImpl" parent="baseDao" />
+	<bean id="testunitFlowCaseDetailDao" class="com.alibaba.testme.dao.impl.TestunitFlowCaseDetailDaoImpl" parent="baseDao" />
+	<bean id="testunitFlowDetailDao" class="com.alibaba.testme.dao.impl.TestunitFlowDetailDaoImpl" parent="baseDao" />
+	<bean id="testunitParamDao" class="com.alibaba.testme.dao.impl.TestunitParamDaoImpl" parent="baseDao" />
+	<bean id="testunitParamExtDao" class="com.alibaba.testme.dao.impl.TestunitParamExtDaoImpl" parent="baseDao" />
+	<bean id="workSpaceDao" class="com.alibaba.testme.dao.impl.WorkSpaceDaoImpl" parent="baseDao" />
     
 </beans>

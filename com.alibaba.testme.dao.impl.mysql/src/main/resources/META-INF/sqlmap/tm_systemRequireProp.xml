@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="systemRequireProp">
+<typeAlias alias="systemRequirePropDO"    type="com.alibaba.testme.domain.dataobject.SystemRequirePropDO" />
+
+  <resultMap id="systemRequirePropDO_resultMap" class="systemRequirePropDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="systemId" column="SYSTEM_ID" />
+    <result property="propCode" column="PROP_CODE" />
+    <result property="propName" column="PROP_NAME" />
+    <result property="defaultValue" column="DEFAULT_VALUE" />
+    <result property="nullable" column="NULLABLE" />
+    <result property="help" column="HELP" />
+  </resultMap>
+ 
+
+  <sql id="systemRequireProp.column_List">
+			ID
+		   ,GMT_CREATE
+		   ,CREATOR
+		   ,GMT_MODIFIED
+		   ,MODIFIER
+		   ,SYSTEM_ID
+		   ,PROP_CODE
+		   ,PROP_NAME
+		   ,DEFAULT_VALUE
+		   ,NULLABLE
+		   ,HELP 
+  </sql>
+   
+  <sql id="systemRequireProp.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propCode" prepend="AND">
+        <![CDATA[  
+        PROP_CODE = #propCode#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propName" prepend="AND">
+        <![CDATA[  
+        PROP_NAME = #propName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="defaultValue" prepend="AND">
+        <![CDATA[  
+        DEFAULT_VALUE = #defaultValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="nullable" prepend="AND">
+        <![CDATA[  
+        NULLABLE = #nullable#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="help" prepend="AND">
+        <![CDATA[  
+        HELP = #help#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="systemRequireProp.add" parameterClass="systemRequirePropDO">
+    INSERT INTO tm_system_require_prop(
+   				GMT_CREATE
+   			   ,CREATOR
+   			   ,GMT_MODIFIED
+   			   ,MODIFIER
+   			   ,SYSTEM_ID
+   			   ,PROP_CODE
+   			   ,PROP_NAME
+   			   ,DEFAULT_VALUE
+   			   ,NULLABLE
+   			   ,HELP) VALUES (
+   				now()
+   			   ,#creator#
+   			   ,now()
+   			   ,#modifier#
+   			   ,#systemId#
+   			   ,#propCode#
+   			   ,#propName#
+   			   ,#defaultValue#
+   			   ,#nullable# 
+   			   ,#help#)
+  
+    <selectKey keyProperty="id" resultClass="java.lang.Long">
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey>
+  
+  </insert>
+
+
+  <update id="systemRequireProp.update" parameterClass="systemRequirePropDO">
+    UPDATE tm_system_require_prop set GMT_MODIFIED = now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend=",">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propCode" prepend=",">
+        <![CDATA[  
+        PROP_CODE = #propCode#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propName" prepend=",">
+        <![CDATA[  
+        PROP_NAME = #propName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="defaultValue" prepend=",">
+        <![CDATA[  
+        DEFAULT_VALUE = #defaultValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="nullable" prepend=",">
+        <![CDATA[  
+        NULLABLE = #nullable#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="help" prepend=",">
+        <![CDATA[  
+        HELP = #help#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="systemRequireProp.findById" parameterClass="java.lang.Long" resultMap="systemRequirePropDO_resultMap">
+     SELECT 
+    <include refid="systemRequireProp.column_List" />
+    <![CDATA[  
+     FROM tm_system_require_prop
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="systemRequireProp.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_system_require_prop 
+      WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="systemRequireProp.findList" resultMap="systemRequirePropDO_resultMap" parameterClass="systemRequirePropDO">
+     SELECT 
+    <include refid="systemRequireProp.column_List" />
+     FROM tm_system_require_prop
+	WHERE 1=1
+    <include refid="systemRequireProp.queryCondition" />
+  </select>
+  
+</sqlMap>

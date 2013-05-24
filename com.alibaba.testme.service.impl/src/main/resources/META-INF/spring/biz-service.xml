@@ -16,5 +16,42 @@
     <bean id="userService" class="com.alibaba.testme.service.impl.UserServiceImpl" parent="genericService">
     	<property name="genericDao" ref="userDao"></property>  
     </bean>
+	
+	<bean id="systemService" class="com.alibaba.testme.service.impl.SystemServiceImpl">
+		<property name="systemDao" ref="systemDao"></property>
+    </bean>
+    <bean id="systemEnvService" class="com.alibaba.testme.service.impl.SystemEnvServiceImpl">
+		<property name="systemEnvDao" ref="systemEnvDao"></property>
+    </bean>
+    <bean id="systemEnvDetailService" class="com.alibaba.testme.service.impl.SystemEnvDetailServiceImpl">
+		<property name="systemEnvDetailDao" ref="systemEnvDetailDao"></property>
+    </bean>
+    <bean id="systemRequirePropService" class="com.alibaba.testme.service.impl.SystemRequirePropServiceImpl">
+		<property name="systemRequirePropDao" ref="systemRequirePropDao"></property>
+	</bean>
+    <bean id="testunitService" class="com.alibaba.testme.service.impl.TestunitServiceImpl">
+		<property name="testunitDao" ref="testunitDao"></property>
+	</bean>
+    <bean id="testunitFlowService" class="com.alibaba.testme.service.impl.TestunitFlowServiceImpl">
+		<property name="testunitFlowDao" ref="testunitFlowDao"></property>
+	</bean>
+    <bean id="testunitFlowCaseService" class="com.alibaba.testme.service.impl.TestunitFlowCaseServiceImpl">
+		<property name="testunitFlowCaseDao" ref="testunitFlowCaseDao"></property>
+	</bean>
+    <bean id="testunitFlowCaseDetailService" class="com.alibaba.testme.service.impl.TestunitFlowCaseDetailServiceImpl">
+		<property name="testunitFlowCaseDetailDao" ref="testunitFlowCaseDetailDao"></property>
+	</bean>
+    <bean id="testunitFlowDetailService" class="com.alibaba.testme.service.impl.TestunitFlowDetailServiceImpl">
+		<property name="testunitFlowDetailDao" ref="testunitFlowDetailDao"></property>
+	</bean>
+    <bean id="testunitParamService" class="com.alibaba.testme.service.impl.TestunitParamServiceImpl">
+		<property name="testunitParamDao" ref="testunitParamDao"></property>
+	</bean>
+    <bean id="testunitParamExtService" class="com.alibaba.testme.service.impl.TestunitParamExtServiceImpl">
+		<property name="testunitParamExtDao" ref="testunitParamExtDao"></property>
+	</bean>
+    <bean id="workSpaceService" class="com.alibaba.testme.service.impl.WorkSpaceServiceImpl">
+		<property name="workSpaceDao" ref="workSpaceDao"></property>
+	</bean>
     
 </beans>

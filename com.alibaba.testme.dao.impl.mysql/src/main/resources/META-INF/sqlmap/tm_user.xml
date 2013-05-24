@@ -19,14 +19,14 @@
  
   <sql id="user_columns" >
    		<![CDATA[  
-		  `ID`,
-		  `gmt_create`,
-		  `creator`,
-		  `gmt_modified`,
-		  `modifier`,
-		  `user_name`,
-		  `password`,
-		  `wangwang`
+		  ID
+		 ,gmt_create
+		 ,creator
+		 ,gmt_modified
+		 ,modifier
+		 ,user_name
+		 ,password
+		 ,wangwang
 	    ]]>  
   </sql>
 
@@ -47,21 +47,21 @@
 
   <insert id="user.add" parameterClass="userDO" >
    		<![CDATA[  
-			insert into `tm_user`
-			            (`gmt_create`,
-			             `creator`,
-			             `gmt_modified`,
-			             `modifier`,
-			             `user_name`,
-			             `password`,
-			             `wangwang`)
-			values (#gmtCreate#,
-			        #creator#,
-			        #gmtModified#,
-			        #modifier#,
-			        #userName#,
-			        #password#,
-			        #wangwang#)
+			insert into tm_user(
+			            gmt_create
+			           ,creator
+			           ,gmt_modified
+			           ,modifier
+			           ,user_name
+			           ,password
+			           ,wangwang) values (
+					    now()
+			           ,#creator#
+			           ,now()
+			           ,#modifier#
+			           ,#userName#
+			           ,#password#
+			           ,#wangwang#)
 		]]>  
     <selectKey keyProperty="id" resultClass="java.lang.Long" >
       SELECT LAST_INSERT_ID() AS value

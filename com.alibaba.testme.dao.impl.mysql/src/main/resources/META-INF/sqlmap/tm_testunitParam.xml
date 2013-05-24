@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="testunitParam">
+<typeAlias alias="testunitParamDO"    type="com.alibaba.testme.domain.dataobject.TestunitParamDO" />
+
+  <resultMap id="testunitParamDO_resultMap" class="testunitParamDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="labelName" column="LABEL_NAME" />
+    <result property="paramName" column="PARAM_NAME" />
+    <result property="formCtrlType" column="FORM_CTRL_TYPE" />
+    <result property="testunitId" column="TESTUNIT_ID" />
+    <result property="defaultValue" column="DEFAULT_VALUE" />
+    <result property="rank" column="RANK" />
+    <result property="isRequired" column="IS_REQUIRED" />
+    <result property="help" column="HELP" />
+  </resultMap>
+ 
+
+  <sql id="testunitParam.column_List">
+		   ID
+		  ,GMT_CREATE
+		  ,CREATOR
+		  ,GMT_MODIFIED
+		  ,MODIFIER
+		  ,LABEL_NAME
+		  ,PARAM_NAME
+		  ,FORM_CTRL_TYPE
+		  ,TESTUNIT_ID
+		  ,DEFAULT_VALUE
+		  ,RANK
+		  ,IS_REQUIRED
+		  ,HELP 
+  </sql>
+   
+  <sql id="testunitParam.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="labelName" prepend="AND">
+        <![CDATA[  
+        LABEL_NAME = #labelName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="paramName" prepend="AND">
+        <![CDATA[  
+        PARAM_NAME = #paramName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="formCtrlType" prepend="AND">
+        <![CDATA[  
+        FORM_CTRL_TYPE = #formCtrlType#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitId" prepend="AND">
+        <![CDATA[  
+        TESTUNIT_ID = #testunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="defaultValue" prepend="AND">
+        <![CDATA[  
+        DEFAULT_VALUE = #defaultValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="rank" prepend="AND">
+        <![CDATA[  
+        RANK = #rank#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="isRequired" prepend="AND">
+        <![CDATA[  
+        IS_REQUIRED = #isRequired#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="help" prepend="AND">
+        <![CDATA[  
+        HELP = #help#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="testunitParam.add" parameterClass="testunitParamDO">
+    INSERT INTO tm_testunit_param(
+		        GMT_CREATE 
+			   ,CREATOR 
+			   ,GMT_MODIFIED 
+			   ,MODIFIER 
+			   ,LABEL_NAME 
+			   ,PARAM_NAME 
+			   ,FORM_CTRL_TYPE 
+			   ,TESTUNIT_ID 
+			   ,DEFAULT_VALUE 
+			   ,RANK
+			   ,IS_REQUIRED
+			   ,HELP) VALUES (
+			    now()
+			   ,#creator# 
+			   ,now()
+			   ,#modifier# 
+			   ,#labelName# 
+			   ,#paramName# 
+			   ,#formCtrlType# 
+			   ,#testunitId# 
+			   ,#defaultValue# 
+			   ,#rank# 
+			   ,#isRequired# 
+			   ,#help#)
+	
+	<selectKey keyProperty="id" resultClass="java.lang.Long">
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey>
+  </insert>
+
+
+  <update id="testunitParam.update" parameterClass="testunitParamDO">
+    UPDATE tm_testunit_param set GMT_MODIFIED=now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="labelName" prepend=",">
+        <![CDATA[  
+        LABEL_NAME = #labelName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="paramName" prepend=",">
+        <![CDATA[  
+        PARAM_NAME = #paramName#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="formCtrlType" prepend=",">
+        <![CDATA[  
+        FORM_CTRL_TYPE = #formCtrlType#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitId" prepend=",">
+        <![CDATA[  
+        TESTUNIT_ID = #testunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="defaultValue" prepend=",">
+        <![CDATA[  
+        DEFAULT_VALUE = #defaultValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="rank" prepend=",">
+        <![CDATA[  
+        RANK = #rank#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="isRequired" prepend=",">
+        <![CDATA[  
+        IS_REQUIRED = #isRequired#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="help" prepend=",">
+        <![CDATA[  
+        HELP = #help#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="testunitParam.findById" parameterClass="java.lang.Long" resultMap="testunitParamDO_resultMap">
+     SELECT 
+    <include refid="testunitParam.column_List" />
+    <![CDATA[  
+     FROM tm_testunit_param
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="testunitParam.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_testunit_param 
+      WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="testunitParam.findList" resultMap="testunitParamDO_resultMap" parameterClass="testunitParamDO">
+     SELECT 
+    <include refid="testunitParam.column_List" />
+     FROM tm_testunit_param
+	WHERE 1=1
+    <include refid="testunitParam.queryCondition" />
+  </select>
+  
+</sqlMap>

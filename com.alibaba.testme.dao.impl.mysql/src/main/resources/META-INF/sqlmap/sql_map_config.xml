@@ -6,6 +6,19 @@
 	lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
 	maxTransactions="3000" useStatementNamespaces="false" />
 	
+	<sqlMap resource="META-INF/sqlmap/sql_map_global.xml"/>
 	<sqlMap resource="META-INF/sqlmap/tm_user.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_system.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_systemEnv.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_systemEnvDetail.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_systemRequireProp.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunit.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitFlow.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitFlowCase.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitFlowCaseDetail.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitFlowDetail.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitParam.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_testunitParamExt.xml"/>
+	<sqlMap resource="META-INF/sqlmap/tm_workSpace.xml"/>
 	
 </sqlMapConfig> 

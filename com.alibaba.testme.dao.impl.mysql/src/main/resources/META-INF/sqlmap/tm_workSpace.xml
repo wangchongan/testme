@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="workSpace">
+<typeAlias alias="workSpaceDO"    type="com.alibaba.testme.domain.dataobject.WorkSpaceDO" />
+
+  <resultMap id="workSpaceDO_resultMap" class="workSpaceDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="name" column="NAME" />
+    <result property="userId" column="USER_ID" />
+    <result property="systemId" column="SYSTEM_ID" />
+  </resultMap>
+ 
+
+  <sql id="workSpace.column_List">
+		   ID
+		  ,GMT_CREATE
+		  ,CREATOR
+		  ,GMT_MODIFIED
+		  ,MODIFIER
+		  ,NAME
+		  ,USER_ID
+		  ,SYSTEM_ID 
+   </sql>
+   
+  <sql id="workSpace.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="name" prepend="AND">
+        <![CDATA[  
+        NAME = #name#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="userId" prepend="AND">
+        <![CDATA[  
+        USER_ID = #userId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="workSpace.add" parameterClass="workSpaceDO">
+    INSERT INTO tm_work_space(
+   				GMT_CREATE 
+   			   ,CREATOR 
+   			   ,GMT_MODIFIED 
+   			   ,MODIFIER 
+   			   ,NAME 
+   			   ,USER_ID 
+   			   ,SYSTEM_ID) VALUES (
+   	            now()
+   	           ,#creator# 
+   	           ,now() 
+   	           ,#modifier# 
+   	           ,#name# 
+   	           ,#userId# 
+   	           ,#systemId#)
+  
+    <selectKey keyProperty="id" resultClass="java.lang.Long">
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey>
+  </insert>
+
+
+  <update id="workSpace.update" parameterClass="workSpaceDO">
+    UPDATE tm_work_space set GMT_MODIFIED=now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="name" prepend=",">
+        <![CDATA[  
+        NAME = #name#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="userId" prepend=",">
+        <![CDATA[  
+        USER_ID = #userId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend=",">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="workSpace.findById" parameterClass="java.lang.Long" resultMap="workSpaceDO_resultMap">
+     SELECT 
+    <include refid="workSpace.column_List" />
+    <![CDATA[  
+     FROM tm_work_space
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="workSpace.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_work_space 
+     WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="workSpace.findList" resultMap="workSpaceDO_resultMap" parameterClass="workSpaceDO">
+     SELECT 
+    <include refid="workSpace.column_List" />
+     FROM tm_work_space
+	WHERE 1=1
+    <include refid="workSpace.queryCondition" />
+  </select>
+  
+</sqlMap>

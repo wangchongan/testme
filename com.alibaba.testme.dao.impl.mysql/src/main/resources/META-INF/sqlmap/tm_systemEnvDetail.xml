@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="systemEnvDetail">
+<typeAlias alias="systemEnvDetailDO"    type="com.alibaba.testme.domain.dataobject.SystemEnvDetailDO" />
+
+  <resultMap id="systemEnvDetailDO_resultMap" class="systemEnvDetailDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="systemId" column="SYSTEM_ID" />
+    <result property="propKey" column="PROP_KEY" />
+    <result property="propValue" column="PROP_VALUE" />
+    <result property="remark" column="REMARK" />
+    <result property="configType" column="CONFIG_TYPE" />
+  </resultMap>
+ 
+
+  <sql id="systemEnvDetail.column_List">
+			ID
+		   ,GMT_CREATE
+		   ,CREATOR
+		   ,GMT_MODIFIED
+		   ,MODIFIER
+		   ,SYSTEM_ID
+		   ,PROP_KEY
+		   ,PROP_VALUE
+		   ,REMARK
+		   ,CONFIG_TYPE
+  </sql>
+   
+  <sql id="systemEnvDetail.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propKey" prepend="AND">
+        <![CDATA[  
+        PROP_KEY = #propKey#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propValue" prepend="AND">
+        <![CDATA[  
+        PROP_VALUE = #propValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="remark" prepend="AND">
+        <![CDATA[  
+        REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="configType" prepend="AND">
+        <![CDATA[  
+        CONFIG_TYPE = #configType#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="systemEnvDetail.add" parameterClass="systemEnvDetailDO">
+    INSERT INTO tm_system_env_detail(
+   				GMT_CREATE
+   			   ,CREATOR
+   			   ,GMT_MODIFIED
+   			   ,MODIFIER
+   			   ,SYSTEM_ID
+   			   ,PROP_KEY
+   			   ,PROP_VALUE
+   			   ,REMARK
+   			   ,CONFIG_TYPE) VALUES (
+   				now() 
+   			   ,#creator#
+   			   ,now() 
+   			   ,#modifier# 
+   			   ,#systemId# 
+   			   ,#propKey# 
+   			   ,#propValue# 
+   			   ,#remark# 
+   			   ,#configType#)
+  
+    <selectKey keyProperty="id" resultClass="java.lang.Long">
+      SELECT LAST_INSERT_ID() AS value
+    </selectKey> 
+  </insert>
+
+
+  <update id="systemEnvDetail.update" parameterClass="systemEnvDetailDO">
+    UPDATE tm_system_env_detail set GMT_MODIFIED = now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend=",">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propKey" prepend=",">
+        <![CDATA[  
+        PROP_KEY = #propKey#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propValue" prepend=",">
+        <![CDATA[  
+        PROP_VALUE = #propValue#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="remark" prepend=",">
+        <![CDATA[  
+        REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="configType" prepend=",">
+        <![CDATA[  
+        CONFIG_TYPE = #configType#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="systemEnvDetail.findById" parameterClass="java.lang.Long" resultMap="systemEnvDetailDO_resultMap">
+     SELECT 
+    <include refid="systemEnvDetail.column_List" />
+    <![CDATA[  
+     FROM tm_system_env_detail
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="systemEnvDetail.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_system_env_detail 
+      WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="systemEnvDetail.findList" resultMap="systemEnvDetailDO_resultMap" parameterClass="systemEnvDetailDO">
+     SELECT 
+    <include refid="systemEnvDetail.column_List" />
+     FROM tm_system_env_detail
+	WHERE 1=1
+    <include refid="systemEnvDetail.queryCondition" />
+  </select>
+  
+</sqlMap>

@@ -6,10 +6,20 @@
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
 
-	<osgi:reference id="dataSource" interface="javax.sql.DataSource" />
-	
+	<osgi:reference id="dataSourceOnline" interface="javax.sql.DataSource" />
 	<osgi:service ref="transactionManager" interface="org.springframework.transaction.PlatformTransactionManager" context-class-loader="service-provider" />
-	
 	<osgi:service ref="userDao" interface="com.alibaba.testme.dao.UserDao" />
+	<osgi:service ref="systemDao" interface="com.alibaba.testme.dao.SystemDao" />
+	<osgi:service ref="systemEnvDao" interface="com.alibaba.testme.dao.SystemEnvDao" />
+	<osgi:service ref="systemEnvDetailDao" interface="com.alibaba.testme.dao.SystemEnvDetailDao" />	
+	<osgi:service ref="systemRequirePropDao" interface="com.alibaba.testme.dao.SystemRequirePropDao" />
+	<osgi:service ref="testunitDao" interface="com.alibaba.testme.dao.TestunitDao" />
+	<osgi:service ref="testunitFlowDao" interface="com.alibaba.testme.dao.TestunitFlowDao" />	
+	<osgi:service ref="testunitFlowCaseDao" interface="com.alibaba.testme.dao.TestunitFlowCaseDao" />
+	<osgi:service ref="testunitFlowCaseDetailDao" interface="com.alibaba.testme.dao.TestunitFlowCaseDetailDao" />
+	<osgi:service ref="testunitFlowDetailDao" interface="com.alibaba.testme.dao.TestunitFlowDetailDao" />
+	<osgi:service ref="testunitParamDao" interface="com.alibaba.testme.dao.TestunitParamDao" />
+	<osgi:service ref="testunitParamExtDao" interface="com.alibaba.testme.dao.TestunitParamExtDao" />
+	<osgi:service ref="workSpaceDao" interface="com.alibaba.testme.dao.WorkSpaceDao" />
 	
 </beans>

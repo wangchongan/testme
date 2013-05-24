@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="testunitFlowDetail">
+<typeAlias alias="testunitFlowDetailDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO" />
+
+  <resultMap id="testunitFlowDetailDO_resultMap" class="testunitFlowDetailDO">
+    <result property="id" column="ID" />
+    <result property="gmtCreate" column="GMT_CREATE" />
+    <result property="creator" column="CREATOR" />
+    <result property="gmtModified" column="GMT_MODIFIED" />
+    <result property="modifier" column="MODIFIER" />
+    <result property="testunitFlowId" column="TESTUNIT_FLOW_ID" />
+    <result property="testunitId" column="TESTUNIT_ID" />
+    <result property="preTestunitId" column="PRE_TESTUNIT_ID" />
+    <result property="nextTestunitId" column="NEXT_TESTUNIT_ID" />
+  </resultMap>
+ 
+
+  <sql id="testunitFlowDetail.column_List">
+		   ID
+		  ,GMT_CREATE
+		  ,CREATOR
+		  ,GMT_MODIFIED
+		  ,MODIFIER
+		  ,TESTUNIT_FLOW_ID
+		  ,TESTUNIT_ID
+		  ,PRE_TESTUNIT_ID
+		  ,NEXT_TESTUNIT_ID 
+  </sql>
+   
+  <sql id="testunitFlowDetail.queryCondition">
+    <dynamic>
+      <isNotEmpty property="id" prepend="AND">
+        <![CDATA[  
+        ID = #id#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="creator" prepend="AND">
+        <![CDATA[  
+        CREATOR = #creator#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="modifier" prepend="AND">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitFlowId" prepend="AND">
+        <![CDATA[  
+        TESTUNIT_FLOW_ID = #testunitFlowId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitId" prepend="AND">
+        <![CDATA[  
+        TESTUNIT_ID = #testunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="preTestunitId" prepend="AND">
+        <![CDATA[  
+        PRE_TESTUNIT_ID = #preTestunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="nextTestunitId" prepend="AND">
+        <![CDATA[  
+        NEXT_TESTUNIT_ID = #nextTestunitId#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+
+  
+  <insert id="testunitFlowDetail.add" parameterClass="testunitFlowDetailDO">
+    INSERT INTO tm_testunit_flow_detail(
+		        GMT_CREATE 
+			   ,CREATOR 
+			   ,GMT_MODIFIED 
+			   ,MODIFIER 
+			   ,TESTUNIT_FLOW_ID 
+			   ,TESTUNIT_ID 
+			   ,PRE_TESTUNIT_ID 
+			   ,NEXT_TESTUNIT_ID) VALUES (
+   	            now()
+			   ,#creator# 
+			   ,now()
+			   ,#modifier# 
+			   ,#testunitFlowId# 
+			   ,#testunitId# 
+			   ,#preTestunitId# 
+			   ,#nextTestunitId#)
+  
+      <selectKey keyProperty="id" resultClass="java.lang.Long">
+		SELECT LAST_INSERT_ID() AS value
+	  </selectKey>
+  </insert>
+
+
+  <update id="testunitFlowDetail.update" parameterClass="testunitFlowDetailDO">
+    UPDATE tm_testunit_flow_detail set GMT_MODIFIED=now()
+    <dynamic>
+      <isNotEmpty property="modifier" prepend=",">
+        <![CDATA[  
+        MODIFIER = #modifier#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitFlowId" prepend=",">
+        <![CDATA[  
+        TESTUNIT_FLOW_ID = #testunitFlowId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="testunitId" prepend=",">
+        <![CDATA[  
+        TESTUNIT_ID = #testunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="preTestunitId" prepend=",">
+        <![CDATA[  
+        PRE_TESTUNIT_ID = #preTestunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="nextTestunitId" prepend=",">
+        <![CDATA[  
+        NEXT_TESTUNIT_ID = #nextTestunitId#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     WHERE id = #id#  
+  </update>
+
+  <select id="testunitFlowDetail.findById" parameterClass="java.lang.Long" resultMap="testunitFlowDetailDO_resultMap">
+     SELECT 
+    <include refid="testunitFlowDetail.column_List" />
+    <![CDATA[  
+     FROM tm_testunit_flow_detail
+     WHERE id = #id#
+    ]]>  
+  </select>
+  
+   
+  <delete id="testunitFlowDetail.deleteById" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_testunit_flow_detail 
+      WHERE id = #id#
+    ]]>  
+  </delete>
+
+  <select id="testunitFlowDetail.findList" resultMap="testunitFlowDetailDO_resultMap" parameterClass="testunitFlowDetailDO">
+     SELECT 
+    <include refid="testunitFlowDetail.column_List" />
+     FROM tm_testunit_flow_detail
+	WHERE 1=1
+    <include refid="testunitFlowDetail.queryCondition" />
+  </select>
+  
+</sqlMap>

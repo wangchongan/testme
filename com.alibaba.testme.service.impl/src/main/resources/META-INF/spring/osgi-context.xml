@@ -7,9 +7,32 @@
 
 
 	<osgi:reference id="userDao" interface="com.alibaba.testme.dao.UserDao" />
-	
+	<osgi:reference id="systemDao" interface="com.alibaba.testme.dao.SystemDao" />
+	<osgi:reference id="systemEnvDao" interface="com.alibaba.testme.dao.SystemEnvDao" />
+	<osgi:reference id="systemEnvDetailDao" interface="com.alibaba.testme.dao.SystemEnvDetailDao" />	
+	<osgi:reference id="systemRequirePropDao" interface="com.alibaba.testme.dao.SystemRequirePropDao" />
+	<osgi:reference id="testunitDao" interface="com.alibaba.testme.dao.TestunitDao" />
+	<osgi:reference id="testunitFlowDao" interface="com.alibaba.testme.dao.TestunitFlowDao" />	
+	<osgi:reference id="testunitFlowCaseDao" interface="com.alibaba.testme.dao.TestunitFlowCaseDao" />
+	<osgi:reference id="testunitFlowCaseDetailDao" interface="com.alibaba.testme.dao.TestunitFlowCaseDetailDao" />
+	<osgi:reference id="testunitFlowDetailDao" interface="com.alibaba.testme.dao.TestunitFlowDetailDao" />
+	<osgi:reference id="testunitParamDao" interface="com.alibaba.testme.dao.TestunitParamDao" />
+	<osgi:reference id="testunitParamExtDao" interface="com.alibaba.testme.dao.TestunitParamExtDao" />
+	<osgi:reference id="workSpaceDao" interface="com.alibaba.testme.dao.WorkSpaceDao" />
 	<osgi:reference id="transactionManager" interface="org.springframework.transaction.PlatformTransactionManager" />
 	
 	<osgi:service ref="userService" interface="com.alibaba.testme.service.UserService"></osgi:service>
-		
+	<osgi:service ref="systemService" interface="com.alibaba.testme.service.SystemService"></osgi:service>
+	<osgi:service ref="systemEnvService" interface="com.alibaba.testme.service.SystemEnvService"></osgi:service>
+	<osgi:service ref="systemEnvDetailService" interface="com.alibaba.testme.service.SystemEnvDetailService"></osgi:service>
+	<osgi:service ref="systemRequirePropService" interface="com.alibaba.testme.service.SystemRequirePropService"></osgi:service>
+	<osgi:service ref="testunitService" interface="com.alibaba.testme.service.TestunitService"></osgi:service>
+	<osgi:service ref="testunitFlowService" interface="com.alibaba.testme.service.TestunitFlowService"></osgi:service>
+	<osgi:service ref="testunitFlowCaseService" interface="com.alibaba.testme.service.TestunitFlowCaseService"></osgi:service>
+	<osgi:service ref="testunitFlowCaseDetailService" interface="com.alibaba.testme.service.TestunitFlowCaseDetailService"></osgi:service>
+	<osgi:service ref="testunitFlowDetailService" interface="com.alibaba.testme.service.TestunitFlowDetailService"></osgi:service>
+	<osgi:service ref="testunitParamService" interface="com.alibaba.testme.service.TestunitParamService"></osgi:service>
+	<osgi:service ref="testunitParamExtService" interface="com.alibaba.testme.service.TestunitParamExtService"></osgi:service>
+	<osgi:service ref="workSpaceService" interface="com.alibaba.testme.service.WorkSpaceService"></osgi:service>
+	
 </beans>
