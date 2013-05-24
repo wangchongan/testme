@@ -15,19 +15,19 @@ public interface SystemEnvDao {
      * @param systemEnvDO
      * @return
      */
-    public Integer addSystemEnvDO(SystemEnvDO systemEnvDO);
+    public int addSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param systemEnvDO
      * @return
      */
-    public Integer updateSystemEnvDO(SystemEnvDO systemEnvDO);
+    public int updateSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemEnvDO(Long id);
+    public int deleteSystemEnvDO(Long id);
 
     /**
      * @param id

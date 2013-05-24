@@ -24,7 +24,7 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public Integer addSystemDO(SystemDO systemDO) {
+    public int addSystemDO(SystemDO systemDO) {
         if (systemDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public Integer updateSystemDO(SystemDO systemDO) {
+    public int updateSystemDO(SystemDO systemDO) {
         if (systemDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public Integer deleteSystemDO(Long id) {
+    public int deleteSystemDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

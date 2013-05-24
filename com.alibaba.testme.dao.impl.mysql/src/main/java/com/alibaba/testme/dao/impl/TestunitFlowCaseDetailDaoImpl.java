@@ -20,9 +20,13 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public Integer addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        return (Integer) this.getSqlMapClientTemplate().insert("testunitFlowCaseDetail.add",
-                testunitFlowCaseDetailDO);
+    public int addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().insert(
+                "testunitFlowCaseDetail.add", testunitFlowCaseDetailDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -30,9 +34,13 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public Integer updateTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("testunitFlowCaseDetail.update",
-                testunitFlowCaseDetailDO);
+    public int updateTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update(
+                "testunitFlowCaseDetail.update", testunitFlowCaseDetailDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -40,9 +48,13 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public Integer deleteTestunitFlowCaseDetailDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("testunitFlowCaseDetail.deleteById",
-                id);
+    public int deleteTestunitFlowCaseDetailDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "testunitFlowCaseDetail.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**

@@ -15,19 +15,19 @@ public interface TestunitFlowDetailService {
      * @param testunitFlowDetailDO
      * @return
      */
-    public Integer addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
+    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
+    public int updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitFlowDetailDO(Long id);
+    public int deleteTestunitFlowDetailDO(Long id);
 
     /**
      * @param id

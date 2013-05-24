@@ -15,19 +15,19 @@ public interface TestunitFlowCaseDetailDao {
      * @param testunitFlowCaseDetailDO
      * @return
      */
-    public Integer addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
+    public int addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
     /**
      * @param testunitFlowCaseDetailDO
      * @return
      */
-    public Integer updateTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
+    public int updateTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitFlowCaseDetailDO(Long id);
+    public int deleteTestunitFlowCaseDetailDO(Long id);
 
     /**
      * @param id

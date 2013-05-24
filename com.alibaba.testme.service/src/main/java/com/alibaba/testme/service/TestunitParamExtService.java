@@ -15,19 +15,19 @@ public interface TestunitParamExtService {
      * @param testunitParamExtDO
      * @return
      */
-    public Integer addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
+    public int addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
+    public int updateTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitParamExtDO(Long id);
+    public int deleteTestunitParamExtDO(Long id);
 
     /**
      * @param id

@@ -15,19 +15,19 @@ public interface TestunitParamDao {
      * @param testunitParamDO
      * @return
      */
-    public Integer addTestunitParamDO(TestunitParamDO testunitParamDO);
+    public int addTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
      * @param testunitParamDO
      * @return
      */
-    public Integer updateTestunitParamDO(TestunitParamDO testunitParamDO);
+    public int updateTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitParamDO(Long id);
+    public int deleteTestunitParamDO(Long id);
 
     /**
      * @param id

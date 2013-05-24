@@ -15,19 +15,19 @@ public interface SystemEnvDetailService {
      * @param systemEnvDetailDO
      * @return
      */
-    public Integer addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
+    public int addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
+    public int updateSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemEnvDetailDO(Long id);
+    public int deleteSystemEnvDetailDO(Long id);
 
     /**
      * @param id

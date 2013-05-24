@@ -19,8 +19,13 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public Integer addTestunitDO(TestunitDO testunitDO) {
-        return (Integer) this.getSqlMapClientTemplate().insert("testunit.add", testunitDO);
+    public int addTestunitDO(TestunitDO testunitDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate()
+                .insert("testunit.add", testunitDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -28,8 +33,13 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public Integer updateTestunitDO(TestunitDO testunitDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("testunit.update", testunitDO);
+    public int updateTestunitDO(TestunitDO testunitDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update("testunit.update",
+                testunitDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -37,8 +47,12 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public Integer deleteTestunitDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("testunit.deleteById", id);
+    public int deleteTestunitDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete("testunit.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**

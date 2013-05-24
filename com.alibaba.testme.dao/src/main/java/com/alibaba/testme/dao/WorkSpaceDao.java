@@ -15,19 +15,19 @@ public interface WorkSpaceDao {
      * @param workSpaceDO
      * @return
      */
-    public Integer addWorkSpaceDO(WorkSpaceDO workSpaceDO);
+    public int addWorkSpaceDO(WorkSpaceDO workSpaceDO);
 
     /**
      * @param workSpaceDO
      * @return
      */
-    public Integer updateWorkSpaceDO(WorkSpaceDO workSpaceDO);
+    public int updateWorkSpaceDO(WorkSpaceDO workSpaceDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteWorkSpaceDO(Long id);
+    public int deleteWorkSpaceDO(Long id);
 
     /**
      * @param id

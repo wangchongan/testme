@@ -24,7 +24,7 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
      * @return
      */
     @Override
-    public Integer addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
+    public int addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
         if (systemEnvDetailDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
      * @return
      */
     @Override
-    public Integer updateSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
+    public int updateSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
         if (systemEnvDetailDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
      * @return
      */
     @Override
-    public Integer deleteSystemEnvDetailDO(Long id) {
+    public int deleteSystemEnvDetailDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

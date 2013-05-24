@@ -24,7 +24,7 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
      * @return
      */
     @Override
-    public Integer addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
+    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
         if (testunitFlowDetailDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
      * @return
      */
     @Override
-    public Integer updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
+    public int updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
         if (testunitFlowDetailDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
      * @return
      */
     @Override
-    public Integer deleteTestunitFlowDetailDO(Long id) {
+    public int deleteTestunitFlowDetailDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

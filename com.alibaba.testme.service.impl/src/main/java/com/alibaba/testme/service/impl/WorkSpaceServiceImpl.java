@@ -24,7 +24,7 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public Integer addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+    public int addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
         if (workSpaceDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public Integer updateWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+    public int updateWorkSpaceDO(WorkSpaceDO workSpaceDO) {
         if (workSpaceDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public Integer deleteWorkSpaceDO(Long id) {
+    public int deleteWorkSpaceDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

@@ -24,7 +24,7 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public Integer addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
         if (systemRequirePropDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public Integer updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+    public int updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
         if (systemRequirePropDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public Integer deleteSystemRequirePropDO(Long id) {
+    public int deleteSystemRequirePropDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

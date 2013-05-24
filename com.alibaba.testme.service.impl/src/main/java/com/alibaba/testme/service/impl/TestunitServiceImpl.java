@@ -24,7 +24,7 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public Integer addTestunitDO(TestunitDO testunitDO) {
+    public int addTestunitDO(TestunitDO testunitDO) {
         if (testunitDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public Integer updateTestunitDO(TestunitDO testunitDO) {
+    public int updateTestunitDO(TestunitDO testunitDO) {
         if (testunitDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public Integer deleteTestunitDO(Long id) {
+    public int deleteTestunitDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

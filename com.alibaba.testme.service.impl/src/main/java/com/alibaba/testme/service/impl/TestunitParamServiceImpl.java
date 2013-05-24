@@ -24,7 +24,7 @@ public class TestunitParamServiceImpl implements TestunitParamService {
      * @return
      */
     @Override
-    public Integer addTestunitParamDO(TestunitParamDO testunitParamDO) {
+    public int addTestunitParamDO(TestunitParamDO testunitParamDO) {
         if (testunitParamDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class TestunitParamServiceImpl implements TestunitParamService {
      * @return
      */
     @Override
-    public Integer updateTestunitParamDO(TestunitParamDO testunitParamDO) {
+    public int updateTestunitParamDO(TestunitParamDO testunitParamDO) {
         if (testunitParamDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class TestunitParamServiceImpl implements TestunitParamService {
      * @return
      */
     @Override
-    public Integer deleteTestunitParamDO(Long id) {
+    public int deleteTestunitParamDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }

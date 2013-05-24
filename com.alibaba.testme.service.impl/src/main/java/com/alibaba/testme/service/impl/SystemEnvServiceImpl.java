@@ -24,7 +24,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public Integer addSystemEnvDO(SystemEnvDO systemEnvDO) {
+    public int addSystemEnvDO(SystemEnvDO systemEnvDO) {
         if (systemEnvDO == null) {
             return 0;
         }
@@ -36,7 +36,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public Integer updateSystemEnvDO(SystemEnvDO systemEnvDO) {
+    public int updateSystemEnvDO(SystemEnvDO systemEnvDO) {
         if (systemEnvDO == null) {
             return 0;
         }
@@ -49,7 +49,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public Integer deleteSystemEnvDO(Long id) {
+    public int deleteSystemEnvDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
