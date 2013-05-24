@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.SystemDO;
 
 /**
  * System Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface SystemDao {
@@ -14,19 +15,19 @@ public interface SystemDao {
      * @param systemDO
      * @return
      */
-    public Long addSystemDO(SystemDO systemDO);
+    public int addSystemDO(SystemDO systemDO);
 
     /**
      * @param systemDO
      * @return
      */
-    public Integer updateSystemDO(SystemDO systemDO);
+    public int updateSystemDO(SystemDO systemDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemDO(Long id);
+    public int deleteSystemDO(Long id);
 
     /**
      * @param id

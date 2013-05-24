@@ -15,19 +15,19 @@ public interface SystemService {
      * @param systemDO
      * @return
      */
-    public Long addSystemDO(SystemDO systemDO);
+    public int addSystemDO(SystemDO systemDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateSystemDO(SystemDO systemDO);
+    public int updateSystemDO(SystemDO systemDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemDO(Long id);
+    public int deleteSystemDO(Long id);
 
     /**
      * @param id

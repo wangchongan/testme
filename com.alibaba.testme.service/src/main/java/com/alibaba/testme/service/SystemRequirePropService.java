@@ -15,19 +15,19 @@ public interface SystemRequirePropService {
      * @param systemRequirePropDO
      * @return
      */
-    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
+    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
+    public int updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemRequirePropDO(Long id);
+    public int deleteSystemRequirePropDO(Long id);
 
     /**
      * @param id

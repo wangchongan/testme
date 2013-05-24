@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.SystemRequirePropDO;
 
 /**
  * SystemRequireProp Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface SystemRequirePropDao {
@@ -14,19 +15,19 @@ public interface SystemRequirePropDao {
      * @param systemRequirePropDO
      * @return
      */
-    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
+    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
 
     /**
      * @param systemRequirePropDO
      * @return
      */
-    public Integer updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
+    public int updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemRequirePropDO(Long id);
+    public int deleteSystemRequirePropDO(Long id);
 
     /**
      * @param id

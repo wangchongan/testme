@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO;
 
 /**
  * TestunitFlowDetail Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface TestunitFlowDetailDao {
@@ -14,19 +15,19 @@ public interface TestunitFlowDetailDao {
      * @param testunitFlowDetailDO
      * @return
      */
-    public Long addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
+    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
 
     /**
      * @param testunitFlowDetailDO
      * @return
      */
-    public Integer updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
+    public int updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitFlowDetailDO(Long id);
+    public int deleteTestunitFlowDetailDO(Long id);
 
     /**
      * @param id

@@ -6,6 +6,7 @@ import com.alibaba.testme.domain.dataobject.SystemEnvDO;
 
 /**
  * SystemEnv Dao Interface
+ * 
  * @author xiaopenzi
  */
 public interface SystemEnvDao {
@@ -14,19 +15,19 @@ public interface SystemEnvDao {
      * @param systemEnvDO
      * @return
      */
-    public Long addSystemEnvDO(SystemEnvDO systemEnvDO);
+    public int addSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param systemEnvDO
      * @return
      */
-    public Integer updateSystemEnvDO(SystemEnvDO systemEnvDO);
+    public int updateSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteSystemEnvDO(Long id);
+    public int deleteSystemEnvDO(Long id);
 
     /**
      * @param id

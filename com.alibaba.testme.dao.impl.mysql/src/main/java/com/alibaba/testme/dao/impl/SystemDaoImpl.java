@@ -19,8 +19,12 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public Long addSystemDO(SystemDO systemDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("system.add", systemDO);
+    public int addSystemDO(SystemDO systemDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().insert("system.add", systemDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -28,8 +32,12 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public Integer updateSystemDO(SystemDO systemDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("system.update", systemDO);
+    public int updateSystemDO(SystemDO systemDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update("system.update", systemDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -37,8 +45,12 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
      * @return
      */
     @Override
-    public Integer deleteSystemDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("system.deleteById", id);
+    public int deleteSystemDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete("system.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**

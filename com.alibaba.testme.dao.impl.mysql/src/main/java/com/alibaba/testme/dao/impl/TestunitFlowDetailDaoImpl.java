@@ -20,9 +20,13 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Long addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("testunitFlowDetail.add",
+    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().insert("testunitFlowDetail.add",
                 testunitFlowDetailDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -30,9 +34,13 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Integer updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("testunitFlowDetail.update",
-                testunitFlowDetailDO);
+    public int updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update(
+                "testunitFlowDetail.update", testunitFlowDetailDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -40,8 +48,13 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Integer deleteTestunitFlowDetailDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("testunitFlowDetail.deleteById", id);
+    public int deleteTestunitFlowDetailDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "testunitFlowDetail.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**

@@ -20,9 +20,13 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
+    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
                 systemRequirePropDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -30,9 +34,13 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Integer updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("systemRequireProp.update",
-                systemRequirePropDO);
+    public int updateSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update(
+                "systemRequireProp.update", systemRequirePropDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -40,8 +48,13 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public Integer deleteSystemRequirePropDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("systemRequireProp.deleteById", id);
+    public int deleteSystemRequirePropDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "systemRequireProp.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**

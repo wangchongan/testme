@@ -15,19 +15,19 @@ public interface TestunitParamService {
      * @param testunitParamDO
      * @return
      */
-    public Long addTestunitParamDO(TestunitParamDO testunitParamDO);
+    public int addTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
      * @param DO
      * @return
      */
-    public Integer updateTestunitParamDO(TestunitParamDO testunitParamDO);
+    public int updateTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
      * @param id
      * @return
      */
-    public Integer deleteTestunitParamDO(Long id);
+    public int deleteTestunitParamDO(Long id);
 
     /**
      * @param id

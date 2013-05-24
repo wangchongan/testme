@@ -19,8 +19,13 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public Long addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
-        return (Long) this.getSqlMapClientTemplate().insert("workSpace.add", workSpaceDO);
+    public int addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().insert("workSpace.add",
+                workSpaceDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -28,8 +33,13 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public Integer updateWorkSpaceDO(WorkSpaceDO workSpaceDO) {
-        return (Integer) this.getSqlMapClientTemplate().update("workSpace.update", workSpaceDO);
+    public int updateWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().update("workSpace.update",
+                workSpaceDO);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
@@ -37,8 +47,13 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public Integer deleteWorkSpaceDO(Long id) {
-        return (Integer) this.getSqlMapClientTemplate().delete("workSpace.deleteById", id);
+    public int deleteWorkSpaceDO(Long id) {
+        Integer result = (Integer) this.getSqlMapClientTemplate()
+                .delete("workSpace.deleteById", id);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     /**
