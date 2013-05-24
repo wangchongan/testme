@@ -27,13 +27,13 @@ public interface WorkSpaceDao {
      * @param id
      * @return
      */
-    public int deleteWorkSpaceDO(Long id);
+    public int deleteWorkSpaceDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public WorkSpaceDO findById(Long id);
+    public WorkSpaceDO findById(Integer id);
 
     /**
      * @param workSpaceDO

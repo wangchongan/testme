@@ -27,13 +27,13 @@ public interface SystemEnvService {
      * @param id
      * @return
      */
-    public int deleteSystemEnvDO(Long id);
+    public int deleteSystemEnvDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public SystemEnvDO findById(Long id);
+    public SystemEnvDO findById(Integer id);
 
     /**
      * @param id

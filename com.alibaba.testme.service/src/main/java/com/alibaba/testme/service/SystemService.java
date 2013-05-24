@@ -27,13 +27,13 @@ public interface SystemService {
      * @param id
      * @return
      */
-    public int deleteSystemDO(Long id);
+    public int deleteSystemDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public SystemDO findById(Long id);
+    public SystemDO findById(Integer id);
 
     /**
      * @param id

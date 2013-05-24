@@ -27,13 +27,13 @@ public interface TestunitFlowDetailDao {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowDetailDO(Long id);
+    public int deleteTestunitFlowDetailDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowDetailDO findById(Long id);
+    public TestunitFlowDetailDO findById(Integer id);
 
     /**
      * @param testunitFlowDetailDO

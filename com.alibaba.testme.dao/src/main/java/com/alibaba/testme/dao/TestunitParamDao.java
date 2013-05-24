@@ -27,13 +27,13 @@ public interface TestunitParamDao {
      * @param id
      * @return
      */
-    public int deleteTestunitParamDO(Long id);
+    public int deleteTestunitParamDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitParamDO findById(Long id);
+    public TestunitParamDO findById(Integer id);
 
     /**
      * @param testunitParamDO

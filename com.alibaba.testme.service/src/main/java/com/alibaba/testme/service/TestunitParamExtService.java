@@ -27,13 +27,13 @@ public interface TestunitParamExtService {
      * @param id
      * @return
      */
-    public int deleteTestunitParamExtDO(Long id);
+    public int deleteTestunitParamExtDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitParamExtDO findById(Long id);
+    public TestunitParamExtDO findById(Integer id);
 
     /**
      * @param id

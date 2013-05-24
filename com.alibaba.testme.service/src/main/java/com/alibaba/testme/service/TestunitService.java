@@ -27,13 +27,13 @@ public interface TestunitService {
      * @param id
      * @return
      */
-    public int deleteTestunitDO(Long id);
+    public int deleteTestunitDO(Integer id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitDO findById(Long id);
+    public TestunitDO findById(Integer id);
 
     /**
      * @param id
