@@ -27,13 +27,13 @@ public interface SystemRequirePropDao {
      * @param id
      * @return
      */
-    public int deleteSystemRequirePropDO(Integer id);
+    public int deleteSystemRequirePropDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public SystemRequirePropDO findById(Integer id);
+    public SystemRequirePropDO findById(Long id);
 
     /**
      * @param systemRequirePropDO

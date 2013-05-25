@@ -47,7 +47,7 @@ public class SystemEnvDaoImpl extends SqlMapClientDaoSupport implements SystemEn
      * @return
      */
     @Override
-    public int deleteSystemEnvDO(Integer id) {
+    public int deleteSystemEnvDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate()
                 .delete("systemEnv.deleteById", id);
         if (result == null) {
@@ -61,7 +61,7 @@ public class SystemEnvDaoImpl extends SqlMapClientDaoSupport implements SystemEn
      * @return
      */
     @Override
-    public SystemEnvDO findById(Integer id) {
+    public SystemEnvDO findById(Long id) {
         return (SystemEnvDO) this.getSqlMapClientTemplate()
                 .queryForObject("systemEnv.findById", id);
     }

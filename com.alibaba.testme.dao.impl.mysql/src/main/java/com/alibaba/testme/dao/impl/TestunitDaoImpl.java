@@ -47,7 +47,7 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public int deleteTestunitDO(Integer id) {
+    public int deleteTestunitDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete("testunit.deleteById", id);
         if (result == null) {
             return 0;
@@ -60,7 +60,7 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public TestunitDO findById(Integer id) {
+    public TestunitDO findById(Long id) {
         return (TestunitDO) this.getSqlMapClientTemplate().queryForObject("testunit.findById", id);
     }
 

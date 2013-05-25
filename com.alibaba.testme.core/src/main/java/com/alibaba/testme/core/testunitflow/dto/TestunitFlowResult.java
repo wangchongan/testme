@@ -30,7 +30,7 @@ import com.alibaba.testme.core.testunitflow.context.TestunitDefParam;
 public class TestunitFlowResult extends BaseResult {
 
     //测试单元实例ID
-    private Integer                testunitFlowCaseId;
+    private Long                   testunitFlowCaseId;
 
     //测试单元执行结果状态
     private TestunitDealStatusEnum status;
@@ -54,11 +54,11 @@ public class TestunitFlowResult extends BaseResult {
         this.absentParamsList = absentParamsList;
     }
 
-    public Integer getTestunitFlowCaseId() {
+    public Long getTestunitFlowCaseId() {
         return testunitFlowCaseId;
     }
 
-    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
+    public void setTestunitFlowCaseId(Long testunitFlowCaseId) {
         this.testunitFlowCaseId = testunitFlowCaseId;
     }
 

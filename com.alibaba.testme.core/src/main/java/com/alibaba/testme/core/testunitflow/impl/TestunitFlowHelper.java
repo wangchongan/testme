@@ -34,7 +34,7 @@ public class TestunitFlowHelper implements ITestunitFlowHelper {
      * (java.lang.Integer)
      */
     @Override
-    public boolean hasExecutableNode(Integer testunitFlowCaseId) {
+    public boolean hasExecutableNode(Long testunitFlowCaseId) {
         // TODO Auto-generated method stub
         return false;
     }

@@ -23,19 +23,19 @@ package com.alibaba.testme.core.testunitflow.context;
 public class TestunitDefParam {
 
     //参数名称
-    private String  paramName;
+    private String paramName;
 
     //缺省值
-    private String  defaultValue;
+    private String defaultValue;
 
     //是否必录
-    private String  isRequired;
+    private String isRequired;
 
     //测试单元ID
-    private Integer testunitId;
+    private Long   testunitId;
 
     //控件名称
-    private String  labelName;
+    private String labelName;
 
     public String getParamName() {
         return paramName;
@@ -61,11 +61,11 @@ public class TestunitDefParam {
         this.isRequired = isRequired;
     }
 
-    public Integer getTestunitId() {
+    public Long getTestunitId() {
         return testunitId;
     }
 
-    public void setTestunitId(Integer testunitId) {
+    public void setTestunitId(Long testunitId) {
         this.testunitId = testunitId;
     }
 

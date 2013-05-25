@@ -26,6 +26,6 @@ import com.alibaba.testme.core.testunitflow.context.TestunitFlowContext;
  */
 public interface ITestunitFlowContextBuilder {
 
-    public TestunitFlowContext build(Integer testunitFlowCaseId, Map<String, String> inputParamsMap);
+    public TestunitFlowContext build(Long testunitFlowCaseId, Map<String, String> inputParamsMap);
 
 }

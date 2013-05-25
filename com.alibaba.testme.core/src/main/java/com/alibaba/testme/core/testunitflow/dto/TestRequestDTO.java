@@ -24,15 +24,15 @@ import java.util.Map;
  */
 public class TestRequestDTO {
 
-    private Integer             testunitFlowCaseId;
+    private Long                testunitFlowCaseId;
 
     private Map<String, String> userInputParamsMap;
 
-    public Integer getTestunitFlowCaseId() {
+    public Long getTestunitFlowCaseId() {
         return testunitFlowCaseId;
     }
 
-    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
+    public void setTestunitFlowCaseId(Long testunitFlowCaseId) {
         this.testunitFlowCaseId = testunitFlowCaseId;
     }
 

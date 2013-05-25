@@ -1,114 +1,114 @@
 package com.alibaba.testme.domain.dataobject;
+
 import java.util.Date;
+
 /**
  * WorkSpaceDO
  */
 public class WorkSpaceDO {
 
-	/**
-	 *id
-	 */
-	private Integer id;
-	   
-	/**
-	 *gmtCreate
-	 */
-	private Date gmtCreate;
-	   
-	/**
-	 *creator
-	 */
-	private String creator;
-	   
-	/**
-	 *gmtModified
-	 */
-	private Date gmtModified;
-	   
-	/**
-	 *modifier
-	 */
-	private String modifier;
-	   
-	/**
-	 *name
-	 */
-	private String name;
-	   
-	/**
-	 *userId
-	 */
-	private String userId;
-	   
-	/**
-	 *systemId
-	 */
-	private Integer systemId;
-	   
+    /**
+     * id
+     */
+    private Long   id;
 
+    /**
+     * gmtCreate
+     */
+    private Date   gmtCreate;
 
-	public void setId(Integer id){ 
-	   this.id = id; 
-	}
-	
-	public Integer getId(){ 
-	   return this.id; 
-	} 
+    /**
+     * creator
+     */
+    private String creator;
 
-	public void setGmtCreate(Date gmtCreate){ 
-	   this.gmtCreate = gmtCreate; 
-	}
-	
-	public Date getGmtCreate(){ 
-	   return this.gmtCreate; 
-	} 
+    /**
+     * gmtModified
+     */
+    private Date   gmtModified;
 
-	public void setCreator(String creator){ 
-	   this.creator = creator; 
-	}
-	
-	public String getCreator(){ 
-	   return this.creator; 
-	} 
+    /**
+     * modifier
+     */
+    private String modifier;
 
-	public void setGmtModified(Date gmtModified){ 
-	   this.gmtModified = gmtModified; 
-	}
-	
-	public Date getGmtModified(){ 
-	   return this.gmtModified; 
-	} 
+    /**
+     * name
+     */
+    private String name;
 
-	public void setModifier(String modifier){ 
-	   this.modifier = modifier; 
-	}
-	
-	public String getModifier(){ 
-	   return this.modifier; 
-	} 
+    /**
+     * userId
+     */
+    private String userId;
 
-	public void setName(String name){ 
-	   this.name = name; 
-	}
-	
-	public String getName(){ 
-	   return this.name; 
-	} 
+    /**
+     * systemId
+     */
+    private Long   systemId;
 
-	public void setUserId(String userId){ 
-	   this.userId = userId; 
-	}
-	
-	public String getUserId(){ 
-	   return this.userId; 
-	} 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setSystemId(Integer systemId){ 
-	   this.systemId = systemId; 
-	}
-	
-	public Integer getSystemId(){ 
-	   return this.systemId; 
-	} 
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtCreate() {
+        return this.gmtCreate;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getCreator() {
+        return this.creator;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public Date getGmtModified() {
+        return this.gmtModified;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
+    public String getModifier() {
+        return this.modifier;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
+    }
+
+    public Long getSystemId() {
+        return this.systemId;
+    }
 
 }

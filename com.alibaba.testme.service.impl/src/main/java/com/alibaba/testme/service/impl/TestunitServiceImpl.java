@@ -49,7 +49,7 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public int deleteTestunitDO(Integer id) {
+    public int deleteTestunitDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public TestunitDO findById(Integer id) {
+    public TestunitDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }

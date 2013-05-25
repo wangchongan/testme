@@ -10,83 +10,83 @@ public class TestunitFlowDO {
     /**
      * id
      */
-    private Integer id;
+    private Long   id;
 
     /**
      * gmtCreate
      */
-    private Date    gmtCreate;
+    private Date   gmtCreate;
 
     /**
      * creator
      */
-    private String  creator;
+    private String creator;
 
     /**
      * gmtModified
      */
-    private Date    gmtModified;
+    private Date   gmtModified;
 
     /**
      * modifier
      */
-    private String  modifier;
+    private String modifier;
 
     /**
      * code
      */
-    private String  code;
+    private String code;
 
     /**
      * name
      */
-    private String  name;
+    private String name;
 
     /**
      * systemId
      */
-    private String  systemId;
+    private String systemId;
 
     /**
      * tag
      */
-    private String  tag;
+    private String tag;
 
     /**
      * userId
      */
-    private Integer userId;
+    private Long   userId;
 
     /**
      * picUrl
      */
-    private String  picUrl;
+    private String picUrl;
 
     /**
      * times
      */
-    private Integer times;
+    private Long   times;
 
     /**
      * envConfigRequired
      */
-    private String  envConfigRequired;
+    private String envConfigRequired;
 
     /**
      * 是否可用
      */
-    private String  isActive;
+    private String isActive;
 
     /**
      * remark
      */
-    private String  remark;
+    private String remark;
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -154,11 +154,11 @@ public class TestunitFlowDO {
         return this.tag;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 
@@ -170,11 +170,11 @@ public class TestunitFlowDO {
         return this.picUrl;
     }
 
-    public void setTimes(Integer times) {
+    public void setTimes(Long times) {
         this.times = times;
     }
 
-    public Integer getTimes() {
+    public Long getTimes() {
         return this.times;
     }
 

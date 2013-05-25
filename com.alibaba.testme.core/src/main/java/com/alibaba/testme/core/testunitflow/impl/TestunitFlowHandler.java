@@ -55,7 +55,7 @@ public class TestunitFlowHandler implements ITestunitFlowHandler {
 
         TestunitFlowResult allTestunitFlowResult = new TestunitFlowResult();
 
-        Integer testunitFlowCaseId = testRequestDTO.getTestunitFlowCaseId();
+        Long testunitFlowCaseId = testRequestDTO.getTestunitFlowCaseId();
         Map<String, String> userInputParamsMap = testRequestDTO.getUserInputParamsMap();
         TestunitFlowResult stageTestunitFlowResult = null;
 

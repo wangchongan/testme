@@ -23,19 +23,19 @@ package com.alibaba.testme.core.testunitflow.context;
 public class TestunitFlowContext {
 
     //测试实例ID
-    private Integer                  testunitFlowCaseId;
+    private Long                     testunitFlowCaseId;
 
     //测试实例状态
     private String                   testunitFlowCaseStatus;
 
     //用户ID
-    private Integer                  userId;
+    private Long                     userId;
 
     //测试实例节点ID
-    private Integer                  testunitFlowCaseDetailId;
+    private Long                     testunitFlowCaseDetailId;
 
     //测试流程节点ID
-    private Integer                  testunitFlowDetailId;
+    private Long                     testunitFlowDetailId;
 
     //测试实例节点状态
     private String                   testunitFlowCaseDetailStatus;
@@ -52,44 +52,12 @@ public class TestunitFlowContext {
     //测试单元类路径
     private String                   testunitClassQualifiedName;
 
-    public Integer getTestunitFlowCaseId() {
-        return testunitFlowCaseId;
-    }
-
-    public void setTestunitFlowCaseId(Integer testunitFlowCaseId) {
-        this.testunitFlowCaseId = testunitFlowCaseId;
-    }
-
     public String getTestunitFlowCaseStatus() {
         return testunitFlowCaseStatus;
     }
 
     public void setTestunitFlowCaseStatus(String testunitFlowCaseStatus) {
         this.testunitFlowCaseStatus = testunitFlowCaseStatus;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getTestunitFlowCaseDetailId() {
-        return testunitFlowCaseDetailId;
-    }
-
-    public void setTestunitFlowCaseDetailId(Integer testunitFlowCaseDetailId) {
-        this.testunitFlowCaseDetailId = testunitFlowCaseDetailId;
-    }
-
-    public Integer getTestunitFlowDetailId() {
-        return testunitFlowDetailId;
-    }
-
-    public void setTestunitFlowDetailId(Integer testunitFlowDetailId) {
-        this.testunitFlowDetailId = testunitFlowDetailId;
     }
 
     public String getTestunitFlowCaseDetailStatus() {
@@ -130,6 +98,38 @@ public class TestunitFlowContext {
 
     public void setTestunitDefParamsManager(TestunitDefParamsManager testunitDefParamsManager) {
         this.testunitDefParamsManager = testunitDefParamsManager;
+    }
+
+    public Long getTestunitFlowCaseId() {
+        return testunitFlowCaseId;
+    }
+
+    public void setTestunitFlowCaseId(Long testunitFlowCaseId) {
+        this.testunitFlowCaseId = testunitFlowCaseId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getTestunitFlowCaseDetailId() {
+        return testunitFlowCaseDetailId;
+    }
+
+    public void setTestunitFlowCaseDetailId(Long testunitFlowCaseDetailId) {
+        this.testunitFlowCaseDetailId = testunitFlowCaseDetailId;
+    }
+
+    public Long getTestunitFlowDetailId() {
+        return testunitFlowDetailId;
+    }
+
+    public void setTestunitFlowDetailId(Long testunitFlowDetailId) {
+        this.testunitFlowDetailId = testunitFlowDetailId;
     }
 
 }

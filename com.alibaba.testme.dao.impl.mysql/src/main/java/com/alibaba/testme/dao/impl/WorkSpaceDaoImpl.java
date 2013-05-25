@@ -47,7 +47,7 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public int deleteWorkSpaceDO(Integer id) {
+    public int deleteWorkSpaceDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate()
                 .delete("workSpace.deleteById", id);
         if (result == null) {
@@ -61,7 +61,7 @@ public class WorkSpaceDaoImpl extends SqlMapClientDaoSupport implements WorkSpac
      * @return
      */
     @Override
-    public WorkSpaceDO findById(Integer id) {
+    public WorkSpaceDO findById(Long id) {
         return (WorkSpaceDO) this.getSqlMapClientTemplate()
                 .queryForObject("workSpace.findById", id);
     }

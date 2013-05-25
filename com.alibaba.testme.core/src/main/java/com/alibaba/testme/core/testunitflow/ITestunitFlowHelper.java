@@ -32,7 +32,7 @@ public interface ITestunitFlowHelper {
      * @param testunitFlowCaseId
      * @return true - 存在, false - 不存在
      */
-    public boolean hasExecutableNode(Integer testunitFlowCaseId);
+    public boolean hasExecutableNode(Long testunitFlowCaseId);
 
     /**
      * 设置测试实例为暂停状态

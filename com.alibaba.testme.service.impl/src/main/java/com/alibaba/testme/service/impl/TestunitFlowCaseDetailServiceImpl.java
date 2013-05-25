@@ -49,7 +49,7 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
      * @return
      */
     @Override
-    public int deleteTestunitFlowCaseDetailDO(Integer id) {
+    public int deleteTestunitFlowCaseDetailDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
      * @return
      */
     @Override
-    public TestunitFlowCaseDetailDO findById(Integer id) {
+    public TestunitFlowCaseDetailDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }
@@ -75,6 +75,17 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
     @Override
     public List<TestunitFlowCaseDetailDO> findList(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
         return testunitFlowCaseDetailDao.findList(testunitFlowCaseDetailDO);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.service.TestunitFlowCaseDetailService#findLast(java
+     * .lang.Integer)
+     */
+    @Override
+    public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId) {
+        return testunitFlowCaseDetailDao.findLast(testunitFlowCaseId);
     }
 
 }

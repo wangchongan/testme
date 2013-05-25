@@ -49,7 +49,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public int deleteSystemEnvDO(Integer id) {
+    public int deleteSystemEnvDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public SystemEnvDO findById(Integer id) {
+    public SystemEnvDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }

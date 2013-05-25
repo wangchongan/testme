@@ -48,7 +48,7 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public int deleteSystemRequirePropDO(Integer id) {
+    public int deleteSystemRequirePropDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
                 "systemRequireProp.deleteById", id);
         if (result == null) {
@@ -62,7 +62,7 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public SystemRequirePropDO findById(Integer id) {
+    public SystemRequirePropDO findById(Long id) {
         return (SystemRequirePropDO) this.getSqlMapClientTemplate().queryForObject(
                 "systemRequireProp.findById", id);
     }
