@@ -1,6 +1,7 @@
 package com.alibaba.testme.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.testme.domain.dataobject.SystemEnvDO;
 
@@ -40,5 +41,13 @@ public interface SystemEnvService {
      * @return
      */
     public List<SystemEnvDO> findList(SystemEnvDO systemEnvDO);
+
+    /**
+     * 构建环境变量参数，如有占位符的会做占位符替换操作
+     * 
+     * @param systemEnvId
+     * @return
+     */
+    public Map<String, String> buildSystemEnvParamsMap(Long systemEnvId);
 
 }

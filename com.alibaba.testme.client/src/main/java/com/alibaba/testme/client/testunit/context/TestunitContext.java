@@ -36,8 +36,6 @@ public class TestunitContext {
     //系统环境变量ID
     private Long                systemEnvId;
 
-    /********* 以下参数由在执行Testunit前build Context环境来补全 *********/
-
     //系统环境变量参数
     private Map<String, String> systemEnvParamsMap;
 
@@ -46,8 +44,6 @@ public class TestunitContext {
 
     //历史节点输入参数
     private Map<String, String> historyParamsMap;
-
-    /********* 以上参数由在执行Testunit前build Context环境来补全 *********/
 
     public String getClassQualifiedName() {
         return classQualifiedName;

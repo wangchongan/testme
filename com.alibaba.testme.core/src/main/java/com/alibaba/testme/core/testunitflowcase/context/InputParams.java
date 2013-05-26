@@ -55,6 +55,24 @@ public class InputParams {
     }
 
     /**
+     * 获取来自上一节点及用户输入的参数的JSON串
+     * 
+     * @return
+     */
+    public Map<String, String> getFromLastAndUserParamsMap() {
+        if (fromLastTestunitParamsMap == null && fromUserParamsMap == null) {
+            return null;
+        }
+        if (fromLastTestunitParamsMap != null) {
+            fromLastTestunitParamsMap.putAll(fromUserParamsMap);
+            return fromLastTestunitParamsMap;
+        } else {
+            fromUserParamsMap.putAll(fromLastTestunitParamsMap);
+            return fromUserParamsMap;
+        }
+    }
+
+    /**
      * 判断是否存在指定的参数
      * 
      * @param paramName

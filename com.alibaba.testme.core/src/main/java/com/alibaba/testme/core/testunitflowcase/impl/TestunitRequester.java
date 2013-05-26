@@ -20,6 +20,7 @@ import com.alibaba.testme.client.testunit.dto.TestunitResult;
 import com.alibaba.testme.core.testunit.ITestunitClient;
 import com.alibaba.testme.core.testunitflowcase.ITestunitRequester;
 import com.alibaba.testme.core.testunitflowcase.context.TestunitFlowCaseContext;
+import com.alibaba.testme.service.SystemEnvService;
 
 /**
  * 测试单元调用请求器
@@ -28,7 +29,9 @@ import com.alibaba.testme.core.testunitflowcase.context.TestunitFlowCaseContext;
  */
 public class TestunitRequester implements ITestunitRequester {
 
-    private ITestunitClient testunitClient;
+    private ITestunitClient  testunitClient;
+
+    private SystemEnvService systemEnvService;
 
     /*
      * (non-Javadoc)
@@ -38,12 +41,22 @@ public class TestunitRequester implements ITestunitRequester {
      */
     @Override
     public TestunitResult doRequest(TestunitFlowCaseContext testunitFlowContext) {
+
         TestunitContext testunitContext = new TestunitContext();
         testunitContext.setClassQualifiedName(testunitFlowContext.getTestunitClassQualifiedName());
         testunitContext.setSystemEnvId(testunitFlowContext.getSystemEnvId());
         testunitContext.setTestunitFlowCaseDetailId(testunitFlowContext
                 .getTestunitFlowCaseDetailId());
         testunitContext.setTestunitFlowCaseId(testunitFlowContext.getTestunitFlowCaseId());
+
+        //设置输入参数和环境变量参数
+        testunitContext.setInputParamsMap(testunitFlowContext.getInputParams()
+                .getFromLastAndUserParamsMap());
+        testunitContext.setHistoryParamsMap(testunitFlowContext.getInputParams()
+                .getFromHistoryParamsMap());
+        testunitContext.setSystemEnvParamsMap(systemEnvService
+                .buildSystemEnvParamsMap(testunitContext.getSystemEnvId()));
+
         //执行调用Testunit
         return testunitClient.invoke(testunitContext);
     }

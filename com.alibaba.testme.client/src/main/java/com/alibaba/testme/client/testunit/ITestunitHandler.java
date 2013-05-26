@@ -15,12 +15,15 @@
  */
 package com.alibaba.testme.client.testunit;
 
+import com.alibaba.testme.client.testunit.context.TestunitContext;
+import com.alibaba.testme.client.testunit.dto.TestunitResult;
+
 /**
  * TODO Comment of TestunitHandler
  * 
  * @author chongan.wangca
  */
-public interface TestunitHandler {
+public interface ITestunitHandler {
 
     /**
      * 测试单元调用入口
@@ -28,6 +31,6 @@ public interface TestunitHandler {
      * @param context
      * @return
      */
-    public String deal(String context);
+    public TestunitResult deal(TestunitContext context);
 
 }
