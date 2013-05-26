@@ -67,6 +67,9 @@ public class InputParams {
         if (fromUserParamsMap != null && fromUserParamsMap.containsKey(paramName)) {
             return true;
         }
+        if (fromHistoryParamsMap != null && fromHistoryParamsMap.containsKey(paramName)) {
+            return true;
+        }
         return false;
     }
 

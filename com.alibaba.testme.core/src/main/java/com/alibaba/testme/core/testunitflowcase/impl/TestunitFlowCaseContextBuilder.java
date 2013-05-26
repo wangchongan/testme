@@ -100,6 +100,7 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
                     .parse(testunitFlowCaseDetailDO.getInParam());
             inputParams.setFromLastTestunitParamsMap(lastInParamsMap);
         }
+
         //设置来自用户的输入参数
         inputParams.setFromUserParamsMap(userInputParamsMap);
 

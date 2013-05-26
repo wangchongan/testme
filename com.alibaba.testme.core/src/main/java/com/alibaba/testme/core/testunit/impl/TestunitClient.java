@@ -15,7 +15,7 @@
  */
 package com.alibaba.testme.core.testunit.impl;
 
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
+import com.alibaba.testme.client.testunit.context.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
 import com.alibaba.testme.core.testunit.ITestunitClient;
 

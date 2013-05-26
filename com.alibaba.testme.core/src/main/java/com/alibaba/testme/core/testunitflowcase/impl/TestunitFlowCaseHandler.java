@@ -118,7 +118,7 @@ public class TestunitFlowCaseHandler implements ITestunitFlowCaseHandler {
     }
 
     /**
-     * 将阶段节点的结果添加至总结果集中
+     * 将阶段节点的执行结果添加至总结果集中
      * 
      * @param stage
      * @param all

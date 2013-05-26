@@ -99,4 +99,16 @@ public class TestunitFlowCaseHelper implements ITestunitFlowCaseHelper {
 
     }
 
+    public void setTestunitFlowDetailService(TestunitFlowDetailService testunitFlowDetailService) {
+        this.testunitFlowDetailService = testunitFlowDetailService;
+    }
+
+    public void setTestunitFlowCaseService(TestunitFlowCaseService testunitFlowCaseService) {
+        this.testunitFlowCaseService = testunitFlowCaseService;
+    }
+
+    public void setTestunitFlowCaseDetailService(TestunitFlowCaseDetailService testunitFlowCaseDetailService) {
+        this.testunitFlowCaseDetailService = testunitFlowCaseDetailService;
+    }
+
 }

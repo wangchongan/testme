@@ -15,7 +15,7 @@
  */
 package com.alibaba.testme.core.testunitflowcase.impl;
 
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
+import com.alibaba.testme.client.testunit.context.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
 import com.alibaba.testme.core.testunit.ITestunitClient;
 import com.alibaba.testme.core.testunitflowcase.ITestunitRequester;
@@ -40,7 +40,10 @@ public class TestunitRequester implements ITestunitRequester {
     public TestunitResult doRequest(TestunitFlowCaseContext testunitFlowContext) {
         TestunitContext testunitContext = new TestunitContext();
         testunitContext.setClassQualifiedName(testunitFlowContext.getTestunitClassQualifiedName());
-        testunitContext.setInputParamsMap(testunitFlowContext.getInputParams().getAllParams());
+        testunitContext.setSystemEnvId(testunitFlowContext.getSystemEnvId());
+        testunitContext.setTestunitFlowCaseDetailId(testunitFlowContext
+                .getTestunitFlowCaseDetailId());
+        testunitContext.setTestunitFlowCaseId(testunitFlowContext.getTestunitFlowCaseId());
         //执行调用Testunit
         return testunitClient.invoke(testunitContext);
     }
