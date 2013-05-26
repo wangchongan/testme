@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-21
+ * File Created at 2013-5-26
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,18 +13,17 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunit;
+package com.alibaba.testme.core.testunitflowcase;
 
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
-import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import java.util.Map;
 
 /**
- * 测试单元调用
+ * TODO Comment of ITestunitFlowCaseGenerator
  * 
  * @author chongan.wangca
  */
-public interface ITestunitClient {
+public interface ITestunitFlowCaseGenerator {
 
-    public TestunitResult invoke(TestunitContext testunitContext);
+    public Long generate(Long testunitFlowId, Map<String, String> userInputParamsMap);
 
 }

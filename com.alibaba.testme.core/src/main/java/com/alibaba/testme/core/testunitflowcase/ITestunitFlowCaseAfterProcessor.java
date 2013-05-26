@@ -1,7 +1,7 @@
 /**
  * Project: com.alibaba.testme.core
  * 
- * File Created at 2013-5-21
+ * File Created at 2013-5-23
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,18 +13,18 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunit;
+package com.alibaba.testme.core.testunitflowcase;
 
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.core.testunitflowcase.context.TestunitFlowCaseContext;
 
 /**
- * 测试单元调用
+ * 后续测试单元路由
  * 
  * @author chongan.wangca
  */
-public interface ITestunitClient {
+public interface ITestunitFlowCaseAfterProcessor {
 
-    public TestunitResult invoke(TestunitContext testunitContext);
-
+    public void doProcess(TestunitFlowCaseContext testunitFlowCaseContext,
+                          TestunitResult testunitResult);
 }

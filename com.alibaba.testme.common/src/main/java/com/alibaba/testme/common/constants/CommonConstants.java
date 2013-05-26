@@ -1,7 +1,7 @@
 /**
- * Project: com.alibaba.testme.core
+ * Project: com.alibaba.testme.common
  * 
- * File Created at 2013-5-21
+ * File Created at 2013-5-26
  * $Id$
  * 
  * Copyright 1999-2100 Alibaba.com Corporation Limited.
@@ -13,18 +13,17 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package com.alibaba.testme.core.testunit;
-
-import com.alibaba.testme.client.testunit.dto.TestunitContext;
-import com.alibaba.testme.client.testunit.dto.TestunitResult;
+package com.alibaba.testme.common.constants;
 
 /**
- * 测试单元调用
+ * TODO Comment of CommonConstants
  * 
  * @author chongan.wangca
  */
-public interface ITestunitClient {
+public class CommonConstants {
 
-    public TestunitResult invoke(TestunitContext testunitContext);
+    public final static String CREATOR  = "SYSTEM";
+
+    public final static String MODIFIER = "SYSTEM";
 
 }
