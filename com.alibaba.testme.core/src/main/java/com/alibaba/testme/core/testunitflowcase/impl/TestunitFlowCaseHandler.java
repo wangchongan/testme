@@ -48,7 +48,7 @@ public class TestunitFlowCaseHandler implements ITestunitFlowCaseHandler {
     private ITestunitFlowCaseGenerator      testunitFlowCaseGenerator;
 
     /*
-     * (non-Javadoc)
+     * TODO-单次执行需要在一个事务里面
      * @see
      * com.alibaba.testme.core.testunitflow.TestunitFlowHandler#deal(com.alibaba
      * .testme.core.testunitflow.dto.TestRequestDTO)
@@ -128,4 +128,25 @@ public class TestunitFlowCaseHandler implements ITestunitFlowCaseHandler {
         allResult.addAllErrorMsgs(stageResult.getErrorMsgsList());
         allResult.setAbsentParamsList(stageResult.getAbsentParamsList());
     }
+
+    public void setTestRequestChecker(BaseChecker<TestRequestDTO> testRequestChecker) {
+        this.testRequestChecker = testRequestChecker;
+    }
+
+    public void setTestunitFlowCaseContextBuilder(ITestunitFlowCaseContextBuilder testunitFlowCaseContextBuilder) {
+        this.testunitFlowCaseContextBuilder = testunitFlowCaseContextBuilder;
+    }
+
+    public void setTestunitFlowCaseWorker(ITestunitFlowCaseWorker testunitFlowCaseWorker) {
+        this.testunitFlowCaseWorker = testunitFlowCaseWorker;
+    }
+
+    public void setTestunitFlowCaseHelper(ITestunitFlowCaseHelper testunitFlowCaseHelper) {
+        this.testunitFlowCaseHelper = testunitFlowCaseHelper;
+    }
+
+    public void setTestunitFlowCaseGenerator(ITestunitFlowCaseGenerator testunitFlowCaseGenerator) {
+        this.testunitFlowCaseGenerator = testunitFlowCaseGenerator;
+    }
+
 }

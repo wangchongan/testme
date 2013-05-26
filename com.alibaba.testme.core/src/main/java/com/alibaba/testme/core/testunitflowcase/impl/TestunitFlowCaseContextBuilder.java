@@ -16,6 +16,7 @@
 package com.alibaba.testme.core.testunitflowcase.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +59,7 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
     public TestunitFlowCaseContext build(Long testunitFlowCaseId,
                                          Map<String, String> userInputParamsMap) {
 
+        /******************* 获取数据实体信息 *******************/
         //测试实例
         TestunitFlowCaseDO testunitFlowCaseDO = testunitFlowCaseService
                 .findById(testunitFlowCaseId);
@@ -79,6 +81,7 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
         List<TestunitParamDO> testunitParamDOList = testunitParamService
                 .findList(testunitParamQuery);
 
+        /****************** 设置属性 *******************/
         //设置属性
         TestunitFlowCaseContext context = new TestunitFlowCaseContext();
         context.setTestunitFlowCaseId(testunitFlowCaseId);
@@ -100,8 +103,10 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
         //设置来自用户的输入参数
         inputParams.setFromUserParamsMap(userInputParamsMap);
 
-        //TODO-设置历史的参数
-        //        inputParams.setFromHistoryParamsMap(null);
+        //设置历史的参数
+        Map<String, String> historyParamsMap = buildHistoryParamsMap(testunitFlowCaseId,
+                testunitFlowCaseDetailDO);
+        inputParams.setFromHistoryParamsMap(historyParamsMap);
 
         context.setInputParams(inputParams);
 
@@ -109,6 +114,29 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
         context.getTestunitDefParamsManager().addParams(testunitParamDOList);
 
         return context;
+    }
+
+    /**
+     * 构建历史节点的参数
+     * 
+     * @param testunitFlowCaseId
+     * @param testunitFlowCaseDetailDO
+     * @param historyParamsMap
+     */
+    @SuppressWarnings("unchecked")
+    private Map<String, String> buildHistoryParamsMap(Long testunitFlowCaseId,
+                                                      TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+        Map<String, String> historyParamsMap = new HashMap<String, String>();
+        TestunitFlowCaseDetailDO testunitFlowCaseDetailQuery = new TestunitFlowCaseDetailDO();
+        testunitFlowCaseDetailQuery.setTestunitFlowCaseId(testunitFlowCaseId);
+        List<TestunitFlowCaseDetailDO> testunitFlowCaseDetailDOList = testunitFlowCaseDetailService
+                .findList(testunitFlowCaseDetailQuery);
+        for (TestunitFlowCaseDetailDO detailDO : testunitFlowCaseDetailDOList) {
+            if (detailDO.getId().longValue() != testunitFlowCaseDetailDO.getId().longValue()) {
+                historyParamsMap.putAll(JSON.parseObject(detailDO.getInParam(), Map.class));
+            }
+        }
+        return historyParamsMap;
     }
 
     public void setTestunitFlowCaseService(TestunitFlowCaseService testunitFlowCaseService) {
