@@ -24,9 +24,9 @@ public class TestunitFlowCaseServiceImpl implements TestunitFlowCaseService {
      * @return
      */
     @Override
-    public int addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
+    public Long addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
         if (testunitFlowCaseDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowCaseDao.addTestunitFlowCaseDO(testunitFlowCaseDO);
     }

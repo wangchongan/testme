@@ -35,7 +35,7 @@ public class TestunitFlowCaseDO {
     /**
      * testunitFlowId
      */
-    private String testunitFlowId;
+    private Long   testunitFlowId;
 
     /**
      * status
@@ -55,7 +55,7 @@ public class TestunitFlowCaseDO {
     /**
      * userId
      */
-    private String userId;
+    private Long   userId;
 
     /**
      * systemEnvId
@@ -107,14 +107,6 @@ public class TestunitFlowCaseDO {
         return this.modifier;
     }
 
-    public void setTestunitFlowId(String testunitFlowId) {
-        this.testunitFlowId = testunitFlowId;
-    }
-
-    public String getTestunitFlowId() {
-        return this.testunitFlowId;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
@@ -139,14 +131,6 @@ public class TestunitFlowCaseDO {
         return this.gmtEnd;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
     public void setSystemEnvId(Long systemEnvId) {
         this.systemEnvId = systemEnvId;
     }
@@ -161,6 +145,22 @@ public class TestunitFlowCaseDO {
 
     public Date getGmtNextRetry() {
         return this.gmtNextRetry;
+    }
+
+    public Long getTestunitFlowId() {
+        return testunitFlowId;
+    }
+
+    public void setTestunitFlowId(Long testunitFlowId) {
+        this.testunitFlowId = testunitFlowId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
 }

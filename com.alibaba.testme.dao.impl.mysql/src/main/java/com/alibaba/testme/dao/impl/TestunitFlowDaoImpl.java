@@ -19,13 +19,8 @@ public class TestunitFlowDaoImpl extends SqlMapClientDaoSupport implements Testu
      * @return
      */
     @Override
-    public int addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("testunitFlow.add",
-                testunitFlowDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+    public Long addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunitFlow.add", testunitFlowDO);
     }
 
     /**

@@ -15,15 +15,15 @@
  */
 package com.alibaba.testme.core.testunitflowcase;
 
-import java.util.Map;
+import com.alibaba.testme.core.testunitflowcase.dto.TestRequestDTO;
 
 /**
- * TODO Comment of ITestunitFlowCaseGenerator
+ * 首次执行时，测试单元实例数据初始化生成器
  * 
  * @author chongan.wangca
  */
 public interface ITestunitFlowCaseGenerator {
 
-    public Long generate(Long testunitFlowId, Map<String, String> userInputParamsMap);
+    public Long generate(TestRequestDTO testRequestDTO);
 
 }

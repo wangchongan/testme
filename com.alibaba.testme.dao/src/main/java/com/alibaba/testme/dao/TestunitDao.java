@@ -15,7 +15,7 @@ public interface TestunitDao {
      * @param testunitDO
      * @return
      */
-    public int addTestunitDO(TestunitDO testunitDO);
+    public Long addTestunitDO(TestunitDO testunitDO);
 
     /**
      * @param testunitDO

@@ -19,13 +19,9 @@ public class TestunitFlowCaseDaoImpl extends SqlMapClientDaoSupport implements T
      * @return
      */
     @Override
-    public int addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("testunitFlowCase.add",
+    public Long addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunitFlowCase.add",
                 testunitFlowCaseDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
     }
 
     /**

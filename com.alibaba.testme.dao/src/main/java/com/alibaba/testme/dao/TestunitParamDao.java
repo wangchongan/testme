@@ -15,7 +15,7 @@ public interface TestunitParamDao {
      * @param testunitParamDO
      * @return
      */
-    public int addTestunitParamDO(TestunitParamDO testunitParamDO);
+    public Long addTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
      * @param testunitParamDO

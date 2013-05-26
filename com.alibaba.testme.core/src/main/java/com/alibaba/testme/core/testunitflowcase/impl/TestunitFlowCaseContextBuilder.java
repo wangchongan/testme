@@ -55,7 +55,8 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
      */
     @SuppressWarnings("unchecked")
     @Override
-    public TestunitFlowCaseContext build(Long testunitFlowCaseId, Map<String, String> userInputParamsMap) {
+    public TestunitFlowCaseContext build(Long testunitFlowCaseId,
+                                         Map<String, String> userInputParamsMap) {
 
         //测试实例
         TestunitFlowCaseDO testunitFlowCaseDO = testunitFlowCaseService
@@ -87,6 +88,7 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
         context.setTestunitFlowCaseDetailStatus(testunitFlowCaseDetailDO.getStatus());
         context.setTestunitFlowCaseStatus(testunitFlowCaseDO.getStatus());
         context.setGmtStart(new Date());
+        context.setSystemEnvId(testunitFlowCaseDO.getSystemEnvId());
 
         //设置来自上一节点的输入参数
         InputParams inputParams = new InputParams();

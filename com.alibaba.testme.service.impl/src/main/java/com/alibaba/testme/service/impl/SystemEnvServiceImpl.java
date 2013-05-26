@@ -24,9 +24,9 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public int addSystemEnvDO(SystemEnvDO systemEnvDO) {
+    public Long addSystemEnvDO(SystemEnvDO systemEnvDO) {
         if (systemEnvDO == null) {
-            return 0;
+            return null;
         }
         return systemEnvDao.addSystemEnvDO(systemEnvDO);
     }

@@ -24,9 +24,9 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
      * @return
      */
     @Override
-    public int addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
+    public Long addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
         if (testunitFlowDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowDao.addTestunitFlowDO(testunitFlowDO);
     }

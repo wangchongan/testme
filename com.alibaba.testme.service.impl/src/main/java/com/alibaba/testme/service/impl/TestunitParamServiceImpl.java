@@ -24,9 +24,9 @@ public class TestunitParamServiceImpl implements TestunitParamService {
      * @return
      */
     @Override
-    public int addTestunitParamDO(TestunitParamDO testunitParamDO) {
+    public Long addTestunitParamDO(TestunitParamDO testunitParamDO) {
         if (testunitParamDO == null) {
-            return 0;
+            return null;
         }
         return testunitParamDao.addTestunitParamDO(testunitParamDO);
     }

@@ -19,13 +19,10 @@ public class SystemEnvDetailDaoImpl extends SqlMapClientDaoSupport implements Sy
      * @return
      */
     @Override
-    public int addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("systemEnvDetail.add",
+    public Long addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("systemEnvDetail.add",
                 systemEnvDetailDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+
     }
 
     /**

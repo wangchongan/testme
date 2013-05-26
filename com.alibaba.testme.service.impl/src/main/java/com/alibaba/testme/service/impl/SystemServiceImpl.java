@@ -24,9 +24,9 @@ public class SystemServiceImpl implements SystemService {
      * @return
      */
     @Override
-    public int addSystemDO(SystemDO systemDO) {
+    public Long addSystemDO(SystemDO systemDO) {
         if (systemDO == null) {
-            return 0;
+            return null;
         }
         return systemDao.addSystemDO(systemDO);
     }

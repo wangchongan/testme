@@ -24,9 +24,9 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
      * @return
      */
     @Override
-    public int addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
+    public Long addWorkSpaceDO(WorkSpaceDO workSpaceDO) {
         if (workSpaceDO == null) {
-            return 0;
+            return null;
         }
         return workSpaceDao.addWorkSpaceDO(workSpaceDO);
     }

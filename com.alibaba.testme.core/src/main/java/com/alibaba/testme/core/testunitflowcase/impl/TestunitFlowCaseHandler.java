@@ -58,7 +58,6 @@ public class TestunitFlowCaseHandler implements ITestunitFlowCaseHandler {
 
         TestunitFlowCaseResult allTestunitFlowCaseResult = new TestunitFlowCaseResult();
         Long testunitFlowCaseId = testRequestDTO.getTestunitFlowCaseId();
-        Long testunitFlowId = testRequestDTO.getTestunitFlowId();
         TestunitFlowCaseContext testunitFlowCaseContext = null;
         Map<String, String> userInputParamsMap = testRequestDTO.getUserInputParamsMap();
         TestunitFlowCaseResult stageTestunitFlowCaseResult = null;
@@ -73,8 +72,7 @@ public class TestunitFlowCaseHandler implements ITestunitFlowCaseHandler {
 
         //如果是首次执行，则需要初始化测试流程实例
         if (testunitFlowCaseId == null) {
-            testunitFlowCaseId = testunitFlowCaseGenerator.generate(testunitFlowId,
-                    userInputParamsMap);
+            testunitFlowCaseId = testunitFlowCaseGenerator.generate(testRequestDTO);
         }
 
         /**

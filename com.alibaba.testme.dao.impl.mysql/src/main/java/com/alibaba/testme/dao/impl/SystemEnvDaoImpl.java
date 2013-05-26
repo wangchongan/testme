@@ -19,13 +19,8 @@ public class SystemEnvDaoImpl extends SqlMapClientDaoSupport implements SystemEn
      * @return
      */
     @Override
-    public int addSystemEnvDO(SystemEnvDO systemEnvDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("systemEnv.add",
-                systemEnvDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+    public Long addSystemEnvDO(SystemEnvDO systemEnvDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("systemEnv.add", systemEnvDO);
     }
 
     /**

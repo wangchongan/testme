@@ -15,7 +15,7 @@ public interface SystemService {
      * @param systemDO
      * @return
      */
-    public int addSystemDO(SystemDO systemDO);
+    public Long addSystemDO(SystemDO systemDO);
 
     /**
      * @param DO

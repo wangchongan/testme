@@ -24,9 +24,9 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
      * @return
      */
     @Override
-    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
         if (systemRequirePropDO == null) {
-            return 0;
+            return null;
         }
         return systemRequirePropDao.addSystemRequirePropDO(systemRequirePropDO);
     }

@@ -50,6 +50,12 @@ public class TestRequestChecker implements BaseChecker<TestRequestDTO> {
             return checkResult;
         }
 
+        if (obj.getUserId() == null) {
+            checkResult.setResult(CheckResultEnum.FAIL);
+            checkResult.addErrorMsg("UserId不能为空");
+            return checkResult;
+        }
+
         return checkResult;
 
     }

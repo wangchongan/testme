@@ -54,6 +54,9 @@ public class TestunitFlowCaseContext {
     //开始测试单元开始执行时间
     private Date                     gmtStart;
 
+    //系统环境变量
+    private Long                     systemEnvId;
+
     public String getTestunitFlowCaseStatus() {
         return testunitFlowCaseStatus;
     }
@@ -128,6 +131,14 @@ public class TestunitFlowCaseContext {
 
     public void setGmtStart(Date gmtStart) {
         this.gmtStart = gmtStart;
+    }
+
+    public Long getSystemEnvId() {
+        return systemEnvId;
+    }
+
+    public void setSystemEnvId(Long systemEnvId) {
+        this.systemEnvId = systemEnvId;
     }
 
 }

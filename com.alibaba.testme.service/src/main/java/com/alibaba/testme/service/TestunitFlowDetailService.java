@@ -15,7 +15,7 @@ public interface TestunitFlowDetailService {
      * @param testunitFlowDetailDO
      * @return
      */
-    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
+    public Long addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO);
 
     /**
      * @param DO
@@ -40,5 +40,13 @@ public interface TestunitFlowDetailService {
      * @return
      */
     public List<TestunitFlowDetailDO> findList(TestunitFlowDetailDO testunitFlowDetailDO);
+
+    /**
+     * 获取第一个测试流程节点
+     * 
+     * @param testunitFlowId
+     * @return
+     */
+    public Long findFirstTestunitFlowDetailId(Long testunitFlowId);
 
 }

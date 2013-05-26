@@ -57,6 +57,11 @@ public class TestunitFlowDetailDO {
      */
     private Long   nextTestunitFlowDetailId;
 
+    /**
+     * preTestunitFlowDetailId
+     */
+    private Long   preTestunitFlowDetailId;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -135,6 +140,14 @@ public class TestunitFlowDetailDO {
 
     public void setNextTestunitFlowDetailId(Long nextTestunitFlowDetailId) {
         this.nextTestunitFlowDetailId = nextTestunitFlowDetailId;
+    }
+
+    public Long getPreTestunitFlowDetailId() {
+        return preTestunitFlowDetailId;
+    }
+
+    public void setPreTestunitFlowDetailId(Long preTestunitFlowDetailId) {
+        this.preTestunitFlowDetailId = preTestunitFlowDetailId;
     }
 
 }

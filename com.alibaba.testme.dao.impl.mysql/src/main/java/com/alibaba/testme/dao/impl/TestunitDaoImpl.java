@@ -19,13 +19,8 @@ public class TestunitDaoImpl extends SqlMapClientDaoSupport implements TestunitD
      * @return
      */
     @Override
-    public int addTestunitDO(TestunitDO testunitDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate()
-                .insert("testunit.add", testunitDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+    public Long addTestunitDO(TestunitDO testunitDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunit.add", testunitDO);
     }
 
     /**

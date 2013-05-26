@@ -24,9 +24,9 @@ public class TestunitServiceImpl implements TestunitService {
      * @return
      */
     @Override
-    public int addTestunitDO(TestunitDO testunitDO) {
+    public Long addTestunitDO(TestunitDO testunitDO) {
         if (testunitDO == null) {
-            return 0;
+            return null;
         }
         return testunitDao.addTestunitDO(testunitDO);
     }

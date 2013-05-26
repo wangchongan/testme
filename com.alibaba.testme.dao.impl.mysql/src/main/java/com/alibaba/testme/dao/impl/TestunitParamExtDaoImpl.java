@@ -19,13 +19,9 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      * @return
      */
     @Override
-    public int addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("testunitParamExt.add",
+    public Long addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunitParamExt.add",
                 testunitParamExtDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
     }
 
     /**

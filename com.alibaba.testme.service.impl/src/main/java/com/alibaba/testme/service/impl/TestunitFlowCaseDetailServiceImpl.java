@@ -24,9 +24,9 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
      * @return
      */
     @Override
-    public int addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
         if (testunitFlowCaseDetailDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowCaseDetailDao.addTestunitFlowCaseDetailDO(testunitFlowCaseDetailDO);
     }

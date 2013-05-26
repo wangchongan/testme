@@ -30,6 +30,13 @@ public class TestRequestDTO {
     //测试单元流程ID，首次执行时不为空
     private Long                testunitFlowId;
 
+    //用户ID
+    private Long                userId;
+
+    //系统环境变量ID，用户在执行是选择的系统环境参数ID
+    private Long                systemEnvId;
+
+    //用户输入参数
     private Map<String, String> userInputParamsMap;
 
     public Long getTestunitFlowCaseId() {
@@ -54,6 +61,22 @@ public class TestRequestDTO {
 
     public void setTestunitFlowId(Long testunitFlowId) {
         this.testunitFlowId = testunitFlowId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getSystemEnvId() {
+        return systemEnvId;
+    }
+
+    public void setSystemEnvId(Long systemEnvId) {
+        this.systemEnvId = systemEnvId;
     }
 
 }

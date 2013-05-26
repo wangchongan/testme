@@ -24,9 +24,9 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
      * @return
      */
     @Override
-    public int addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
+    public Long addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO) {
         if (systemEnvDetailDO == null) {
-            return 0;
+            return null;
         }
         return systemEnvDetailDao.addSystemEnvDetailDO(systemEnvDetailDO);
     }

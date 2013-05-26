@@ -15,7 +15,7 @@ public interface SystemEnvDetailDao {
      * @param systemEnvDetailDO
      * @return
      */
-    public int addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
+    public Long addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
 
     /**
      * @param systemEnvDetailDO

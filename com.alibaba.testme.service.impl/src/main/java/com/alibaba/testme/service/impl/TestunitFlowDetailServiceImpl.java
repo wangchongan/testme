@@ -24,9 +24,9 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
      * @return
      */
     @Override
-    public int addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
+    public Long addTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
         if (testunitFlowDetailDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowDetailDao.addTestunitFlowDetailDO(testunitFlowDetailDO);
     }
@@ -75,6 +75,24 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
     @Override
     public List<TestunitFlowDetailDO> findList(TestunitFlowDetailDO testunitFlowDetailDO) {
         return testunitFlowDetailDao.findList(testunitFlowDetailDO);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.alibaba.testme.service.TestunitFlowDetailService#
+     * findFirstTestunitFlowDetailId(java.lang.Long)
+     */
+    @Override
+    public Long findFirstTestunitFlowDetailId(Long testunitFlowId) {
+        TestunitFlowDetailDO testunitFlowDetailQuery = new TestunitFlowDetailDO();
+        testunitFlowDetailQuery.setTestunitFlowId(testunitFlowId);
+        List<TestunitFlowDetailDO> testunitFlowDetailDOList = findList(testunitFlowDetailQuery);
+        for (TestunitFlowDetailDO testunitFlowDetailDO : testunitFlowDetailDOList) {
+            if (testunitFlowDetailDO.getPreTestunitFlowDetailId() != null) {
+                return testunitFlowDetailDO.getPreTestunitFlowDetailId();
+            }
+        }
+        return null;
     }
 
 }
