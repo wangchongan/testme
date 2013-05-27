@@ -101,6 +101,26 @@
 		     <groupId>com.alibaba</groupId>
 		     <artifactId>fastjson</artifactId>
 		</dependency>
+
+	    <!-- osgi -->
+	    <dependency>
+		     <groupId>org.eclipse.osgi</groupId>
+		     <artifactId>org.eclipse.osgi</artifactId>
+	    </dependency>
+	    
+	    <!-- gemini -->
+	    <dependency>
+		     <groupId>org.eclipse.gemini.blueprint</groupId>
+		     <artifactId>gemini-blueprint-core</artifactId>
+	    </dependency>
+	    <dependency>
+		     <groupId>org.eclipse.gemini.blueprint</groupId>
+		     <artifactId>gemini-blueprint-extender</artifactId>
+	    </dependency>
+	    <dependency>
+		     <groupId>org.eclipse.gemini.blueprint</groupId>
+		     <artifactId>gemini-blueprint-io</artifactId>
+	    </dependency>
 		
   </dependencies>
   
