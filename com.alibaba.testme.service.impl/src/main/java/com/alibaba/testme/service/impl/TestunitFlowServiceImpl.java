@@ -24,9 +24,9 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
      * @return
      */
     @Override
-    public int addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
+    public Long addTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
         if (testunitFlowDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowDao.addTestunitFlowDO(testunitFlowDO);
     }
@@ -49,7 +49,7 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
      * @return
      */
     @Override
-    public int deleteTestunitFlowDO(Integer id) {
+    public int deleteTestunitFlowDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
      * @return
      */
     @Override
-    public TestunitFlowDO findById(Integer id) {
+    public TestunitFlowDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }

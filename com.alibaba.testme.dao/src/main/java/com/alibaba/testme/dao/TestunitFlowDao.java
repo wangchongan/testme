@@ -15,7 +15,7 @@ public interface TestunitFlowDao {
      * @param testunitFlowDO
      * @return
      */
-    public int addTestunitFlowDO(TestunitFlowDO testunitFlowDO);
+    public Long addTestunitFlowDO(TestunitFlowDO testunitFlowDO);
 
     /**
      * @param testunitFlowDO
@@ -27,13 +27,13 @@ public interface TestunitFlowDao {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowDO(Integer id);
+    public int deleteTestunitFlowDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowDO findById(Integer id);
+    public TestunitFlowDO findById(Long id);
 
     /**
      * @param testunitFlowDO

@@ -19,13 +19,9 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      * @return
      */
     @Override
-    public int addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("testunitParamExt.add",
+    public Long addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunitParamExt.add",
                 testunitParamExtDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
     }
 
     /**
@@ -47,7 +43,7 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      * @return
      */
     @Override
-    public int deleteTestunitParamExtDO(Integer id) {
+    public int deleteTestunitParamExtDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
                 "testunitParamExt.deleteById", id);
         if (result == null) {
@@ -61,7 +57,7 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      * @return
      */
     @Override
-    public TestunitParamExtDO findById(Integer id) {
+    public TestunitParamExtDO findById(Long id) {
         return (TestunitParamExtDO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitParamExt.findById", id);
     }

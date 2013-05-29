@@ -15,7 +15,7 @@ public interface TestunitFlowCaseDao {
      * @param testunitFlowCaseDO
      * @return
      */
-    public int addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO);
+    public Long addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO);
 
     /**
      * @param testunitFlowCaseDO
@@ -27,13 +27,13 @@ public interface TestunitFlowCaseDao {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowCaseDO(Integer id);
+    public int deleteTestunitFlowCaseDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowCaseDO findById(Integer id);
+    public TestunitFlowCaseDO findById(Long id);
 
     /**
      * @param testunitFlowCaseDO

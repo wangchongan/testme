@@ -6,5 +6,6 @@
 
 				
 	<osgi:reference id="userService" interface="com.alibaba.testme.service.UserService" />
+	<osgi:reference id="testMeBundleContextAware" interface="com.alibaba.testme.core.bundle.TestMeBundleContextAware" />
 	
 </beans>

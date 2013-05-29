@@ -206,6 +206,15 @@
     ]]>  
   </select>
   
+  <select id="testunitFlowCaseDetail.findLast" parameterClass="java.lang.Long" resultMap="testunitFlowCaseDetailDO_resultMap">
+     SELECT 
+    <include refid="testunitFlowCaseDetail.column_List" />
+    <![CDATA[  
+     FROM tm_testunit_flow_case_detail
+     WHERE testunit_flow_case_id = #testunitFlowCaseId# order by id desc limit 1
+    ]]>  
+  </select>
+  
    
   <delete id="testunitFlowCaseDetail.deleteById" parameterClass="java.lang.Long">
     <![CDATA[  

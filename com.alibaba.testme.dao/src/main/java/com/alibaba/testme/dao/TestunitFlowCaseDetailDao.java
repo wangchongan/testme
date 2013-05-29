@@ -15,7 +15,7 @@ public interface TestunitFlowCaseDetailDao {
      * @param testunitFlowCaseDetailDO
      * @return
      */
-    public int addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
+    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
     /**
      * @param testunitFlowCaseDetailDO
@@ -27,13 +27,13 @@ public interface TestunitFlowCaseDetailDao {
      * @param id
      * @return
      */
-    public int deleteTestunitFlowCaseDetailDO(Integer id);
+    public int deleteTestunitFlowCaseDetailDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitFlowCaseDetailDO findById(Integer id);
+    public TestunitFlowCaseDetailDO findById(Long id);
 
     /**
      * @param testunitFlowCaseDetailDO
@@ -41,4 +41,11 @@ public interface TestunitFlowCaseDetailDao {
      */
     public List<TestunitFlowCaseDetailDO> findList(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO);
 
+    /**
+     * 获取最后一条测试实例节点记录
+     * 
+     * @param testunitFlowCaseId
+     * @return
+     */
+    public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId);
 }

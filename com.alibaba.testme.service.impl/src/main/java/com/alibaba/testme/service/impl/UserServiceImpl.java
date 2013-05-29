@@ -6,5 +6,5 @@ import com.alibaba.testme.service.UserService;
 import com.alibaba.testme.service.impl.base.GenericServiceImpl;
 
 public class UserServiceImpl extends GenericServiceImpl<UserDO, UserQuery> implements UserService {
-	
+
 }

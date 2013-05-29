@@ -16,7 +16,8 @@
 package com.alibaba.testme.common.enums;
 
 /**
- * TestunitFlowCase执行结果
+ * TestunitFlowCaseDetail执行的结果<br/>
+ * 即每个节点执行的结果，作为每次请求返回的结果
  * 
  * @author chongan.wangca
  */

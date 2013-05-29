@@ -31,8 +31,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.testme.core.bundle.TestMeBundleContextAware;
 import com.alibaba.testme.domain.dataobject.UserDO;
 import com.alibaba.testme.domain.query.UserQuery;
+import com.alibaba.testme.service.SystemService;
 import com.alibaba.testme.service.UserService;
 
 @Controller
@@ -48,6 +50,8 @@ public class UserController {
     
     @Resource
     private UserService         userService;
+    @Resource
+    private TestMeBundleContextAware testMeBundleContextAware;
 
     @RequestMapping(method=RequestMethod.GET)
     public String execute(Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -114,7 +118,20 @@ public class UserController {
         userQuery.setUserName("李四");
         List<UserDO> userList = userService.findList(userQuery);
 //        JSON.toJSONString(userList);
+        
+        
        return  userList;
+    }
+    
+    
+    @ResponseBody
+    @RequestMapping(value = "/user/invoke")
+    public Object invoke() {
+        
+        SystemService bundleService = (SystemService) this.testMeBundleContextAware.getBundleService("com.alibaba.testme.service.SystemService");
+         Object result =bundleService.findById(2L);
+        
+        return  result;
     }
     
     

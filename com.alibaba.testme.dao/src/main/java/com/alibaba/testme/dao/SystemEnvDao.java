@@ -15,7 +15,7 @@ public interface SystemEnvDao {
      * @param systemEnvDO
      * @return
      */
-    public int addSystemEnvDO(SystemEnvDO systemEnvDO);
+    public Long addSystemEnvDO(SystemEnvDO systemEnvDO);
 
     /**
      * @param systemEnvDO
@@ -27,13 +27,13 @@ public interface SystemEnvDao {
      * @param id
      * @return
      */
-    public int deleteSystemEnvDO(Integer id);
+    public int deleteSystemEnvDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public SystemEnvDO findById(Integer id);
+    public SystemEnvDO findById(Long id);
 
     /**
      * @param systemEnvDO

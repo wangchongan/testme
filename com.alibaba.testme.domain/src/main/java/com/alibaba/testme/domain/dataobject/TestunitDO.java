@@ -10,73 +10,73 @@ public class TestunitDO {
     /**
      * id
      */
-    private Integer id;
+    private Long   id;
 
     /**
      * gmtCreate
      */
-    private Date    gmtCreate;
+    private Date   gmtCreate;
 
     /**
      * creator
      */
-    private String  creator;
+    private String creator;
 
     /**
      * gmtModified
      */
-    private Date    gmtModified;
+    private Date   gmtModified;
 
     /**
      * modifier
      */
-    private String  modifier;
+    private String modifier;
 
     /**
      * code
      */
-    private String  code;
+    private String code;
 
     /**
      * name
      */
-    private String  name;
+    private String name;
 
     /**
      * workSpaceId
      */
-    private Integer workSpaceId;
+    private Long   workSpaceId;
 
     /**
      * classQualifiedName
      */
-    private String  classQualifiedName;
+    private String classQualifiedName;
 
     /**
      * version
      */
-    private String  version;
+    private String version;
 
     /**
      * tag
      */
-    private String  tag;
+    private String tag;
 
     /**
      * userId
      */
-    private Integer userId;
+    private Long   userId;
 
     /**
      * remark
      */
-    private String  remark;
+    private String remark;
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -128,11 +128,11 @@ public class TestunitDO {
         return this.name;
     }
 
-    public void setWorkSpaceId(Integer workSpaceId) {
+    public void setWorkSpaceId(Long workSpaceId) {
         this.workSpaceId = workSpaceId;
     }
 
-    public Integer getWorkSpaceId() {
+    public Long getWorkSpaceId() {
         return this.workSpaceId;
     }
 
@@ -160,11 +160,11 @@ public class TestunitDO {
         return this.tag;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 

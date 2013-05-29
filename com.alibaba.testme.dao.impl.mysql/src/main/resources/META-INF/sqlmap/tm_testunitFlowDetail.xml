@@ -14,6 +14,8 @@
     <result property="testunitId" column="TESTUNIT_ID" />
     <result property="preTestunitId" column="PRE_TESTUNIT_ID" />
     <result property="nextTestunitId" column="NEXT_TESTUNIT_ID" />
+    <result property="nextTestunitFlowDetailId" column="NEXT_TESTUNIT_FLOW_DETAIL_ID" />
+    <result property="preTestunitFlowDetailId" column="PRE_TESTUNIT_FLOW_DETAIL_ID" />
   </resultMap>
  
 
@@ -27,6 +29,8 @@
 		  ,TESTUNIT_ID
 		  ,PRE_TESTUNIT_ID
 		  ,NEXT_TESTUNIT_ID 
+		  ,NEXT_TESTUNIT_FLOW_DETAIL_ID
+		  ,PRE_TESTUNIT_FLOW_DETAIL_ID
   </sql>
    
   <sql id="testunitFlowDetail.queryCondition">
@@ -66,6 +70,16 @@
         NEXT_TESTUNIT_ID = #nextTestunitId#  
         ]]>  
       </isNotEmpty>
+      <isNotEmpty property="nextTestunitFlowDetailId" prepend="AND">
+        <![CDATA[  
+        NEXT_TESTUNIT_FLOW_DETAIL_ID = #nextTestunitFlowDetailId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="preTestunitFlowDetailId" prepend="AND">
+        <![CDATA[  
+        PRE_TESTUNIT_FLOW_DETAIL_ID = #preTestunitFlowDetailId#  
+        ]]>  
+      </isNotEmpty>
     </dynamic>
   </sql>
 
@@ -79,7 +93,9 @@
 			   ,TESTUNIT_FLOW_ID 
 			   ,TESTUNIT_ID 
 			   ,PRE_TESTUNIT_ID 
-			   ,NEXT_TESTUNIT_ID) VALUES (
+			   ,NEXT_TESTUNIT_ID
+			   ,NEXT_TESTUNIT_FLOW_DETAIL_ID 
+			   ,PRE_TESTUNIT_FLOW_DETAIL_ID) VALUES (
    	            now()
 			   ,#creator# 
 			   ,now()
@@ -87,7 +103,9 @@
 			   ,#testunitFlowId# 
 			   ,#testunitId# 
 			   ,#preTestunitId# 
-			   ,#nextTestunitId#)
+			   ,#nextTestunitId#
+			   ,#nextTestunitFlowDetailId#
+			   ,#preTestunitFlowDetailId#)
   
       <selectKey keyProperty="id" resultClass="Integer">
 		SELECT LAST_INSERT_ID() AS value
@@ -121,6 +139,16 @@
       <isNotEmpty property="nextTestunitId" prepend=",">
         <![CDATA[  
         NEXT_TESTUNIT_ID = #nextTestunitId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="nextTestunitFlowDetailId" prepend=",">
+        <![CDATA[  
+        NEXT_TESTUNIT_FLOW_DETAIL_ID = #nextTestunitFlowDetailId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="preTestunitFlowDetailId" prepend=",">
+        <![CDATA[  
+        PRE_TESTUNIT_FLOW_DETAIL_ID = #preTestunitFlowDetailId#  
         ]]>  
       </isNotEmpty>
     </dynamic>

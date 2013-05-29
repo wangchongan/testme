@@ -20,13 +20,9 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public int addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
+    public Long addSystemRequirePropDO(SystemRequirePropDO systemRequirePropDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("systemRequireProp.add",
                 systemRequirePropDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
     }
 
     /**
@@ -40,6 +36,7 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
         if (result == null) {
             return 0;
         }
+
         return result;
     }
 
@@ -48,7 +45,7 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public int deleteSystemRequirePropDO(Integer id) {
+    public int deleteSystemRequirePropDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
                 "systemRequireProp.deleteById", id);
         if (result == null) {
@@ -62,7 +59,7 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
      * @return
      */
     @Override
-    public SystemRequirePropDO findById(Integer id) {
+    public SystemRequirePropDO findById(Long id) {
         return (SystemRequirePropDO) this.getSqlMapClientTemplate().queryForObject(
                 "systemRequireProp.findById", id);
     }

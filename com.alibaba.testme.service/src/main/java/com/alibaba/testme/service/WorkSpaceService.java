@@ -15,7 +15,7 @@ public interface WorkSpaceService {
      * @param workSpaceDO
      * @return
      */
-    public int addWorkSpaceDO(WorkSpaceDO workSpaceDO);
+    public Long addWorkSpaceDO(WorkSpaceDO workSpaceDO);
 
     /**
      * @param DO
@@ -27,13 +27,13 @@ public interface WorkSpaceService {
      * @param id
      * @return
      */
-    public int deleteWorkSpaceDO(Integer id);
+    public int deleteWorkSpaceDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public WorkSpaceDO findById(Integer id);
+    public WorkSpaceDO findById(Long id);
 
     /**
      * @param id

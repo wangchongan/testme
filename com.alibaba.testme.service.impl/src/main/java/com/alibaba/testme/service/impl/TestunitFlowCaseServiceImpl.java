@@ -24,9 +24,9 @@ public class TestunitFlowCaseServiceImpl implements TestunitFlowCaseService {
      * @return
      */
     @Override
-    public int addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
+    public Long addTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
         if (testunitFlowCaseDO == null) {
-            return 0;
+            return null;
         }
         return testunitFlowCaseDao.addTestunitFlowCaseDO(testunitFlowCaseDO);
     }
@@ -49,7 +49,7 @@ public class TestunitFlowCaseServiceImpl implements TestunitFlowCaseService {
      * @return
      */
     @Override
-    public int deleteTestunitFlowCaseDO(Integer id) {
+    public int deleteTestunitFlowCaseDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +61,7 @@ public class TestunitFlowCaseServiceImpl implements TestunitFlowCaseService {
      * @return
      */
     @Override
-    public TestunitFlowCaseDO findById(Integer id) {
+    public TestunitFlowCaseDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }

@@ -15,7 +15,7 @@ public interface TestunitParamExtService {
      * @param testunitParamExtDO
      * @return
      */
-    public int addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
+    public Long addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
 
     /**
      * @param DO
@@ -27,13 +27,13 @@ public interface TestunitParamExtService {
      * @param id
      * @return
      */
-    public int deleteTestunitParamExtDO(Integer id);
+    public int deleteTestunitParamExtDO(Long id);
 
     /**
      * @param id
      * @return
      */
-    public TestunitParamExtDO findById(Integer id);
+    public TestunitParamExtDO findById(Long id);
 
     /**
      * @param id

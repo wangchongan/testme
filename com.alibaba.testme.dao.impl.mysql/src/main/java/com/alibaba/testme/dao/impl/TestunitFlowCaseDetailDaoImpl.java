@@ -20,13 +20,9 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public int addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().insert(
-                "testunitFlowCaseDetail.add", testunitFlowCaseDetailDO);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+    public Long addTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
+        return (Long) this.getSqlMapClientTemplate().insert("testunitFlowCaseDetail.add",
+                testunitFlowCaseDetailDO);
     }
 
     /**
@@ -48,7 +44,7 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public int deleteTestunitFlowCaseDetailDO(Integer id) {
+    public int deleteTestunitFlowCaseDetailDO(Long id) {
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
                 "testunitFlowCaseDetail.deleteById", id);
         if (result == null) {
@@ -62,7 +58,7 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      * @return
      */
     @Override
-    public TestunitFlowCaseDetailDO findById(Integer id) {
+    public TestunitFlowCaseDetailDO findById(Long id) {
         return (TestunitFlowCaseDetailDO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitFlowCaseDetail.findById", id);
     }
@@ -76,6 +72,18 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
     public List<TestunitFlowCaseDetailDO> findList(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
         return (List<TestunitFlowCaseDetailDO>) this.getSqlMapClientTemplate().queryForList(
                 "testunitFlowCaseDetail.findList", testunitFlowCaseDetailDO);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.dao.TestunitFlowCaseDetailDao#findLast(java.lang.Integer
+     * )
+     */
+    @Override
+    public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId) {
+        return (TestunitFlowCaseDetailDO) this.getSqlMapClientTemplate().queryForObject(
+                "testunitFlowCaseDetail.findLast", testunitFlowCaseId);
     }
 
 }

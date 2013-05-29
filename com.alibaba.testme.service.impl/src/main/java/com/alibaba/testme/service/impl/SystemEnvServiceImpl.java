@@ -1,6 +1,7 @@
 package com.alibaba.testme.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.testme.dao.SystemEnvDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDO;
@@ -24,9 +25,9 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public int addSystemEnvDO(SystemEnvDO systemEnvDO) {
+    public Long addSystemEnvDO(SystemEnvDO systemEnvDO) {
         if (systemEnvDO == null) {
-            return 0;
+            return null;
         }
         return systemEnvDao.addSystemEnvDO(systemEnvDO);
     }
@@ -49,7 +50,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public int deleteSystemEnvDO(Integer id) {
+    public int deleteSystemEnvDO(Long id) {
         if (id == null || id == 0L) {
             return 0;
         }
@@ -61,7 +62,7 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      * @return
      */
     @Override
-    public SystemEnvDO findById(Integer id) {
+    public SystemEnvDO findById(Long id) {
         if (id == null || id == 0L) {
             return null;
         }
@@ -75,6 +76,18 @@ public class SystemEnvServiceImpl implements SystemEnvService {
     @Override
     public List<SystemEnvDO> findList(SystemEnvDO systemEnvDO) {
         return systemEnvDao.findList(systemEnvDO);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see
+     * com.alibaba.testme.service.SystemEnvService#buildSystemEnvParamsMap(java
+     * .lang.Long)
+     */
+    @Override
+    public Map<String, String> buildSystemEnvParamsMap(Long systemEnvId) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
