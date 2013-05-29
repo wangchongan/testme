@@ -1,0 +1,571 @@
+/*ucool filePath=http://assets.lp.alibaba.com/s/lpsp/base.css*/
+/*
+Copyright 2010, KISSY UI Library v1.1.5
+MIT Licensed
+build time: Oct 15 14:07
+*/
+/*
+KISSY CSS Reset
+理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
+      2. reset 的目的不是让默认样式在所有浏览器下一致，而是减少默认样式有可能带来的问题。
+      3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
+特色：1. 适应中文；2. 基于最新主流浏览器。
+维护：玉伯<lifesinger@gmail.com>, 正淳<ragecarrier@gmail.com>
+*/
+
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ {
+    margin: 0;
+    padding: 0;
+}
+
+/** 设置默认字体 **/
+body,
+button, input, select, textarea /* for ie */ {
+    font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+sup { vertical-align: text-top; } /* 重置，减少对行高的影响 */
+sub { vertical-align: text-bottom; }
+
+/** 重置表单元素 **/
+legend { color: #000; } /* for ie6 */
+fieldset, img { border: 0; } /* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+
+/** 重置表格元素 **/
+table { border-collapse: collapse; border-spacing: 0; }
+
+/*
+KISSY CSS Reset for Post Content
+适用：以大段文字展示为主的内容区块
+维护：玉伯(lifesinger@gmail.com)
+*/
+.ks-post {
+    /* big font make content more readable */
+    font: 14px/1.8 verdana,tahoma,arial,sans-serif;
+}
+.ks-post blockquote, .ks-post ul, .ks-post ol, .ks-post dl {
+	/* giving blockquotes and lists room to breath */
+	margin: 1em;
+}
+.ks-post ul, .ks-post ol, .ks-post dl {
+	/* bringing lists on to the page with breathing room */
+	margin-left: 2em;
+}
+.ks-post ol li {
+	/* giving OL's LIs generated numbers */
+	list-style: decimal outside;
+}
+.ks-post ul li {
+	/* giving UL's LIs generated disc markers */
+	list-style: disc outside;
+}
+.ks-post dl dd {
+	/* providing spacing for definition terms */
+	margin-left: 1em;
+}
+.ks-post th, .ks-post td {
+	/* padding to make the table readable */
+	padding: .5em;
+}
+.ks-post caption {
+	/* coordinated margin to match cell's padding */
+	margin-bottom: .5em;
+}
+.ks-post p, .ks-post fieldset, .ks-post table, .ks-post pre {
+	/* so things don't run into each other */
+	margin-bottom: 1em;
+}
+
+/*
+Copyright 2010, KISSY UI Library v1.1.5
+MIT Licensed
+build time: Oct 15 14:07
+*/
+/*
+双飞翼栅格布局 Flying Swing Grids Layout
+理念：简单质朴，语义化布局。
+维护：玉伯<lifesinger@gmail.com>, 正淳<ragecarrier@gmail.com>
+*/
+
+/* 居中 */
+#header, #content, #footer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/** 布局基础样式 **/
+.col-main {
+    float: left;
+    width: 100%;
+    /* bug fix: 主栏没有内容时，在 Firefox 和 Chrome 等浏览器下，布局不对 */
+    min-height: 1px;
+}
+.col-sub, .col-extra {
+    float: left;
+    /*position: relative;  按需设置，仅在需要时添加 */
+}
+
+/** 清除浮动 **/
+.layout:after, .main-wrap:after, .col-sub:after, .col-extra:after {
+	content: '\20';
+	display: block;
+	height: 0;
+	clear: both;
+}
+.layout, .main-wrap, .col-sub, .col-extra {
+    *zoom: 1;
+}
+
+/*
+Copyright 2010, KISSY UI Library v1.1.5
+MIT Licensed
+build time: Oct 15 14:07
+*/
+/*
+常用的通用样式 Common Style
+理念：少而精
+维护：玉伯<lifesinger@gmail.com>
+*/
+
+/* 隐藏 */
+.ks-hidden { display: none; }
+.ks-invisible { visibility: hidden; }
+
+/* 清除浮动 */
+.ks-clear:after { content: '\20'; display: block; height: 0; clear: both; }
+.ks-clear { *zoom: 1; }
+
+/* inline block */
+.ks-inline-block { display: inline-block; *display: inline; *zoom: 1;}
+
+
+/* 基础类 */
+.tl {
+    text-align: left;
+}
+
+.tr {
+    text-align: right;
+}
+
+.tc {
+    text-align: center;
+}
+
+.m5 {
+    margin: 5px;
+}
+
+.m10 {
+    margin: 10px;
+}
+
+.m15 {
+    margin: 15px;
+}
+
+.m20 {
+    margin: 20px;
+}
+
+.m25 {
+    margin: 25px;
+}
+
+.m30 {
+    margin: 30px;
+}
+
+.m35 {
+    margin: 35px;
+}
+
+.m40 {
+    margin: 40px;
+}
+
+.m45 {
+    margin: 45px;
+}
+
+.m50 {
+    margin: 50px;
+}
+
+.p5 {
+    padding: 5px;
+}
+
+.p10 {
+    padding: 10px;
+}
+
+.p15 {
+    padding: 15px;
+}
+
+.p20 {
+    padding: 20px;
+}
+
+.p25 {
+    padding: 25px;
+}
+
+.p30 {
+    padding: 30px;
+}
+
+.p35 {
+    padding: 35px;
+}
+
+.p40 {
+    padding: 40px;
+}
+
+.p45 {
+    padding: 45px;
+}
+
+.p50 {
+    padding: 50px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt25 {
+    margin-top: 25px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt35 {
+    margin-top: 35px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mt45 {
+    margin-top: 45px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb25 {
+    margin-bottom: 25px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb35 {
+    margin-bottom: 35px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mb45 {
+    margin-bottom: 45px;
+}
+
+.mb50 {
+    margin-bottom: 50px;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml15 {
+    margin-left: 15px;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.ml25 {
+    margin-left: 25px;
+}
+
+.ml30 {
+    margin-left: 30px;
+}
+
+.ml35 {
+    margin-left: 35px;
+}
+
+.ml40 {
+    margin-left: 40px;
+}
+
+.ml45 {
+    margin-left: 45px;
+}
+
+.ml50 {
+    margin-left: 50px;
+}
+
+.mr5 {
+    margin-right: 5px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr15 {
+    margin-right: 15px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mr25 {
+    margin-right: 25px;
+}
+
+.mr30 {
+    margin-right: 30px;
+}
+
+.mr35 {
+    margin-right: 35px;
+}
+
+.mr40 {
+    margin-right: 40px;
+}
+
+.mr45 {
+    margin-right: 45px;
+}
+
+.mr50 {
+    margin-right: 50px;
+}
+
+.pt5 {
+    padding-top: 5px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.pt15 {
+    padding-top: 15px;
+}
+
+.pt20 {
+    padding-top: 20px;
+}
+
+.pt25 {
+    padding-top: 25px;
+}
+
+.pt30 {
+    padding-top: 30px;
+}
+
+.pt35 {
+    padding-top: 35px;
+}
+
+.pt40{
+    padding-top: 40px;
+}
+
+.pt45{
+    padding-top: 45px;
+}
+
+.pt50{
+    padding-top: 50px;
+}
+
+.pb5 {
+    padding-bottom: 5px;
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.pb15 {
+    padding-bottom: 15px;
+}
+
+.pb20 {
+    padding-bottom: 20px;
+}
+
+.pb25 {
+    padding-bottom: 25px;
+}
+
+.pb30 {
+    padding-bottom: 30px;
+}
+
+.pb35 {
+    padding-bottom: 35px;
+}
+
+.pb40 {
+    padding-bottom: 40px;
+}
+
+.pb45 {
+    padding-bottom: 45px;
+}
+
+.pb50 {
+    padding-bottom: 50px;
+}
+
+.pl5 {
+    padding-left: 5px;
+}
+
+.pl10 {
+    padding-left: 10px;
+}
+
+.pl15 {
+    padding-left: 15px;
+}
+
+.pl20 {
+    padding-left: 20px;
+}
+
+.pl25 {
+    padding-left: 25px;
+}
+
+.pl30 {
+    padding-left: 30px;
+}
+
+.pl35 {
+    padding-left: 35px;
+}
+
+.pl40 {
+    padding-left: 40px;
+}
+
+.pl45 {
+    padding-left: 45px;
+}
+
+.pl50 {
+    padding-left: 50px;
+}
+
+.pr5 {
+    padding-right: 5px;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
+.pr15 {
+    padding-right: 15px;
+}
+
+.pr20 {
+    padding-right: 20px;
+}
+
+.pr25 {
+    padding-right: 25px;
+}
+
+.pr30 {
+    padding-right: 30px;
+}
+
+.pr35 {
+    padding-right: 35px;
+}
+
+.pr40 {
+    padding-right: 40px;
+}
+
+.pr45 {
+    padding-right: 45px;
+}
+
+.pr50 {
+    padding-right: 50px;
+}

@@ -3,9 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
-    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-base.js"></script>
-    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-all.js"></script>
-    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/ext-all.js"></script>
 	<link id="theme" rel="stylesheet" type="text/css" href="${request.ContextPath}/res/extjs/css/ext-all.css" />
 </head>
 <body>

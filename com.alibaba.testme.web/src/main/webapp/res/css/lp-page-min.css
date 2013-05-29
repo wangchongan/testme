@@ -1,0 +1,1084 @@
+/*ucool filePath=http://assets.lp.alibaba.com/s/lplib/lpassert/css/lp-page.css*/
+/**
+ * -----------------------------------------------
+ * 引入less全局定义变量和方法集合
+ * -----------------------------------------------
+ */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  /* Make inputs at least the height of their button counterpart */
+
+  /* Makes inputs behave like true block-level elements */
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/**
+ * -----------------------------------------------
+ * 全局样式定义
+ * -----------------------------------------------
+ */
+html {
+  *overflow: auto;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "SimSun", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  color: #333333;
+}
+body {
+  padding: 20px 20px 0 20px;
+  overflow: auto;
+  *overflow: visible;
+  _overflow-x: hidden;
+}
+/**
+ * 超链接样式
+ */
+a:link {
+  color: #3366cc;
+  text-decoration: none;
+}
+a:visited {
+  color: #3366cc;
+}
+a:hover {
+  color: #ff6600;
+}
+a.outline {
+  text-decoration: underline;
+}
+/**
+ * 可视化表单元素默认样式
+ */
+input,
+button,
+select,
+textarea {
+  font-size: 100%;
+}
+input[type="text"],
+textarea,
+select {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  border: 1px solid #c3c3d6;
+}
+input[disabled] {
+  color: #999;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: transparent;
+}
+/**
+ * 组定义
+ */
+.form-group {
+  margin-top: 5px;
+  clear: both;
+}
+.form-group-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+/**
+ * 行容器样式定义
+ */
+.form-line {
+  *zoom: 1;
+}
+.form-line:before,
+.form-line:after {
+  display: table;
+  content: "";
+}
+.form-line:after {
+  clear: both;
+}
+.grid-container {
+  margin-bottom: 20px;
+}
+/**
+ * 列样式定义
+ */
+.form-field-container {
+  float: left;
+  min-height: 40px;
+  _height: 40px;
+}
+.page-detail .form-field-container {
+  float: left;
+  min-height: auto;
+  _height: auto;
+  margin-bottom: 20px;
+}
+.form-field-item,
+.form-field-item-long {
+  min-width: 280px;
+  _width: 280px;
+}
+.page-detail .form-field-item,
+.page-detail .form-field-item-long {
+  width: 280px;
+  margin-right: 10px;
+}
+/**
+ * 列中label元素定义
+ */
+.form-field-label,
+.form-field-label-long {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  width: 125px;
+  line-height: 22px;
+  height: 22px;
+  float: left;
+  text-align: right;
+}
+.form-field-label-long {
+  width: 162px;
+}
+.page-detail .form-field-label {
+  float: none;
+  width: auto;
+  text-align: left;
+  line-height: 18px;
+  height: auto;
+}
+.form-label {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  line-height: 22px;
+}
+.form-label-normal,
+.form-label-long {
+  text-align: left;
+}
+.page-form .form-label-normal {
+  width: 140px;
+  height: auto;
+  line-height: 22px;
+  margin-bottom: 18px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+/**
+ * 可视化表单元素class定义
+ */
+.form-field-container s {
+  color: #f00;
+}
+.form-field-text,
+.form-field-text-small {
+  width: 130px;
+  /**
+	 * 避免没有定义[type=text]的input样式错乱
+	 */
+
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  padding: 1px 4px;
+  height: 18px;
+  border: 1px solid #c3c3d6;
+}
+.form-field-text-small {
+  width: 80px;
+}
+.form-field-select {
+  width: 140px;
+  height: 22px;
+  padding: 0;
+}
+input[type="radio"],
+input.form-field-checkbox {
+  vertical-align: middle;
+  margin-top: -4px;
+}
+.textarea-container {
+  min-height: 70px;
+  _height: 70px;
+}
+.form-field-textarea {
+  width: 290px;
+  height: 48px;
+}
+.textarea-batch {
+  width: 138px;
+}
+.textarea-ps {
+  width: 290px;
+}
+/**
+ * Button样式
+ */
+input[type="file"] {
+  padding: 4px 15px\9;
+}
+button,
+input[type="submit"],
+input[type="button"] {
+  *overflow: visible;
+}
+.form-field-button {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  line-height: 18px;
+  padding: 4px 15px;
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  background-color: #3357cc;
+  background-image: -moz-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -ms-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3366cc), to(#3340cc));
+  background-image: -webkit-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -o-linear-gradient(top, #3366cc, #3340cc);
+  background-image: linear-gradient(top, #3366cc, #3340cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#3340cc', GradientType=0);
+  border-color: #3340cc #3340cc #242d8f;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border: 1px solid #382B8E;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  *margin-left: .3em;
+}
+.form-field-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.form-field-button:hover,
+.form-field-button:active,
+.form-field-button.active,
+.form-field-button.disabled {
+  background-color: #3340cc;
+}
+.form-field-button[disabled] {
+  background-color: #3340cc;
+}
+.form-field-button:active,
+.form-field-button.active {
+  background-color: #2933a3 \9;
+}
+.form-field-button:first-child {
+  *margin-left: 0;
+}
+.form-field-button:hover {
+  background-position: 0 -15px;
+}
+.btn-small {
+  padding: 2px 10px;
+  *padding: 1px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  color: #333333;
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -ms-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e4e4e4));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -o-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: linear-gradient(top, #ffffff, #e4e4e4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e4e4e4', GradientType=0);
+  border-color: #e4e4e4 #e4e4e4 #bebebe;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.btn-small:hover,
+.btn-small:active,
+.btn-small.active,
+.btn-small.disabled {
+  background-color: #e4e4e4;
+}
+.btn-small[disabled] {
+  background-color: #e4e4e4;
+}
+.btn-small:active,
+.btn-small.active {
+  background-color: #cbcbcb \9;
+}
+.btn-form-container {
+  margin-left: 10px;
+}
+.ie-button {
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+}
+.ie-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+/**
+ * 分割线
+ * 将分割线统一成一种，没有深浅之分了
+ */
+.hr-split,
+.hr-split-deep,
+.hr-split-light {
+  border: 0;
+  border-top: 1px solid #d8d8d8;
+  margin-bottom: 5px;
+}
+/**
+ * Grid相关
+ */
+.search-container {
+  padding: 10px 20px 10px 0;
+  padding-bottom: 0;
+}
+.grid-command {
+  margin-right: 10px;
+}
+/**
+ * 搜索页展开收起
+ */
+.stretch-line {
+  width: 100%;
+  height: 17px;
+  border: none;
+  cursor: pointer;
+  background: url(http://img03.taobaocdn.com/tps/i3/T1alHDXkhnXXaAVYw7-800-100.gif) no-repeat center 0;
+}
+.icon-up {
+  background-position: center -20px;
+}
+.icon-up:hover {
+  background-position: center -3px;
+}
+.icon-down {
+  background-position: center -50px;
+}
+.icon-down:hover {
+  background-position: center -33px;
+}
+/**
+ * 不是通用的页面css,
+ * 由于历史原因,
+ * 个别页面还引用,
+ * 暂时保留着,
+ * 以后要迁移或删除
+ * -----------------  BEGIN  ----------------------
+ */
+/**
+ * 可视化表单元素class定义
+ */
+.batch-textarea {
+  width: 138px;
+  height: 48px;
+}
+/**
+ * Button样式
+ */
+.form-button-blue,
+.form-button-blue2 {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  line-height: 18px;
+  padding: 4px 15px;
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  background-color: #3357cc;
+  background-image: -moz-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -ms-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3366cc), to(#3340cc));
+  background-image: -webkit-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -o-linear-gradient(top, #3366cc, #3340cc);
+  background-image: linear-gradient(top, #3366cc, #3340cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#3340cc', GradientType=0);
+  border-color: #3340cc #3340cc #242d8f;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border: 1px solid #382B8E;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  *margin-left: .3em;
+}
+.form-button-blue::-moz-focus-inner,
+.form-button-blue2::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.form-button-blue:hover,
+.form-button-blue2:hover,
+.form-button-blue:active,
+.form-button-blue2:active,
+.form-button-blue.active,
+.form-button-blue2.active,
+.form-button-blue.disabled,
+.form-button-blue2.disabled {
+  background-color: #3340cc;
+}
+.form-button-blue[disabled],
+.form-button-blue2[disabled] {
+  background-color: #3340cc;
+}
+.form-button-blue:active,
+.form-button-blue2:active,
+.form-button-blue.active,
+.form-button-blue2.active {
+  background-color: #2933a3 \9;
+}
+.form-button-blue:first-child,
+.form-button-blue2:first-child {
+  *margin-left: 0;
+}
+.form-button-white {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  line-height: 18px;
+  padding: 4px 15px;
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  background-color: #3357cc;
+  background-image: -moz-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -ms-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3366cc), to(#3340cc));
+  background-image: -webkit-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -o-linear-gradient(top, #3366cc, #3340cc);
+  background-image: linear-gradient(top, #3366cc, #3340cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#3340cc', GradientType=0);
+  border-color: #3340cc #3340cc #242d8f;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border: 1px solid #382B8E;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  *margin-left: .3em;
+  color: #333333;
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -ms-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e4e4e4));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -o-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: linear-gradient(top, #ffffff, #e4e4e4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e4e4e4', GradientType=0);
+  border-color: #e4e4e4 #e4e4e4 #bebebe;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.form-button-white::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.form-button-white:hover,
+.form-button-white:active,
+.form-button-white.active,
+.form-button-white.disabled {
+  background-color: #3340cc;
+}
+.form-button-white[disabled] {
+  background-color: #3340cc;
+}
+.form-button-white:active,
+.form-button-white.active {
+  background-color: #2933a3 \9;
+}
+.form-button-white:first-child {
+  *margin-left: 0;
+}
+.form-button-white:hover,
+.form-button-white:active,
+.form-button-white.active,
+.form-button-white.disabled {
+  background-color: #e4e4e4;
+}
+.form-button-white[disabled] {
+  background-color: #e4e4e4;
+}
+.form-button-white:active,
+.form-button-white.active {
+  background-color: #cbcbcb \9;
+}
+.form-button-blue:hover,
+.form-button-blue2:hover,
+.form-button-white:hover {
+  background-position: 0 -15px;
+}
+a.form-button-blue {
+  _width: 90px;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.form-table-title {
+  margin-bottom: 5px;
+}
+.form-table-title a:link {
+  color: #333333;
+}
+.add-more,
+.fileInputBtn {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  line-height: 18px;
+  padding: 4px 15px;
+  *padding-top: 3px;
+  *padding-bottom: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  background-color: #3357cc;
+  background-image: -moz-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -ms-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3366cc), to(#3340cc));
+  background-image: -webkit-linear-gradient(top, #3366cc, #3340cc);
+  background-image: -o-linear-gradient(top, #3366cc, #3340cc);
+  background-image: linear-gradient(top, #3366cc, #3340cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#3340cc', GradientType=0);
+  border-color: #3340cc #3340cc #242d8f;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border: 1px solid #382B8E;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), 0 0 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  *margin-left: .3em;
+  padding: 2px 10px;
+  *padding: 1px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 16px;
+  color: #333333;
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -ms-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e4e4e4));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: -o-linear-gradient(top, #ffffff, #e4e4e4);
+  background-image: linear-gradient(top, #ffffff, #e4e4e4);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e4e4e4', GradientType=0);
+  border-color: #e4e4e4 #e4e4e4 #bebebe;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.add-more::-moz-focus-inner,
+.fileInputBtn::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.add-more:hover,
+.fileInputBtn:hover,
+.add-more:active,
+.fileInputBtn:active,
+.add-more.active,
+.fileInputBtn.active,
+.add-more.disabled,
+.fileInputBtn.disabled {
+  background-color: #3340cc;
+}
+.add-more[disabled],
+.fileInputBtn[disabled] {
+  background-color: #3340cc;
+}
+.add-more:active,
+.fileInputBtn:active,
+.add-more.active,
+.fileInputBtn.active {
+  background-color: #2933a3 \9;
+}
+.add-more:first-child,
+.fileInputBtn:first-child {
+  *margin-left: 0;
+}
+.add-more:hover,
+.fileInputBtn:hover,
+.add-more:active,
+.fileInputBtn:active,
+.add-more.active,
+.fileInputBtn.active,
+.add-more.disabled,
+.fileInputBtn.disabled {
+  background-color: #e4e4e4;
+}
+.add-more[disabled],
+.fileInputBtn[disabled] {
+  background-color: #e4e4e4;
+}
+.add-more:active,
+.fileInputBtn:active,
+.add-more.active,
+.fileInputBtn.active {
+  background-color: #cbcbcb \9;
+}
+.add-more:hover,
+.fileInputBtn:hover {
+  background-position: 0 -15px;
+}
+.add-link {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+.form-button {
+  margin-left: 10px;
+}
+/**
+ * 老页面的分割线
+ */
+.form-group-split {
+  border: 0;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 5px;
+}
+/**
+ * 表单验证样式
+ */
+.page-search .valid-text,
+.page-form .valid-text,
+.page-detail .valid-text,
+.form-field-container .valid-text {
+  display: block;
+  margin-left: 122px;
+}
+.controls .valid-text {
+  margin-left: 0;
+}
+.valid-text .estate {
+  padding-left: 22px;
+  background: url('../images/msg_bg.png') no-repeat -9999px -9999px;
+}
+.controls .valid-text .estate {
+  padding-left: 14px;
+  background: url(http://img04.taobaocdn.com/tps/i4/T1F5VvXv4aXXbCoE..-14-14.png) no-repeat -9999px -9999px;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  height: 16px;
+}
+.valid-text .ok {
+  visibility: hidden;
+}
+.valid-text .error {
+  background-position: 3px 0px;
+}
+.controls .valid-text .error {
+  background-position: 0px 2px;
+}
+.valid-text .tip {
+  background-position: 3px -49px;
+  color: #bbb;
+}
+/**
+ * Table 表格样式
+ */
+.form-table-container {
+  width: 700px;
+  margin-bottom: 20px;
+}
+.form-table-content {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #dddddd;
+}
+.form-table-content tr.form-table-header {
+  background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(top, #f8f8f8, #eeeeee);
+  background-image: -ms-linear-gradient(top, #f8f8f8, #eeeeee);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f8f8), to(#eeeeee));
+  background-image: -webkit-linear-gradient(top, #f8f8f8, #eeeeee);
+  background-image: -o-linear-gradient(top, #f8f8f8, #eeeeee);
+  background-image: linear-gradient(top, #f8f8f8, #eeeeee);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#eeeeee', GradientType=0);
+}
+.form-table-content .form-table-row {
+  background-color: #fff;
+}
+.form-table-content .form-table-unit {
+  padding: 4px 5px;
+  border: 1px solid #dddddd;
+  vertical-align: top;
+}
+.form-table-content .form-field-container {
+  float: none;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  min-height: 18px;
+  _height: 18px;
+}
+.form-table-content .form-field-text,
+.form-table-content input[type="text"] {
+  float: left;
+}
+/**
+ * Table中的验证样式
+ */
+.validation-float-tips {
+  float: left;
+  cursor: pointer;
+}
+.validation-float-tips .estate {
+  display: block;
+  width: 14px;
+  height: 18px;
+  padding-top: 4px;
+  margin-left: 2px;
+  position: relative;
+}
+.validation-float-tips .estate-icon {
+  display: block;
+  background: url("../images/msg_bg.png") no-repeat -9999px -9999px;
+  width: 14px;
+  height: 14px;
+}
+.validation-float-tips .float-tip-box {
+  position: absolute;
+  border: 1px solid #ffb2b2;
+  background-color: #fff3f3;
+  white-space: nowrap;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 3px;
+  z-index: 1020;
+  top: -28px;
+  left: -10px;
+}
+.validation-float-tips .float-tip-box .pointyTipShadow,
+.validation-float-tips .float-tip-box .pointyTip {
+  position: absolute;
+  border: 6px solid;
+  border-color: #ffb2b2 transparent transparent transparent;
+  border-style: solid dashed dashed dashed;
+  top: 24px;
+  left: 10px;
+}
+.validation-float-tips .float-tip-box .pointyTip {
+  border-top-color: #fff3f3;
+  top: 23px;
+}
+.error .estate-icon {
+  background-position: 1px 1px;
+}
+.ok .estate-icon {
+  background-position: 1px -23px;
+}
+.tip .estate-icon {
+  background-position: 1px -48px;
+}
+/**
+ * 城市下拉框
+ */
+.J_province,
+.J_city,
+.J_county {
+  width: 90px;
+  height: 22px;
+  padding: 0;
+}
+/**
+ * 切换标签
+ */
+.ks-switchable-nav li {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  cursor: pointer;
+  border: 1px solid #c3c3d6;
+  margin-right: 3px;
+  margin-bottom: -1px;
+  padding: 5px 15px;
+  background-color: #eeeeee;
+}
+.ks-switchable-nav li a:link {
+  color: #333333;
+}
+.ks-switchable-nav li a:visited {
+  color: #333333;
+}
+.ks-switchable-nav li.ks-active {
+  background-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+.ks-switchable-content {
+  padding: 10px;
+}
+.tab-container a {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  border: 1px solid #c3c3d6;
+  margin-right: 3px;
+  margin-bottom: -1px;
+  padding: 5px 15px;
+  background-color: #eeeeee;
+}
+.tab-container a:link {
+  color: #333333;
+}
+.tab-container a:visited {
+  color: #333333;
+}
+.tab-container a.tab-btn-active {
+  background-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+/**
+ * 提示信息
+ */
+.form-field-label-warn,
+s.form-field-label-tips {
+  color: #ff6600;
+  text-decoration: none;
+  line-height: 22px;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+/**
+ * 日历控件 calendar
+ */
+.page-search input.ks-select-calendar,
+.page-form input.ks-select-calendar,
+.page-detail input.ks-select-calendar {
+  vertical-align: top;
+}
+/**
+ * 区域选择框
+ */
+.select-list {
+  overflow: hidden;
+  clear: both;
+  padding: 5px 0 5px 0;
+}
+.select-item {
+  float: left;
+  width: 87px;
+}
+/**
+ * 物流跟踪
+ */
+.flow-after-dt {
+  width: 110px;
+  float: left;
+  height: 22px;
+}
+.flow-after-dd {
+  height: 22px;
+}
+.flow-after-dt-small {
+  width: 120px;
+  height: 22px;
+}
+.flow-after-dd-small {
+  position: relative;
+  margin: -22px 0 0 65px;
+}
+/*公用按钮样式*/
+.biggest-white-button,
+.big-white-button,
+.small-white-button,
+.big-blue-button,
+.small-blue-button,
+.biggest-blue-button {
+  background: url('http://img02.taobaocdn.com/tps/i2/T1gIVoXzRdXXX1oE37-133-328.png') no-repeat;
+  display: inline-block;
+  cursor: pointer;
+}
+.biggest-white-button input,
+.big-white-button input,
+.small-white-button input,
+.big-blue-button input,
+.small-blue-button input,
+.biggest-blue-button input {
+  border: none;
+  background: none;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/*超大白按钮*/
+.biggest-white-button {
+  background-position: 0px -104px;
+}
+.biggest-white-button:hover {
+  background-position: 0px -134px;
+}
+.biggest-white-button input {
+  height: 30px;
+  width: 133px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+}
+/*大白按钮*/
+.big-white-button {
+  background-position: 0px -164px;
+}
+.big-white-button:hover {
+  background-position: 0px -194px;
+}
+.big-white-button input {
+  height: 30px;
+  width: 100px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+}
+/*小白按钮*/
+.small-white-button {
+  background-position: 0px -224px;
+}
+.small-white-button:hover {
+  background-position: 0px -246px;
+}
+.small-white-button input {
+  height: 22px;
+  width: 68px;
+  color: #333333;
+  font-size: 12px;
+}
+/*超大蓝色按钮*/
+.biggest-blue-button {
+  background-position: 0px -268px;
+}
+.biggest-blue-button:hover {
+  background-position: 0px -298px;
+}
+.biggest-blue-button input {
+  height: 30px;
+  width: 133px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+/*大蓝色按钮*/
+.big-blue-button {
+  background-position: 0px -44px;
+}
+.big-blue-button:hover {
+  background-position: 0px -74px;
+}
+.big-blue-button input {
+  height: 30px;
+  width: 100px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+/*小蓝色按钮*/
+.small-blue-button {
+  background-position: 0px 0px;
+}
+.small-blue-button:hover {
+  background-position: 0px -22px;
+}
+.small-blue-button input {
+  height: 22px;
+  width: 68px;
+  color: white;
+  font-size: 12px;
+}
+.valid-text .label {
+  font-size: 12px;
+}
+/**
+ * -----------------  END  -----------------------
+ */
+
+.form-page, .search-page, .detail-page {
+    padding: 0;
+}
+
+a.button:link,
+a.button:visited{
+	color:#333;
+}

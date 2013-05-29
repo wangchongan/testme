@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+	<link id="theme" rel="stylesheet" type="text/css" href="${request.ContextPath}/res/extjs/css/ext-all.css" />
+	
+	<link href="${request.ContextPath}/res/css/base-min.css" rel="stylesheet" type="text/css" />
+	<link href="${request.ContextPath}/res/css/lp-page-min.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-base.js"></script>
+    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-all.js"></script>
+    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/common/ext-lang-zh_CN.js"></script>
+    
+	
+	
+	
+    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/testTask/testTaskList.js"></script>
+    
+</head>
+    
+<body>
+    
+    <form>
+    	<div class="form-group">
+					<div class="form-line">
+						<span class="form-field-container form-field-item">
+							<label class="form-field-label"><s>*</s>供货商姓名：</label>
+							<input class="form-field-text" type="text" name="$!group.supplierName.key" value="$!group.supplierName.value" data-valid="{maxLength:[20,false,'最大长度为{0}个字']}"/>
+						</span>
+						<span class="form-field-container form-field-item">
+							<label class="form-field-label"><s>*</s>供货商公司名：</label>
+							<input class="form-field-text" type="text" name="$!group.company.key" value="$!group.company.value" data-valid="{maxLength:[100,false,'最大长度为{0}个字']}"/>
+						</span>
+					</div>    		
+    	</div>
+    	<div class="form-group">
+					<div class="form-line">
+						<span class="form-field-container form-field-item">
+							<label class="form-field-label"><s>*</s>供货商姓名：</label>
+							<input class="form-field-text" type="text" name="$!group.supplierName.key" value="$!group.supplierName.value" data-valid="{maxLength:[20,false,'最大长度为{0}个字']}"/>
+						</span>
+						<span class="form-field-container form-field-item">
+							<label class="form-field-label"><s>*</s>供货商公司名：</label>
+							<input class="form-field-text" type="text" name="$!group.company.key" value="$!group.company.value" data-valid="{maxLength:[100,false,'最大长度为{0}个字']}"/>
+						</span>
+					</div>    		
+    	</div>
+    	
+		<div class="form-line">
+    			<span class="form-field-container" style="margin-left:120px;">
+              	<input id="btnSearch" type="submit" class="form-button-blue2" value="查 询" />
+           </span>
+		</div>
+    	
+    </table>
+  </form>
+  
+
+
+
+<div id="grid"></div>
+  
+  
+</body>
+</html>

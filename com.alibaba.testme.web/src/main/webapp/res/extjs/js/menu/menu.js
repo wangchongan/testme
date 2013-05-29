@@ -13,63 +13,59 @@ Ext.onReady(function(){
    //layout
    var viewport = new Ext.Viewport({
 		layout:'border',
-		items:[
-			new Ext.BoxComponent({
+		items:[{
 				region:'north',
 				el: 'north',
 				height:55
-			}),new Ext.BoxComponent({
+			},{
 				region:'south',
 				el: 'south',
 				height:25
-			}),{
-			region:'west',
-			id:'west-panel',
-			split:true,
-			width: 200,
-			minSize: 175,
-			maxSize: 400,
-			margins:'0 0 0 0',
-			layout:'accordion',
-			collapsible :true,
-			layoutConfig:{
-				animate:true
+				},{
+				region:'west',
+				id:'west-panel',
+				split:true,
+				width: 200,
+				minSize: 175,
+				maxSize: 400,
+				margins:'0 0 0 0',
+				layout:'accordion',
+				collapsible :true,
+				layoutConfig:{ animate:true },
+			    items: [
+				    {
+						title:'配置管理',
+						border:false,
+						html:'<div id="configManage" style="overflow:auto;width:100%;height:100%"></div>'
+						//iconCls:'nav'
+				    },{
+						title:'测试单元管理',
+						border:false,
+						//iconCls:'settings',
+						html:'<div id="testUnitManage" style="overflow:auto;width:100%;height:100%"></div>'
+				    },{
+						title:'测试流程管理',
+						border:false,
+						//iconCls:'settings',
+						html:'<div id="testFlowManage" style="overflow:auto;width:100%;height:100%"></div>'
+				    },{
+						title:'任务管理',
+						border:false,
+						//iconCls:'settings',
+						html:'<div id="taskManage" style="overflow:auto;width:100%;height:100%"></div>'
+				    }]
 				},
-		    items: [
-			    {
-					title:'配置管理',
-					border:false,
-					html:'<div id="configManage" style="overflow:auto;width:100%;height:100%"></div>'
-					//iconCls:'nav'
-			    },{
-					title:'测试单元管理',
-					border:false,
-					//iconCls:'settings',
-					html:'<div id="testUnitManage" style="overflow:auto;width:100%;height:100%"></div>'
-			    },{
-					title:'测试流程管理',
-					border:false,
-					//iconCls:'settings',
-					html:'<div id="testFlowManage" style="overflow:auto;width:100%;height:100%"></div>'
-			    },{
-					title:'任务管理',
-					border:false,
-					//iconCls:'settings',
-					html:'<div id="taskManage" style="overflow:auto;width:100%;height:100%"></div>'
-			    }]
-			},
 	        tab//初始标签页
 		 ]
 	});
 	
 	 //tree1
-   var root1=new Ext.tree.TreeNode({
+   var root1=new Ext.tree.TreePanel({
 		    id:"root1",
 		    text:"配置管理"
-			
 		});
 
-	 var c11=new Ext.tree.TreeNode({
+	 var c11=new Ext.tree.TreePanel({
 		id:'c11',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'系统配置',
@@ -90,7 +86,7 @@ Ext.onReady(function(){
 		}
 	});
 
-    var c12=new Ext.tree.TreeNode({
+    var c12=new Ext.tree.TreePanel({
 		id:'c12',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'查询配置',
@@ -110,7 +106,7 @@ Ext.onReady(function(){
          }    
 		}
 	});
-	  var c13=new Ext.tree.TreeNode({
+	  var c13=new Ext.tree.TreePanel({
 		id:'c13',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'导入配置',
@@ -131,7 +127,7 @@ Ext.onReady(function(){
 		}
 	});
 	 
-	  var c14=new Ext.tree.TreeNode({
+	  var c14=new Ext.tree.TreePanel({
 		id:'c44',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'自定义配置',
@@ -153,11 +149,11 @@ Ext.onReady(function(){
 	});
 
 	//tree2
-    var root2=new Ext.tree.TreeNode({
+    var root2=new Ext.tree.TreePanel({
 		    id:"root2",
 		    text:"测试单元管理"
 		});
-    var c21=new Ext.tree.TreeNode({
+    var c21=new Ext.tree.TreePanel({
 		id:'c21',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'查询测试单元',
@@ -177,7 +173,7 @@ Ext.onReady(function(){
          }    
 		}
 	});
-	var c22=new Ext.tree.TreeNode({
+	var c22=new Ext.tree.TreePanel({
 		id:'c22',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'新增测试单元',
@@ -199,11 +195,11 @@ Ext.onReady(function(){
 	});
 
 	//tree3
-    var root3=new Ext.tree.TreeNode({
+    var root3=new Ext.tree.TreePanel({
 		    id:"root3",
 		    text:"测试流程管理"
 		});
-    var c31=new Ext.tree.TreeNode({
+    var c31=new Ext.tree.TreePanel({
 		id:'c31',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'查询测试流程',
@@ -223,7 +219,7 @@ Ext.onReady(function(){
          }    
 		}
 	});
-	var c32=new Ext.tree.TreeNode({
+	var c32=new Ext.tree.TreePanel({
 		id:'c32',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'新增测试流程',
@@ -244,11 +240,11 @@ Ext.onReady(function(){
 		}
 	});
 	//tree4
-    var root4=new Ext.tree.TreeNode({
+    var root4=new Ext.tree.TreePanel({
 		    id:"root4",
 		    text:"任务管理"
 		});
-    var c41=new Ext.tree.TreeNode({
+    var c41=new Ext.tree.TreePanel({
 		id:'c41',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'任务列表',
@@ -261,14 +257,14 @@ Ext.onReady(function(){
                     'id':node.id,    
                     'title':node.text,    
                      closable:true,  //通过html载入目标页    
-                     html:'<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src="ok.vm"></iframe>'   
+                     html:'<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src="testTask"></iframe>'   
                  });    
              }    
              tab.setActiveTab(n);    
          }    
 		}
 	});
-	var c42=new Ext.tree.TreeNode({
+	var c42=new Ext.tree.TreePanel({
 		id:'c42',
 		icon:'res/extjs/images/img/im2.gif',
 		text:'查询任务',
@@ -288,21 +284,6 @@ Ext.onReady(function(){
          }    
 		}
 	});
-
-
-
-    root1.appendChild(c11);
-	root1.appendChild(c12);
-	root1.appendChild(c13);
-	root1.appendChild(c14);
-	root2.appendChild(c21);
-	root2.appendChild(c22);
-	root3.appendChild(c31);
-    root3.appendChild(c32);
-	root4.appendChild(c41);
-    root4.appendChild(c42);
-
-
 
 	var tree1=new Ext.tree.TreePanel({
 		renderTo:"configManage",
@@ -342,4 +323,19 @@ Ext.onReady(function(){
 		rootVisible:false,
 		containerScroll: true
 	});
+	
+	
+	c11.setRootNode(tree1);
+	c12.setRootNode(tree1);
+	c13.setRootNode(tree1);
+	c14.setRootNode(tree1);
+	
+	c21.setRootNode(root2);
+	c22.setRootNode(root2);
+	
+	c31.setRootNode(root3);
+	c32.setRootNode(root3);
+	c41.setRootNode(root4);
+	c42.setRootNode(root4);
+	
 });
