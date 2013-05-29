@@ -80,7 +80,7 @@
    	           ,#userId# 
    	           ,#systemId#)
   
-    <selectKey keyProperty="id" resultClass="java.lang.Long">
+    <selectKey keyProperty="id" resultClass="Integer">
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
   </insert>
@@ -113,7 +113,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="workSpace.findById" parameterClass="java.lang.Long" resultMap="workSpaceDO_resultMap">
+  <select id="workSpace.findById" parameterClass="Integer" resultMap="workSpaceDO_resultMap">
      SELECT 
     <include refid="workSpace.column_List" />
     <![CDATA[  
@@ -123,7 +123,7 @@
   </select>
   
    
-  <delete id="workSpace.deleteById" parameterClass="java.lang.Long">
+  <delete id="workSpace.deleteById" parameterClass="Integer">
     <![CDATA[  
      DELETE FROM tm_work_space 
      WHERE id = #id#

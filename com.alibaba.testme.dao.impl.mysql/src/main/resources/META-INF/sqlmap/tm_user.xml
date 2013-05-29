@@ -63,7 +63,7 @@
 			           ,#password#
 			           ,#wangwang#)
 		]]>  
-    <selectKey keyProperty="id" resultClass="java.lang.Long" >
+    <selectKey keyProperty="id" resultClass="Integer" >
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
   </insert>
@@ -80,7 +80,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="user.findById" parameterClass="java.lang.Long" resultMap="userDOResultMap" >
+  <select id="user.findById" parameterClass="Integer" resultMap="userDOResultMap" >
      SELECT 
     <include refid="user_columns" />
     <![CDATA[  
@@ -88,7 +88,7 @@
     ]]>  
   </select>
 
-  <delete id="user.deleteById" parameterClass="java.lang.Long" >
+  <delete id="user.deleteById" parameterClass="Integer" >
     <![CDATA[  
      DELETE FROM tm_user WHERE id = #id#
     ]]>  
