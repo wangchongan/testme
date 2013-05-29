@@ -89,7 +89,7 @@
    	           ,#configName#
    	           ,#isDefault#)
   
-    <selectKey keyProperty="id" resultClass="java.lang.Long">
+    <selectKey keyProperty="id" resultClass="Integer">
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
   
@@ -128,7 +128,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="systemEnv.findById" parameterClass="java.lang.Long" resultMap="systemEnvDO_resultMap">
+  <select id="systemEnv.findById" parameterClass="Integer" resultMap="systemEnvDO_resultMap">
      SELECT 
     <include refid="systemEnv.column_List" />
     <![CDATA[  
@@ -138,7 +138,7 @@
   </select>
   
    
-  <delete id="systemEnv.deleteById" parameterClass="java.lang.Long">
+  <delete id="systemEnv.deleteById" parameterClass="Integer">
     <![CDATA[  
      DELETE FROM tm_system_env 
       WHERE id = #id#

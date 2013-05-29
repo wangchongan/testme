@@ -115,7 +115,7 @@
 			   ,#systemEnvId# 
 			   ,#gmtNextRetry#)
   
-      <selectKey keyProperty="id" resultClass="java.lang.Long">
+      <selectKey keyProperty="id" resultClass="Integer">
 		SELECT LAST_INSERT_ID() AS value
       </selectKey>
   </insert>
@@ -168,7 +168,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="testunitFlowCase.findById" parameterClass="java.lang.Long" resultMap="testunitFlowCaseDO_resultMap">
+  <select id="testunitFlowCase.findById" parameterClass="Integer" resultMap="testunitFlowCaseDO_resultMap">
      SELECT 
     <include refid="testunitFlowCase.column_List" />
     <![CDATA[  
@@ -178,7 +178,7 @@
   </select>
   
    
-  <delete id="testunitFlowCase.deleteById" parameterClass="java.lang.Long">
+  <delete id="testunitFlowCase.deleteById" parameterClass="Integer">
     <![CDATA[  
      DELETE FROM tm_testunit_flow_case 
       WHERE id = #id#

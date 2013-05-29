@@ -117,7 +117,7 @@
    			   ,#userId#
    			   ,#remark#)
   
-      <selectKey keyProperty="id" resultClass="java.lang.Long">
+      <selectKey keyProperty="id" resultClass="Integer">
       	SELECT LAST_INSERT_ID() AS value
       </selectKey>
   </insert>
@@ -170,7 +170,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="testunit.findById" parameterClass="java.lang.Long" resultMap="testunitDO_resultMap">
+  <select id="testunit.findById" parameterClass="Integer" resultMap="testunitDO_resultMap">
      SELECT 
     <include refid="testunit.column_List" />
     <![CDATA[  
@@ -180,7 +180,7 @@
   </select>
   
    
-  <delete id="testunit.deleteById" parameterClass="java.lang.Long">
+  <delete id="testunit.deleteById" parameterClass="Integer">
     <![CDATA[  
      DELETE FROM tm_testunit 
       WHERE id = #id#

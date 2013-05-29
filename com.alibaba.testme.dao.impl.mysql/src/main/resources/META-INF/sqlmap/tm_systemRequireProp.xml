@@ -107,7 +107,7 @@
    			   ,#nullable# 
    			   ,#help#)
   
-    <selectKey keyProperty="id" resultClass="java.lang.Long">
+    <selectKey keyProperty="id" resultClass="Integer">
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
   
@@ -156,7 +156,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="systemRequireProp.findById" parameterClass="java.lang.Long" resultMap="systemRequirePropDO_resultMap">
+  <select id="systemRequireProp.findById" parameterClass="Integer" resultMap="systemRequirePropDO_resultMap">
      SELECT 
     <include refid="systemRequireProp.column_List" />
     <![CDATA[  
@@ -166,7 +166,7 @@
   </select>
   
    
-  <delete id="systemRequireProp.deleteById" parameterClass="java.lang.Long">
+  <delete id="systemRequireProp.deleteById" parameterClass="Integer">
     <![CDATA[  
      DELETE FROM tm_system_require_prop 
       WHERE id = #id#
