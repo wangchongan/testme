@@ -121,10 +121,19 @@
 		     <groupId>org.eclipse.gemini.blueprint</groupId>
 		     <artifactId>gemini-blueprint-io</artifactId>
 	    </dependency>
-		
+
+		<dependency>
+			<groupId>com.alibaba.platform.shared</groupId>
+			<artifactId>buc.sso.client</artifactId>
+			</dependency>		
   </dependencies>
   
   	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Alibaba Repositories Group</name>
+			<url>http://repo.alibaba-inc.com/nexus/content/groups/alirepositiry/</url>
+		</repository>  	
 		<repository>
 			<id>com.springsource.repository.bundles.snapshot</id>
 			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Snapshot</name>
