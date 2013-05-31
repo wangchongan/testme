@@ -17,23 +17,30 @@ package com.alibaba.testme.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/systemconfig/*")
 public class SystemConfigController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SystemConfigController.class);
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String execute(Model model, HttpServletRequest request) {
-        LOGGER.info("sysconfig start..");
+    @RequestMapping
+    public String addSystemConfig(Model model, HttpServletRequest request) {
         model.addAttribute("request", request);
-        return "systemconfig/gridList";
+        return "systemconfig/addSystemConfig";
+    }
+
+    @RequestMapping
+    public String systemConfigList(Model model, HttpServletRequest request) {
+        model.addAttribute("request", request);
+        return "systemconfig/systemConfigList";
+    }
+
+    @RequestMapping
+    public String configList(Model model, HttpServletRequest request) {
+        model.addAttribute("request", request);
+        return "systemconfig/configList";
     }
 
 }
