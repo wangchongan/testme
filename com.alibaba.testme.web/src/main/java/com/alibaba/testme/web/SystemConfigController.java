@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/systemconfig/*")
 public class SystemConfigController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SystemConfigController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public String execute(Model model, HttpServletRequest request) {

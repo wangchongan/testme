@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/index/*")
 public class IndexController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping
     public String shouye(Model model, HttpServletRequest request) {
