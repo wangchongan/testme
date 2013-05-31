@@ -3,26 +3,18 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
-    <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/ext-all.js"></script>
-	<link id="theme" rel="stylesheet" type="text/css" href="${request.ContextPath}/res/extjs/css/ext-all.css" />
+    <title>TestMe-便捷测试平台</title>
 </head>
-<body>
-  <div>
-  <script type="text/javascript" src="${request.ContextPath}/res/extjs/js/menu/menu.js"></script>
-    
-    <div id="north">
-        
-	<table width="100%" height="60" border="0" cellpadding="0" cellspacing="0" background="">
 
-	</table>	
-	</div>
-    <div id="west"></div>
-    <div id="south">
-        <div style="float:left;margin:5px;font:normal 12px tahoma, arial, sans-serif;">
-        <span style="color:blue"></span>
-	    &nbsp;
-	    </div>
-	</div>
-  </div>
-</body>
+<frameset rows="59,*" cols="*" frameborder="no" border="0" framespacing="0">
+  <frame src="${request.ContextPath}/index/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
+  <frameset cols="213,*" frameborder="no" border="0" framespacing="0">
+    <frame src="${request.ContextPath}/index/left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
+    <frame src="${request.ContextPath}/index/mainfra" name="mainFrame" id="mainFrame" title="mainFrame" />
+  </frameset>
+</frameset>
+<noframes>
+	<body>
+	</body>
+</noframes>
 </html>

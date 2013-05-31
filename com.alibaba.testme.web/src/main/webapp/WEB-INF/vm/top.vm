@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+<link href="${request.ContextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="59" background="${request.ContextPath}/res/images/testme_07.gif"><table width="99%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="1%"><a href="" target="_blank"><img src="${request.ContextPath}/res/images/testme_logo.gif" width="557" height="59" border="0" /></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

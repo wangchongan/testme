@@ -22,35 +22,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/index/*")
-public class IndexController {
+@RequestMapping(value = "/student")
+public class StudentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-    @RequestMapping
-    public String shouye(Model model, HttpServletRequest request) {
+    @RequestMapping(method = RequestMethod.GET)
+    public String execute(Model model, HttpServletRequest request) {
+        LOGGER.info("sysconfig start..");
         model.addAttribute("request", request);
-        return "index";
-    }
-
-    @RequestMapping
-    public String top(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
-        return "top";
-    }
-
-    @RequestMapping
-    public String left(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
-        return "left";
-    }
-
-    @RequestMapping
-    public String mainfra(Model model, HttpServletRequest request) {
-        LOGGER.info("Test user listAll .....");
-        model.addAttribute("request", request);
-        return "mainfra";
+        return "student";
     }
 
 }
