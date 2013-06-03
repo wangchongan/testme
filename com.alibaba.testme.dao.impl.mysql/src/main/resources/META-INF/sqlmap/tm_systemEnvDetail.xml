@@ -141,7 +141,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="systemEnvDetail.findById" parameterClass="Integer" resultMap="systemEnvDetailDO_resultMap">
+  <select id="systemEnvDetail.findById" parameterClass="Long" resultMap="systemEnvDetailDO_resultMap">
      SELECT 
     <include refid="systemEnvDetail.column_List" />
     <![CDATA[  
@@ -151,7 +151,7 @@
   </select>
   
    
-  <delete id="systemEnvDetail.deleteById" parameterClass="Integer">
+  <delete id="systemEnvDetail.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_system_env_detail 
       WHERE id = #id#

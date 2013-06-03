@@ -41,4 +41,10 @@ public interface SystemDao {
      */
     public List<SystemDO> findList(SystemDO systemDO);
 
+    /**
+     * @param idList
+     * @return
+     */
+    public int delSystemDOByIds(List<Long> idList);
+
 }

@@ -1,6 +1,8 @@
 package com.alibaba.testme.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
@@ -67,6 +69,19 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
     public List<SystemDO> findList(SystemDO systemDO) {
         return (List<SystemDO>) this.getSqlMapClientTemplate().queryForList("system.findList",
                 systemDO);
+    }
+
+    @Override
+    public int delSystemDOByIds(List<Long> idList) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("idList", idList);
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete("system.delSystemDOByIds",
+                paramMap);
+        if (result == null) {
+            return 0;
+        }
+
+        return result;
     }
 
 }

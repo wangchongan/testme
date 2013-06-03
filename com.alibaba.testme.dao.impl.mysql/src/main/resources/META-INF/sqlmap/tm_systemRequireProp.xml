@@ -156,7 +156,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="systemRequireProp.findById" parameterClass="Integer" resultMap="systemRequirePropDO_resultMap">
+  <select id="systemRequireProp.findById" parameterClass="Long" resultMap="systemRequirePropDO_resultMap">
      SELECT 
     <include refid="systemRequireProp.column_List" />
     <![CDATA[  
@@ -166,7 +166,7 @@
   </select>
   
    
-  <delete id="systemRequireProp.deleteById" parameterClass="Integer">
+  <delete id="systemRequireProp.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_system_require_prop 
       WHERE id = #id#

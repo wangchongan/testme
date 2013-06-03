@@ -80,7 +80,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="user.findById" parameterClass="Integer" resultMap="userDOResultMap" >
+  <select id="user.findById" parameterClass="Long" resultMap="userDOResultMap" >
      SELECT 
     <include refid="user_columns" />
     <![CDATA[  
@@ -88,7 +88,7 @@
     ]]>  
   </select>
 
-  <delete id="user.deleteById" parameterClass="Integer" >
+  <delete id="user.deleteById" parameterClass="Long" >
     <![CDATA[  
      DELETE FROM tm_user WHERE id = #id#
     ]]>  

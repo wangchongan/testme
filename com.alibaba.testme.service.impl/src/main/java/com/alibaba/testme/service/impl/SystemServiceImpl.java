@@ -77,4 +77,15 @@ public class SystemServiceImpl implements SystemService {
         return systemDao.findList(systemDO);
     }
 
+    /**
+     * @param idList
+     * @return
+     */
+    public int delSystemDOByIds(List<Long> idList) {
+        if (idList == null || idList.size() == 0) {
+            return 0;
+        }
+        return systemDao.delSystemDOByIds(idList);
+    }
+
 }

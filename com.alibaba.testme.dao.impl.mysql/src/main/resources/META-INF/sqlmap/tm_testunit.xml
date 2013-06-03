@@ -170,7 +170,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="testunit.findById" parameterClass="Integer" resultMap="testunitDO_resultMap">
+  <select id="testunit.findById" parameterClass="Long" resultMap="testunitDO_resultMap">
      SELECT 
     <include refid="testunit.column_List" />
     <![CDATA[  
@@ -180,7 +180,7 @@
   </select>
   
    
-  <delete id="testunit.deleteById" parameterClass="Integer">
+  <delete id="testunit.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_testunit 
       WHERE id = #id#

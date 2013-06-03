@@ -30,6 +30,12 @@ public interface SystemService {
     public int deleteSystemDO(Long id);
 
     /**
+     * @param idList
+     * @return
+     */
+    public int delSystemDOByIds(List<Long> idList);
+
+    /**
      * @param id
      * @return
      */

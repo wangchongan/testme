@@ -73,7 +73,7 @@
 
 
   <update id="system.update" parameterClass="systemDO">
-    UPDATE tm_system set gmtModified=now()
+    UPDATE tm_system set gmt_modified=now()
     <dynamic>
       <isNotEmpty property="modifier" prepend=",">
         <![CDATA[  
@@ -94,7 +94,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="system.findById" parameterClass="Integer" resultMap="systemDO_resultMap">
+  <select id="system.findById" parameterClass="Long" resultMap="systemDO_resultMap">
      SELECT 
     <include refid="system.column_List" />
     <![CDATA[  
@@ -104,7 +104,7 @@
   </select>
   
    
-  <delete id="system.deleteById" parameterClass="Integer">
+  <delete id="system.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_system 
       WHERE id = #id#
@@ -118,5 +118,15 @@
 	WHERE 1=1
     <include refid="system.queryCondition" />
   </select>
+  
+  <delete id="system.delSystemDOByIds" parameterClass="map">
+    <![CDATA[  
+     DELETE FROM tm_system 
+      WHERE id in
+    ]]> 
+	<iterate property="idList" conjunction="," open="(" close=")">
+			#idList[]#
+    </iterate>
+  </delete>
   
 </sqlMap>

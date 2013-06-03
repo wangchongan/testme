@@ -113,7 +113,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="workSpace.findById" parameterClass="Integer" resultMap="workSpaceDO_resultMap">
+  <select id="workSpace.findById" parameterClass="Long" resultMap="workSpaceDO_resultMap">
      SELECT 
     <include refid="workSpace.column_List" />
     <![CDATA[  
@@ -123,7 +123,7 @@
   </select>
   
    
-  <delete id="workSpace.deleteById" parameterClass="Integer">
+  <delete id="workSpace.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_work_space 
      WHERE id = #id#

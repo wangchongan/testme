@@ -155,7 +155,7 @@
      WHERE id = #id#  
   </update>
 
-  <select id="testunitFlowDetail.findById" parameterClass="Integer" resultMap="testunitFlowDetailDO_resultMap">
+  <select id="testunitFlowDetail.findById" parameterClass="Long" resultMap="testunitFlowDetailDO_resultMap">
      SELECT 
     <include refid="testunitFlowDetail.column_List" />
     <![CDATA[  
@@ -165,7 +165,7 @@
   </select>
   
    
-  <delete id="testunitFlowDetail.deleteById" parameterClass="Integer">
+  <delete id="testunitFlowDetail.deleteById" parameterClass="Long">
     <![CDATA[  
      DELETE FROM tm_testunit_flow_detail 
       WHERE id = #id#
