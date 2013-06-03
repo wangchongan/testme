@@ -103,7 +103,7 @@
 			<dependency>
 				<groupId>com.alibaba.platform.shared</groupId>
 				<artifactId>buc.sso.client</artifactId>
-				<version>0.1.9</version>
+				<version>0.3.6</version>
 			</dependency>
 
 		</dependencies>
