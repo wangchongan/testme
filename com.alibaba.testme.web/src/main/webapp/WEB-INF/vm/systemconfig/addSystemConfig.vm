@@ -8,9 +8,8 @@
 <script language="JavaScript" type="text/javascript">
 
 function link(){
-   alert('保存成功！');
-   document.getElementById("fom").action="xuqiumingxi.htm";
-   document.getElementById("fom").submit();
+   document.getElementById("addSystemConfigForm").action="${request.ContextPath}/systemconfig/saveSystemConfig";
+   document.getElementById("addSystemConfigForm").submit();
 }
 
 
@@ -25,7 +24,10 @@ function link(){
 </head>
 
 <body class="ContentBody">
-  <form action="" method="post" enctype="multipart/form-data" name="fom" id="fom" target="sypost" >
+<form  method="post" id="addSystemConfigForm">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
 <div class="MainDiv">
 <table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
   <tr>
@@ -41,11 +43,11 @@ function link(){
 					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
     					  <tr>
     					    <td nowrap align="right" width="13%">系统名称:</td>
-							<td><input name="text" class="text" style="width:250px" type="text" size="40" /><span class="red"> *</span></td>
+							<td><input name="name" class="text" style="width:250px" type="text" size="40" /><span class="red"> *</span></td>
     					  </tr>
     					  <tr>
     					    <td nowrap align="right" height="120px">系统备注:</td>
-    					    <td colspan="3"><textarea id="textarea" name="textarea" rows="5" cols="80"></textarea></td>
+    					    <td colspan="3"><textarea name="remark" rows="5" cols="80"></textarea></td>
     					  </tr>
 					  </table>
 					  <br />
@@ -57,7 +59,7 @@ function link(){
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
-		<input type="button" name="Submit" value="保存" class="button" onclick="link();"/>　
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="link();"/>　
 		<a href="${request.ContextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">查看系统列表</a>
      </td>
 	</tr>

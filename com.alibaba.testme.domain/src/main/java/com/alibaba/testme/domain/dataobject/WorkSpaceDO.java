@@ -40,7 +40,7 @@ public class WorkSpaceDO {
     /**
      * userId
      */
-    private String userId;
+    private Long   userId;
 
     /**
      * systemId
@@ -95,11 +95,11 @@ public class WorkSpaceDO {
         return this.name;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return this.userId;
     }
 

@@ -45,7 +45,7 @@ public class TestunitFlowDO {
     /**
      * systemId
      */
-    private String systemId;
+    private Long systemId;
 
     /**
      * tag
@@ -138,11 +138,11 @@ public class TestunitFlowDO {
         return this.name;
     }
 
-    public void setSystemId(String systemId) {
+    public void setSystemId(Long systemId) {
         this.systemId = systemId;
     }
 
-    public String getSystemId() {
+    public Long getSystemId() {
         return this.systemId;
     }
 

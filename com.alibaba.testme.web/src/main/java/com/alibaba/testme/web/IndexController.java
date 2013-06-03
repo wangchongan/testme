@@ -23,6 +23,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * IndexController 首页控制器
+ * 
+ * @author xiaopenzi
+ */
 @Controller
 @RequestMapping(value = "/index/*")
 public class IndexController {

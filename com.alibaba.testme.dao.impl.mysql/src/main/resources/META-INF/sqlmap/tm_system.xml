@@ -66,7 +66,7 @@
    	           ,#name#
    	           ,#remark#)
    	
-   	<selectKey keyProperty="id" resultClass="Integer">
+   	<selectKey keyProperty="id" resultClass="Long">
       SELECT LAST_INSERT_ID() AS value
     </selectKey>
   </insert>
