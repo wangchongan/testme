@@ -7,10 +7,10 @@
 </head>
 
 <frameset rows="59,*" cols="*" frameborder="no" border="0" framespacing="0">
-  <frame src="${request.ContextPath}/index/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
+  <frame src="${contextPath}/index/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
   <frameset cols="213,*" frameborder="no" border="0" framespacing="0">
-    <frame src="${request.ContextPath}/index/left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
-    <frame src="${request.ContextPath}/index/mainfra" name="mainFrame" id="mainFrame" title="mainFrame" />
+    <frame src="${contextPath}/index/left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
+    <frame src="${contextPath}/index/mainfra" name="mainFrame" id="mainFrame" title="mainFrame" />
   </frameset>
 </frameset>
 <noframes>

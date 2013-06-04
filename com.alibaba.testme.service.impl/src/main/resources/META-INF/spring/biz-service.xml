@@ -13,7 +13,7 @@
 
     <context:component-scan base-package="com.alibaba.testme.service" />
         
-    <bean id="userService" class="com.alibaba.testme.service.impl.UserServiceImpl" parent="genericService"/>
+    <bean id="userService" class="com.alibaba.testme.service.impl.UserServiceImpl"/>
 	
 	<bean id="systemService" class="com.alibaba.testme.service.impl.SystemServiceImpl"/>
     <bean id="systemEnvService" class="com.alibaba.testme.service.impl.SystemEnvServiceImpl"/>

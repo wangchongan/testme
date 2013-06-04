@@ -25,5 +25,10 @@ public class CommonConstants {
     public final static String CREATOR  = "SYSTEM";
 
     public final static String MODIFIER = "SYSTEM";
+    
+    
+    public final static String SESSION_USER = "session_user";
+    
+    
 
 }

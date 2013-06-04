@@ -35,8 +35,4 @@
 		</tx:attributes>
 	</tx:advice>
 	
-	
-	<bean id="genericService" class="com.alibaba.testme.service.impl.base.GenericServiceImpl" abstract="true">
-    </bean>  
-
 </beans>

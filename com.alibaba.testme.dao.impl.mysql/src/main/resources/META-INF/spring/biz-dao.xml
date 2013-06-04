@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd" default-autowire="byName">
 
-    <bean id="userDao" class="com.alibaba.testme.dao.impl.UserDaoImpl" parent="genericDao">
+    <bean id="userDao" class="com.alibaba.testme.dao.impl.UserDaoImpl" parent="baseDao">
     </bean>
 	
 	<bean id="systemDao" class="com.alibaba.testme.dao.impl.SystemDaoImpl" parent="baseDao" />
