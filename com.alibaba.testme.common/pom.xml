@@ -12,5 +12,9 @@
 	<name>com.alibaba.testme.common</name>
 	
 	<dependencies>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.orm</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -3,14 +3,14 @@
 
 <sqlMap namespace="systemEnvDetail">
 <typeAlias alias="systemEnvDetailDO"    type="com.alibaba.testme.domain.dataobject.SystemEnvDetailDO" />
-
+<typeAlias alias="systemConfigVO"    type="com.alibaba.testme.domain.vo.SystemConfigVO" />
   <resultMap id="systemEnvDetailDO_resultMap" class="systemEnvDetailDO">
     <result property="id" column="ID" />
     <result property="gmtCreate" column="GMT_CREATE" />
     <result property="creator" column="CREATOR" />
     <result property="gmtModified" column="GMT_MODIFIED" />
     <result property="modifier" column="MODIFIER" />
-    <result property="systemId" column="SYSTEM_ID" />
+    <result property="systemEnvId" column="SYSTEM_ENV_ID" />
     <result property="propKey" column="PROP_KEY" />
     <result property="propValue" column="PROP_VALUE" />
     <result property="remark" column="REMARK" />
@@ -24,7 +24,7 @@
 		   ,CREATOR
 		   ,GMT_MODIFIED
 		   ,MODIFIER
-		   ,SYSTEM_ID
+		   ,SYSTEM_ENV_ID
 		   ,PROP_KEY
 		   ,PROP_VALUE
 		   ,REMARK
@@ -48,9 +48,9 @@
         MODIFIER = #modifier#  
         ]]>  
       </isNotEmpty>
-      <isNotEmpty property="systemId" prepend="AND">
+      <isNotEmpty property="systemEnvId" prepend="AND">
         <![CDATA[  
-        SYSTEM_ID = #systemId#  
+        SYSTEM_ENV_ID = #systemEnvId#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="propKey" prepend="AND">
@@ -75,6 +75,31 @@
       </isNotEmpty>
     </dynamic>
   </sql>
+  
+  <sql id="systemEnvDetail.pageCondition">
+    <dynamic>
+      <isNotEmpty property="configName" prepend="AND">
+        <![CDATA[  
+        se.config_name = #configName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        se.system_id = #systemId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="propKey" prepend="AND">
+        <![CDATA[  
+        sed.prop_key = #propKey#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="configType" prepend="AND">
+        <![CDATA[  
+        sed.config_type = #configType#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
 
   
   <insert id="systemEnvDetail.add" parameterClass="systemEnvDetailDO">
@@ -83,7 +108,7 @@
    			   ,CREATOR
    			   ,GMT_MODIFIED
    			   ,MODIFIER
-   			   ,SYSTEM_ID
+   			   ,SYSTEM_ENV_ID
    			   ,PROP_KEY
    			   ,PROP_VALUE
    			   ,REMARK
@@ -92,7 +117,7 @@
    			   ,#creator#
    			   ,now() 
    			   ,#modifier# 
-   			   ,#systemId# 
+   			   ,#systemEnvId# 
    			   ,#propKey# 
    			   ,#propValue# 
    			   ,#remark# 
@@ -112,9 +137,9 @@
         MODIFIER = #modifier#  
         ]]>  
       </isNotEmpty>
-      <isNotEmpty property="systemId" prepend=",">
+      <isNotEmpty property="systemEnvId" prepend=",">
         <![CDATA[  
-        SYSTEM_ID = #systemId#  
+        SYSTEM_ENV_ID = #systemEnvId#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="propKey" prepend=",">
@@ -165,5 +190,46 @@
 	WHERE 1=1
     <include refid="systemEnvDetail.queryCondition" />
   </select>
+  
+  <select id="systemEnvDetail.getCount" parameterClass="map" resultClass="java.lang.Integer">
+    <![CDATA[  
+     select count(distinct sed.id)
+	   from tm_system_env_detail sed
+	       ,tm_system_env se
+		   ,tm_system s
+      where sed.system_env_id=se.id
+	    and se.system_id=s.id
+    ]]>
+	<include refid="systemEnvDetail.pageCondition" />
+  </select>
+  
+  <select id="systemEnvDetail.pageList" parameterClass="map" resultClass="systemConfigVO">
+    <![CDATA[  
+     select distinct sed.id              as systemEnvDetailId
+	       ,sed.system_env_id            as systemEnvId
+		   ,sed.prop_key                 as propKey
+		   ,sed.prop_value               as propValue
+		   ,se.system_id                 as systemId
+		   ,se.config_name               as configName
+		   ,s.name                       as systemName
+	   from tm_system_env_detail sed
+	       ,tm_system_env se
+		   ,tm_system s
+      where sed.system_env_id=se.id
+	    and se.system_id=s.id
+    ]]>
+	<include refid="systemEnvDetail.pageCondition" />
+	<include refid="paginationCondition" />
+  </select>
+  
+  <delete id="systemEnvDetail.delSystemEnvDetailDOByIds" parameterClass="map">
+    <![CDATA[  
+     DELETE FROM tm_system_env_detail 
+      WHERE id in
+    ]]> 
+	<iterate property="idList" conjunction="," open="(" close=")">
+			#idList[]#
+    </iterate>
+  </delete>
   
 </sqlMap>

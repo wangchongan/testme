@@ -29,7 +29,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.SystemDO;
+import com.alibaba.testme.domain.query.SystemConfigQuery;
+import com.alibaba.testme.domain.vo.SystemConfigVO;
+import com.alibaba.testme.service.SystemEnvDetailService;
 import com.alibaba.testme.service.SystemService;
 
 /**
@@ -41,7 +45,13 @@ import com.alibaba.testme.service.SystemService;
 @RequestMapping(value = "/systemconfig/*")
 public class SystemConfigController {
     @Resource
-    private SystemService systemService;
+    private SystemService          systemService;
+    @Resource
+    private SystemEnvDetailService systemEnvDetailService;
+    /**
+     * 每页显示条数
+     */
+    private static final Integer   SIZE_PER_PAGE = 50;
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
@@ -55,12 +65,6 @@ public class SystemConfigController {
         model.addAttribute("request", request);
         model.addAttribute("systemDOList", systemDOList);
         return "systemconfig/systemConfigList";
-    }
-
-    @RequestMapping
-    public String configList(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
-        return "systemconfig/configList";
     }
 
     /**
@@ -160,7 +164,7 @@ public class SystemConfigController {
         }
         model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
-        return "systemconfig/systemConfigList";
+        return systemConfigList(model, request);
     }
 
     /**
@@ -195,6 +199,107 @@ public class SystemConfigController {
         }
         model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
-        return "systemconfig/systemConfigList";
+        return systemConfigList(model, request);
     }
+
+    /**
+     * 分页查询
+     * 
+     * @param model
+     * @param request
+     * @param systemDO
+     * @return
+     */
+    @RequestMapping
+    public String systemEnvDetailList(Model model,
+                                      HttpServletRequest request,
+                                      @RequestParam("index") int index,
+                                      @RequestParam("sizePerPage") int sizePerPage,
+                                      @ModelAttribute("systemConfigQuery") SystemConfigQuery systemConfigQuery) {
+        String resultMsg = null;
+        if (systemConfigQuery == null) {
+            systemConfigQuery = new SystemConfigQuery();
+        }
+        if (index == 0) {
+            index = 1;
+        }
+        if (sizePerPage == 0) {
+            sizePerPage = SIZE_PER_PAGE;
+        }
+
+        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(index, sizePerPage,
+                systemConfigQuery);
+        if (resultPage == null) {
+            resultMsg = "温馨提醒：异常原因，查询失败！";
+            model.addAttribute("request", request);
+            model.addAttribute("resultMsg", resultMsg);
+            return "systemconfig/configList";
+        }
+        model.addAttribute("request", request);
+        model.addAttribute("index", resultPage.getPageIndex());
+        model.addAttribute("sizePerPage", resultPage.getPageSize());
+        return null;
+    }
+
+    /**
+     * 根据ID删除配置详情信息
+     * 
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public String deleteSystemEnvDetail(Model model, HttpServletRequest request,
+                                        @RequestParam("id") Long id) {
+        String resultMsg = null;
+        if (id == null) {
+            resultMsg = "温馨提醒：参数不能为空！";
+        }
+        int result = systemEnvDetailService.deleteSystemEnvDetailDO(id);
+        if (result <= 0L) {
+            resultMsg = "温馨提醒：配置信息详情删除失败,id:" + id;
+        } else {
+            resultMsg = "温馨提醒：恭喜你！配置信息详情删除成功！";
+        }
+        model.addAttribute("request", request);
+        model.addAttribute("resultMsg", resultMsg);
+        return "systemconfig/configList";
+    }
+
+    /**
+     * 批量删除配置详情信息
+     * 
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public String batchDelEnvDetail(Model model, HttpServletRequest request,
+                                    @RequestParam("ids") String ids) {
+        String resultMsg = null;
+        if (StringUtils.isBlank(ids)) {
+            resultMsg = "温馨提醒：参数不能为空！";
+        }
+        String[] idArray = ids.split(",");
+        if (idArray == null || idArray.length == 0) {
+            resultMsg = "温馨提醒：参数不能为空！";
+        }
+        List<Long> idList = new ArrayList<Long>();
+        for (int i = 0; i < idArray.length; i++) {
+            idList.add(Long.parseLong(idArray[i]));
+        }
+
+        int result = systemEnvDetailService.delSystemEnvDetailDOByIds(idList);
+        if (result <= 0L) {
+            resultMsg = "温馨提醒：系统信息批量删除失败";
+        } else {
+            resultMsg = "温馨提醒：恭喜你！系统信息批量删除成功！";
+        }
+        model.addAttribute("request", request);
+        model.addAttribute("resultMsg", resultMsg);
+        return "systemconfig/configList";
+    }
+
 }

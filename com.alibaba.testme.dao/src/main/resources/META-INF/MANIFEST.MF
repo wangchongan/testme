@@ -7,7 +7,9 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.dao
 Import-Package: com.alibaba.testme.common,
  com.alibaba.testme.common.basedao,
+ com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.domain,
  com.alibaba.testme.domain.dataobject,
- com.alibaba.testme.domain.query
+ com.alibaba.testme.domain.query,
+ com.alibaba.testme.domain.vo
 

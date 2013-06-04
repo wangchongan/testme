@@ -1,18 +1,23 @@
 package com.alibaba.testme.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-
+import com.alibaba.testme.common.ibatispage.Page;
+import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
 import com.alibaba.testme.dao.SystemEnvDetailDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
+import com.alibaba.testme.domain.query.SystemConfigQuery;
+import com.alibaba.testme.domain.vo.SystemConfigVO;
 
 /**
  * SystemEnvDetail Dao Implement
  * 
  * @author xiaopenzi
  */
-public class SystemEnvDetailDaoImpl extends SqlMapClientDaoSupport implements SystemEnvDetailDao {
+public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemConfigVO> implements
+        SystemEnvDetailDao {
 
     /**
      * @param systemEnvDetailDO
@@ -72,6 +77,26 @@ public class SystemEnvDetailDaoImpl extends SqlMapClientDaoSupport implements Sy
     public List<SystemEnvDetailDO> findList(SystemEnvDetailDO systemEnvDetailDO) {
         return (List<SystemEnvDetailDO>) this.getSqlMapClientTemplate().queryForList(
                 "systemEnvDetail.findList", systemEnvDetailDO);
+    }
+
+    @Override
+    public Page<SystemConfigVO> queryPage(Integer index, Integer sizePerPage,
+                                          SystemConfigQuery systemConfigQuery) {
+        return (Page<SystemConfigVO>) this.page(index, sizePerPage, systemConfigQuery,
+                "systemEnvDetail.getCount", "systemEnvDetail.pageList");
+    }
+
+    @Override
+    public int delSystemEnvDetailDOByIds(List<Long> idList) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("idList", idList);
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "systemEnvDetail.delSystemEnvDetailDOByIds", paramMap);
+        if (result == null) {
+            return 0;
+        }
+
+        return result;
     }
 
 }

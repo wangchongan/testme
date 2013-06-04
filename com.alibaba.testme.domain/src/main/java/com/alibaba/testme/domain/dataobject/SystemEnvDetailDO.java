@@ -35,7 +35,7 @@ public class SystemEnvDetailDO {
     /**
      * systemId
      */
-    private Long   systemId;
+    private Long   systemEnvId;
 
     /**
      * propKey
@@ -97,12 +97,18 @@ public class SystemEnvDetailDO {
         return this.modifier;
     }
 
-    public void setSystemId(Long systemId) {
-        this.systemId = systemId;
+    /**
+     * @return the systemEnvId
+     */
+    public Long getSystemEnvId() {
+        return systemEnvId;
     }
 
-    public Long getSystemId() {
-        return this.systemId;
+    /**
+     * @param systemEnvId the systemEnvId to set
+     */
+    public void setSystemEnvId(Long systemEnvId) {
+        this.systemEnvId = systemEnvId;
     }
 
     public void setPropKey(String propKey) {

@@ -35,3 +35,4 @@ Import-Package:
  org.springframework.web.context;version="[3.0.5.RELEASE,3.6.0.RELEASE]",
  org.springframework.web.servlet;version="[3.0.5.RELEASE,3.6.0.RELEASE)",
  org.springframework.web.servlet.mvc;version="[3.0.5.RELEASE,3.6.0.RELEASE)"
+Export-Package: com.alibaba.testme.web.sso

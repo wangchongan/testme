@@ -3,8 +3,6 @@
 <sqlMap namespace="global">
 	<!-- ·ÖÒ³ -->
 	<sql id="paginationCondition">
-    	<isEqual property="isPagination" compareValue="true">
-    		limit #startPos#,#pageSize#
-    	</isEqual>
+    	limit #startRow#,#query_page_size#
 	</sql>
 </sqlMap>

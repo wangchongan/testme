@@ -2,8 +2,11 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.SystemEnvDetailDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
+import com.alibaba.testme.domain.query.SystemConfigQuery;
+import com.alibaba.testme.domain.vo.SystemConfigVO;
 import com.alibaba.testme.service.SystemEnvDetailService;
 
 /**
@@ -75,6 +78,20 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
     @Override
     public List<SystemEnvDetailDO> findList(SystemEnvDetailDO systemEnvDetailDO) {
         return systemEnvDetailDao.findList(systemEnvDetailDO);
+    }
+
+    @Override
+    public Page<SystemConfigVO> queryPage(Integer index, Integer sizePerPage,
+                                          SystemConfigQuery systemConfigQuery) {
+        if (index == 0 || sizePerPage == 0 || systemConfigQuery == null) {
+            return null;
+        }
+        return systemEnvDetailDao.queryPage(index, sizePerPage, systemConfigQuery);
+    }
+
+    @Override
+    public int delSystemEnvDetailDOByIds(List<Long> idList) {
+        return 0;
     }
 
 }
