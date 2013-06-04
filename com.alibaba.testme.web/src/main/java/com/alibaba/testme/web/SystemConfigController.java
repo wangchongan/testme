@@ -55,14 +55,12 @@ public class SystemConfigController {
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
         return "systemconfig/addSystemConfig";
     }
 
     @RequestMapping
     public String systemConfigList(Model model, HttpServletRequest request) {
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
-        model.addAttribute("request", request);
         model.addAttribute("systemDOList", systemDOList);
         return "systemconfig/systemConfigList";
     }
@@ -89,7 +87,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！新增系统成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         return "systemconfig/addSystemConfig";
     }
@@ -113,7 +110,6 @@ public class SystemConfigController {
         if (systemDO == null) {
             resultMsg = "温馨提醒：不存在该系统信息";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         model.addAttribute("systemDO", systemDO);
 
@@ -143,7 +139,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！更新系统成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         model.addAttribute("systemDO", systemDO);
         return "systemconfig/editSystemConfig";
@@ -162,7 +157,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！系统信息删除成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         return systemConfigList(model, request);
     }
@@ -197,7 +191,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！系统信息批量删除成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         return systemConfigList(model, request);
     }
@@ -235,7 +228,6 @@ public class SystemConfigController {
             model.addAttribute("resultMsg", resultMsg);
             return "systemconfig/configList";
         }
-        model.addAttribute("request", request);
         model.addAttribute("index", resultPage.getPageIndex());
         model.addAttribute("sizePerPage", resultPage.getPageSize());
         return null;
@@ -262,7 +254,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！配置信息详情删除成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         return "systemconfig/configList";
     }
@@ -297,7 +288,6 @@ public class SystemConfigController {
         } else {
             resultMsg = "温馨提醒：恭喜你！系统信息批量删除成功！";
         }
-        model.addAttribute("request", request);
         model.addAttribute("resultMsg", resultMsg);
         return "systemconfig/configList";
     }

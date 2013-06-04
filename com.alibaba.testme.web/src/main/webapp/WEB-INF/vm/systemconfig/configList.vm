@@ -40,11 +40,29 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 -->
 </style>
 
-<link href="${request.ContextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
-<link href="${request.ContextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<script type="text/javascript" src="${request.ContextPath}/res/common/common.js"></script>
+<script type="text/javascript" src="${contextPath}/res/common/common.js"></script>
+<script>
+function delProcess(id){	
+	if(window.confirm('确认删除么？')){
+		location.href= "${request.ContextPath}/systemconfig/deleteSystemEnvDetail?id="+id;
+	}
+}
 
+function batchDelProcess(fom,delid){
+	var ids = getCheckedValue(fom,delid);
+	if(!ids){
+		alert("请先选择需要删除的项！");
+	}else{
+		if(window.confirm('确认删除么？')){	
+			location.href= "${request.ContextPath}/systemconfig/batchDelEnvDetail?ids="+ids;
+		}
+	}
+
+}
+</script>
 <body>
 <form name="fom" id="fom" method="post" action="">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -52,11 +70,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
     <td height="30">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-			<td height="124" background="${request.ContextPath}/res/images/testme_nav04.gif">
+			<td height="124" background="${contextPath}/res/images/testme_nav04.gif">
 				<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 				  <td width="80">配置名称：</td>
-				  <td><input name="text" class="text" style="width:180px" type="text" size="40" /></td>
+				  <td><input name="text" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.configName"/></td>
 				  <td width="80">所属系统：</td>
 				  <td>
 					<select name="select" style="width:180px">
@@ -69,7 +87,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 				  <td width="80">参数名称：</td>
-				  <td><input name="text" class="text" style="width:180px" type="text" size="40" /></td>
+				  <td><input name="text" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.propKey"/></td>
 				  <td width="80">配置类型：</td>
 				  <td>
 					<select name="select" style="width:180px">
@@ -94,7 +112,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
               	  <tr>
                     <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
-    	                <input name="Submit" type="button" class="right-button08" value="删除系统" />
+    	                <input name="Submit" type="button" class="right-button08" onclick="batchDelProcess(fom,delid)" value="删除配置" />
     			    </td>
               	  </tr>
                   <tr>
@@ -132,17 +150,17 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
                             <td>alibaba.lp.wl.database.jdbcUrl</td>
 							<td>jdbc.oracle:thin:@10.20.149.17:1521:lptest</td>
                             <td>
-    							<a href="editrenwu.htm">编辑|</a>
-    							<a href="#">删除</a>
+    							<a href="${request.ContextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
+    							<a href="javascript:void(0)" onclick="delProcess($!systemDO.id)">删除</a>
     						</td>
                           </tr>
-    					</table>
+						</table>
     				</td>
 				  </tr>
 				</table>
 			    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tr>
-					  <td height="6"><img src="${request.ContextPath}/res/images/testme_09.gif" width="1" height="1" /></td>
+					  <td height="6"><img src="${contextPath}/res/images/testme_09.gif" width="1" height="1" /></td>
 					</tr>
 					<tr>
 					  <td height="33">
