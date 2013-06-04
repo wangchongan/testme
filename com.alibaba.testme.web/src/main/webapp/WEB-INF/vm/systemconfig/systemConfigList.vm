@@ -39,14 +39,14 @@ body {
 html { overflow-x: auto; overflow-y: auto; border:0;} 
 -->
 </style>
-<link href="${request.ContextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
-<link href="${request.ContextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<script type="text/javascript" src="${request.ContextPath}/res/common/commonConfig.js"></script>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
 <script>
 function delProcess(id){	
 	if(window.confirm('确认删除么？')){
-		location.href= "${request.ContextPath}/systemconfig/deleteSystemConfig?id="+id;
+		location.href= "${contextPath}/systemconfig/deleteSystemConfig?id="+id;
 	}
 }
 
@@ -56,7 +56,7 @@ function batchDelProcess(fom,delid){
 		alert("请先选择需要删除的项！");
 	}else{
 		if(window.confirm('确认删除么？')){	
-			location.href= "${request.ContextPath}/systemconfig/batchDelSystemConfig?ids="+ids;
+			location.href= "${contextPath}/systemconfig/batchDelSystemConfig?ids="+ids;
 		}
 	}
 
@@ -94,7 +94,7 @@ function batchDelProcess(fom,delid){
             					<td>$systemDO.name</td>
                                 <td>$systemDO.remark</td>
                                 <td>
-        							<a href="${request.ContextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
+        							<a href="${contextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
         							<a href="javascript:void(0)" onclick="delProcess($!systemDO.id)">删除</a>
         						</td>
 							</tr>

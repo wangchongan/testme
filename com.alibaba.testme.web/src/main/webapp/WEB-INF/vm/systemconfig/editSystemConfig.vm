@@ -8,7 +8,7 @@
 <script language="JavaScript" type="text/javascript">
 
 function link(){
-   document.getElementById("editSystemConfigForm").action="${request.ContextPath}/systemconfig/updateSystemConfig";
+   document.getElementById("editSystemConfigForm").action="${contextPath}/systemconfig/updateSystemConfig";
    document.getElementById("editSystemConfigForm").submit();
 }
 
@@ -20,7 +20,7 @@ function link(){
 .atten {font-size:12px;font-weight:normal;color:#F00;}
 -->
 </style>
-<link href="${request.ContextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="ContentBody">
@@ -61,7 +61,7 @@ function link(){
    <tr>
      <td colspan="2" align="center" height="50px">
 		<input type="button" name="saveBtn" value="保存" class="button" onclick="link();"/>　
-		<a href="${request.ContextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">查看系统列表</a>
+		<a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">查看系统列表</a>
      </td>
 	</tr>
  </table>

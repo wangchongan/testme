@@ -17,7 +17,6 @@ package com.alibaba.testme.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +50,9 @@ public class UserController {
     public String login(Model model, HttpServletRequest request,
                         @RequestParam(required = true) String userName,
                         @RequestParam(required = true) String password) {
-        HttpSession session = request.getSession();
-
         UserDO user = userService.authenticate(userName, password);
         if (user != null) {
-            session.setAttribute(CommonConstants.SESSION_USER, user);
+            request.getSession().setAttribute(CommonConstants.SESSION_USER, user);
             return "index";
         } else {
             model.addAttribute("errMsg", "用户名或密码错误");
@@ -65,8 +62,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String logout(Model model, HttpServletRequest request) {
-
-        return "index";
+        request.getSession().invalidate();
+        return "login";
     }
 
 }
