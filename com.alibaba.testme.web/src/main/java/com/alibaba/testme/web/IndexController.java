@@ -35,26 +35,22 @@ public class IndexController {
 
     @RequestMapping
     public String shouye(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
         return "index";
     }
 
     @RequestMapping
     public String top(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
         return "top";
     }
 
     @RequestMapping
     public String left(Model model, HttpServletRequest request) {
-        model.addAttribute("request", request);
         return "left";
     }
 
     @RequestMapping
     public String mainfra(Model model, HttpServletRequest request) {
         LOGGER.info("Test user listAll .....");
-        model.addAttribute("request", request);
         return "mainfra";
     }
 

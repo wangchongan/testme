@@ -27,10 +27,6 @@
 		<property name="dataSource" ref="dataSourceOnline" />
 	</bean>
 	
-	<bean id="genericDao" class="com.alibaba.testme.dao.impl.base.GenericDaoImpl" abstract="true">
-        <property name="sqlMapClient" ref="sqlMapClient"></property>  
-    </bean>
-	
 	<bean id="baseDao" abstract="true">
         <property name="sqlMapClient" ref="sqlMapClient"></property>  
     </bean>

@@ -47,6 +47,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
  	<!-- DefaultAnnotationHandlerMapping 优先调用 -->
  	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
  		<property name="order" value="1"/>
+ 		<property name="interceptors">
+			<list>
+					<bean class="com.alibaba.testme.web.interceptor.ContentPathInterceptor"/>
+			</list>
+		</property>
  	</bean>
  	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -76,5 +81,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			</util:list>			
 		</property>
 	</bean>
+	
 	
 </beans>
