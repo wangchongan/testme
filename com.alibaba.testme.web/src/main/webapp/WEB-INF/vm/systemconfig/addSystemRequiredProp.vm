@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<style type="text/css">
+<!--
+.atten {font-size:12px;font-weight:normal;color:#F00;}
+-->
+</style>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ContentBody">
+<form  method="post" id="addSystemRequiredPropForm">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" >系统必要参数申明页面</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>系统必要参数申明</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+						  <tr>
+							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
+            				<td nowrap  height="30px" style="width:200px">
+            					<select name="systemId" style="width:200px;height:20px">
+            						  #foreach($systemDO in $systemDOList)
+            							<option value="$!systemDO.id">$!systemDO.name</option>
+            						  #end
+            					</select>
+            				 </td>
+						  </tr>
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">参数英文名:</td>
+							<td style="width:250px;height:30px"><input name="propCode" class="text" style="width:200px" type="text" /><span class="red"> *</span></td>
+							<td nowrap align="right" height="30px">参数中文名:</td>
+    					    <td><input name="propName" class="text" style="width:200px" type="text"  /><span class="red"> *</span></td>
+						  </tr>
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">参数默认值:</td>
+							<td height="30px"><input name="defaultValue" class="text" style="width:200px" type="text"/></td>
+							<td nowrap align="right" height="30px" width="13%">是否可空:</td>
+							<td nowrap height="30px"><input type="radio" name="nullable" value="Y"/>是<input type="radio" name="nullable" value="N" checked="checked" />否</td>
+    					  </tr>
+						  <tr>
+							<td height="30px" nowrap align="right" width="13%">填写提示:</td>
+							<td height="30px"><input name="help" class="text" style="width:300px" type="text"/></td>
+						  </tr>
+					  </table>
+					  <br />
+				</fieldset>			
+			</td>
+		</tr>
+		</table>
+	 </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center" height="50px">
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitFormProcess(addSystemRequiredPropForm,'${contextPath}/systemconfig/saveSystemRequiredProp');"/>　
+		<a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">配置系统必要参数</a>
+     </td>
+	</tr>
+ </table>
+</div>
+</form>
+</body>
+
+</html>
