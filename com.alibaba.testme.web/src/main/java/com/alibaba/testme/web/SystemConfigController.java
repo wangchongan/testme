@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.SystemDO;
+import com.alibaba.testme.domain.enums.ConfigTypeEnum;
 import com.alibaba.testme.domain.query.SystemConfigQuery;
 import com.alibaba.testme.domain.vo.SystemConfigVO;
 import com.alibaba.testme.service.SystemEnvDetailService;
@@ -78,9 +79,17 @@ public class SystemConfigController {
         String resultMsg = null;
         if (systemDO == null || StringUtils.isBlank(systemDO.getName())) {
             resultMsg = "温馨提醒：参数不能为空！";
+            model.addAttribute("resultMsg", resultMsg);
+            return "systemconfig/addSystemConfig";
         }
         systemDO.setCreator("sys");
         systemDO.setModifier("sys");
+        SystemDO entity = systemService.findByName(systemDO.getName());
+        if (entity != null) {
+            resultMsg = "温馨提醒：该系统名称已经存在,name:" + systemDO.getName();
+            model.addAttribute("resultMsg", resultMsg);
+            return "systemconfig/addSystemConfig";
+        }
         Long result = systemService.addSystemDO(systemDO);
         if (result == null || result <= 0L) {
             resultMsg = "温馨提醒：系统信息保存失败";
@@ -133,6 +142,12 @@ public class SystemConfigController {
         }
         systemDO.setCreator("sys");
         systemDO.setModifier("sys");
+        SystemDO entity = systemService.findByName(systemDO.getName());
+        if (entity != null) {
+            resultMsg = "温馨提醒：该系统名称已经存在,name:" + systemDO.getName();
+            model.addAttribute("resultMsg", resultMsg);
+            return "systemconfig/editSystemConfig";
+        }
         int result = systemService.updateSystemDO(systemDO);
         if (result <= 0L) {
             resultMsg = "温馨提醒：系统信息更新失败";
@@ -196,14 +211,35 @@ public class SystemConfigController {
     }
 
     /**
-     * 分页查询
+     * 进入配置详情列表页面
+     * 
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping
+    public String configList(Model model, HttpServletRequest request) {
+        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE,
+                new SystemConfigQuery());
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        //获取配置类型
+        List<ConfigTypeEnum> configTypeList = ConfigTypeEnum.getList();
+        model.addAttribute("systemDOList", systemDOList);
+        model.addAttribute("systemConfigVOPage", resultPage);
+        model.addAttribute("configTypeList", configTypeList);
+        return "systemconfig/configList";
+    }
+
+    /**
+     * 分页查询配置详情
      * 
      * @param model
      * @param request
      * @param systemDO
      * @return
      */
-    @RequestMapping
+    @RequestMapping(method = RequestMethod.POST)
     public String systemEnvDetailList(Model model,
                                       HttpServletRequest request,
                                       @RequestParam("index") int index,
@@ -224,13 +260,11 @@ public class SystemConfigController {
                 systemConfigQuery);
         if (resultPage == null) {
             resultMsg = "温馨提醒：异常原因，查询失败！";
-            model.addAttribute("request", request);
-            model.addAttribute("resultMsg", resultMsg);
-            return "systemconfig/configList";
         }
-        model.addAttribute("index", resultPage.getPageIndex());
-        model.addAttribute("sizePerPage", resultPage.getPageSize());
-        return null;
+        model.addAttribute("systemConfigVOPage", resultPage);
+        model.addAttribute("resultMsg", resultMsg);
+        model.addAttribute("systemConfigQuery", systemConfigQuery);
+        return configList(model, request);
     }
 
     /**
@@ -255,7 +289,7 @@ public class SystemConfigController {
             resultMsg = "温馨提醒：恭喜你！配置信息详情删除成功！";
         }
         model.addAttribute("resultMsg", resultMsg);
-        return "systemconfig/configList";
+        return configList(model, request);
     }
 
     /**
@@ -289,7 +323,21 @@ public class SystemConfigController {
             resultMsg = "温馨提醒：恭喜你！系统信息批量删除成功！";
         }
         model.addAttribute("resultMsg", resultMsg);
-        return "systemconfig/configList";
+        return configList(model, request);
+    }
+
+    /**
+     * 进入定义系统必要参数页面
+     * 
+     * @return
+     */
+    @RequestMapping
+    public String addSystemRequiredProp(Model model, HttpServletRequest request) {
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        model.addAttribute("systemDOList", systemDOList);
+
+        return "systemconfig/addSystemRequiredProp";
     }
 
 }

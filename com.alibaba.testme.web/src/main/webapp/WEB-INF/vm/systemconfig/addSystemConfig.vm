@@ -5,16 +5,7 @@
 	<meta http-equiv="Content-Language" content="zh-CN"/>
     <title>TestMe-便捷测试平台</title>
 </head>
-<script language="JavaScript" type="text/javascript">
-
-function link(){
-   document.getElementById("addSystemConfigForm").action="${contextPath}/systemconfig/saveSystemConfig";
-   document.getElementById("addSystemConfigForm").submit();
-}
-
-
-
-</script>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
 <style type="text/css">
 <!--
 .atten {font-size:12px;font-weight:normal;color:#F00;}
@@ -59,7 +50,7 @@ function link(){
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
-		<input type="button" name="saveBtn" value="保存" class="button" onclick="link();"/>　
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitFormProcess('${contextPath}/systemconfig/saveSystemConfig',addSystemConfigForm);"/>　
 		<a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">查看系统列表</a>
      </td>
 	</tr>

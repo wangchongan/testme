@@ -43,25 +43,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
-<script>
-function delProcess(id){	
-	if(window.confirm('确认删除么？')){
-		location.href= "${contextPath}/systemconfig/deleteSystemConfig?id="+id;
-	}
-}
-
-function batchDelProcess(fom,delid){
-	var ids = getCheckedValue(fom,delid);
-	if(!ids){
-		alert("请先选择需要删除的项！");
-	}else{
-		if(window.confirm('确认删除么？')){	
-			location.href= "${contextPath}/systemconfig/batchDelSystemConfig?ids="+ids;
-		}
-	}
-
-}
-</script>
 <body>
 <form name="fom" id="fom" method="post" action="">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -73,7 +54,7 @@ function batchDelProcess(fom,delid){
     			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
               	  <tr>
                     <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
-    	                <input name="batchDel" type="button" onclick="batchDelProcess(fom,delid)" class="right-button08" value="批量删除" />
+    	                <input name="batchDel" type="button" onclick="batchDelProcess(fom,delid,'${contextPath}/systemconfig/batchDelSystemConfig?ids=')" class="right-button08" value="批量删除" />
     			    </td>
               	  </tr>
                   <tr>
@@ -95,7 +76,7 @@ function batchDelProcess(fom,delid){
                                 <td>$systemDO.remark</td>
                                 <td>
         							<a href="${contextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
-        							<a href="javascript:void(0)" onclick="delProcess($!systemDO.id)">删除</a>
+        							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemConfig?id='+$!systemDO.id)">删除</a>
         						</td>
 							</tr>
                           #end

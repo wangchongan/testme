@@ -9,5 +9,7 @@ Tool: Bundlor 1.1.0.M04
 Bundle-Name: com.alibaba.testme.common
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.common
-Import-Package: org.springframework.orm.ibatis.support;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
+Import-Package: org.springframework.beans;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
+ org.springframework.orm.ibatis;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
+ org.springframework.orm.ibatis.support;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
 

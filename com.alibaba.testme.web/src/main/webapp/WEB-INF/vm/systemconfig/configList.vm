@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
@@ -43,28 +42,11 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<script type="text/javascript" src="${contextPath}/res/common/common.js"></script>
-<script>
-function delProcess(id){	
-	if(window.confirm('确认删除么？')){
-		location.href= "${request.ContextPath}/systemconfig/deleteSystemEnvDetail?id="+id;
-	}
-}
-
-function batchDelProcess(fom,delid){
-	var ids = getCheckedValue(fom,delid);
-	if(!ids){
-		alert("请先选择需要删除的项！");
-	}else{
-		if(window.confirm('确认删除么？')){	
-			location.href= "${request.ContextPath}/systemconfig/batchDelEnvDetail?ids="+ids;
-		}
-	}
-
-}
-</script>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
 <body>
-<form name="fom" id="fom" method="post" action="">
+<form id="fom" name="fom" method="post" action="${contextPath}/systemconfig/systemEnvDetailList">
+<input type="hidden" name="index" value="1"/>
+<input type="hidden" name="sizePerPage" value="50"/>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="30">
@@ -74,28 +56,38 @@ function batchDelProcess(fom,delid){
 				<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 				  <td width="80">配置名称：</td>
-				  <td><input name="text" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.configName"/></td>
+				  <td><input name="configName" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.configName"/></td>
 				  <td width="80">所属系统：</td>
 				  <td>
-					<select name="select" style="width:180px">
-                          <option  selected="selected">==请选择==</option>
-                          <option>LP4PL</option>
-                          <option>SCM</option>
+					<select name="systemId" style="width:180px">
+                          <option value="">==请选择==</option>
+						  #foreach($systemDO in $systemDOList)
+							#if($!systemDO.id==$!systemConfigQuery.systemId)
+								<option value="$!systemDO.id"  selected="selected">$!systemDO.name</option>
+							#else
+								<option value="$!systemDO.id">$!systemDO.name</option>
+							#end
+						  #end
 					</select>
 				  </td>
 				</tr>
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 				  <td width="80">参数名称：</td>
-				  <td><input name="text" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.propKey"/></td>
+				  <td><input name="propKey" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.propKey"/></td>
 				  <td width="80">配置类型：</td>
 				  <td>
-					<select name="select" style="width:180px">
-                          <option  selected="selected">==请选择==</option>
-                          <option>系统必须参数</option>
-                          <option>自定义参数</option>
+					<select name="configType" style="width:180px">
+                          <option value="">==请选择==</option>
+						  #foreach($configType in $configTypeList)
+    						  #if($!configType.key==$!systemConfigQuery.configType)
+    							<option value="$!configType.key" selected="selected">$!configType.value</option>
+    						  #else
+    							<option value="$!configType.key">$!configType.value</option>
+    						  #end
+						  #end
 					</select>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="Submit4" type="button" class="right-button02" value="查 询" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="Submit4" type="submit" class="right-button02" value="查 询" />
 				  </td>
 				</tr>
 				</table>
@@ -112,7 +104,7 @@ function batchDelProcess(fom,delid){
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
               	  <tr>
                     <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
-    	                <input name="Submit" type="button" class="right-button08" onclick="batchDelProcess(fom,delid)" value="删除配置" />
+    	                <input name="batchDelBtn" type="button" class="right-button08" onclick="batchDelProcess(fom,delid,'${contextPath}/systemconfig/batchDelEnvDetail?ids=')" value="删除配置" />
     			    </td>
               	  </tr>
                   <tr>
@@ -130,30 +122,20 @@ function batchDelProcess(fom,delid){
 							<td width="30%">参数值</td>
         					<td width="10%">操作</td>
                           </tr>
+						  #foreach($systemConfigVO in $systemConfigVOPage.datas)
                           <tr bgcolor="#FFFFFF">
-        				    <td height="20"><input type="checkbox" name="delid"/></td>
-        					<td>4PL测试环境配置</td>
-                            <td>LP4PL</td>
-							<td>自定义参数</td>
-                            <td>host</td>
-							<td>192.168.1.1</td>
+        				    <td height="20"><input type="checkbox" name="delid"  align="center" value="$!systemConfigVO.systemEnvDetailId"/></td>
+        					<td>$!systemConfigVO.configName</td>
+                            <td>$!systemConfigVO.systemName</td>
+							<td>$!systemConfigVO.configType</td>
+                            <td>$!systemConfigVO.propKey</td>
+							<td>$!systemConfigVO.propValue</td>
                             <td>
-    							<a href="editrenwu.htm">编辑|</a>
-    							<a href="#">删除</a>
+    							<a href="${contextPath}/systemconfig/editSystemEnvDetail?id=$!systemConfigVO.systemEnvDetailId" target="mainFrame">编辑|</a>
+    							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemEnvDetail?id='+$!systemConfigVO.systemEnvDetailId)">删除</a>
     						</td>
                           </tr>
-						  <tr bgcolor="#FFFFFF">
-        				    <td height="20"><input type="checkbox" name="delid"/></td>
-        					<td>4PL测试环境配置</td>
-                            <td>LP4PL</td>
-							<td>系统必须参数</td>
-                            <td>alibaba.lp.wl.database.jdbcUrl</td>
-							<td>jdbc.oracle:thin:@10.20.149.17:1521:lptest</td>
-                            <td>
-    							<a href="${request.ContextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
-    							<a href="javascript:void(0)" onclick="delProcess($!systemDO.id)">删除</a>
-    						</td>
-                          </tr>
+						  #end
 						</table>
     				</td>
 				  </tr>
@@ -166,12 +148,12 @@ function batchDelProcess(fom,delid){
 					  <td height="33">
 					  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="right-font08">
 						  <tr>
-							<td width="50%">共 <span class="right-text09">5</span> 页 | 第 <span class="right-text09">1</span> 页</td>
-							<td width="49%" align="right">[<a href="#" class="right-font08">首页</a> | <a href="#" class="right-font08">上一页</a> | <a href="#" class="right-font08">下一页</a> | <a href="#" class="right-font08">末页</a>] 转至：</td>
+							<td width="50%">共 <span class="right-text09">$!systemConfigVOPage.pageSize</span> 页 | 第 <span class="right-text09">$!systemConfigVOPage.pageIndex</span> 页</td>
+							<td width="49%" align="right">[<a href="javascript:void(0)" onclick="pageProcess(1)" class="right-font08">首页</a> | <a href="javascript:void(0)" onclick="pageProcess($!systemConfigVOPage.pageIndex-1)" class="right-font08">上一页</a> | <a href="javascript:void(0)" onclick="pageProcess($!systemConfigVOPage.pageIndex-1)" class="right-font08">下一页</a> | <a href="javascript:void(0)" onclick="pageProcess($!systemConfigVOPage.pageSize)" class="right-font08">末页</a>] 转至：</td>
 							<td width="1%"><table width="20" border="0" cellspacing="0" cellpadding="0">
 								<tr>
-								  <td width="1%"><input name="textfield3" type="text" class="right-textfield03" size="1" /></td>
-								  <td width="87%"><input name="Submit23222" type="submit" class="right-button06" value=" " />
+								  <td width="1%"><input name="assignPage" type="text" class="right-textfield03" size="1" /></td>
+								  <td width="87%"><input name="Submit23222" type="button" onclick="" class="right-button06" value=" " />
 								  </td>
 								</tr>
 							</table></td>

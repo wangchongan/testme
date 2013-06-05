@@ -22,6 +22,10 @@ package com.alibaba.testme.domain.vo;
  */
 public class SystemConfigVO {
     /**
+     * 配置详情ID
+     */
+    private Long   systemEnvDetailId;
+    /**
      * 配置ID
      */
     private Long   systemEnvId;
@@ -49,6 +53,20 @@ public class SystemConfigVO {
      * 参数值
      */
     private String propValue;
+
+    /**
+     * @return the systemEnvDetailId
+     */
+    public Long getSystemEnvDetailId() {
+        return systemEnvDetailId;
+    }
+
+    /**
+     * @param systemEnvDetailId the systemEnvDetailId to set
+     */
+    public void setSystemEnvDetailId(Long systemEnvDetailId) {
+        this.systemEnvDetailId = systemEnvDetailId;
+    }
 
     /**
      * @return the systemEnvId

@@ -47,4 +47,12 @@ public interface SystemDao {
      */
     public int delSystemDOByIds(List<Long> idList);
 
+    /**
+     * 根据系统名称获取系统信息
+     * 
+     * @param name
+     * @return
+     */
+    public SystemDO findByName(String name);
+
 }

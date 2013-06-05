@@ -84,4 +84,9 @@ public class SystemDaoImpl extends SqlMapClientDaoSupport implements SystemDao {
         return result;
     }
 
+    @Override
+    public SystemDO findByName(String name) {
+        return (SystemDO) this.getSqlMapClientTemplate().queryForObject("system.findByName", name);
+    }
+
 }

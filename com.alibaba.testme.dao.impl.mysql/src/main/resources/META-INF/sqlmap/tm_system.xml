@@ -129,4 +129,13 @@
     </iterate>
   </delete>
   
+  <select id="system.findByName" parameterClass="String" resultMap="systemDO_resultMap">
+     SELECT 
+    <include refid="system.column_List" />
+    <![CDATA[  
+     FROM tm_system
+     WHERE name = #name#
+    ]]>  
+  </select>
+  
 </sqlMap>

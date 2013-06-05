@@ -47,4 +47,11 @@ public interface SystemService {
      */
     public List<SystemDO> findList(SystemDO systemDO);
 
+    /**
+     * 根据系统名称获取系统信息
+     * 
+     * @param name
+     * @return
+     */
+    public SystemDO findByName(String name);
 }

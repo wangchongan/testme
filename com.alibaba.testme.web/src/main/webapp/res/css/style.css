@@ -77,7 +77,7 @@ a:hover{
 
 
 .ContentBody{
- background:#F6F6F6 url(../images/mainbg.gif); 
+ background:#F6F6F6; 
  /*url(../images/mainback.jpg) repeat-x fixed; */
  margin:15px;
 
@@ -476,7 +476,7 @@ font-weight: bold;
 .main li a{
 	float:left;
 	width:310px;
-	text-overflow:ellipsis;/*ÎÄ×Ö³¬³¤ÔòÓÃÊ¡ÂÔºÅ*/
+	text-overflow:ellipsis;/*ï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½Ôºï¿½*/
 	white-space:nowrap;
 	overflow : hidden;
 }
@@ -500,7 +500,7 @@ div{
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-/*ÕûºÏµÄCSS*/
+/*ï¿½ï¿½Ïµï¿½CSS*/
 
 .tablestyle_title{
 	/*height: 20px; font-style: normal; font-variant: normal; font-weight: bold; font-size: 16px;letter-spacing: 2px; text-align: middle; border-top: 2px solid #ff7300; padding-left: 10px; background-color: #f0f0f0;text-align:center;*/

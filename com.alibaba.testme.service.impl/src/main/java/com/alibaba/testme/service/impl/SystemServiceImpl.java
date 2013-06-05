@@ -2,6 +2,8 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.testme.dao.SystemDao;
 import com.alibaba.testme.domain.dataobject.SystemDO;
 import com.alibaba.testme.service.SystemService;
@@ -88,4 +90,11 @@ public class SystemServiceImpl implements SystemService {
         return systemDao.delSystemDOByIds(idList);
     }
 
+    @Override
+    public SystemDO findByName(String name) {
+        if (StringUtils.isBlank(name)) {
+            return null;
+        }
+        return systemDao.findByName(name);
+    }
 }

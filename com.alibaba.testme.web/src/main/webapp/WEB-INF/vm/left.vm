@@ -107,23 +107,27 @@ function list(idstr){
 				cellspacing="0" class="left-table02">
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu19" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemConfig" target="mainFrame" class="left-font03" onClick="tupian('20');">新增系统</a></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemConfig" target="mainFrame" class="left-font03" onClick="tupian('19');">新增系统</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu20" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03" onClick="tupian('20');">系统配置</a></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03" onClick="tupian('20');">查询系统配置</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu21" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03" onClick="tupian('21');">查询配置</a></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemRequiredProp" target="mainFrame" class="left-font03" onClick="tupian('21');">定义系统必要参数</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu22" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="XXX" target="mainFrame" class="left-font03" onClick="tupian('21');">导入配置</a></td>
+				  <td width="91%"><a href="XXX" target="mainFrame" class="left-font03" onClick="tupian('22');">导入参数配置</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu23" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="XXX" target="mainFrame" class="left-font03" onClick="tupian('21');">自定义配置</a></td>
+				  <td width="91%"><a href="XXX" target="mainFrame" class="left-font03" onClick="tupian('23');">配置系统必要参数</a></td>
+				</tr>
+				<tr>
+				  <td width="9%" height="20" ><img id="xiaotu24" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03" onClick="tupian('24');">查询参数配置</a></td>
 				</tr>
 		</table>
 		<!--  配置管理结束    -->
