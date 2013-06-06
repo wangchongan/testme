@@ -1,0 +1,176 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+function isExistsConfigName(){
+	var configName = document.getElementById("configName").value;
+	location.href= "${contextPath}/systemconfig/isExistsConfigName?configName="+configName;
+}
+
+//编辑配置名称和所属系统
+function editConfigNameProcess(){
+	document.getElementById("editConfigNameBtn").style.display="none";
+	document.getElementById("saveConfigNameBtn").style.display="";
+	document.getElementById("onlyRead_configName").style.display="none";
+	document.getElementById("update_configName").style.display="";
+	document.getElementById("update_configNameSpan").style.display="";
+	document.getElementById("onlyRead_systemName").style.display="none";
+	document.getElementById("update_systemName").style.display="";
+}
+//保存配置名称和所属系统
+function saveConfigNameProcess(systemEnvId){
+   var configName = encodeURIComponent(document.getElementById("update_configName").value);
+   var systemId = document.getElementById("update_systemName").value;
+   if(!configName || !systemId){
+		alert("配置名称和所属系统不能为空");
+   }else{
+   		document.getElementById("editConfigNameBtn").style.display="";
+		document.getElementById("saveConfigNameBtn").style.display="none";
+		document.getElementById("onlyRead_configName").style.display="";
+		document.getElementById("update_configName").style.display="none";
+		document.getElementById("update_configNameSpan").style.display="none";
+		document.getElementById("onlyRead_systemName").style.display="";
+		document.getElementById("update_systemName").style.display="none";
+  		location.href= "${contextPath}/systemconfig/updateSystemEnv?systemEnvId="+systemEnvId+"&configName="+configName+"&systemId="+systemId;
+   }
+}
+
+//编辑参数值
+function editProcess(systemEnvDetailId){
+	var saveBtnName = "saveBtn_"+systemEnvDetailId;
+	var textName = "propValueText_"+systemEnvDetailId;
+	var labelName = "propValueLabel_"+systemEnvDetailId;
+	document.getElementById(textName).style.display="";
+	document.getElementById(saveBtnName).style.display="";
+	document.getElementById(labelName).style.display="none";
+}
+//保存参数值
+function savePropValueProcess(systemEnvDetailId){
+   var saveBtnName = "saveBtn_"+systemEnvDetailId;
+   var textName = "propValueText_"+systemEnvDetailId;
+   var labelName = "propValueLabel_"+systemEnvDetailId;
+   var propValue = document.getElementById(textName).value;
+   if(!propValue){
+		alert("参数值不能为空");
+   }else{
+   		document.getElementById(textName).style.display="none";
+		document.getElementById(saveBtnName).style.display="none";
+		document.getElementById(labelName).style.display="";
+  		location.href= "${contextPath}/systemconfig/editPropValueBySystemEnv?systemEnvDetailId="+systemEnvDetailId+"&propValue="+propValue+"&systemEnvId="+$!systemEnvId;
+   }
+}
+
+</script>
+<style type="text/css">
+<!--
+.atten {font-size:12px;font-weight:normal;color:#F00;}
+-->
+</style>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ContentBody">
+<form  method="post" id="addSystemEnvForm">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" align="center">系统参数配置页面</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>系统参数配置信息</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+						  <tr>
+							<td style="width:10%;height:30px">配置名称:</td>
+							<td style="width:40%;height:30px">
+                                <label id="onlyRead_configName">$!configName</label>
+								<input id="update_configName" name="configName" style="display:none;" value="$!configName" class="text" size=40 type="text" />
+								<span id="update_configNameSpan" class="red" style="display:none;"> *</span>
+							</td>
+							<td style="width:10%;height:30px">所属系统:</td>
+            				<td style="width:20%;height:30px">
+								<label id="onlyRead_systemName">$!systemName</label>
+            					<select id="update_systemName" name="systemId" style="width:200px;height:25px;display:none;">
+            						  #foreach($systemDO in $systemDOList)
+										#if($systemDO.id==$systemId)
+											<option value="$!systemDO.id" selected>$!systemDO.name</option>
+										#else
+											<option value="$!systemDO.id">$!systemDO.name</option>
+										#end
+            						  #end
+            					</select>
+            				 </td>
+							 <td>
+								<input name="editConfigNameBtn" id="editConfigNameBtn" type="button" onclick="editConfigNameProcess($!systemEnvId)" style="width:45px; height:17px;border:0; background:url(${contextPath}/res/images/btn_modify.gif)" />
+								<input name="saveConfigNameBtn" id="saveConfigNameBtn" type="button" onclick="saveConfigNameProcess($!systemEnvId)" style="display:none;width:45px; height:17px;border:0; background:url(${contextPath}/res/images/btn_save.gif)" />
+                             </td>
+						  </tr>
+                          <tr>
+							<td>
+								<input name="Submit2" type="button" class="right-button08" value="添加一项" onclick="link();"/>
+							</td>
+							<td>
+								<a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03">查询参数配置</a>
+							</td>
+						  </tr>
+    					  <tr>
+							<td  class="font42" style="width:500px" colspan="4">
+                				<table width="100%" id="systemRequirePropTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+                				  <tr class="CTitle" >
+                                    <td height="22" colspan="5" align="center" style="font-size:16px">配置信息列表</td>
+                                  </tr>
+                                  <tr bgcolor="#EEEEEE">
+                                    <td width="20%">参数中文名称</td>
+                					<td width="20%">参数编码</td>
+									<td width="10%">配置类型</td>
+        							<td width="40%">参数值</td>
+									<td width="10%">操作</td>
+                                  </tr>
+        						  #foreach($systemConfigVO in $systemConfigVOList)
+                                  <tr bgcolor="#FFFFFF">
+									<input type="hidden" name="systemRequirePropId" value="$!systemRequirePropDO.id"/>
+									<input type="hidden" name="propName_$!systemRequirePropDO.id" value="$!systemRequirePropDO.propName"/>
+									<input type="hidden" name="propCode_$!systemRequirePropDO.id" value="$!systemRequirePropDO.propCode"/>
+									<input type="hidden" name="nullable_$!systemRequirePropDO.id" value="$!systemRequirePropDO.nullable"/>
+                                    <td height="30px"><label>$!systemConfigVO.remark</label></td>
+                                    <td height="30px"><label>$!systemConfigVO.propKey</label></td>
+									<td height="30px"><label>$!systemConfigVO.configType</label></td>
+									<td height="30px">
+										<label id="propValueLabel_$!systemConfigVO.systemEnvDetailId">$!systemConfigVO.propValue</label>
+										<input type="text" class="text" id="propValueText_$!systemConfigVO.systemEnvDetailId" style="display:none;" size="40" value="$!systemConfigVO.propValue">
+										<input name="saveBtn_$!systemConfigVO.systemEnvDetailId" id="saveBtn_$!systemConfigVO.systemEnvDetailId" type="button" onclick="savePropValueProcess($!systemConfigVO.systemEnvDetailId)" style="display:none;width:46px; height:18px;border:0; background:url(${contextPath}/res/images/btn_save.gif) right" />
+									</td>
+									<td>
+            							<a href="javascript:void(0)" onclick="editProcess($!systemConfigVO.systemEnvDetailId)" target="mainFrame">编辑|</a>
+            							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemEnvDetailBySystemEnv?id='+$!systemConfigVO.systemEnvDetailId+'&systemEnvId='+$!systemEnvId)">删除</a>
+            						</td>
+                                  </tr>
+        						  #end
+        						</table>
+							</td>
+                          </tr>
+					  </table>
+					  <br />
+				</fieldset>			
+			</td>
+		</tr>
+		</table>
+	 </td>
+   </tr>
+ </table>
+</div>
+</form>
+</body>
+
+</html>
