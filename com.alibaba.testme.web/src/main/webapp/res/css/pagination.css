@@ -7,7 +7,7 @@
 	overflow:hidden;
 }
 .pagination li {
-	line-height:30px;
+	line-height:20px;
 	float:left;
 }
 .pagination a {
@@ -77,7 +77,7 @@ body{
 .r3{
 	border-top:1px #73B2DE solid;
 	position:relative;
-	height:30px;
+	height:35px;
 	background:#efefef;
 	margin:0px;
 }
