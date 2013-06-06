@@ -99,4 +99,14 @@ public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemCon
         return result;
     }
 
+    @Override
+    public int deleteByEnvId(Long systemEnvId) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "systemEnvDetail.deleteByEnvId", systemEnvId);
+        if (result == null) {
+            return 0;
+        }
+        return result;
+    }
+
 }

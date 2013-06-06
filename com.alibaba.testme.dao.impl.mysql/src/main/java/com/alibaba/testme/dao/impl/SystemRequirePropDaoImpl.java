@@ -1,6 +1,8 @@
 package com.alibaba.testme.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
@@ -73,6 +75,15 @@ public class SystemRequirePropDaoImpl extends SqlMapClientDaoSupport implements
     public List<SystemRequirePropDO> findList(SystemRequirePropDO systemRequirePropDO) {
         return (List<SystemRequirePropDO>) this.getSqlMapClientTemplate().queryForList(
                 "systemRequireProp.findList", systemRequirePropDO);
+    }
+
+    @Override
+    public SystemRequirePropDO findByPropCodeAndSystemId(Long systemId, String propCode) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("systemId", systemId);
+        paramMap.put("propCode", propCode);
+        return (SystemRequirePropDO) this.getSqlMapClientTemplate().queryForObject(
+                "systemRequireProp.findByPropCodeAndSystemId", paramMap);
     }
 
 }

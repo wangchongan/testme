@@ -94,4 +94,12 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
         return 0;
     }
 
+    @Override
+    public int deleteByEnvId(Long systemEnvId) {
+        if (systemEnvId == null || systemEnvId <= 0L) {
+            return 0;
+        }
+        return systemEnvDetailDao.deleteByEnvId(systemEnvId);
+    }
+
 }

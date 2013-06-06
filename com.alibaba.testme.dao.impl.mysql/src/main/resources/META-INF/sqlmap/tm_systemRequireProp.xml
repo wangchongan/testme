@@ -181,4 +181,14 @@
     <include refid="systemRequireProp.queryCondition" />
   </select>
   
+   <select id="systemRequireProp.findByPropCodeAndSystemId" parameterClass="map" resultMap="systemRequirePropDO_resultMap">
+     SELECT 
+    <include refid="systemRequireProp.column_List" />
+    <![CDATA[  
+      FROM tm_system_require_prop
+     WHERE system_id=#systemId#
+	   and prop_code=#propCode#
+    ]]>  
+  </select>
+  
 </sqlMap>

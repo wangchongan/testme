@@ -123,7 +123,7 @@ function list(idstr){
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu23" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="XXX" target="mainFrame" class="left-font03" onClick="tupian('23');">配置系统必要参数</a></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/configureSystemRequiredProp" target="mainFrame" class="left-font03" onClick="tupian('23');">配置系统必要参数</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu24" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>

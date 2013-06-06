@@ -61,4 +61,9 @@ public interface SystemEnvDetailDao {
      */
     public int delSystemEnvDetailDOByIds(List<Long> idList);
 
+    /**
+     * 系统环境参数ID
+     */
+    public int deleteByEnvId(Long systemEnvId);
+
 }

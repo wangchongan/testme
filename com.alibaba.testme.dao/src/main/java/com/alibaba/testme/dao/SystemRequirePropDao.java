@@ -41,4 +41,11 @@ public interface SystemRequirePropDao {
      */
     public List<SystemRequirePropDO> findList(SystemRequirePropDO systemRequirePropDO);
 
+    /**
+     * @param systemId
+     * @param propCode
+     * @return
+     */
+    public SystemRequirePropDO findByPropCodeAndSystemId(Long systemId, String propCode);
+
 }

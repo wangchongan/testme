@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+function isExistsConfigName(){
+	var configName = document.getElementById("configName").value;
+	location.href= "${contextPath}/systemconfig/isExistsConfigName?configName="+configName;
+}
+</script>
+<style type="text/css">
+<!--
+.atten {font-size:12px;font-weight:normal;color:#F00;}
+-->
+</style>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ContentBody">
+<form  method="post" id="addSystemEnvForm">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" >系统必要参数配置页面</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>配置系统必要参数</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+						  <tr>
+							<td style="width:10%;height:30px">配置名称:</td>
+							<td style="width:40%;height:30px">
+								<input name="configName" id="configName" onblur="isExistsConfigName()" value="$!configName" class="text" style="width:200px" type="text" />
+								<span class="red"> *</span>
+								<label name="validteConfigNameMsg"><font color="red">$!validteConfigNameMsg</font></label>
+							</td>
+							<td style="width:10%;height:30px">所属系统:</td>
+            				<td style="width:20%;height:30px">
+            					<select name="systemId" style="width:200px;height:25px">
+            						  #foreach($systemDO in $systemDOList)
+										#if($systemDO.id==$systemId)
+											<option value="$!systemDO.id" selected>$!systemDO.name</option>
+										#else
+											<option value="$!systemDO.id">$!systemDO.name</option>
+										#end
+            						  #end
+            					</select>
+            				 </td>
+						  </tr>
+    					  <tr>
+							<td  class="font42" style="width:500px" colspan="4">
+                				<table width="100%" id="systemRequirePropTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+                				  <tr class="CTitle" >
+                                    <td height="22" colspan="4" align="center" style="font-size:16px">配置信息列表</td>
+                                  </tr>
+                                  <tr bgcolor="#EEEEEE">
+                                    <td width="20%">参数中文名称</td>
+                					<td width="30%">参数编码</td>
+        							<td width="40%">参数值</td>
+        							<td width="10%">是否可空</td>
+                                  </tr>
+        						  #foreach($systemRequirePropDO in $systemRequirePropDOList)
+                                  <tr bgcolor="#FFFFFF">
+									<input type="hidden" name="systemRequirePropId" value="$!systemRequirePropDO.id"/>
+									<input type="hidden" name="propName_$!systemRequirePropDO.id" value="$!systemRequirePropDO.propName"/>
+									<input type="hidden" name="propCode_$!systemRequirePropDO.id" value="$!systemRequirePropDO.propCode"/>
+									<input type="hidden" name="nullable_$!systemRequirePropDO.id" value="$!systemRequirePropDO.nullable"/>
+                                    <td height="30px"><label title="$!systemRequirePropDO.help">$!systemRequirePropDO.propName</label></td>
+                                    <td height="30px"><label title="$!systemRequirePropDO.help">$!systemRequirePropDO.propCode</label></td>
+									<td height="30px"><input name="propvalue_$!systemRequirePropDO.id" class="text" style="width:450px" type="text" value="$!systemRequirePropDO.defaultValue"/></td>
+                                    <td height="30px">$!systemRequirePropDO.nullable</td>
+                                  </tr>
+        						  #end
+        						</table>
+							</td>
+                          </tr>
+					  </table>
+					  <br />
+				</fieldset>			
+			</td>
+		</tr>
+		</table>
+	 </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center" height="50px">
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitFormProcess('addSystemEnvForm','${contextPath}/systemconfig/saveSystemEnv');"/>　
+		<a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03">查询参数配置</a>
+     </td>
+	</tr>
+ </table>
+</div>
+</form>
+</body>
+
+</html>

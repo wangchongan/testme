@@ -50,7 +50,7 @@
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
-		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitFormProcess(editSystemConfigForm,'${contextPath}/systemconfig/updateSystemConfig');"/>　
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitFormProcess('editSystemConfigForm','${contextPath}/systemconfig/updateSystemConfig');"/>　
 		<a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03">查看系统列表</a>
      </td>
 	</tr>

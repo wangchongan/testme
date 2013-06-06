@@ -2,6 +2,8 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.testme.dao.SystemRequirePropDao;
 import com.alibaba.testme.domain.dataobject.SystemRequirePropDO;
 import com.alibaba.testme.service.SystemRequirePropService;
@@ -75,6 +77,14 @@ public class SystemRequirePropServiceImpl implements SystemRequirePropService {
     @Override
     public List<SystemRequirePropDO> findList(SystemRequirePropDO systemRequirePropDO) {
         return systemRequirePropDao.findList(systemRequirePropDO);
+    }
+
+    @Override
+    public SystemRequirePropDO findByPropCodeAndSystemId(Long systemId, String propCode) {
+        if (systemId == null || systemId == 0L || StringUtils.isBlank(propCode)) {
+            return null;
+        }
+        return systemRequirePropDao.findByPropCodeAndSystemId(systemId, propCode);
     }
 
 }
