@@ -34,6 +34,11 @@ function createDiv() {
 	document.body.appendChild(divProcessObj);
 }
 
+
+
+
+
+
 //全选
 function selectAll(formObject,checkBoxName){
 	var obj = formObject.elements;

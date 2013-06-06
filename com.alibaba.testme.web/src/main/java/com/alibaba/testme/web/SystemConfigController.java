@@ -62,7 +62,7 @@ public class SystemConfigController {
     /**
      * 每页显示条数
      */
-    private static final Integer     SIZE_PER_PAGE = 1;
+    private static final Integer   SIZE_PER_PAGE = 1;
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
