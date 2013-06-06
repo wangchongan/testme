@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.web.interceptor;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.alibaba.testme.common.constants.CommonConstants;
 import com.alibaba.testme.domain.dataobject.UserDO;
+import com.alibaba.testme.web.common.PageUtil;
 
 /**
  * TODO Comment of ContentPathInterceptor
@@ -32,6 +34,9 @@ import com.alibaba.testme.domain.dataobject.UserDO;
  */
 public class ContentPathInterceptor extends HandlerInterceptorAdapter {
 
+    @Resource
+    private PageUtil pageUtil;
+    
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
@@ -56,6 +61,7 @@ public class ContentPathInterceptor extends HandlerInterceptorAdapter {
                            Object handler, ModelAndView modelAndView) throws Exception {
         modelAndView.addObject("request", request);
         modelAndView.addObject("contextPath", request.getContextPath());
+        modelAndView.addObject("pageUtil", pageUtil);
     }
 
 }

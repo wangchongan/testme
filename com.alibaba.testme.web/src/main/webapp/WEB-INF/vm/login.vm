@@ -58,7 +58,7 @@
             <div class="legend">统一登录中心</div>
             <hr />
             <hr class="decoration" />
-            <div class="hint"></div>
+            <div class="hint">$!{errMsg}</div>
             <fieldset>
                 <div class="input-prepend">
                     <span class="add-on">

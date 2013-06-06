@@ -17,6 +17,7 @@ package com.alibaba.testme.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,6 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String main(Model model, HttpServletRequest request) {
-
         return "login";
     }
 
@@ -62,7 +62,10 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String logout(Model model, HttpServletRequest request) {
-        request.getSession().invalidate();
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
         return "login";
     }
 

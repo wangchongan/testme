@@ -1,3 +1,44 @@
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+}
+
+function loading(){
+	createDiv();
+	var DivH = document.body.scrollHeight;
+	
+    var v_left=(document.body.clientWidth)/2 + document.body.scrollLeft;
+    var v_top=(document.body.clientHeight)/2 + document.body.scrollTop;
+
+   	document.getElementById("divProcessing2").style.display = "";
+	document.getElementById('divProcessing2').style.height = DivH;
+	document.getElementById("divSearch2").style.display = "";
+	document.getElementById("divSearch2").style.top = v_top;
+	document.getElementById("divSearch2").style.left = v_left;
+}
+
+function createDiv() {
+	var divsearchObj = document.createElement("div");
+	divsearchObj.setAttribute("id", "divSearch2");
+	divsearchObj.style.cssText = "z-index:9998;width:100%;height:100%;position:absolute;left:0px;top:0px;display:none;filter:Alpha(opacity=0);";
+	divsearchObj.innerHTML="<table width='100%' height='100%' border='0' cellspacing='0' cellpadding='0'><tr><td>&nbsp;</td></tr></table>";
+	document.body.appendChild(divsearchObj);
+	
+	var divProcessObj = document.createElement("div");
+	divProcessObj.setAttribute("id", "divProcessing2");
+	divProcessObj.style.cssText= "z-index:9999;width:1200;height:120;position:absolute;left:0px;top:0px;display:none;border:1 #3E85EB solid;background-color:#F5FFEB;";
+	divProcessObj.innerHTML=" <div style=\"position:absolute;top:50%;left:40%;font-size:9pt;color:#000000\" id=\"abc\"><img src=\""+ getContextPath()+"/nresources/default/images/loading.gif\"style=\"vertical-align:-10px;\"></div>";
+
+	document.body.appendChild(divProcessObj);
+}
+
+
+
+
+
+
 //全选
 function selectAll(fom,delid){
 	var obj = fom.elements;

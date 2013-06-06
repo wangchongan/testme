@@ -52,7 +52,7 @@ public class SystemConfigController {
     /**
      * 每页显示条数
      */
-    private static final Integer   SIZE_PER_PAGE = 50;
+    private static final Integer   SIZE_PER_PAGE = 1;
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
@@ -242,7 +242,7 @@ public class SystemConfigController {
     @RequestMapping(method = RequestMethod.POST)
     public String systemEnvDetailList(Model model,
                                       HttpServletRequest request,
-                                      @RequestParam("index") int index,
+                                      @RequestParam("pageIndex") int index,
                                       @RequestParam("sizePerPage") int sizePerPage,
                                       @ModelAttribute("systemConfigQuery") SystemConfigQuery systemConfigQuery) {
         String resultMsg = null;
