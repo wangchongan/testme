@@ -1,0 +1,149 @@
+.pagination{
+	position:absolute;
+
+	right:5px;
+	top:-10px;
+	height:24px;
+	overflow:hidden;
+}
+.pagination li {
+	line-height:30px;
+	float:left;
+}
+.pagination a {
+	border: solid 1px #DDDDDD;
+	margin-right: 2px;
+	height:22px;
+}
+.pagination .count{
+	margin-right:40px;
+}
+.pagination .previous-off, .pagination .next-off {
+	color: #666666;
+	display: block;
+	float: left;
+	font-weight: bold;
+	padding: 0 4px;
+}
+.pagination .next a, .pagination .previous a {
+	font-weight: bold;
+	border: solid 1px #FFFFFF;
+}
+.pagination .active {
+	color: #ff0084;
+	font-weight: bold;
+	display: block;
+	float: left;
+	padding: 0 6px;
+}
+.pagination a:link, .pagination a:visited {
+	color: #0063e3;
+	display: block;
+	float: left;
+	padding: 0 6px;
+	text-decoration: none;
+}
+.pagination a:hover {
+	border: solid 1px #666666;
+}
+
+
+
+
+
+
+html,body{
+	height:100%;
+	margin:0px;
+	padding:0px;
+	
+	
+}
+body{
+
+
+}
+.listPage .r1{
+
+	
+}
+.listPage .r2{
+	background:#efefef;
+	height:370px;
+	overflow:auto;
+	width:100%;
+
+}
+.r3{
+	border-top:1px #73B2DE solid;
+	position:relative;
+	height:30px;
+	background:#efefef;
+	margin:0px;
+}
+.listPage h1.title{
+	position:absolute;
+	height:22px;
+	line-height:22px;
+	text-align:center;
+	padding:0 20px;
+	background:#88A6FF ;
+	color:white;
+	right:0;
+	
+}
+.listPage h1.caption{
+	background:transparent url(../images/table-input/25.gif) repeat-x scroll 0 0;	
+	height:21px;
+	position:relative;
+	font-weight:normal;
+}
+.listPage h1.caption .text{
+	line-height:20px;
+	color:gray;
+	padding:0 10px;
+	position:absolute;
+}
+.listPage h1.caption .text a{
+	color:gray;
+}
+.listPage .search{
+	background:url('../images/taskPage/search.jpg') repeat-x scroll left bottom ;
+	padding:4px;
+	border:1px #A7B8C8 solid;
+	border-left:0;
+	border-right:0;
+
+}
+.listPage .search label{
+	font-size:12px;
+}
+.listPage .search .text{
+	width:100px;
+}
+.listPage .toolbar{
+	height:25px;
+	background:#D2E2F6 url('../images/toolbar.jpg') repeat-x;
+	border-bottom:1px   solid silver;
+
+}
+.listPage .toolbar_left{
+width:98.5%;
+}
+.listPage .option{
+	text-align:right;
+	height:24px;
+}
+.listPage .attr{
+	background:#efefef;
+	border-bottom:1px black solid;
+	padding:5px;
+	font-size:12px;
+}
+.listPage .attr .text{
+	width:100px;
+	margin-right:10px;
+}
+.listPage .table-count{
+height:50px;border-bottom:1px  #73B2DE solid;padding-bottom:4px;border-top:1px  silver solid;
+}
