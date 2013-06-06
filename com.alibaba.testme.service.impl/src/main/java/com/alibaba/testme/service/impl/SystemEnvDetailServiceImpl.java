@@ -2,6 +2,8 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.SystemEnvDetailDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
@@ -91,7 +93,10 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
 
     @Override
     public int delSystemEnvDetailDOByIds(List<Long> idList) {
-        return 0;
+        if (idList == null || idList.size() == 0) {
+            return 0;
+        }
+        return systemEnvDetailDao.delSystemEnvDetailDOByIds(idList);
     }
 
     @Override
@@ -100,6 +105,23 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
             return 0;
         }
         return systemEnvDetailDao.deleteByEnvId(systemEnvId);
+    }
+
+    @Override
+    public int updatePropValue(Long systemEnvDetailId, String propValue, String modifier) {
+        if (systemEnvDetailId == null || systemEnvDetailId <= 0L || StringUtils.isBlank(propValue)
+                || StringUtils.isBlank(modifier)) {
+            return 0;
+        }
+        return systemEnvDetailDao.updatePropValue(systemEnvDetailId, propValue, modifier);
+    }
+
+    @Override
+    public List<SystemConfigVO> findByConditions(SystemConfigQuery systemConfigQuery) {
+        if (systemConfigQuery == null) {
+            return null;
+        }
+        return systemEnvDetailDao.findByConditions(systemConfigQuery);
     }
 
 }

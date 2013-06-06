@@ -60,9 +60,28 @@ public interface SystemEnvDetailService {
      * @return
      */
     public int delSystemEnvDetailDOByIds(List<Long> idList);
+
     /**
      * 系统环境参数ID
      */
     public int deleteByEnvId(Long systemEnvId);
+
+    /**
+     * 修改参数值
+     * 
+     * @param systemEnvDetailId
+     * @param propValue
+     * @param modifier
+     * @return
+     */
+    public int updatePropValue(Long systemEnvDetailId, String propValue, String modifier);
+
+    /**
+     * 根据动态条件获取配置信息
+     * 
+     * @param systemConfigQuery
+     * @return
+     */
+    public List<SystemConfigVO> findByConditions(SystemConfigQuery systemConfigQuery);
 
 }

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: com.alibaba.testme.common,
  com.alibaba.testme.common.basedao,
  com.alibaba.testme.common.baseservice,
- com.alibaba.testme.common.page,
+ com.alibaba.testme.common.enums,
  com.alibaba.testme.common.ibatispage
 Bundle-Version: 1.0.0
 Tool: Bundlor 1.1.0.M04

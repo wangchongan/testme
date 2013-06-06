@@ -109,4 +109,25 @@ public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemCon
         return result;
     }
 
+    @Override
+    public int updatePropValue(Long systemEnvDetailId, String propValue, String modifier) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("id", systemEnvDetailId);
+        paramMap.put("propValue", propValue);
+        paramMap.put("modifier", modifier);
+        Integer result = (Integer) this.getSqlMapClientTemplate().update(
+                "systemEnvDetail.updatePropValue", paramMap);
+        if (result == null) {
+            return 0;
+        }
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<SystemConfigVO> findByConditions(SystemConfigQuery systemConfigQuery) {
+        return (List<SystemConfigVO>) this.getSqlMapClientTemplate().queryForList(
+                "systemEnvDetail.findByConditions", systemConfigQuery);
+    }
+
 }

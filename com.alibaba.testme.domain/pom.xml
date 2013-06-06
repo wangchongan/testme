@@ -12,5 +12,10 @@
 	<name>com.alibaba.testme.domain</name>
 	
 	<dependencies>
+		<dependency>
+			<groupId>com.alibaba.testme</groupId>
+			<artifactId>com.alibaba.testme.common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -15,6 +15,8 @@
  */
 package com.alibaba.testme.domain.vo;
 
+import com.alibaba.testme.common.enums.ConfigTypeEnum;
+
 /**
  * 系统配置信息VO
  * 
@@ -53,6 +55,14 @@ public class SystemConfigVO {
      * 参数值
      */
     private String propValue;
+    /**
+     * 用户ID
+     */
+    private Long   userId;
+    /**
+     * 备注：参数中文名
+     */
+    private String remark;
 
     /**
      * @return the systemEnvDetailId
@@ -128,6 +138,9 @@ public class SystemConfigVO {
      * @return the configType
      */
     public String getConfigType() {
+        if (configType != null) {
+            return ConfigTypeEnum.getValue(configType);
+        }
         return configType;
     }
 
@@ -164,6 +177,34 @@ public class SystemConfigVO {
      */
     public void setPropValue(String propValue) {
         this.propValue = propValue;
+    }
+
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return the remark
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * @param remark the remark to set
+     */
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

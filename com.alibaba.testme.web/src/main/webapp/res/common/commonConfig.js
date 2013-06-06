@@ -101,5 +101,5 @@ function batchDelProcess(checkBoxObject,urlName){
 			location.href= urlName+ids;
 		}
 	}
-
 }
+

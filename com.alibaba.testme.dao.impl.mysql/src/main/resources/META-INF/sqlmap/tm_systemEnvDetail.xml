@@ -4,6 +4,7 @@
 <sqlMap namespace="systemEnvDetail">
 <typeAlias alias="systemEnvDetailDO"    type="com.alibaba.testme.domain.dataobject.SystemEnvDetailDO" />
 <typeAlias alias="systemConfigVO"    type="com.alibaba.testme.domain.vo.SystemConfigVO" />
+<typeAlias alias="systemConfigQuery"    type="com.alibaba.testme.domain.query.SystemConfigQuery" />
   <resultMap id="systemEnvDetailDO_resultMap" class="systemEnvDetailDO">
     <result property="id" column="ID" />
     <result property="gmtCreate" column="GMT_CREATE" />
@@ -86,6 +87,16 @@
 	  <isNotEmpty property="systemId" prepend="AND">
         <![CDATA[  
         se.system_id = #systemId#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="systemEnvId" prepend="AND">
+        <![CDATA[  
+        se.id = #systemEnvId#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="userId" prepend="AND">
+        <![CDATA[  
+        se.user_id = #userId#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="propKey" prepend="AND">
@@ -209,6 +220,7 @@
 	       ,sed.system_env_id            as systemEnvId
 		   ,sed.prop_key                 as propKey
 		   ,sed.prop_value               as propValue
+		   ,sed.config_type              as configType
 		   ,se.system_id                 as systemId
 		   ,se.config_name               as configName
 		   ,s.name                       as systemName
@@ -238,5 +250,34 @@
       WHERE system_env_id = #systemEnvId#
     ]]>  
    </delete>
+   
+   <update id="systemEnvDetail.updatePropValue" parameterClass="map">
+    update tm_system_env_detail 
+	   set gmt_modified = now()
+          ,modifier = #modifier#  
+          ,prop_value = #propValue#  
+     where id = #id#  
+  </update>
+  
+  <select id="systemEnvDetail.findByConditions" parameterClass="systemConfigQuery" resultClass="systemConfigVO">
+    <![CDATA[  
+     select distinct sed.id              as systemEnvDetailId
+	       ,sed.system_env_id            as systemEnvId
+		   ,sed.prop_key                 as propKey
+		   ,sed.prop_value               as propValue
+		   ,sed.config_type              as configType
+		   ,sed.remark                   as remark
+		   ,se.system_id                 as systemId
+		   ,se.config_name               as configName
+		   ,se.user_id                   as userId
+		   ,s.name                       as systemName
+	   from tm_system_env_detail sed
+	       ,tm_system_env se
+		   ,tm_system s
+      where sed.system_env_id=se.id
+	    and se.system_id=s.id
+    ]]>
+	<include refid="systemEnvDetail.pageCondition" />
+  </select>
   
 </sqlMap>

@@ -230,7 +230,7 @@ public class SystemConfigController {
     @RequestMapping
     public String configList(Model model, HttpServletRequest request) {
         SystemConfigQuery query = new SystemConfigQuery();
-        query.setUserId(10L);
+        query.setUserId(0L);
         Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE, query);
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
@@ -266,7 +266,7 @@ public class SystemConfigController {
         if (sizePerPage == 0) {
             sizePerPage = SIZE_PER_PAGE;
         }
-        systemConfigQuery.setUserId(10L);
+        systemConfigQuery.setUserId(0L);
         Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(index, sizePerPage,
                 systemConfigQuery);
         if (resultPage == null) {
@@ -309,6 +309,32 @@ public class SystemConfigController {
         }
         model.addAttribute("resultMsg", resultMsg);
         return configList(model, request);
+    }
+
+    /**
+     * 根据ID删除配置详情信息
+     * 
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping
+    public String deleteSystemEnvDetailBySystemEnv(Model model, HttpServletRequest request,
+                                                   @RequestParam("id") Long id,
+                                                   @RequestParam("systemEnvId") Long systemEnvId) {
+        String resultMsg = null;
+        if (id == null || id <= 0L || systemEnvId == null || systemEnvId <= 0L) {
+            resultMsg = "温馨提醒：参数不能为空！";
+        }
+        int result = systemEnvDetailService.deleteSystemEnvDetailDO(id);
+        if (result <= 0L) {
+            resultMsg = "温馨提醒：配置信息详情删除失败,id:" + id;
+        } else {
+            resultMsg = "温馨提醒：恭喜你！配置信息详情删除成功！";
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return editSystemEnv(model, request, systemEnvId);
     }
 
     /**
@@ -444,6 +470,32 @@ public class SystemConfigController {
     }
 
     /**
+     * 校验配置名称的唯一性
+     * 
+     * @param model
+     * @param request
+     * @param configName
+     * @param systemId
+     * @return
+     */
+    @RequestMapping
+    public String isExistsConfigNameBySystemEnv(Model model, HttpServletRequest request,
+                                                @RequestParam("configName") String configName,
+                                                @RequestParam("systemEnvId") Long systemEnvId) {
+        String validteConfigNameMsg = null;
+        SystemEnvDO entity = new SystemEnvDO();
+        entity.setConfigName(configName);
+        entity.setUserId(10L);
+        List<SystemEnvDO> systemEnvDOList = systemEnvService.findList(entity);
+        if (systemEnvDOList != null && systemEnvDOList.size() > 0) {
+            validteConfigNameMsg = "亲！该配置名称已经存在哦！";
+            model.addAttribute("validteConfigNameMsg", validteConfigNameMsg);
+        }
+        model.addAttribute("configName", configName);
+        return editSystemEnv(model, request, systemEnvId);
+    }
+
+    /**
      * 编辑参数值
      * 
      * @param model
@@ -469,6 +521,38 @@ public class SystemConfigController {
         }
         model.addAttribute("resultMsg", resultMsg);
         return configList(model, request);
+
+    }
+
+    /**
+     * 编辑参数值
+     * 
+     * @param model
+     * @param request
+     * @param systemEnvDetailId
+     * @param propValue
+     * @return
+     */
+    @RequestMapping
+    public String editPropValueBySystemEnv(Model model,
+                                           HttpServletRequest request,
+                                           @RequestParam("systemEnvDetailId") Long systemEnvDetailId,
+                                           @RequestParam("propValue") String propValue,
+                                           @RequestParam("systemEnvId") Long systemEnvId) {
+        String resultMsg = null;
+        if (StringUtils.isBlank(propValue) || systemEnvDetailId == null || systemEnvDetailId <= 0L
+                || systemEnvId == null || systemEnvId <= 0L) {
+            resultMsg = "温馨提醒：参数值和参数详情ID不能为空！";
+            model.addAttribute("resultMsg", resultMsg);
+            return editSystemEnv(model, request, systemEnvId);
+        }
+        String modifier = "sys";
+        int result = systemEnvDetailService.updatePropValue(systemEnvDetailId, propValue, modifier);
+        if (result == 0) {
+            resultMsg = "温馨提醒：参数值更新失败！";
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return editSystemEnv(model, request, systemEnvId);
 
     }
 
@@ -546,6 +630,8 @@ public class SystemConfigController {
             model.addAttribute("systemId", systemConfigVOList.get(0).getSystemId());
             model.addAttribute("systemName", systemConfigVOList.get(0).getSystemName());
         }
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        model.addAttribute("systemDOList", systemDOList);
         model.addAttribute("systemConfigVOList", systemConfigVOList);
 
         return "systemconfig/editSystemEnv";
@@ -568,6 +654,13 @@ public class SystemConfigController {
                 || systemId == null || systemId <= 0L) {
             model.addAttribute("resultMsg", "配置名称和所属系统不能为空！");
             return editSystemEnv(model, request, systemEnvId);
+        }
+        SystemEnvDO entity = new SystemEnvDO();
+        entity.setConfigName(configName);
+        entity.setUserId(10L);
+        List<SystemEnvDO> systemEnvDOList = systemEnvService.findList(entity);
+        if (systemEnvDOList != null && systemEnvDOList.size() > 0) {
+            model.addAttribute("resultMsg", "亲！该配置名称已经存在哦！");
         }
         SystemEnvDO systemEnvDO = new SystemEnvDO();
         systemEnvDO.setConfigName(configName);

@@ -45,6 +45,32 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+//弹出输入框
+function editProcess(systemEnvDetailId){
+	var saveBtnName = "saveBtn_"+systemEnvDetailId;
+	var textName = "propValueText_"+systemEnvDetailId;
+	var labelName = "propValueLabel_"+systemEnvDetailId;
+	document.getElementById(textName).style.display="";
+	document.getElementById(saveBtnName).style.display="";
+	document.getElementById(labelName).style.display="none";
+}
+
+function savePropValueProcess(systemEnvDetailId){
+   var saveBtnName = "saveBtn_"+systemEnvDetailId;
+   var textName = "propValueText_"+systemEnvDetailId;
+   var labelName = "propValueLabel_"+systemEnvDetailId;
+   var propValue = document.getElementById(textName).value;
+   if(!propValue){
+		alert("参数值不能为空");
+   }else{
+   		document.getElementById(textName).style.display="none";
+		document.getElementById(saveBtnName).style.display="none";
+		document.getElementById(labelName).style.display="";
+  		location.href= "${contextPath}/systemconfig/editPropValue?systemEnvDetailId="+systemEnvDetailId+"&propValue="+propValue;
+   }
+}
+</script>
 <body>
 <form id="fom" name="fom" method="post" action="${contextPath}/systemconfig/systemEnvDetailList">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -74,7 +100,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 				<tr><td>&nbsp;</td></tr>
 				<tr>
 				  <td width="80">参数名称：</td>
-				  <td><input name="propKey" class="text" style="width:180px" type="text" size="40" value="$!systemConfigQuery.propKey"/></td>
+				  <td><input name="propKey" class="text" style="width:180px" type="text" value="$!systemConfigQuery.propKey"/></td>
 				  <td width="80">配置类型：</td>
 				  <td>
 					<select name="configType" style="width:180px">
@@ -103,7 +129,7 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
           <td>
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
               	  <tr>
-                    <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
+                    <td height="30"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
     	                <input name="batchDelBtn" type="button" class="right-button08" onclick="batchDelProcess(delid,'${contextPath}/systemconfig/batchDelEnvDetail?ids=')" value="删除配置" />
     			    </td>
               	  </tr>
@@ -125,13 +151,17 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						  #foreach($systemConfigVO in $systemConfigVOPage.datas)
                           <tr bgcolor="#FFFFFF">                       
         				    <td height="20"><input type="checkbox" name="delid"  align="center" value="$!systemConfigVO.systemEnvDetailId"/></td>
-        					<td>$!systemConfigVO.configName</td>
+        					<td><a href="${contextPath}/systemconfig/editSystemEnv?systemEnvId=$!systemConfigVO.systemEnvId"> $!systemConfigVO.configName</a></td>
                             <td>$!systemConfigVO.systemName</td>
 							<td>$!systemConfigVO.configType</td>
                             <td>$!systemConfigVO.propKey</td>
-							<td>$!systemConfigVO.propValue</td>
+							<td>
+								<label id="propValueLabel_$!systemConfigVO.systemEnvDetailId">$!systemConfigVO.propValue</label>
+								<input type="text" class="text" id="propValueText_$!systemConfigVO.systemEnvDetailId" style="display:none;" size="40" value="$!systemConfigVO.propValue">
+								<input name="saveBtn_$!systemConfigVO.systemEnvDetailId" id="saveBtn_$!systemConfigVO.systemEnvDetailId" type="button" onclick="savePropValueProcess($!systemConfigVO.systemEnvDetailId)" style="display:none;width:46px; height:18px;border:0; background:url(${contextPath}/res/images/btn_save.gif) right" />
+							</td>
                             <td>
-    							<a href="${contextPath}/systemconfig/editSystemEnvDetail?id=$!systemConfigVO.systemEnvDetailId" target="mainFrame">编辑|</a>
+    							<a href="javascript:void(0)" onclick="editProcess($!systemConfigVO.systemEnvDetailId)" target="mainFrame">编辑|</a>
     							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemEnvDetail?id='+$!systemConfigVO.systemEnvDetailId)">删除</a>
     						</td>
                           </tr>

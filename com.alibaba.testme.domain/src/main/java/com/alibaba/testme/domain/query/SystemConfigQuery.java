@@ -37,6 +37,14 @@ public class SystemConfigQuery {
      * 参数名称
      */
     private String propKey;
+    /**
+     * 用户ID
+     */
+    private Long   userId;
+    /**
+     * 系统环境ID
+     */
+    private Long   systemEnvId;
 
     /**
      * @return the configName
@@ -92,6 +100,34 @@ public class SystemConfigQuery {
      */
     public void setPropKey(String propKey) {
         this.propKey = propKey;
+    }
+
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return the systemEnvId
+     */
+    public Long getSystemEnvId() {
+        return systemEnvId;
+    }
+
+    /**
+     * @param systemEnvId the systemEnvId to set
+     */
+    public void setSystemEnvId(Long systemEnvId) {
+        this.systemEnvId = systemEnvId;
     }
 
 }
