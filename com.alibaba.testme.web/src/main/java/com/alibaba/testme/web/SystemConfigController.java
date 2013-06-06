@@ -30,12 +30,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alibaba.testme.common.enums.ConfigTypeEnum;
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.SystemDO;
 import com.alibaba.testme.domain.dataobject.SystemEnvDO;
 import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
 import com.alibaba.testme.domain.dataobject.SystemRequirePropDO;
-import com.alibaba.testme.domain.enums.ConfigTypeEnum;
 import com.alibaba.testme.domain.query.SystemConfigQuery;
 import com.alibaba.testme.domain.vo.SystemConfigVO;
 import com.alibaba.testme.service.SystemEnvDetailService;
@@ -62,7 +62,7 @@ public class SystemConfigController {
     /**
      * 每页显示条数
      */
-    private static final Integer     SIZE_PER_PAGE = 1;
+    private static final Integer     SIZE_PER_PAGE = 50;
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
@@ -229,8 +229,9 @@ public class SystemConfigController {
      */
     @RequestMapping
     public String configList(Model model, HttpServletRequest request) {
-        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE,
-                new SystemConfigQuery());
+        SystemConfigQuery query = new SystemConfigQuery();
+        query.setUserId(10L);
+        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE, query);
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
         //获取配置类型
@@ -265,16 +266,24 @@ public class SystemConfigController {
         if (sizePerPage == 0) {
             sizePerPage = SIZE_PER_PAGE;
         }
-
+        systemConfigQuery.setUserId(10L);
         Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(index, sizePerPage,
                 systemConfigQuery);
         if (resultPage == null) {
             resultMsg = "温馨提醒：异常原因，查询失败！";
         }
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        //获取配置类型
+        List<ConfigTypeEnum> configTypeList = ConfigTypeEnum.getList();
+        model.addAttribute("systemDOList", systemDOList);
+        model.addAttribute("systemConfigVOPage", resultPage);
+        model.addAttribute("configTypeList", configTypeList);
         model.addAttribute("systemConfigVOPage", resultPage);
         model.addAttribute("resultMsg", resultMsg);
         model.addAttribute("systemConfigQuery", systemConfigQuery);
-        return configList(model, request);
+
+        return "systemconfig/configList";
     }
 
     /**
@@ -435,6 +444,35 @@ public class SystemConfigController {
     }
 
     /**
+     * 编辑参数值
+     * 
+     * @param model
+     * @param request
+     * @param systemEnvDetailId
+     * @param propValue
+     * @return
+     */
+    @RequestMapping
+    public String editPropValue(Model model, HttpServletRequest request,
+                                @RequestParam("systemEnvDetailId") Long systemEnvDetailId,
+                                @RequestParam("propValue") String propValue) {
+        String resultMsg = null;
+        if (StringUtils.isBlank(propValue) || systemEnvDetailId == null || systemEnvDetailId <= 0L) {
+            resultMsg = "温馨提醒：参数值和参数详情ID不能为空！";
+            model.addAttribute("resultMsg", resultMsg);
+            return configList(model, request);
+        }
+        String modifier = "sys";
+        int result = systemEnvDetailService.updatePropValue(systemEnvDetailId, propValue, modifier);
+        if (result == 0) {
+            resultMsg = "温馨提醒：参数值更新失败！";
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return configList(model, request);
+
+    }
+
+    /**
      * 保存用户设置的系统必要参数值
      * 
      * @param model
@@ -484,6 +522,64 @@ public class SystemConfigController {
             }
         }
         return goConfigureSystemRequiredProp("温馨提醒：恭喜你！参数信息保存成功！", model, request);
+    }
+
+    /**
+     * 进入参数配置信息页面systemEnv
+     * 
+     * @return
+     */
+    @RequestMapping
+    public String editSystemEnv(Model model, HttpServletRequest request,
+                                @RequestParam("systemEnvId") Long systemEnvId) {
+        if (systemEnvId == null || systemEnvId <= 0L) {
+            model.addAttribute("resultMsg", "系统环境ID不能为空！");
+            return configList(model, request);
+        }
+        SystemConfigQuery systemConfigQuery = new SystemConfigQuery();
+        systemConfigQuery.setSystemEnvId(systemEnvId);
+        List<SystemConfigVO> systemConfigVOList = systemEnvDetailService
+                .findByConditions(systemConfigQuery);
+        if (systemConfigVOList != null && systemConfigVOList.size() > 0) {
+            model.addAttribute("configName", systemConfigVOList.get(0).getConfigName());
+            model.addAttribute("systemEnvId", systemConfigVOList.get(0).getSystemEnvId());
+            model.addAttribute("systemId", systemConfigVOList.get(0).getSystemId());
+            model.addAttribute("systemName", systemConfigVOList.get(0).getSystemName());
+        }
+        model.addAttribute("systemConfigVOList", systemConfigVOList);
+
+        return "systemconfig/editSystemEnv";
+    }
+
+    /**
+     * 更新配置名称和所属系统
+     * 
+     * @param model
+     * @param request
+     * @param systemEnvId
+     * @return
+     */
+    @RequestMapping
+    public String updateSystemEnv(Model model, HttpServletRequest request,
+                                  @RequestParam("systemEnvId") Long systemEnvId,
+                                  @RequestParam("configName") String configName,
+                                  @RequestParam("systemId") Long systemId) {
+        if (StringUtils.isBlank(configName) || systemEnvId == null || systemEnvId <= 0L
+                || systemId == null || systemId <= 0L) {
+            model.addAttribute("resultMsg", "配置名称和所属系统不能为空！");
+            return editSystemEnv(model, request, systemEnvId);
+        }
+        SystemEnvDO systemEnvDO = new SystemEnvDO();
+        systemEnvDO.setConfigName(configName);
+        systemEnvDO.setId(systemEnvId);
+        systemEnvDO.setSystemId(systemId);
+        systemEnvDO.setModifier("sys");
+        int result = systemEnvService.updateSystemEnvDO(systemEnvDO);
+        if (result == 0) {
+            model.addAttribute("resultMsg", "配置名称和所属系统更新失败！");
+        }
+
+        return editSystemEnv(model, request, systemEnvId);
     }
 
     private String goConfigureSystemRequiredProp(String resultMsg, Model model,
