@@ -23,23 +23,22 @@ import com.alibaba.testme.domain.dataobject.UserDO;
 
 /**
  * TODO Comment of SessionUtils
+ * 
  * @author lz
- *
  */
 public class SessionUtils {
-    
-    
+
     /**
      * 从 session 中获取当前登录用户
      * 
      * @param session 当前session中的用户
      * @return
      */
-    public UserDO getLoginUser(HttpServletRequest request) {
+    public static UserDO getLoginUser(HttpServletRequest request) {
         UserDO user = null;
         if (request != null) {
             HttpSession session = request.getSession(false);
-            if (session !=null) {
+            if (session != null) {
                 user = (UserDO) session.getAttribute(CommonConstants.SESSION_USER);
             }
         }

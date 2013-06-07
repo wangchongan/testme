@@ -63,11 +63,87 @@ function savePropValueProcess(systemEnvDetailId){
    }
 }
 
+function addPropKey(){
+	document.getElementById("drag").style.display="";
+}
+
+function doCancelProcess(){
+	document.getElementById("drag").style.display="none";
+}
+
+var get = {
+	byId: function(id) {
+		return typeof id === "string" ? document.getElementById(id) : id;
+	},
+	byClass: function(sClass, oParent) {
+		var aClass = [];
+		var reClass = new RegExp("(^| )" + sClass + "( |$)");
+		var aElem = this.byTagName("*", oParent);
+		for (var i = 0; i < aElem.length; i++) reClass.test(aElem[i].className) && aClass.push(aElem[i]);
+		return aClass;
+	},
+	byTagName: function(elem, obj) {
+		return (obj || document).getElementsByTagName(elem)
+	}
+}
+//窗口拖拽
+
+function drag(oDrag,oTitle){
+	var posX=posY=0;
+	var RevertWidth=300;
+	var RevertHeight=160;
+	oTitle.onmousedown=function(event){
+		oTitle.style.cursor = "move";
+		var event = event || window.event;
+		var disX=event.clientX-oDrag.offsetLeft;
+		var disY=event.clientY-oDrag.offsetTop;
+		//鼠标移动，窗口随之移动     onmousemove在有物体移动是才执行alert事件；
+		document.onmousemove=function(event){
+			var event = event || window.event;
+			maxW=document.documentElement.clientWidth-oDrag.offsetWidth;
+			maxH=document.documentElement.clientHeight-oDrag.offsetHeight;
+			posX=event.clientX-disX;
+			posY=event.clientY-disY;
+			if(posX<0){
+				posX=0;
+			}else if(posX>maxW){
+				posX=maxW;
+			}
+			if(posY<0){
+				posY=0;
+			}else if(posY>maxH){
+				posY=maxH;
+			}
+			oDrag.style.left=posX+'px';
+			oDrag.style.top=posY+'px';
+		}
+		//鼠标松开，窗口将不再移动
+		document.onmouseup=function(){
+			document.onmousemove=null;
+			document.onmouseup=null;
+		}
+	}
+}
+window.onload  = function (){
+	var oDrag = document.getElementById("drag");
+	var oTitle = get.byClass("title", oDrag)[0];
+	drag(oDrag, oTitle);
+}
+
 </script>
 <style type="text/css">
 <!--
 .atten {font-size:12px;font-weight:normal;color:#F00;}
 -->
+#drag{position:absolute;top:100px;left:100px;width:400px;height:170px;background:#e9e9e9;border:1px solid #444;border-radius:5px;box-shadow:0 1px 3px 2px #666;}
+#drag .title{position:relative;height:27px;margin:5px;}
+#drag .title h2{font-size:14px;height:27px;line-height:24px;border-bottom:1px solid #A1B4B0;}
+#drag .title div{position:absolute;height:19px;top:2px;right:0;}
+#drag .title a,a.open{float:left;width:21px;height:19px;display:block;margin-left:5px;background:url(/jscss/demoimg/201301/tool.png) no-repeat;}
+a.open{position:absolute;top:10px;left:50%;margin-left:-10px;background-position:0 0;}
+a.open:hover{background-position:0 -29px;}
+#drag .content{overflow:auto;margin:0 5px;}
+
 </style>
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 <link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
@@ -118,7 +194,7 @@ function savePropValueProcess(systemEnvDetailId){
 						  </tr>
                           <tr>
 							<td>
-								<input name="Submit2" type="button" class="right-button08" value="添加一项" onclick="link();"/>
+								<input name="Submit2" type="button" class="right-button08" value="添加一项" onclick="addPropKey();"/>
 							</td>
 							<td>
 								<a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03">查询参数配置</a>
@@ -171,6 +247,37 @@ function savePropValueProcess(systemEnvDetailId){
  </table>
 </div>
 </form>
+<div id="drag" style="display:none">
+    <div class="title">
+        <h2>添加参数</h2>
+    </div>
+    <div class="content">
+		<form  method="post" id="addSystemEnvDetailForm" name="addSystemEnvDetailForm" action="${contextPath}/systemconfig/saveSystemEnvDetail">
+		<input type="hidden" name="systemEnvId" value="$!systemEnvId"/>
+		<input type="hidden" name="systemId" value="$!systemId"/>
+        <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+    	<tr>
+	    	<td nowrap align="right" width="13%" height="30px">参数英文名:</td>
+			<td style="width:260px;height:30px"><input name="propKey" class="text" style="width:250px" type="text" /><span class="red"> *</span></td>
+		</tr>
+		<tr>
+			<td nowrap align="right" height="30px">参数中文名:</td>
+	    	<td><input name="remark" class="text" style="width:250px" type="text"  /><span class="red"> *</span></td>
+		</tr>
+    	<tr>
+    		<td nowrap align="right" width="13%" height="30px">参数值:</td>
+			<td height="30px"><input name="propValue" class="text" style="width:250px" type="text"/></td>
+    	</tr>
+		<tr>
+            <td colspan="2" align="center">
+				<input type="submit" name="saveBtn" value="保存" class="button"/>　
+				<input type="button" name="saveBtn" value="取消" class="button" onclick="doCancelProcess();"/>　
+			</td>
+		</tr>
+		</table>
+        </form>
+    </div>    
+</div>
 </body>
 
 </html>

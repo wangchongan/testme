@@ -41,6 +41,43 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+function editSystemConfig(systemId){
+	var saveBtnName = "saveBtn_"+systemId;
+	var systeNameText = "systemNameText_"+systemId;
+	var systemNameLabel = "systemNameLabel_"+systemId;
+	var remarkText = "remarkText_"+systemId;
+	var remarkLabel = "remarkLabel_"+systemId;
+	document.getElementById(systeNameText).style.display="";
+	document.getElementById(saveBtnName).style.display="";
+	document.getElementById(systemNameLabel).style.display="none";
+	document.getElementById(remarkText).style.display="";
+	document.getElementById(remarkLabel).style.display="none";
+}
+
+function saveSystemConfig(systemId){
+	var saveBtnName = "saveBtn_"+systemId;
+	var systeNameText = "systemNameText_"+systemId;
+	var systemNameLabel = "systemNameLabel_"+systemId;
+	var remarkText = "remarkText_"+systemId;
+	var remarkLabel = "remarkLabel_"+systemId;
+	var name = document.getElementById(systeNameText).value;
+	var remark = document.getElementById(remarkText).value;
+	if(!name){
+		alert("系统名称不能为空");
+   }else{
+   		document.getElementById(systeNameText).style.display="none";
+		document.getElementById(saveBtnName).style.display="none";
+		document.getElementById(systemNameLabel).style.display="";
+		document.getElementById(remarkText).style.display="none";
+		document.getElementById(remarkLabel).style.display="";
+  		location.href= "${contextPath}/systemconfig/updateSystemConfig?systemId="+systemId+"&name="+name+"&remark="+remark;
+   }
+
+}
+
+
+</script>
 <body>
 <form name="fom" id="fom" method="post" action="">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -51,9 +88,10 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
               <td>
     			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
               	  <tr>
-                    <td height="20"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
+                    <td height="30"><span class="newfont07">选择：<a href="#" class="right-font08" onclick="selectAll(fom,'delid');">全选</a>-<a href="#" class="right-font08" onclick="unselectAll(fom,'delid');">反选</a></span>
     	                <input name="batchDel" type="button" onclick="batchDelProcess(delid,'${contextPath}/systemconfig/batchDelSystemConfig?ids=')" class="right-button08" value="批量删除" />
-    			    </td>
+						<label name="resultMsg"><font color="red">$!resultMsg</font></label>
+					</td>
               	  </tr>
                   <tr>
                     <td height="40" class="font42">
@@ -70,10 +108,17 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 						  #foreach($systemDO in $systemDOList)
 							<tr bgcolor="#FFFFFF">
             				    <td height="20"><input type="checkbox" name="delid" value="$systemDO.id" align="center"/></td>
-            					<td>$systemDO.name</td>
-                                <td>$systemDO.remark</td>
+            					<td>
+									<label id="systemNameLabel_$!systemDO.id">$!systemDO.name</label>
+									<input type="text" class="text" id="systemNameText_$!systemDO.id" style="display:none;" size="40" value="$!systemDO.name">
+								</td>
                                 <td>
-        							<a href="${contextPath}/systemconfig/editSystemConfig?id=$!systemDO.id" target="mainFrame">编辑|</a>
+									<label id="remarkLabel_$!systemDO.id">$!systemDO.remark</label>
+									<input type="text" class="text" id="remarkText_$!systemDO.id" style="display:none;" size="50" value="$!systemDO.remark">
+									<input name="saveBtn_$!systemDO.id" id="saveBtn_$!systemDO.id" type="button" onclick="saveSystemConfig($!systemDO.id)" style="display:none;width:46px; height:18px;border:0; background:url(${contextPath}/res/images/btn_save.gif) right" />
+								</td>
+                                <td>
+        							<a href="javascript:void(0)" onclick="editSystemConfig($!systemDO.id)" target="mainFrame">编辑|</a>
         							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemConfig?id='+$!systemDO.id)">删除</a>
         						</td>
 							</tr>

@@ -42,6 +42,7 @@ import com.alibaba.testme.service.SystemEnvDetailService;
 import com.alibaba.testme.service.SystemEnvService;
 import com.alibaba.testme.service.SystemRequirePropService;
 import com.alibaba.testme.service.SystemService;
+import com.alibaba.testme.web.common.SessionUtils;
 
 /**
  * SystemConfigController 配置管理模块控制器
@@ -92,8 +93,8 @@ public class SystemConfigController {
             model.addAttribute("resultMsg", resultMsg);
             return "systemconfig/addSystemConfig";
         }
-        systemDO.setCreator("sys");
-        systemDO.setModifier("sys");
+        systemDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         SystemDO entity = systemService.findByName(systemDO.getName());
         if (entity != null) {
             resultMsg = "温馨提醒：该系统名称已经存在,name:" + systemDO.getName();
@@ -143,20 +144,27 @@ public class SystemConfigController {
      * @param id
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping
     public String updateSystemConfig(Model model, HttpServletRequest request,
-                                     @ModelAttribute("systemDO") SystemDO systemDO) {
+                                     @RequestParam("systemId") Long systemId,
+                                     @RequestParam("name") String name,
+                                     @RequestParam("remark") String remark) {
         String resultMsg = null;
-        if (systemDO == null || StringUtils.isBlank(systemDO.getName())) {
+        if (systemId == null || systemId <= 0L || StringUtils.isBlank(name)
+                || StringUtils.isBlank(remark)) {
             resultMsg = "温馨提醒：参数不能为空！";
         }
-        systemDO.setCreator("sys");
-        systemDO.setModifier("sys");
+        SystemDO systemDO = new SystemDO();
+        systemDO.setId(systemId);
+        systemDO.setName(name);
+        systemDO.setRemark(remark);
+        systemDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         SystemDO entity = systemService.findByName(systemDO.getName());
         if (entity != null && !entity.getId().equals(systemDO.getId())) {
             resultMsg = "温馨提醒：该系统名称已经存在,name:" + systemDO.getName();
             model.addAttribute("resultMsg", resultMsg);
-            return "systemconfig/editSystemConfig";
+            return systemConfigList(model, request);
         }
         int result = systemService.updateSystemDO(systemDO);
         if (result <= 0L) {
@@ -165,8 +173,7 @@ public class SystemConfigController {
             resultMsg = "温馨提醒：恭喜你！更新系统成功！";
         }
         model.addAttribute("resultMsg", resultMsg);
-        model.addAttribute("systemDO", systemDO);
-        return "systemconfig/editSystemConfig";
+        return systemConfigList(model, request);
     }
 
     @RequestMapping
@@ -230,7 +237,7 @@ public class SystemConfigController {
     @RequestMapping
     public String configList(Model model, HttpServletRequest request) {
         SystemConfigQuery query = new SystemConfigQuery();
-        query.setUserId(0L);
+        query.setUserId(SessionUtils.getLoginUser(request).getId());
         Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE, query);
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
@@ -266,7 +273,7 @@ public class SystemConfigController {
         if (sizePerPage == 0) {
             sizePerPage = SIZE_PER_PAGE;
         }
-        systemConfigQuery.setUserId(0L);
+        systemConfigQuery.setUserId(SessionUtils.getLoginUser(request).getId());
         Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(index, sizePerPage,
                 systemConfigQuery);
         if (resultPage == null) {
@@ -404,8 +411,8 @@ public class SystemConfigController {
             model.addAttribute("resultMsg", resultMsg);
             return addSystemRequiredProp(model, request);
         }
-        systemRequirePropDO.setCreator("sys");
-        systemRequirePropDO.setModifier("sys");
+        systemRequirePropDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemRequirePropDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         SystemRequirePropDO entity = systemRequirePropService.findByPropCodeAndSystemId(
                 systemRequirePropDO.getSystemId(), systemRequirePropDO.getPropCode());
         if (entity != null) {
@@ -435,7 +442,7 @@ public class SystemConfigController {
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
         SystemRequirePropDO systemRequirePropDO = new SystemRequirePropDO();
-        systemRequirePropDO.setCreator("sys");
+        systemRequirePropDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
         List<SystemRequirePropDO> entityList = systemRequirePropService
                 .findList(systemRequirePropDO);
         model.addAttribute("systemDOList", systemDOList);
@@ -459,7 +466,7 @@ public class SystemConfigController {
         String validteConfigNameMsg = null;
         SystemEnvDO entity = new SystemEnvDO();
         entity.setConfigName(configName);
-        entity.setUserId(10L);
+        entity.setUserId(SessionUtils.getLoginUser(request).getId());
         List<SystemEnvDO> systemEnvDOList = systemEnvService.findList(entity);
         if (systemEnvDOList != null && systemEnvDOList.size() > 0) {
             validteConfigNameMsg = "亲！该配置名称已经存在哦！";
@@ -485,7 +492,7 @@ public class SystemConfigController {
         String validteConfigNameMsg = null;
         SystemEnvDO entity = new SystemEnvDO();
         entity.setConfigName(configName);
-        entity.setUserId(10L);
+        entity.setUserId(SessionUtils.getLoginUser(request).getId());
         List<SystemEnvDO> systemEnvDOList = systemEnvService.findList(entity);
         if (systemEnvDOList != null && systemEnvDOList.size() > 0) {
             validteConfigNameMsg = "亲！该配置名称已经存在哦！";
@@ -514,7 +521,7 @@ public class SystemConfigController {
             model.addAttribute("resultMsg", resultMsg);
             return configList(model, request);
         }
-        String modifier = "sys";
+        String modifier = SessionUtils.getLoginUser(request).getUserName();
         int result = systemEnvDetailService.updatePropValue(systemEnvDetailId, propValue, modifier);
         if (result == 0) {
             resultMsg = "温馨提醒：参数值更新失败！";
@@ -546,7 +553,7 @@ public class SystemConfigController {
             model.addAttribute("resultMsg", resultMsg);
             return editSystemEnv(model, request, systemEnvId);
         }
-        String modifier = "sys";
+        String modifier = SessionUtils.getLoginUser(request).getUserName();
         int result = systemEnvDetailService.updatePropValue(systemEnvDetailId, propValue, modifier);
         if (result == 0) {
             resultMsg = "温馨提醒：参数值更新失败！";
@@ -579,7 +586,7 @@ public class SystemConfigController {
             return goConfigureSystemRequiredProp("温馨提醒：参数信息为空，无需保存！", model, request);
         }
         //保存系统环境参数信息
-        Long result = saveSystemEnvDO(configName, systemId);
+        Long result = saveSystemEnvDO(configName, systemId, request);
         if (result == null || result <= 0L) {
             return goConfigureSystemRequiredProp("温馨提醒：必要参数信息保存失败！", model, request);
 
@@ -598,7 +605,7 @@ public class SystemConfigController {
                 return goConfigureSystemRequiredProp("温馨提醒：不可为空的参数必须有值", model, request);
             }
 
-            Long saveResult = saveSystemEnvDetailDO(propCode, propvalue, propName, result);
+            Long saveResult = saveSystemEnvDetailDO(propCode, propvalue, propName, result, request);
             if (saveResult == null || saveResult <= 0L) {
                 systemEnvDetailService.deleteByEnvId(result);
                 systemEnvService.deleteSystemEnvDO(result);
@@ -666,11 +673,71 @@ public class SystemConfigController {
         systemEnvDO.setConfigName(configName);
         systemEnvDO.setId(systemEnvId);
         systemEnvDO.setSystemId(systemId);
-        systemEnvDO.setModifier("sys");
+        systemEnvDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         int result = systemEnvService.updateSystemEnvDO(systemEnvDO);
         if (result == 0) {
             model.addAttribute("resultMsg", "配置名称和所属系统更新失败！");
         }
+
+        return editSystemEnv(model, request, systemEnvId);
+    }
+
+    /**
+     * 往指定配置名称中添加一个参数
+     * 
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveSystemEnvDetail(Model model, HttpServletRequest request,
+                                      @RequestParam("systemEnvId") Long systemEnvId,
+                                      @RequestParam("systemId") Long systemId,
+                                      @RequestParam("propKey") String propKey,
+                                      @RequestParam("propValue") String propValue,
+                                      @RequestParam("remark") String remark) {
+        String resultMsg = null;
+        if (systemEnvId == null || systemEnvId <= 0L || systemId == null || systemId <= 0L
+                || StringUtils.isBlank(propKey) || StringUtils.isBlank(propValue)
+                || StringUtils.isBlank(remark)) {
+            resultMsg = "温馨提醒：参数不能为空！";
+            model.addAttribute("resultMsg", resultMsg);
+            return editSystemEnv(model, request, systemEnvId);
+        }
+        SystemEnvDetailDO systemEnvDetailDO = new SystemEnvDetailDO();
+        systemEnvDetailDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDetailDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDetailDO.setPropKey(propKey);
+        systemEnvDetailDO.setPropValue(propValue);
+        systemEnvDetailDO.setRemark(remark);
+        systemEnvDetailDO.setSystemEnvId(systemEnvId);
+        SystemRequirePropDO query = new SystemRequirePropDO();
+        query.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        query.setPropCode(propKey);
+        query.setSystemId(systemId);
+        List<SystemRequirePropDO> systemRequirePropDOList = systemRequirePropService
+                .findList(query);
+        if (systemRequirePropDOList == null || systemRequirePropDOList.size() == 0) {//不在用户定义的必要参数内
+            systemEnvDetailDO.setConfigType(ConfigTypeEnum.USER_CUSTOM.getKey());
+        } else {
+            systemEnvDetailDO.setConfigType(ConfigTypeEnum.SYSTEM_REQUIRED.getKey());
+        }
+        //查询该参数是否已经存在
+        SystemConfigQuery systemConfigQuery = new SystemConfigQuery();
+        systemConfigQuery.setSystemEnvId(systemEnvId);
+        systemConfigQuery.setPropKey(propKey);
+        List<SystemConfigVO> systemConfigVOList = systemEnvDetailService
+                .findByConditions(systemConfigQuery);
+        if (systemConfigVOList != null && systemConfigVOList.size() > 0) {
+            resultMsg = "温馨提醒：该参数已经存在,参数名：" + propKey;
+            model.addAttribute("resultMsg", resultMsg);
+            return editSystemEnv(model, request, systemEnvId);
+        }
+        Long result = systemEnvDetailService.addSystemEnvDetailDO(systemEnvDetailDO);
+        if (result == null || result <= 0L) {
+            resultMsg = "温馨提醒：添加参数保存失败，请重试！";
+        } else {
+            resultMsg = "温馨提醒：恭喜你!添加参数成功！";
+        }
+        model.addAttribute("resultMsg", resultMsg);
 
         return editSystemEnv(model, request, systemEnvId);
     }
@@ -681,11 +748,11 @@ public class SystemConfigController {
         return configureSystemRequiredProp(model, request);
     }
 
-    private Long saveSystemEnvDO(String configName, Long systemId) {
+    private Long saveSystemEnvDO(String configName, Long systemId, HttpServletRequest request) {
         SystemEnvDO systemEnvDO = new SystemEnvDO();
         systemEnvDO.setConfigName(configName);
-        systemEnvDO.setCreator("sys");
-        systemEnvDO.setModifier("sys");
+        systemEnvDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         systemEnvDO.setIsDefault("Y");
         systemEnvDO.setSystemId(systemId);
         systemEnvDO.setUserId(0L);
@@ -694,10 +761,10 @@ public class SystemConfigController {
     }
 
     private Long saveSystemEnvDetailDO(String propCode, String propvalue, String propName,
-                                       Long systemEnvId) {
+                                       Long systemEnvId, HttpServletRequest request) {
         SystemEnvDetailDO systemEnvDetailDO = new SystemEnvDetailDO();
-        systemEnvDetailDO.setCreator("sys");
-        systemEnvDetailDO.setModifier("sys");
+        systemEnvDetailDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDetailDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
         systemEnvDetailDO.setPropKey(propCode);
         systemEnvDetailDO.setPropValue(propvalue);
         systemEnvDetailDO.setRemark(propName);

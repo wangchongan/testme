@@ -73,6 +73,9 @@ function savePropValueProcess(systemEnvDetailId){
 </script>
 <body>
 <form id="fom" name="fom" method="post" action="${contextPath}/systemconfig/systemEnvDetailList">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="30">
