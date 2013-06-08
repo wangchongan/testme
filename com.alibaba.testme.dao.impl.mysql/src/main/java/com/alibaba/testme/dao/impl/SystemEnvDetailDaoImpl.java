@@ -1,8 +1,13 @@
 package com.alibaba.testme.dao.impl;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.orm.ibatis.SqlMapClientCallback;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
@@ -10,6 +15,7 @@ import com.alibaba.testme.dao.SystemEnvDetailDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
 import com.alibaba.testme.domain.query.SystemConfigQuery;
 import com.alibaba.testme.domain.vo.SystemConfigVO;
+import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
  * SystemEnvDetail Dao Implement
@@ -18,6 +24,7 @@ import com.alibaba.testme.domain.vo.SystemConfigVO;
  */
 public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemConfigVO> implements
         SystemEnvDetailDao {
+    private static final Logger logger = LoggerFactory.getLogger(SystemEnvDetailDaoImpl.class);
 
     /**
      * @param systemEnvDetailDO
@@ -100,9 +107,12 @@ public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemCon
     }
 
     @Override
-    public int deleteByEnvId(Long systemEnvId) {
+    public int deleteByEnvId(Long systemEnvId, String configType) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("systemEnvId", systemEnvId);
+        paramMap.put("configType", configType);
         Integer result = (Integer) this.getSqlMapClientTemplate().delete(
-                "systemEnvDetail.deleteByEnvId", systemEnvId);
+                "systemEnvDetail.deleteByEnvId", paramMap);
         if (result == null) {
             return 0;
         }
@@ -128,6 +138,37 @@ public class SystemEnvDetailDaoImpl extends PageSqlMapClientDaoSupport<SystemCon
     public List<SystemConfigVO> findByConditions(SystemConfigQuery systemConfigQuery) {
         return (List<SystemConfigVO>) this.getSqlMapClientTemplate().queryForList(
                 "systemEnvDetail.findByConditions", systemConfigQuery);
+    }
+
+    /**
+     * 批量保存
+     * 
+     * @param systemEnvDetailDOList
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void batchSaveEnvDetail(final List<SystemEnvDetailDO> systemEnvDetailDOList) {
+        try {
+            getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
+
+                public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+                    executor.startBatch(); // 通知开始批量
+                    int batch = 1;
+                    for (SystemEnvDetailDO systemEnvDetailDO : systemEnvDetailDOList) {
+                        executor.delete("systemEnvDetail.add", systemEnvDetailDO);
+                        if (batch % 100 == 0) { // 注意：executeBatch()会将inBatch属性置为false，当下一次调用delete的时候会直接执行
+                            executor.executeBatch();
+                            executor.startBatch(); // 因此，这里需要再start一次
+                        }
+                        batch++;
+                    }
+                    executor.executeBatch();
+                    return null;
+                }
+            });
+
+        } catch (Exception e) {
+            logger.error("批处理出现异常", e);
+        }
     }
 
 }

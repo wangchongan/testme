@@ -4,11 +4,6 @@
     <title>TestMe-便捷测试平台</title>
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
-<style type="text/css">
-<!--
-.atten {font-size:12px;font-weight:normal;color:#F00;}
--->
-</style>
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 

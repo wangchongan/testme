@@ -21,6 +21,13 @@ public interface SystemEnvDetailDao {
     public Long addSystemEnvDetailDO(SystemEnvDetailDO systemEnvDetailDO);
 
     /**
+     * 批量保存
+     * 
+     * @param systemEnvDetailDOList
+     */
+    public void batchSaveEnvDetail(List<SystemEnvDetailDO> systemEnvDetailDOList);
+
+    /**
      * @param systemEnvDetailDO
      * @return
      */
@@ -62,9 +69,9 @@ public interface SystemEnvDetailDao {
     public int delSystemEnvDetailDOByIds(List<Long> idList);
 
     /**
-     * 系统环境参数ID
+     * 根据系统环境ID和配置类型删除参数详情记录，配置类型可为空
      */
-    public int deleteByEnvId(Long systemEnvId);
+    public int deleteByEnvId(Long systemEnvId, String configType);
 
     /**
      * 修改参数值

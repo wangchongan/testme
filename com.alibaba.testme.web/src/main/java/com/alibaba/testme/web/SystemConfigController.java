@@ -15,13 +15,20 @@
  */
 package com.alibaba.testme.web;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -29,6 +36,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alibaba.testme.common.enums.ConfigTypeEnum;
 import com.alibaba.testme.common.ibatispage.Page;
@@ -64,6 +73,17 @@ public class SystemConfigController {
      * 每页显示条数
      */
     private static final Integer     SIZE_PER_PAGE = 50;
+    /**
+     * 上传文件大小限制
+     */
+    private static final Long        MAX_SIZE      = Long.valueOf(5 * 1024 * 1024);
+    /**
+     * 文件后缀
+     */
+    private static final String      PROPERTIES    = "properties";
+
+    private static final Logger      logger        = LoggerFactory
+                                                           .getLogger(SystemConfigController.class);
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
@@ -607,7 +627,7 @@ public class SystemConfigController {
 
             Long saveResult = saveSystemEnvDetailDO(propCode, propvalue, propName, result, request);
             if (saveResult == null || saveResult <= 0L) {
-                systemEnvDetailService.deleteByEnvId(result);
+                systemEnvDetailService.deleteByEnvId(result, null);
                 systemEnvService.deleteSystemEnvDO(result);
                 return goConfigureSystemRequiredProp("温馨提醒：参数信息保存失败，请重试！", model, request);
             }
@@ -742,6 +762,176 @@ public class SystemConfigController {
         return editSystemEnv(model, request, systemEnvId);
     }
 
+    /**
+     * 进入参数导入页面
+     * 
+     * @return
+     */
+    @RequestMapping
+    public String importConfig(Model model, HttpServletRequest request) {
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        model.addAttribute("systemDOList", systemDOList);
+        return "systemconfig/importConfig";
+    }
+
+    /**
+     * 导入配置页面：校验配置名称
+     */
+    @RequestMapping
+    public String validateConfigName(Model model, HttpServletRequest request,
+                                     @RequestParam("configName") String configName,
+                                     @RequestParam("systemId") Long systemId) {
+        model.addAttribute("configName", configName);
+        model.addAttribute("systemId", systemId);
+        if (StringUtils.isBlank(configName) || systemId == null || systemId <= 0L) {
+            model.addAttribute("validateResult", "配置名称和所属系统不能为空");
+            return importConfig(model, request);
+        }
+        //如果该配置名称已经存在，且属于该用户创建的，则无需重新创建，否则需要重新创建
+        SystemEnvDO systemEnvDO = new SystemEnvDO();
+        systemEnvDO.setConfigName(configName);
+        List<SystemEnvDO> systemEnvList = systemEnvService.findList(systemEnvDO);
+        if (systemEnvList == null || systemEnvList.size() == 0) {
+            return importConfig(model, request);
+        } else {
+            for (SystemEnvDO envDO : systemEnvList) {
+                if (!envDO.getUserId().equals(SessionUtils.getLoginUser(request).getId())) {
+                    model.addAttribute("validateResult", "配置名称重复！");
+                    return importConfig(model, request);
+                } else if (!envDO.getSystemId().equals(systemId)) {
+                    model.addAttribute("validateResult", "您已经创建了同样的配置名称，但所属系统不相同，所属系统ID为："
+                            + systemId);
+                    return importConfig(model, request);
+                }
+            }
+        }
+        return importConfig(model, request);
+    }
+
+    /**
+     * 导入参数配置
+     * 
+     * @param model
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String importConfigProcess(Model model, HttpServletRequest request,
+                                      @RequestParam("configName") String configName,
+                                      @RequestParam("systemId") Long systemId) {
+        model.addAttribute("configName", configName);
+        model.addAttribute("systemId", systemId);
+        if (StringUtils.isBlank(configName) || systemId == null || systemId <= 0L) {
+            return goImportConfig("配置名称和所属系统不能为空", model, request);
+        }
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = multipartRequest.getFile("configFile");
+        String resultMsg = null;
+        InputStream inputStream = null;
+        //基本校验
+        resultMsg = simpleCheck(multipartFile);
+        if (StringUtils.isNotBlank(resultMsg)) {
+            return goImportConfig(resultMsg, model, request);
+        }
+        try {
+            inputStream = multipartFile.getInputStream();
+        } catch (IOException e) {
+            logger.error("import config error", e);
+            return goImportConfig(e.getMessage(), model, request);
+        }
+        Properties property = new Properties();
+        try {
+            property.load(inputStream);
+        } catch (IOException e) {
+            logger.error("load property file error", e);
+            return goImportConfig("加载配置文件失败" + e.getMessage(), model, request);
+        }
+        if (property == null || property.entrySet() == null || property.entrySet().size() == 0) {
+            return goImportConfig("没有参数配置记录", model, request);
+        }
+
+        //保存参数记录
+        return deleteAndSaveEnvDetails(configName, systemId, property, model, request);
+    }
+
+    private String goImportConfig(String resultMsg, Model model, HttpServletRequest request) {
+        model.addAttribute("resultMsg", resultMsg);
+        return importConfig(model, request);
+    }
+
+    /*
+     * 保存系统环境配置，先删除该配置名称对应的所有用户自定义类型的参数信息，再批量插入配置信息
+     */
+    @Transactional
+    private String deleteAndSaveEnvDetails(String configName, Long systemId, Properties property,
+                                           Model model, HttpServletRequest request) {
+        SystemEnvDO systemEnvDO = new SystemEnvDO();
+        systemEnvDO.setConfigName(configName);
+        List<SystemEnvDO> systemEnvList = systemEnvService.findList(systemEnvDO);
+        Long systemEnvId = null;
+        if (systemEnvList == null || systemEnvList.size() == 0) {
+            Long result = saveSystemEnvDO(configName, systemId, request);
+            if (result == null || result <= 0L) {
+                return goImportConfig("参数配置保存失败，请重试！", model, request);
+            }
+            systemEnvId = result;
+        } else {
+            systemEnvId = systemEnvList.get(0).getId();
+        }
+        List<SystemEnvDetailDO> systemEnvDetailList = new ArrayList<SystemEnvDetailDO>();
+        for (Iterator<Entry<Object, Object>> it = property.entrySet().iterator(); it.hasNext();) {
+            Entry<Object, Object> entry = (Entry<Object, Object>) it.next();
+            systemEnvDetailList.add(buildEnvDetails(systemEnvId, entry, request));
+        }
+        try {
+            systemEnvDetailService.deleteByEnvId(systemEnvId, ConfigTypeEnum.USER_CUSTOM.getKey());
+            systemEnvDetailService.batchSaveEnvDetail(systemEnvDetailList);
+        } catch (Exception e) {
+            logger.error("deleteAndSaveEnvDetails error", e);
+            return goImportConfig(e.getMessage(), model, request);
+        }
+
+        return goImportConfig("恭喜你！导入成功！", model, request);
+    }
+
+    /*
+     * 组装参数详情信息
+     */
+    private SystemEnvDetailDO buildEnvDetails(Long systemEnvId, Entry<Object, Object> entry,
+                                              HttpServletRequest request) {
+        SystemEnvDetailDO systemEnvDetailDO = new SystemEnvDetailDO();
+        systemEnvDetailDO.setConfigType(ConfigTypeEnum.USER_CUSTOM.getKey());
+        systemEnvDetailDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDetailDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
+        systemEnvDetailDO.setPropKey(String.valueOf(entry.getKey()));
+        systemEnvDetailDO.setPropValue(String.valueOf(entry.getValue()));
+        systemEnvDetailDO.setRemark(String.valueOf(entry.getKey()));
+        systemEnvDetailDO.setSystemEnvId(systemEnvId);
+
+        return systemEnvDetailDO;
+    }
+
+    private String simpleCheck(MultipartFile multipartFile) {
+        // 判断上传文件是否为空
+        if (multipartFile == null || multipartFile.getName() == null) {
+            return "上传的文件为空!";
+        }
+        if (multipartFile.getSize() == 0) {
+            return "上传的文件大小为空!";
+        }
+        // 判断上传文件的大小是否超出限制
+        if (multipartFile.getSize() > MAX_SIZE) {
+            return "上传的文件大小超过最大值：" + MAX_SIZE / (1024 * 1024) + "M!";
+        }
+        // 判断上传文件是否为允许处理的类型
+        String extesion = getExtension(multipartFile.getOriginalFilename());
+        if (!PROPERTIES.equalsIgnoreCase(extesion)) {
+            return "文件格式错误，请上传.properties文件";
+        }
+        return null;
+    }
+
     private String goConfigureSystemRequiredProp(String resultMsg, Model model,
                                                  HttpServletRequest request) {
         model.addAttribute("resultMsg", resultMsg);
@@ -772,5 +962,16 @@ public class SystemConfigController {
         systemEnvDetailDO.setConfigType(ConfigTypeEnum.SYSTEM_REQUIRED.getKey());
 
         return systemEnvDetailService.addSystemEnvDetailDO(systemEnvDetailDO);
+    }
+
+    /**
+     * 获取扩展名
+     * 
+     * @param fileName
+     * @return
+     */
+    public static String getExtension(String fileName) {
+        int pos = fileName.lastIndexOf(".");
+        return fileName.substring(pos + 1);
     }
 }

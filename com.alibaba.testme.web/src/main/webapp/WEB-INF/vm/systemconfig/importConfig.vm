@@ -1,0 +1,68 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+function isExistsConfigName(){
+	var configName = document.getElementById("configName").value;
+	var systemId = document.getElementById("systemId").value;
+	location.href= "${contextPath}/systemconfig/validateConfigName?configName="+configName+"&systemId="+systemId;
+}
+</script>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ContentBody">
+<form  method="post" id="importConfigForm" enctype="multipart/form-data" action="${contextPath}/systemconfig/importConfigProcess">
+	<div>
+    	<table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+            <tr>
+    	    	<td nowrap align="right" width="13%" height="40px">配置名称:</td>
+    			<td width="20%" height="30px"><input id="configName" name="configName" value="$!configName" onblur="isExistsConfigName()" class="text" style="width:200px;" type="text" /><span class="red"> *</span></td>
+				<td width="67%"></td>
+			</tr>
+			<tr>
+				<td nowrap align="right" width="13%" height="40px">所属系统:</td>
+				<td nowrap  height="30px" width="20%">
+					<select id="systemId" name="systemId" style="width:150px;height:25px" onchange="isExistsConfigName()" >
+						  #foreach($systemDO in $systemDOList)
+							#if($systemDO.id==$systemId)
+								<option value="$!systemDO.id" selected>$!systemDO.name</option>
+							#else
+								<option value="$!systemDO.id">$!systemDO.name</option>	
+							#end
+						  #end
+					</select>
+				 </td>
+				 <td width="67%"><label name="resultMsg"><font color="red">$!validateResult</font></label></td>
+			</tr>
+			<tr>
+				<td nowrap align="right" width="13%" height="40px">property文件:</td>
+				<td nowrap  height="30px" width="20%">
+					<input id="configFile" name="configFile" type="file"/>
+				</td>
+				<td width="67%"></td>
+			</tr>
+			<tr>
+				<td nowrap align="right" colspan="2" height="40px" width="33%">
+					<input type="submit" name="importBtn" value="导&nbsp;入" id="importBtn" />
+				</td>
+				<td width="67%"></td>
+			</tr>
+    	</table>
+	 </div>
+	 <div style="width:450px;text-align:left;margin-left:30px;color:#304A86;margin-top:10px;border: 1px solid #304A86;padding:10px;">
+		<b>参数配置导入说明：</b><br/>
+		1. 配置文件必须是可解析的"key=value"格式的文件<br/>
+	    2. 重复的参数默认过滤<br/>
+	 </div>
+	  <div>
+        <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+	  </div>
+
+</form>
+</body>
+
+</html>

@@ -100,11 +100,11 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
     }
 
     @Override
-    public int deleteByEnvId(Long systemEnvId) {
+    public int deleteByEnvId(Long systemEnvId, String configType) {
         if (systemEnvId == null || systemEnvId <= 0L) {
             return 0;
         }
-        return systemEnvDetailDao.deleteByEnvId(systemEnvId);
+        return systemEnvDetailDao.deleteByEnvId(systemEnvId, configType);
     }
 
     @Override
@@ -122,6 +122,14 @@ public class SystemEnvDetailServiceImpl implements SystemEnvDetailService {
             return null;
         }
         return systemEnvDetailDao.findByConditions(systemConfigQuery);
+    }
+
+    @Override
+    public void batchSaveEnvDetail(List<SystemEnvDetailDO> systemEnvDetailDOList) {
+        if (systemEnvDetailDOList == null || systemEnvDetailDOList.size() == 0) {
+            return;
+        }
+        systemEnvDetailDao.batchSaveEnvDetail(systemEnvDetailDOList);
     }
 
 }

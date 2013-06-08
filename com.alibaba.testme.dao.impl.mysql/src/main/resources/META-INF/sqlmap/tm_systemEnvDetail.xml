@@ -244,11 +244,18 @@
     </iterate>
   </delete>
   
-   <delete id="systemEnvDetail.deleteByEnvId" parameterClass="Long">
+   <delete id="systemEnvDetail.deleteByEnvId" parameterClass="map">
     <![CDATA[  
      DELETE FROM tm_system_env_detail 
       WHERE system_env_id = #systemEnvId#
-    ]]>  
+    ]]>
+	<dynamic>
+			<isNotEmpty prepend="and" property="configType">
+	            <![CDATA[
+	            config_type = #configType#
+	            ]]>
+			</isNotEmpty>
+	</dynamic>
    </delete>
    
    <update id="systemEnvDetail.updatePropValue" parameterClass="map">
