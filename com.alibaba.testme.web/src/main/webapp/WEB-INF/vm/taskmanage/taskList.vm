@@ -4,40 +4,6 @@
 	<meta http-equiv="Content-Language" content="zh-CN"/>
     <title>TestMe-便捷测试平台</title>
 </head>
-<style type="text/css">
-<!--
-body {
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-right: 0px;
-	margin-bottom: 0px;
-}
-.tabfont01 {	
-	font-family: "宋体";
-	font-size: 9px;
-	color: #555555;
-	text-decoration: none;
-	text-align: center;
-}
-.font051 {font-family: "宋体";
-	font-size: 12px;
-	color: #333333;
-	text-decoration: none;
-	line-height: 20px;
-}
-.font201 {font-family: "宋体";
-	font-size: 12px;
-	color: #FF0000;
-	text-decoration: none;
-}
-.button {
-	font-family: "宋体";
-	font-size: 14px;
-	height: 37px;
-}
-html { overflow-x: auto; overflow-y: auto; border:0;} 
--->
-</style>
 
 <link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
@@ -45,32 +11,6 @@ html { overflow-x: auto; overflow-y: auto; border:0;}
 
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
-<script>
-//弹出输入框
-function editProcess(systemEnvDetailId){
-	var saveBtnName = "saveBtn_"+systemEnvDetailId;
-	var textName = "propValueText_"+systemEnvDetailId;
-	var labelName = "propValueLabel_"+systemEnvDetailId;
-	document.getElementById(textName).style.display="";
-	document.getElementById(saveBtnName).style.display="";
-	document.getElementById(labelName).style.display="none";
-}
-
-function savePropValueProcess(systemEnvDetailId){
-   var saveBtnName = "saveBtn_"+systemEnvDetailId;
-   var textName = "propValueText_"+systemEnvDetailId;
-   var labelName = "propValueLabel_"+systemEnvDetailId;
-   var propValue = document.getElementById(textName).value;
-   if(!propValue){
-		alert("参数值不能为空");
-   }else{
-   		document.getElementById(textName).style.display="none";
-		document.getElementById(saveBtnName).style.display="none";
-		document.getElementById(labelName).style.display="";
-  		location.href= "${contextPath}/systemconfig/editPropValue?systemEnvDetailId="+systemEnvDetailId+"&propValue="+propValue;
-   }
-}
-</script>
 <body>
 <form id="fom" name="fm" method="post" action="${contextPath}/task/list">
 <div>
@@ -81,8 +21,9 @@ function savePropValueProcess(systemEnvDetailId){
     <td height="30">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-			<td height="124" background="${contextPath}/res/images/testme_nav04.gif">
+			<td background="${contextPath}/res/images/testme_nav04.gif">
 				<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+				</br>
 				<tr>
 				  <td width="80">所属系统：</td>
 				  <td>
@@ -113,7 +54,7 @@ function savePropValueProcess(systemEnvDetailId){
 				  </td>
 				  <td>&nbsp;</td>
 				</tr>
-				
+				<tr><td>&nbsp;</td></tr>
 				<tr>
 				  <td width="80">测试流程：</td>
 				  <td>
@@ -139,9 +80,8 @@ function savePropValueProcess(systemEnvDetailId){
     							 <option value="$!item.key">$!item.name</option>
     						  #end
 						  #end
-					</select>
-    						  
-    						  <input name="Submit4" type="submit" class="right-button02" value="查 询" /> 
+					</select>	  
+    				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="Submit4" type="submit" class="right-button02" value="查 询" /> 
 				  </td>
 				</tr>
 				
@@ -149,6 +89,7 @@ function savePropValueProcess(systemEnvDetailId){
 			</td>
 			</tr>
 		</table>
+		</br>
 	</td>
   </tr>
   <tr>
@@ -159,8 +100,17 @@ function savePropValueProcess(systemEnvDetailId){
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
                   <tr>
                     <td height="40" class="font42">
-        				<table width="100%" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
-        				  <tr class="CTitle" >
+        				<table width="100%" class="tableFixClass" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646">
+        				  <col style="width: 10%" />
+						  <col style="width: 12%" />
+						  <col style="width: 10%" />
+						  <col style="width: 10%" />
+						  <col style="width: 10%" />
+						  <col style="width: 10%" />
+						  <col style="width: 15%" />
+						  <col style="width: 15%" />
+						  <col style="width: 8%" />
+						  <tr class="CTitle" >
                             <td height="22" colspan="9" align="center" style="font-size:16px">配置信息列表</td>
                           </tr>
                           <tr bgcolor="#EEEEEE">

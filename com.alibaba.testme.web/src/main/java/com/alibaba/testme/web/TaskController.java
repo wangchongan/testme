@@ -42,12 +42,12 @@ import com.alibaba.testme.service.TestunitFlowService;
  * @author lz
  */
 @Controller
-@RequestMapping(value = "/task/*")
+@RequestMapping(value = "/taskmanage/*")
 public class TaskController {
 
     @Resource
     private SystemService           systemService;
-    
+
     @Resource
     private SystemEnvService        systemEnvService;
 
@@ -70,9 +70,6 @@ public class TaskController {
         model.addAttribute("testunitFlowList",
                 this.testunitFlowService.findList(new TestunitFlowDO()));
     }
-    
-    
-    
 
     @RequestMapping
     public String init(Model model,
@@ -80,7 +77,7 @@ public class TaskController {
                        @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery) {
 
         this.initParam(model, request);
-        return "/task/taskList";
+        return "/taskmanage/taskList";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -91,6 +88,6 @@ public class TaskController {
                 .queryPage(testunitFlowCaseQuery);
         model.addAttribute("queryPage", queryPage);
         this.initParam(model, request);
-        return "/task/taskList";
+        return "/taskmanage/taskList";
     }
 }

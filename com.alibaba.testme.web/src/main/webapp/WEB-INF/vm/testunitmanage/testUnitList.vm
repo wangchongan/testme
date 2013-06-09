@@ -106,7 +106,7 @@ function savePropValueProcess(systemEnvDetailId){
               	  </tr>
                   <tr>
                     <td height="40" class="font42">
-        				<table style="width:1100px;TABLE-LAYOUT:fixed;WORD-BREAK:break-all;WORD-WRAP:break-word;" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+        				<table style="width:1100px;" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="tableFixClass">
         				  <col style="width: 3%" />
 						  <col style="width: 12%" />
 						  <col style="width: 8%" />
