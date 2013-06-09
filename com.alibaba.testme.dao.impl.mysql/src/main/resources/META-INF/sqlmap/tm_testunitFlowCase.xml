@@ -3,6 +3,8 @@
 
 <sqlMap namespace="testunitFlowCase">
 <typeAlias alias="testunitFlowCaseDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO" />
+<typeAlias alias="TestunitFlowCaseVO"    type="com.alibaba.testme.domain.vo.TestunitFlowCaseVO" />
+<typeAlias alias="testunitFlowCaseQuery"    type="com.alibaba.testme.domain.query.TestunitFlowCaseQuery" />
 
   <resultMap id="testunitFlowCaseDO_resultMap" class="testunitFlowCaseDO">
     <result property="id" column="ID" />
@@ -192,5 +194,78 @@
 	WHERE 1=1
     <include refid="testunitFlowCase.queryCondition" />
   </select>
+  
+  <sql id="testunitFlowCase.pageCondition">
+	    <dynamic>
+	      <isNotEmpty property="status" prepend="AND">
+	        <![CDATA[  
+	        	tfc.`status` = #status#
+	        ]]>  
+	      </isNotEmpty>
+	      <isNotEmpty property="testunitFlowId" prepend="AND">
+	        <![CDATA[  
+	        	tfc.`testunit_flow_id` = #testunitFlowId# 
+	        ]]>  
+	      </isNotEmpty>
+	      <isNotEmpty property="systemEnvId" prepend="AND">
+	        <![CDATA[  
+	        	tfc.`system_env_id` = #systemEnvId#
+	        ]]>  
+	      </isNotEmpty>
+	      <isNotEmpty property="systemId" prepend="AND">
+	        <![CDATA[  
+	        	tfc.`system_id` = #systemId# 
+	        ]]>  
+	      </isNotEmpty>
+	      <isNotEmpty property="testunitFlowId" prepend="AND">
+	        <![CDATA[  
+	        	tfc.`testunit_flow_id` = #testunitFlowId# 
+	        ]]>  
+	      </isNotEmpty>
+	    </dynamic>
+	  </sql>
+  
+  	<sql id="testunitFlowCase.page.sql">
+	    <![CDATA[  
+		select distinct 
+		  tfc.`id`,
+		  tfc.`status` status,
+		  date_format(tfc.`gmt_start`, '%Y-%m-%d %T') gmtStart,
+		  date_format(tfc.`gmt_end`, '%Y-%m-%d %T') gmtEnd,
+		  tf.`name` testunitFlowName,
+		  tf.`times` invokeTimes,
+		  se.`config_name` systemEnvName,
+		  s.`name` systemName 
+		from
+		  `tm_testunit_flow_case` tfc,
+		  `tm_testunit_flow` tf,
+		  `tm_system` s,
+		  `tm_system_env` se 
+		where tfc.`testunit_flow_id` = tf.`id` 
+		  and tfc.`system_env_id` = se.`id` 
+		  and tfc.`system_id` = s.`id` 
+    	]]>
+    	<include refid="testunitFlowCase.pageCondition" />
+	</sql>
+	
+  <select id="testunitFlowCase.getCount" parameterClass="map" resultClass="java.lang.Integer">
+    <![CDATA[  
+     select count(1)
+	   from (
+	]]>
+	   <include refid="testunitFlowCase.page.sql" />
+	   
+	<![CDATA[  
+	   ) t2
+    ]]>
+  </select>	
+  
+  
+  <select id="testunitFlowCase.pageList" parameterClass="map" resultClass="testunitFlowCaseVO">
+	<include refid="testunitFlowCase.page.sql" />
+	<include refid="paginationCondition" />
+  </select>
+
+	
   
 </sqlMap>

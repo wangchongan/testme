@@ -2,17 +2,20 @@ package com.alibaba.testme.dao.impl;
 
 import java.util.List;
 
-import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-
+import com.alibaba.testme.common.ibatispage.Page;
+import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
 import com.alibaba.testme.dao.TestunitFlowCaseDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
+import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 
 /**
  * TestunitFlowCase Dao Implement
  * 
  * @author xiaopenzi
  */
-public class TestunitFlowCaseDaoImpl extends SqlMapClientDaoSupport implements TestunitFlowCaseDao {
+public class TestunitFlowCaseDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlowCaseVO>
+        implements TestunitFlowCaseDao {
 
     /**
      * @param testunitFlowCaseDO
@@ -30,7 +33,7 @@ public class TestunitFlowCaseDaoImpl extends SqlMapClientDaoSupport implements T
      */
     @Override
     public int updateTestunitFlowCaseDO(TestunitFlowCaseDO testunitFlowCaseDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update("testunitFlowCase.update",
+        Integer result = this.getSqlMapClientTemplate().update("testunitFlowCase.update",
                 testunitFlowCaseDO);
         if (result == null) {
             return 0;
@@ -44,8 +47,7 @@ public class TestunitFlowCaseDaoImpl extends SqlMapClientDaoSupport implements T
      */
     @Override
     public int deleteTestunitFlowCaseDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
-                "testunitFlowCase.deleteById", id);
+        Integer result = this.getSqlMapClientTemplate().delete("testunitFlowCase.deleteById", id);
         if (result == null) {
             return 0;
         }
@@ -69,8 +71,15 @@ public class TestunitFlowCaseDaoImpl extends SqlMapClientDaoSupport implements T
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitFlowCaseDO> findList(TestunitFlowCaseDO testunitFlowCaseDO) {
-        return (List<TestunitFlowCaseDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunitFlowCase.findList", testunitFlowCaseDO);
+        return this.getSqlMapClientTemplate().queryForList("testunitFlowCase.findList",
+                testunitFlowCaseDO);
+    }
+
+    @Override
+    public Page<TestunitFlowCaseVO> queryPage(TestunitFlowCaseQuery testunitFlowCaseQuery) {
+        return this.page(testunitFlowCaseQuery.getPageIndex(),
+                testunitFlowCaseQuery.getSizePerPage(), testunitFlowCaseQuery,
+                "testunitFlowCase.getCount", "testunitFlowCase.pageList");
     }
 
 }

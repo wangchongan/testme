@@ -27,7 +27,8 @@ import com.alibaba.testme.common.ibatispage.Page;
 @Component
 public class PageUtil {
 
-    private static final int PAGE_NO_LIST_SIZE = 7;
+    private static final int DEFAULT_PAGE_NO_LIST_SIZE = 7;
+    private static final int DEFAULT_SIZE_SIZE = 20;
 
     /**
      * 生成页面分页组件
@@ -36,7 +37,7 @@ public class PageUtil {
      * @return
      */
     public static String genPageToolbar(Page<?> page) {
-        return genPageToolbar(page, null, PAGE_NO_LIST_SIZE);
+        return genPageToolbar(page, null, DEFAULT_SIZE_SIZE);
     }
 
     /**
@@ -45,7 +46,18 @@ public class PageUtil {
      * @return
      */
     public static String genPageToolbar(Page<?> page, String formName) {
-        return genPageToolbar(page, formName, PAGE_NO_LIST_SIZE);
+        return genPageToolbar(page, formName, 20);
+    }
+    
+    
+    /**
+     * 
+     * @param page
+     * @param sizePerpage
+     * @return
+     */
+    public static String genPageToolbar(Page<?> page, int sizePerpage) {
+        return genPageToolbar(page, null, sizePerpage);
     }
 
     /**
@@ -54,21 +66,30 @@ public class PageUtil {
      * @param pageNoListSize
      * @return
      */
-    public static String genPageToolbar(Page<?> page, String formName, int pageNoListSize) {
+    public static String genPageToolbar(Page<?> page, String formName, int sizePerpage) {
         StringBuffer buf = new StringBuffer();
-        long recordCount = page.getRecordCount(); // 总记录数
-        int sizePerpage = page.getSizePerpage(); // 一页有多少条记录
-        int pageCount = page.getPageSize(); // 总的页数
-        int pageIndex = page.getPageIndex();// 当前页码
+        long recordCount = 0;// 总记录数
+        int pageSize = sizePerpage;// 一页有多少条记录
+        int pageCount = 0; // 总的页数
+        int pageIndex = 1;// 当前页码
+
+        if (page != null) {
+            recordCount = page.getRecordCount();
+            pageSize = page.getSizePerpage();
+            pageCount = page.getPageSize();
+            pageIndex = page.getPageIndex();
+        }
 
         int minPageCount = pageCount > 0 ? 1 : 0;
         int prePage = pageIndex - 1;
         int nextPage = pageIndex + 1;
 
-        if (pageNoListSize == 0) {
-            pageNoListSize = PAGE_NO_LIST_SIZE;
-        }
+        int pageNoListSize = DEFAULT_PAGE_NO_LIST_SIZE;
 
+        if (formName == null || formName.trim().length() == 0) {
+            formName = "forms[0]";
+        }
+        
         buf.append("<div class=\"r3\">");
         buf.append("<ul class=\"pagination\">");
         if (pageCount > 0) {
@@ -133,19 +154,15 @@ public class PageUtil {
             buf.append("<li class=\"count\">未找到记录</li>");
         }
         buf.append("</ul></div>");
-        buf.append("\n<input type=\"hidden\" name=\"sizePerPage\" value=\"")
-                .append(sizePerpage).append("\"/>\n");
+        buf.append("\n<input type=\"hidden\" name=\"sizePerPage\" value=\"").append(pageSize)
+                .append("\"/>\n");
         buf.append("<input type=\"hidden\" name=\"pageIndex\" value=\"1\"/>\n");
         buf.append("<script type=\"text/javascript\"> \n");
-        if (formName == null || formName.trim().length() == 0) {
-            formName = "forms[0]";
-        }
         buf.append("function doPageSearch(pageIndex) { \n");
         buf.append("if(''==pageIndex || pageIndex<=0 || pageIndex>").append(pageCount).append("){");
         buf.append("alert(\"请输入正确的页码，页码最小为").append(minPageCount).append("，最大为").append(pageCount)
                 .append("\"); \n return;\n}");
-        buf.append(" document.").append(formName)
-                .append("[\"pageIndex\"].value=pageIndex;\n");
+        buf.append(" document.").append(formName).append("[\"pageIndex\"].value=pageIndex;\n");
         buf.append(" try{ loading(); } catch(e){};");
         buf.append(" document.").append(formName).append(".submit(); \n");
         buf.append("}\n");

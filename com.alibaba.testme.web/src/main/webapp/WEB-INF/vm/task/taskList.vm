@@ -1,0 +1,209 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.tabfont01 {	
+	font-family: "宋体";
+	font-size: 9px;
+	color: #555555;
+	text-decoration: none;
+	text-align: center;
+}
+.font051 {font-family: "宋体";
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+	line-height: 20px;
+}
+.font201 {font-family: "宋体";
+	font-size: 12px;
+	color: #FF0000;
+	text-decoration: none;
+}
+.button {
+	font-family: "宋体";
+	font-size: 14px;
+	height: 37px;
+}
+html { overflow-x: auto; overflow-y: auto; border:0;} 
+-->
+</style>
+
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/pagination.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script>
+//弹出输入框
+function editProcess(systemEnvDetailId){
+	var saveBtnName = "saveBtn_"+systemEnvDetailId;
+	var textName = "propValueText_"+systemEnvDetailId;
+	var labelName = "propValueLabel_"+systemEnvDetailId;
+	document.getElementById(textName).style.display="";
+	document.getElementById(saveBtnName).style.display="";
+	document.getElementById(labelName).style.display="none";
+}
+
+function savePropValueProcess(systemEnvDetailId){
+   var saveBtnName = "saveBtn_"+systemEnvDetailId;
+   var textName = "propValueText_"+systemEnvDetailId;
+   var labelName = "propValueLabel_"+systemEnvDetailId;
+   var propValue = document.getElementById(textName).value;
+   if(!propValue){
+		alert("参数值不能为空");
+   }else{
+   		document.getElementById(textName).style.display="none";
+		document.getElementById(saveBtnName).style.display="none";
+		document.getElementById(labelName).style.display="";
+  		location.href= "${contextPath}/systemconfig/editPropValue?systemEnvDetailId="+systemEnvDetailId+"&propValue="+propValue;
+   }
+}
+</script>
+<body>
+<form id="fom" name="fm" method="post" action="${contextPath}/task/list">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td height="124" background="${contextPath}/res/images/testme_nav04.gif">
+				<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+				  <td width="80">所属系统：</td>
+				  <td>
+					<select name="systemId" style="width:180px">
+                          <option value="">==请选择==</option>
+						  #foreach($systemDO in ${systemList})
+							#if($!systemDO.id==$!testunitFlowCaseQuery.systemId)
+								<option value="$!systemDO.id"  selected="selected">$!systemDO.name</option>
+							#else
+								<option value="$!systemDO.id">$!systemDO.name</option>
+							#end
+						  #end
+					</select>
+				  </td>
+				  <td width="80">配置名称：</td>
+				  <td>
+					  <select name="systemEnvId" style="width:180px">
+	                  	<option value="">==请选择==</option>
+						  #foreach($item in ${systemEnvList})
+						  	<option value="$!item.id"
+							  #if($!item.id ==$!testunitFlowCaseQuery.systemEnvId)
+								 selected="selected"
+							  #end 
+							  >$!item.configName</option>
+						  #end
+					  </select>
+				  
+				  </td>
+				  <td>&nbsp;</td>
+				</tr>
+				
+				<tr>
+				  <td width="80">测试流程：</td>
+				  <td>
+					  <select name="testunitFlowId" style="width:180px">
+		                  <option value="">==请选择==</option>
+						  #foreach($testunitFlow in ${testunitFlowList})
+						  	<option value="$!testunitFlow.id"
+							  #if($!testunitFlow.id == $!testunitFlowCaseQuery.testunitFlowId)
+								 selected="selected"
+							  #end 
+							  >$!testunitFlow.name</option>
+						  #end
+					  </select>
+				  </td>
+				  <td width="80">执行状态：</td>
+				  <td>
+					<select name="testunitFlowCaseStatusEnum" style="width:180px">
+                          <option value="">==请选择==</option>
+						  #foreach($item in ${statusList})
+    						  #if($!item.key==$!testunitFlowCaseQuery.testunitFlowCaseStatusEnum.key)
+    							<option value="$!item.key" selected="selected">$!item.name</option>
+    						  #else
+    							 <option value="$!item.key">$!item.name</option>
+    						  #end
+						  #end
+					</select>
+    						  
+    						  <input name="Submit4" type="submit" class="right-button02" value="查 询" /> 
+				  </td>
+				</tr>
+				
+			  </table>
+			</td>
+			</tr>
+		</table>
+	</td>
+  </tr>
+  <tr>
+    <td>
+		<table id="subtree1"  width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="40" class="font42">
+        				<table width="100%" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+        				  <tr class="CTitle" >
+                            <td height="22" colspan="9" align="center" style="font-size:16px">配置信息列表</td>
+                          </tr>
+                          <tr bgcolor="#EEEEEE">
+                            <td width="5%">测试单元流程编号</td>
+        					<td width="15%">测试单元流程名称</td>
+							<td width="10%">系统名称</td>
+							<td width="10%">配置名称</td>
+							<td width="5%">调用次数</td>
+							<td width="10%">执行状态</td>
+							<td width="10%">开始执行时间</td>
+							<td width="10%">结束执行时间</td>
+        					<td width="10%">操作</td>
+                          </tr>
+						  #foreach($item in $queryPage.datas)
+                          <tr bgcolor="#FFFFFF">                       
+        					<td>$!{item.id}</td>
+        					<td>$!{item.testunitFlowName}</td>
+                            <td>$!{item.systemName}</td>
+                            <td>$!{item.systemEnvName}</td>
+							<td>$!{item.invokeTimes}</td>
+							<td>$!{item.status.name}</td>
+							<td>$!{item.gmtStart}</td>
+							<td>$!{item.gmtEnd}</td>
+                            <td>
+    							<a href="javascript:void(0)" onclick="view($!{item.id})" target="mainFrame">查看</a> &nbsp;
+    							<a href="javascript:void(0)" onclick="del($!{item.id})">删除</a>
+    						</td>
+                          </tr>
+						  #end
+						</table>
+    				</td>
+				  </tr>
+				</table>
+			    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+					  <td height="33" class="listPage" cellpadding="0" cellspacing="0">
+						 $!{pageUtil.genPageToolbar(${queryPage}, 2)}
+					  </td>
+					</tr>
+			    </table>
+			</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
