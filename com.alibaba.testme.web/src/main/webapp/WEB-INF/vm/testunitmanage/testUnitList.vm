@@ -2,7 +2,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
-    <title>查询参数配置</title>
+    <title>查询测试单元</title>
 </head>
 
 <link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@ function savePropValueProcess(systemEnvDetailId){
 }
 </script>
 <body>
-<form id="fom" name="fom" method="post" action="${contextPath}/systemconfig/systemEnvDetailList">
+<form id="testUnitListForm" name="testUnitListForm" method="post" action="${contextPath}/testunitmanage/testUnitList">
 <div>
     <label name="resultMsg"><font color="red">$!resultMsg</font></label>
 </div>

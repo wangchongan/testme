@@ -20,14 +20,13 @@ body {
 <link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
 </head>
 <SCRIPT language=JavaScript>
-function tupian(idt){
+function imageShowProcess(idt){
     var nametu="xiaotu"+idt;
     var tp = document.getElementById(nametu);
     tp.src="${contextPath}/res/images/testme_02.gif";
 	
-	for(var i=1;i<30;i++)
+	for(var i=1;i<=30;i++)
 	{
-	  
 	  var nametu2="xiaotu"+i;
 	  if(i!=idt*1)
 	  {
@@ -38,23 +37,10 @@ function tupian(idt){
 	}
 }
 
-function list(idstr){
-	var name1="subtree"+idstr;
-	var name2="img"+idstr;
-	var objectobj=document.all(name1);
-	var imgobj=document.all(name2);
-	
+function listSubTreeProcess(idstr){
+	var objectobj=document.all("subtree"+idstr);
+	var imgobj=document.all("img"+idstr);
 	if(objectobj.style.display=="none"){
-		for(i=1;i<10;i++){
-			var name3="img"+i;
-			var name="subtree"+i;
-			var o=document.all(name);
-			if(o!=undefined){
-				o.style.display="none";
-				var image=document.all(name3);
-				image.src="${contextPath}/res/images/testme_04.gif";
-			}
-		}
 		objectobj.style.display="";
 		imgobj.src="${contextPath}/res/images/testme_05.gif";
 	}
@@ -95,39 +81,39 @@ function list(idstr){
             <td height="29">
 				<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="8%"><img name="img8" id="img8" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
+						<td width="8%"><img name="img1" id="img1" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
 						<td width="92%">
-								<a href="javascript:" target="mainFrame" class="left-font03" onClick="list('8');" >配置管理</a></td>
+								<a href="javascript:" target="mainFrame" class="left-font03" onClick="listSubTreeProcess('1');" >配置管理</a></td>
 					</tr>
 				</table>
 			</td>
           </tr>		  
         </TABLE>
-		<table id="subtree8" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
+		<table id="subtree1" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
 				cellspacing="0" class="left-table02">
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu19" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemConfig" target="mainFrame" class="left-font03" onClick="tupian('19');">新增系统</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu1" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemConfig" target="mainFrame" class="left-font03" onClick="imageShowProcess('1');">新增系统</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu20" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03" onClick="tupian('20');">查询系统配置</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu2" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/systemConfigList" target="mainFrame" class="left-font03" onClick="imageShowProcess('2');">查询系统配置</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu21" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemRequiredProp" target="mainFrame" class="left-font03" onClick="tupian('21');">定义系统必要参数</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu3" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/addSystemRequiredProp" target="mainFrame" class="left-font03" onClick="imageShowProcess('3');">定义系统必要参数</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu22" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/importConfig" target="mainFrame" class="left-font03" onClick="tupian('22');">导入参数配置</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu4" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/importConfig" target="mainFrame" class="left-font03" onClick="imageShowProcess('4');">导入参数配置</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu23" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/configureSystemRequiredProp" target="mainFrame" class="left-font03" onClick="tupian('23');">配置系统必要参数</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu5" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/configureSystemRequiredProp" target="mainFrame" class="left-font03" onClick="imageShowProcess('5');">配置系统必要参数</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu24" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03" onClick="tupian('24');">查询参数配置</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu6" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="${contextPath}/systemconfig/configList" target="mainFrame" class="left-font03" onClick="imageShowProcess('6');">查询参数配置</a></td>
 				</tr>
 		</table>
 		<!--  配置管理结束    -->
@@ -140,25 +126,25 @@ function list(idstr){
             <td height="29">
 				<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="8%"><img name="img7" id="img7" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
+						<td width="8%"><img name="img2" id="img2" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
 						<td width="92%">
-								<a href="javascript:" target="mainFrame" class="left-font03" onClick="list('7');" >测试单元管理</a></td>
+								<a href="javascript:" target="mainFrame" class="left-font03" onClick="listSubTreeProcess('2');" >测试单元管理</a></td>
 					</tr>
 				</table>
 			</td>
           </tr>		  
         </TABLE>
-		<table id="subtree7" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
+		<table id="subtree2" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
 				cellspacing="0" class="left-table02">
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu17" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
 				  <td width="91%">
-						<a href="sendxiaoxi.htm" target="mainFrame" class="left-font03" onClick="tupian('17');">查询测试单元</a></td>
+						<a href="sendxiaoxi.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('7');">查询测试单元</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu18" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="9%" height="20" ><img id="xiaotu8" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
 				  <td width="91%">
-					<a href="listtakexiaoxi.htm" target="mainFrame" class="left-font03" onClick="tupian('18');">新增测试单元</a></td>
+					<a href="listtakexiaoxi.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('8');">新增测试单元</a></td>
 				</tr>
       </table>
 		<!--  测试单元管理结束    -->
@@ -170,23 +156,23 @@ function list(idstr){
             <td height="29">
 				<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="8%"><img name="img1" id="img1" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
+						<td width="8%"><img name="img3" id="img3" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
 						<td width="92%">
-								<a href="javascript:" target="mainFrame" class="left-font03" onClick="list('1');" >测试流程管理</a></td>
+								<a href="javascript:" target="mainFrame" class="left-font03" onClick="listSubTreeProcess('3');" >测试流程管理</a></td>
 					</tr>
 				</table>
 			</td>
           </tr>		  
         </TABLE>
-		<table id="subtree1" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
+		<table id="subtree3" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" 
 				cellspacing="0" class="left-table02">
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu1" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="listxiangmuxinxi.htm" target="mainFrame" class="left-font03" onClick="tupian('1');">查询测试流程</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu9" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="listxiangmuxinxi.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('9');">查询测试流程</a></td>
 				</tr>
 				<tr>
-				  <td width="9%" height="20" ><img id="xiaotu4" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="listjihua.htm" target="mainFrame" class="left-font03" onClick="tupian('4');">新增测试流程</a></td>
+				  <td width="9%" height="20" ><img id="xiaotu10" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+				  <td width="91%"><a href="listjihua.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('10');">新增测试流程</a></td>
 				</tr>
       </table>
 		<!--  测试流程管理结束    -->
@@ -196,21 +182,21 @@ function list(idstr){
           <tr>
             <td height="29"><table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td width="8%" height="12"><img name="img2" id="img2" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
-                  <td width="92%"><a href="javascript:" target="mainFrame" class="left-font03" onClick="list('2');" >任务管理</a></td>
+                  <td width="8%" height="12"><img name="img4" id="img4" src="${contextPath}/res/images/testme_04.gif" width="8" height="11" /></td>
+                  <td width="92%"><a href="javascript:" target="mainFrame" class="left-font03" onClick="listSubTreeProcess('4');" >任务管理</a></td>
                 </tr>
             </table></td>
           </tr>
       </table>
 	  
-	  <table id="subtree2" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="left-table02">
+	  <table id="subtree4" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="left-table02">
 		  <tr>
-			  <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-			  <td width="91%"><a href="${contextPath}/task/init" target="mainFrame" class="left-font03" onClick="tupian('7');">查询任务</a></td>
+			  <td width="9%" height="20" ><img id="xiaotu11" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+			  <td width="91%"><a href="${contextPath}/task/init" target="mainFrame" class="left-font03" onClick="imageShowProcess('11');">查询任务</a></td>
 		  </tr>
 		<tr>
-          <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-          <td width="91%"><a href="listkehuxinxi.html" target="mainFrame" class="left-font03" onClick="tupian('7');">新建任务</a></td>
+          <td width="9%" height="20" ><img id="xiaotu12" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+          <td width="91%"><a href="listkehuxinxi.html" target="mainFrame" class="left-font03" onClick="imageShowProcess('12');">新建任务</a></td>
         </tr>
       </table>
 	  <!--  任务管理结束    -->
