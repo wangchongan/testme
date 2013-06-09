@@ -53,11 +53,6 @@ public class TestunitDO {
     private String classQualifiedName;
 
     /**
-     * version
-     */
-    private String version;
-
-    /**
      * tag
      */
     private String tag;
@@ -142,14 +137,6 @@ public class TestunitDO {
 
     public String getClassQualifiedName() {
         return this.classQualifiedName;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
     public void setTag(String tag) {

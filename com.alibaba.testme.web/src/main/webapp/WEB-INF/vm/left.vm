@@ -139,7 +139,7 @@ function listSubTreeProcess(idstr){
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
 				  <td width="91%">
-						<a href="sendxiaoxi.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('7');">查询测试单元</a></td>
+						<a href="${contextPath}/testunitmanage/testunitList" target="mainFrame" class="left-font03" onClick="imageShowProcess('7');">查询测试单元</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu8" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
@@ -168,11 +168,11 @@ function listSubTreeProcess(idstr){
 				cellspacing="0" class="left-table02">
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu9" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="listxiangmuxinxi.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('9');">查询测试流程</a></td>
+				  <td width="91%"><a href="${contextPath}/testflowmanage/testunitFlowList" target="mainFrame" class="left-font03" onClick="imageShowProcess('9');">查询测试流程</a></td>
 				</tr>
 				<tr>
 				  <td width="9%" height="20" ><img id="xiaotu10" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-				  <td width="91%"><a href="listjihua.htm" target="mainFrame" class="left-font03" onClick="imageShowProcess('10');">新增测试流程</a></td>
+				  <td width="91%"><a href="${contextPath}/testflowmanage/addTestunitFlow" target="mainFrame" class="left-font03" onClick="imageShowProcess('10');">新增测试流程</a></td>
 				</tr>
       </table>
 		<!--  测试流程管理结束    -->

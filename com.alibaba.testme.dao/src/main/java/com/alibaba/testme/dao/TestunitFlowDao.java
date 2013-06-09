@@ -2,7 +2,10 @@ package com.alibaba.testme.dao;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestunitFlowVO;
 
 /**
  * TestunitFlow Dao Interface
@@ -40,5 +43,16 @@ public interface TestunitFlowDao {
      * @return
      */
     public List<TestunitFlowDO> findList(TestunitFlowDO testunitFlowDO);
+
+    /**
+     * 分页查询测试流程信息
+     * 
+     * @param index
+     * @param sizePerPage
+     * @param testunitFlowQuery
+     * @return
+     */
+    public Page<TestunitFlowVO> queryPage(Integer index, Integer sizePerPage,
+                                          TestunitFlowQuery testunitFlowQuery);
 
 }

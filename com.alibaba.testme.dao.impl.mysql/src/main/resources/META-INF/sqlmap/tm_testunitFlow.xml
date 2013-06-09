@@ -3,7 +3,8 @@
 
 <sqlMap namespace="testunitFlow">
 <typeAlias alias="testunitFlowDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowDO" />
-
+<typeAlias alias="testunitFlowVO"    type="com.alibaba.testme.domain.vo.TestunitFlowVO" />
+<typeAlias alias="testunitFlowQuery"    type="com.alibaba.testme.domain.query.TestunitFlowQuery" />
   <resultMap id="testunitFlowDO_resultMap" class="testunitFlowDO">
     <result property="id" column="ID" />
     <result property="gmtCreate" column="GMT_CREATE" />
@@ -106,6 +107,31 @@
       <isNotEmpty property="remark" prepend="AND">
         <![CDATA[  
         REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+  
+  <sql id="testunitFlow.pageCondition">
+    <dynamic>
+      <isNotEmpty property="testunitFlowName" prepend="AND">
+        <![CDATA[  
+        tf.name = #testunitFlowName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="testunitFlowCode" prepend="AND">
+        <![CDATA[  
+        tf.code = #testunitFlowCode#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="testunitFlowTag" prepend="AND">
+        <![CDATA[  
+        tf.tag = #testunitFlowTag#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        tf.system_id = #systemId#  
         ]]>  
       </isNotEmpty>
     </dynamic>
@@ -235,6 +261,35 @@
      FROM tm_testunit_flow
 	WHERE 1=1
     <include refid="testunitFlow.queryCondition" />
+  </select>
+  
+  <select id="testunitFlow.getCount" parameterClass="map" resultClass="java.lang.Integer">
+    <![CDATA[  
+     select count(distinct tf.id)
+	   from tm_testunit_flow tf
+		   ,tm_system s
+      where tf.system_id=s.id
+    ]]>
+	<include refid="testunitFlow.pageCondition" />
+  </select>
+  
+  <select id="testunitFlow.pageList" parameterClass="map" resultClass="testunitFlowVO">
+    <![CDATA[  
+     select distinct tf.id              as testunitFlowId
+	       ,tf.name                     as testunitFlowName
+		   ,tf.code                     as testunitFlowCode
+		   ,tf.tag                      as testunitFlowTag
+		   ,tf.user_id                  as userId
+		   ,tf.env_config_required      as envConfigRequired
+		   ,tf.is_active                as isActive
+		   ,tf.system_id                as systemId
+		   ,s.name                      as systemName
+	   from tm_testunit_flow tf
+		   ,tm_system s
+      where tf.system_id=s.id
+    ]]>
+	<include refid="testunitFlow.pageCondition" />
+	<include refid="paginationCondition" />
   </select>
   
 </sqlMap>

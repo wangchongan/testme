@@ -2,8 +2,11 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitFlowDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestunitFlowVO;
 import com.alibaba.testme.service.TestunitFlowService;
 
 /**
@@ -75,6 +78,15 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
     @Override
     public List<TestunitFlowDO> findList(TestunitFlowDO testunitFlowDO) {
         return testunitFlowDao.findList(testunitFlowDO);
+    }
+
+    @Override
+    public Page<TestunitFlowVO> queryPage(Integer index, Integer sizePerPage,
+                                          TestunitFlowQuery testunitFlowQuery) {
+        if (index == 0 || sizePerPage == 0 || testunitFlowQuery == null) {
+            return null;
+        }
+        return testunitFlowDao.queryPage(index, sizePerPage, testunitFlowQuery);
     }
 
 }

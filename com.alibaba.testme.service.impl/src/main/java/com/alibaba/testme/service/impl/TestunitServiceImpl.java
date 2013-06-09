@@ -2,8 +2,11 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitDao;
 import com.alibaba.testme.domain.dataobject.TestunitDO;
+import com.alibaba.testme.domain.query.TestunitQuery;
+import com.alibaba.testme.domain.vo.TestunitVO;
 import com.alibaba.testme.service.TestunitService;
 
 /**
@@ -75,6 +78,15 @@ public class TestunitServiceImpl implements TestunitService {
     @Override
     public List<TestunitDO> findList(TestunitDO testunitDO) {
         return testunitDao.findList(testunitDO);
+    }
+
+    @Override
+    public Page<TestunitVO> queryPage(Integer index, Integer sizePerPage,
+                                      TestunitQuery testunitQuery) {
+        if (index == 0 || sizePerPage == 0 || testunitQuery == null) {
+            return null;
+        }
+        return testunitDao.queryPage(index, sizePerPage, testunitQuery);
     }
 
 }

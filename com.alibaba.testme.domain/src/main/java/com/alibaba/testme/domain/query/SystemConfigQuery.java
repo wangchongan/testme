@@ -15,12 +15,22 @@
  */
 package com.alibaba.testme.domain.query;
 
+import com.alibaba.testme.common.constants.CommonConstants;
+
 /**
  * 系统配置信息查询类
  * 
  * @author xiaopenzi
  */
 public class SystemConfigQuery {
+    /**
+     * 页码
+     */
+    private int    pageIndex;
+    /**
+     * 每页显示条数
+     */
+    private int    sizePerPage;
     /**
      * 配置名称
      */
@@ -45,6 +55,34 @@ public class SystemConfigQuery {
      * 系统环境ID
      */
     private Long   systemEnvId;
+
+    /**
+     * @return the pageIndex
+     */
+    public int getPageIndex() {
+        return pageIndex == 0 ? CommonConstants.PAGE_INDEX : pageIndex;
+    }
+
+    /**
+     * @param pageIndex the pageIndex to set
+     */
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    /**
+     * @return the sizePerPage
+     */
+    public int getSizePerPage() {
+        return sizePerPage == 0 ? CommonConstants.SIZE_PERPAGE : sizePerPage;
+    }
+
+    /**
+     * @param sizePerPage the sizePerPage to set
+     */
+    public void setSizePerPage(int sizePerPage) {
+        this.sizePerPage = sizePerPage;
+    }
 
     /**
      * @return the configName

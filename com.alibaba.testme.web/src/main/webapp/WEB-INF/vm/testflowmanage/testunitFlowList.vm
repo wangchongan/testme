@@ -1,0 +1,125 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN"/>
+    <title>查询测试单元流程</title>
+</head>
+
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/pagination.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<body>
+<form id="testunitFlowListForm" name="testunitFlowListForm" method="post" action="${contextPath}/testflowmanage/testunitFlowListByPage">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			<td height="124" background="${contextPath}/res/images/testme_nav04.gif">
+				<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+				  <td width="100" align="right">测试流程名称：</td>
+				  <td><input name="testunitFLowName" class="text" style="width:180px" type="text" size="40" value="$!testunitFlowQuery.testunitFLowName"/></td>
+				  <td width="100" align="right">所属系统：</td>
+				  <td>
+					<select name="systemId" style="width:180px">
+                          <option value="">==请选择==</option>
+						  #foreach($systemDO in $systemDOList)
+							#if($!systemDO.id==$!testUnitFlowQuery.systemId)
+								<option value="$!systemDO.id"  selected="selected">$!systemDO.name</option>
+							#else
+								<option value="$!systemDO.id">$!systemDO.name</option>
+							#end
+						  #end
+					</select>
+				  </td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				<tr>
+				  <td width="100" align="right">测试流程编码：</td>
+				  <td><input name="testunitFlowCode" class="text" style="width:180px" type="text" value="$!testunitFlowQuery.testunitFlowCode"/></td>
+				  <td width="100" align="right">标签名称：</td>
+				  <td>
+					<input name="testunitFlowTag" class="text" style="width:180px" type="text" size="40" value="$!testunitFlowQuery.testunitFlowTag"/>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="Submit4" type="submit" class="right-button02" value="查 询" />
+				  </td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				</table>
+			</td>
+			</tr>
+		</table>
+		</br>
+	</td>
+  </tr>
+  <tr>
+    <td>
+		<table id="subtree1" style="DISPLAY: " width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td height="40" class="font42">
+        				<table style="width:100%;" id="testUnitFlowListTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="tableFixClass">
+        				  <col style="width: 15%" />
+						  <col style="width: 15%" />
+						  <col style="width: 10%" />
+						  <col style="width: 20%" />
+						  <col style="width: 15%" />
+						  <col style="width: 10%" />
+						  <col style="width: 15%" />
+						  <tr class="CTitle" >
+                            <td height="22" colspan="7" align="center" style="font-size:16px">测试流程信息列表</td>
+                          </tr>
+                          <tr bgcolor="#EEEEEE">
+                            <td style="width:15%;">测试流程名称</td>
+        					<td style="width:15%;">测试流程编码</td>
+							<td style="width:10%;">所属系统</td>
+							<td style="width:20%;">标签</td>
+							<td style="width:15%;">是否需要参数配置</td>
+							<td style="width:10%;">是否可用</td>
+        					<td style="width:15%;">操作</td>
+                          </tr>
+						  #foreach($testunitFlowVO in $testunitFlowVOPage.datas)
+                          <tr bgcolor="#FFFFFF">                       
+        					<td><a href="${contextPath}/testflowmanage/testunitFlowDetail?testunitFlowId=$!testunitFlowVO.testunitFlowId"> $!testunitFlowVO.testunitFlowName</a></td>
+                            <td><a href="${contextPath}/testflowmanage/testunitFlowDetail?testunitFlowId=$!testunitFlowVO.testunitFlowId"> $!testunitFlowVO.testunitFlowCode</a></td>
+							<td>$!testunitFlowVO.systemName</td>
+							<td>$!testunitFlowVO.testunitFlowTag</td>
+							<td>$!testunitFlowVO.envConfigRequired</td>
+							<td>$!testunitFlowVO.isActive</td>
+                            <td>
+								<a href="${contextPath}/testflowmanage/testunitFlowDetail?testunitFlowId=$!testunitFlowVO.testunitFlowId" target="mainFrame">查看</a>
+								#if($testUnitVO.userId==$userId)
+    							<a href="${contextPath}/testflowmanage/editTestunitFlow?testunitFlowId=$!testunitFlowVO.testunitFlowId" target="mainFrame">|编辑</a>
+								<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testflowmanage/deleteTestunitFlow?testunitFlowId='+$!testunitFlowVO.testunitFlowId)">|删除</a>
+								#end
+							</td>
+                          </tr>
+						  #end
+						</table>
+    				</td>
+				  </tr>
+			</table>
+		    <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+				  <td height="33" class="listPage" cellpadding="0" cellspacing="0">
+					 $!{pageUtil.genPageToolbar(${testunitFlowVOPage}, 'testunitFlowListForm')}
+				  </td>
+				</tr>
+		    </table>
+		  </td>
+	    </tr>
+		</table>
+	</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

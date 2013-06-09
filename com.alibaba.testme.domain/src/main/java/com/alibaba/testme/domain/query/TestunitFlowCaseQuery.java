@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.domain.query;
 
+import com.alibaba.testme.common.constants.CommonConstants;
 import com.alibaba.testme.common.enums.TestunitFlowCaseStatusEnum;
 
 /**
@@ -37,7 +38,7 @@ public class TestunitFlowCaseQuery {
     }
 
     public int getPageIndex() {
-        return pageIndex;
+        return pageIndex == 0 ? CommonConstants.PAGE_INDEX : pageIndex;
     }
 
     public void setPageIndex(int pageIndex) {
@@ -45,7 +46,7 @@ public class TestunitFlowCaseQuery {
     }
 
     public int getSizePerPage() {
-        return sizePerPage;
+        return sizePerPage == 0 ? CommonConstants.SIZE_PERPAGE : sizePerPage;
     }
 
     public void setSizePerPage(int sizePerPage) {

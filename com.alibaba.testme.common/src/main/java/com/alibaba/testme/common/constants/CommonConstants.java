@@ -22,13 +22,18 @@ package com.alibaba.testme.common.constants;
  */
 public class CommonConstants {
 
-    public final static String CREATOR  = "SYSTEM";
+    public static final String  CREATOR      = "SYSTEM";
 
-    public final static String MODIFIER = "SYSTEM";
-    
-    
-    public final static String SESSION_USER = "session_user";
-    
-    
+    public static final String  MODIFIER     = "SYSTEM";
+
+    public static final String  SESSION_USER = "session_user";
+    /**
+     * 页码
+     */
+    public static final Integer PAGE_INDEX   = 1;
+    /**
+     * 每页显示条数
+     */
+    public static final Integer SIZE_PERPAGE = 50;
 
 }

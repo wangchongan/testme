@@ -8,5 +8,6 @@ Tool: Bundlor 1.1.0.M04
 Bundle-Name: com.alibaba.testme.domain
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.domain
-Import-Package: com.alibaba.testme.common.enums
+Import-Package: com.alibaba.testme.common.enums,
+ com.alibaba.testme.common.constants
 

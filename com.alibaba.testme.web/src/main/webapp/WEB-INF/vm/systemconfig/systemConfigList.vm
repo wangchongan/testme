@@ -61,7 +61,7 @@ function saveSystemConfig(systemId){
               	  </tr>
                   <tr>
                     <td height="40" class="font42">
-        				<table style="width:1000px;" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="tableFixClass">
+        				<table style="width:100%;" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="tableFixClass">
         				  <col style="width: 5%" />
 						  <col style="width: 25%" />
 						  <col style="width: 50%" />

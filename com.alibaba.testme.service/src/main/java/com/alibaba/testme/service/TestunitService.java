@@ -2,7 +2,10 @@ package com.alibaba.testme.service;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitDO;
+import com.alibaba.testme.domain.query.TestunitQuery;
+import com.alibaba.testme.domain.vo.TestunitVO;
 
 /**
  * Testunit Service Interface
@@ -40,5 +43,16 @@ public interface TestunitService {
      * @return
      */
     public List<TestunitDO> findList(TestunitDO testunitDO);
+
+    /**
+     * 分页查询测试单元信息
+     * 
+     * @param index
+     * @param sizePerPage
+     * @param testunitQuery
+     * @return
+     */
+    public Page<TestunitVO> queryPage(Integer index, Integer sizePerPage,
+                                      TestunitQuery testUnitQuery);
 
 }

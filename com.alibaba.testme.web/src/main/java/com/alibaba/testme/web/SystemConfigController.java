@@ -70,20 +70,16 @@ public class SystemConfigController {
     @Resource
     private SystemEnvService         systemEnvService;
     /**
-     * 每页显示条数
-     */
-    private static final Integer     SIZE_PER_PAGE = 50;
-    /**
      * 上传文件大小限制
      */
-    private static final Long        MAX_SIZE      = Long.valueOf(5 * 1024 * 1024);
+    private static final Long        MAX_SIZE   = Long.valueOf(5 * 1024 * 1024);
     /**
      * 文件后缀
      */
-    private static final String      PROPERTIES    = "properties";
+    private static final String      PROPERTIES = "properties";
 
-    private static final Logger      logger        = LoggerFactory
-                                                           .getLogger(SystemConfigController.class);
+    private static final Logger      logger     = LoggerFactory
+                                                        .getLogger(SystemConfigController.class);
 
     @RequestMapping
     public String addSystemConfig(Model model, HttpServletRequest request) {
@@ -256,15 +252,11 @@ public class SystemConfigController {
      */
     @RequestMapping
     public String configList(Model model, HttpServletRequest request) {
-        SystemConfigQuery query = new SystemConfigQuery();
-        query.setUserId(SessionUtils.getLoginUser(request).getId());
-        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(1, SIZE_PER_PAGE, query);
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
         //获取配置类型
         List<ConfigTypeEnum> configTypeList = ConfigTypeEnum.getList();
         model.addAttribute("systemDOList", systemDOList);
-        model.addAttribute("systemConfigVOPage", resultPage);
         model.addAttribute("configTypeList", configTypeList);
         return "systemconfig/configList";
     }
@@ -280,37 +272,24 @@ public class SystemConfigController {
     @RequestMapping(method = RequestMethod.POST)
     public String systemEnvDetailList(Model model,
                                       HttpServletRequest request,
-                                      @RequestParam("pageIndex") int index,
-                                      @RequestParam("sizePerPage") int sizePerPage,
                                       @ModelAttribute("systemConfigQuery") SystemConfigQuery systemConfigQuery) {
         String resultMsg = null;
         if (systemConfigQuery == null) {
             systemConfigQuery = new SystemConfigQuery();
         }
-        if (index == 0) {
-            index = 1;
-        }
-        if (sizePerPage == 0) {
-            sizePerPage = SIZE_PER_PAGE;
-        }
         systemConfigQuery.setUserId(SessionUtils.getLoginUser(request).getId());
-        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(index, sizePerPage,
+        Page<SystemConfigVO> resultPage = systemEnvDetailService.queryPage(
+                systemConfigQuery.getPageIndex(), systemConfigQuery.getSizePerPage(),
                 systemConfigQuery);
         if (resultPage == null) {
             resultMsg = "温馨提醒：异常原因，查询失败！";
         }
-        //获取系统列表
-        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
-        //获取配置类型
-        List<ConfigTypeEnum> configTypeList = ConfigTypeEnum.getList();
-        model.addAttribute("systemDOList", systemDOList);
         model.addAttribute("systemConfigVOPage", resultPage);
-        model.addAttribute("configTypeList", configTypeList);
         model.addAttribute("systemConfigVOPage", resultPage);
         model.addAttribute("resultMsg", resultMsg);
         model.addAttribute("systemConfigQuery", systemConfigQuery);
 
-        return "systemconfig/configList";
+        return configList(model, request);
     }
 
     /**

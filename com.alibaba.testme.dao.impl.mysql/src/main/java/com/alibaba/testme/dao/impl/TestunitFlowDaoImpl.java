@@ -2,17 +2,20 @@ package com.alibaba.testme.dao.impl;
 
 import java.util.List;
 
-import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
-
+import com.alibaba.testme.common.ibatispage.Page;
+import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
 import com.alibaba.testme.dao.TestunitFlowDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestunitFlowVO;
 
 /**
  * TestunitFlow Dao Implement
  * 
  * @author xiaopenzi
  */
-public class TestunitFlowDaoImpl extends SqlMapClientDaoSupport implements TestunitFlowDao {
+public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlowVO> implements
+        TestunitFlowDao {
 
     /**
      * @param testunitFlowDO
@@ -72,4 +75,10 @@ public class TestunitFlowDaoImpl extends SqlMapClientDaoSupport implements Testu
                 "testunitFlow.findList", testunitFlowDO);
     }
 
+    @Override
+    public Page<TestunitFlowVO> queryPage(Integer index, Integer sizePerPage,
+                                          TestunitFlowQuery testunitFlowQuery) {
+        return page(index, sizePerPage, testunitFlowQuery, "testunitFlow.getCount",
+                "testunitFlow.pageList");
+    }
 }

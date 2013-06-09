@@ -3,7 +3,8 @@
 
 <sqlMap namespace="testunit">
 <typeAlias alias="testunitDO"    type="com.alibaba.testme.domain.dataobject.TestunitDO" />
-
+<typeAlias alias="testunitVO"    type="com.alibaba.testme.domain.vo.TestunitVO" />
+<typeAlias alias="testunitQuery"    type="com.alibaba.testme.domain.query.TestunitQuery" />
   <resultMap id="testunitDO_resultMap" class="testunitDO">
     <result property="id" column="ID" />
     <result property="gmtCreate" column="GMT_CREATE" />
@@ -85,6 +86,36 @@
       <isNotEmpty property="remark" prepend="AND">
         <![CDATA[  
         REMARK = #remark#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+  </sql>
+  
+  <sql id="testunit.pageCondition">
+    <dynamic>
+      <isNotEmpty property="testunitName" prepend="AND">
+        <![CDATA[  
+        tu.name = #testunitName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="testunitCode" prepend="AND">
+        <![CDATA[  
+        tu.code = #testunitCode#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="testunitTag" prepend="AND">
+        <![CDATA[  
+        tu.tag = #testunitTag#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="workSpaceId" prepend="AND">
+        <![CDATA[  
+        tu.work_space_id = #workSpaceId#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        ws.system_id = #systemId#  
         ]]>  
       </isNotEmpty>
     </dynamic>
@@ -193,6 +224,40 @@
      FROM tm_testunit
 	WHERE 1=1
     <include refid="testunit.queryCondition" />
+  </select>
+  
+  <select id="testunit.getCount" parameterClass="map" resultClass="java.lang.Integer">
+    <![CDATA[  
+     select count(distinct tu.id)
+	   from tm_testunit tu
+	       ,tm_work_space ws
+		   ,tm_system s
+      where tu.work_space_id=ws.id
+	    and ws.system_id=s.id
+    ]]>
+	<include refid="testunit.pageCondition" />
+  </select>
+  
+  <select id="testunit.pageList" parameterClass="map" resultClass="testunitVO">
+    <![CDATA[  
+     select distinct tu.id              as testunitId
+	       ,tu.name                     as testunitName
+		   ,tu.code                     as testunitCode
+		   ,tu.tag                      as testunitTag
+		   ,tu.work_space_id            as configType
+		   ,tu.user_id                  as userId
+		   ,tu.class_qualified_name     as classQualifiedName
+		   ,ws.name                     as workSpaceName        
+		   ,ws.system_id                as systemId
+		   ,s.name                      as systemName
+	   from tm_testunit tu
+	       ,tm_work_space ws
+		   ,tm_system s
+      where tu.work_space_id=ws.id
+	    and ws.system_id=s.id
+    ]]>
+	<include refid="testunit.pageCondition" />
+	<include refid="paginationCondition" />
   </select>
   
 </sqlMap>
