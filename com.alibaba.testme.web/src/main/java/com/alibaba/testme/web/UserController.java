@@ -46,7 +46,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping
     public String login(Model model, HttpServletRequest request,
                         @RequestParam(required = true) String userName,
                         @RequestParam(required = true) String password) {

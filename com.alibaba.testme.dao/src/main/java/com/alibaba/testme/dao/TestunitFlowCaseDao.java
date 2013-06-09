@@ -2,7 +2,10 @@ package com.alibaba.testme.dao;
 
 import java.util.List;
 
+import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
+import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 
 /**
  * TestunitFlowCase Dao Interface
@@ -40,5 +43,7 @@ public interface TestunitFlowCaseDao {
      * @return
      */
     public List<TestunitFlowCaseDO> findList(TestunitFlowCaseDO testunitFlowCaseDO);
+
+    Page<TestunitFlowCaseVO> queryPage(TestunitFlowCaseQuery testunitFlowCaseQuery);
 
 }

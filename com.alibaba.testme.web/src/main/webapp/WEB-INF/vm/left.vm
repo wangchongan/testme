@@ -204,14 +204,13 @@ function list(idstr){
       </table>
 	  
 	  <table id="subtree2" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="left-table02">
-        
+		  <tr>
+			  <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
+			  <td width="91%"><a href="${contextPath}/task/init" target="mainFrame" class="left-font03" onClick="tupian('7');">查询任务</a></td>
+		  </tr>
 		<tr>
           <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-          <td width="91%"><a href="listkehuxinxi.html" target="mainFrame" class="left-font03" onClick="tupian('7');">任务列表</a></td>
-        </tr>
-		<tr>
-          <td width="9%" height="20" ><img id="xiaotu7" src="${contextPath}/res/images/testme_03.gif" width="8" height="12" /></td>
-          <td width="91%"><a href="listkehuxinxi.html" target="mainFrame" class="left-font03" onClick="tupian('7');">查询任务</a></td>
+          <td width="91%"><a href="listkehuxinxi.html" target="mainFrame" class="left-font03" onClick="tupian('7');">新建任务</a></td>
         </tr>
       </table>
 	  <!--  任务管理结束    -->
