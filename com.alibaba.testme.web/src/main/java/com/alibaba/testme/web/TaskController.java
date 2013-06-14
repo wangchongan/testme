@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -57,12 +58,6 @@ public class TaskController {
     @Resource
     private TestunitFlowCaseService testunitFlowCaseService;
 
-    @ModelAttribute("pageName")
-    public String getQueryPageName() {
-        String result = "aaaaaaaa";
-        return result;
-    }
-
     public void initParam(Model model, HttpServletRequest request) {
         model.addAttribute("statusList", TestunitFlowCaseStatusEnum.values());
         model.addAttribute("systemList", this.systemService.findList(new SystemDO()));
@@ -86,6 +81,25 @@ public class TaskController {
                        @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery) {
         Page<TestunitFlowCaseVO> queryPage = testunitFlowCaseService
                 .queryPage(testunitFlowCaseQuery);
+        model.addAttribute("queryPage", queryPage);
+        this.initParam(model, request);
+        return "/taskmanage/taskList";
+    }
+
+    @RequestMapping(value = "/detail/{id}")
+    public String detail(Model model, @PathVariable("id") Long id) {
+
+        return "/taskmanage/taskDetail";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(Model model,
+                         HttpServletRequest request,
+                         @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery,
+                         @PathVariable("id") Long id) {
+        Page<TestunitFlowCaseVO> queryPage = testunitFlowCaseService
+                .queryPage(testunitFlowCaseQuery);
+        model.addAttribute("resultMsg", "删除成功");
         model.addAttribute("queryPage", queryPage);
         this.initParam(model, request);
         return "/taskmanage/taskList";

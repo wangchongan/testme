@@ -28,7 +28,7 @@ import com.alibaba.testme.common.ibatispage.Page;
 public class PageUtil {
 
     private static final int DEFAULT_PAGE_NO_LIST_SIZE = 7;
-    private static final int DEFAULT_SIZE_SIZE = 20;
+    private static final int DEFAULT_SIZE_SIZE         = 20;
 
     /**
      * 生成页面分页组件
@@ -48,10 +48,8 @@ public class PageUtil {
     public static String genPageToolbar(Page<?> page, String formName) {
         return genPageToolbar(page, formName, 20);
     }
-    
-    
+
     /**
-     * 
      * @param page
      * @param sizePerpage
      * @return
@@ -89,7 +87,7 @@ public class PageUtil {
         if (formName == null || formName.trim().length() == 0) {
             formName = "forms[0]";
         }
-        
+
         buf.append("<div class=\"r3\">");
         buf.append("<ul class=\"pagination\">");
         if (pageCount > 0) {
@@ -98,7 +96,7 @@ public class PageUtil {
             buf.append("当前是第 ").append(pageIndex).append(" 页");
 
             buf.append("到<input type='text' name='jumpto' size='3' title='指定页码'> 页");
-            buf.append("<button type='submit' onclick=\"doSearch(document.");
+            buf.append("<button type='submit' onclick=\"doPageSearch(document.");
             buf.append(formName).append(".jumpto.value) \">确定</button>");
 
             buf.append("</li>");
@@ -127,7 +125,11 @@ public class PageUtil {
                 end = pageIndex + step - pageNoListSize % 2;
                 if (end >= pageCount) {
                     end = pageCount;
-                    start = pageCount - pageNoListSize + 1;
+                    if (pageCount > pageNoListSize) {
+                        start = pageCount - pageNoListSize + 1;
+                    } else {
+                        start = 1;
+                    }
                 } else {
                     start = dura1 + 1;
                 }
@@ -159,7 +161,8 @@ public class PageUtil {
         buf.append("<input type=\"hidden\" name=\"pageIndex\" value=\"1\"/>\n");
         buf.append("<script type=\"text/javascript\"> \n");
         buf.append("function doPageSearch(pageIndex) { \n");
-        buf.append("if(''==pageIndex || pageIndex<=0 || pageIndex>").append(pageCount).append("){");
+        buf.append("if(''==pageIndex || pageIndex<=0 || pageIndex>").append(pageCount)
+                .append(" || isNaN(pageIndex)){");
         buf.append("alert(\"请输入正确的页码，页码最小为").append(minPageCount).append("，最大为").append(pageCount)
                 .append("\"); \n return;\n}");
         buf.append(" document.").append(formName).append("[\"pageIndex\"].value=pageIndex;\n");

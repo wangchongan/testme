@@ -1,0 +1,119 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>TestMe-便捷测试平台</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ContentBody">
+<form  method="post" id="addSystemRequiredPropForm">
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" >测试任务详情</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>基本信息</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+						  <tr>
+							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
+            				<td nowrap  height="30px" style="width:200px"> 4PL </td>
+						  </tr>
+
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">测试单元流程名称:</td>
+							<td style="width:250px;height:30px"> 关联流程测试 </td>
+							<td nowrap align="right" height="30px">配置名称:</td>
+    					    <td> 测试 </td>
+						  </tr>
+
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">作者:</td>
+							<td height="30px"></td>
+							<td nowrap align="right" height="30px" width="13%"></td>
+							<td nowrap height="30px"></td>
+    					  </tr>
+						  <tr>
+							<td height="30px" nowrap align="right" width="13%">测试单元流程描述:</td>
+							<td height="30px"> ssss</td>
+						  </tr>
+					  </table>
+					  <br />
+				</fieldset>			
+			</td>
+		</tr>
+		</table>
+	 </td>
+   </tr>
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>执行结果</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">任务执行结束时间:</td>
+							<td style="width:250px;height:30px"> 2013-06-12 17:00:00 </td>
+							<td nowrap align="right" height="30px">任务执行结束时间:</td>
+    					    <td> 2013-06-12 17:00:00 </td>
+						  </tr>
+
+						  <tr>
+							<td nowrap align="right" width="13%" height="30px">任务执行状态:</td>
+            				<td nowrap  height="30px" style="width:200px"> 执行中  </td>
+						  </tr>
+
+    					  <tr>
+    					    <td nowrap align="right" width="13%" height="30px">任务执行链路:</td>
+							<td height="30px"></td>
+							<td nowrap align="right" height="30px" width="13%"></td>
+							<td nowrap height="30px"></td>
+    					  </tr>
+    					  <tr>
+    					    <td colspan="4">
+								<table width="100%" class="tableFixClass" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646">
+		        				  <col style="width: 20%" />
+								  <col style="width: 20%" />
+								  <col style="width: 30%" />
+								  <col style="width: 30%" />
+								  <tr class="CTitle" >
+		                            <td height="22" colspan="4" align="center" style="font-size:16px">配置信息列表</td>
+		                          </tr>
+		                          <tr bgcolor="#EEEEEE">
+		        					<td width="20%">测试单元流程名称</td>
+									<td width="20%">执行状态</td>
+									<td width="30%">入参信息</td>
+									<td width="30%">出参信息</td>
+		                          </tr>
+								  #foreach($item in $queryPage.datas)
+		                          <tr bgcolor="#FFFFFF">                       
+		        					<td>$!{item.testunitFlowName}</td>
+		                            <td>$!{item.outparam}</td>
+		                            <td>$!{item.inputParam}</td>
+		                            <td>$!{item.status}</td>
+		                          </tr>
+								  #end
+								</table>
+							</td>
+    					  </tr>
+					  </table>
+					  <br />
+				</fieldset>	
+				<p>		
+			</td>
+		</tr>
+ </table>
+</div>
+</form>
+</body>
+
+</html>

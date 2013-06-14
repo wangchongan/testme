@@ -49,7 +49,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
  		<property name="order" value="1"/>
  		<property name="interceptors">
 			<list>
-					<bean class="com.alibaba.testme.web.interceptor.ContentPathInterceptor"/>
+					<bean class="com.alibaba.testme.web.interceptor.TestMeWebRequestInterceptor"/>
 			</list>
 		</property>
  	</bean>

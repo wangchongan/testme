@@ -32,7 +32,7 @@ import com.alibaba.testme.web.common.PageUtil;
  * @author lz
  *
  */
-public class ContentPathInterceptor extends HandlerInterceptorAdapter {
+public class TestMeWebRequestInterceptor extends HandlerInterceptorAdapter {
 
     @Resource
     private PageUtil pageUtil;

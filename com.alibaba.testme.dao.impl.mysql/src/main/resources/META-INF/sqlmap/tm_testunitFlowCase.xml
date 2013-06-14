@@ -197,9 +197,9 @@
   
   <sql id="testunitFlowCase.pageCondition">
 	    <dynamic>
-	      <isNotEmpty property="status" prepend="AND">
+	      <isNotEmpty property="testunitFlowCaseStatusEnum" prepend="AND">
 	        <![CDATA[  
-	        	tfc.`status` = #status#
+	        	tfc.`status` = #testunitFlowCaseStatusEnum#
 	        ]]>  
 	      </isNotEmpty>
 	      <isNotEmpty property="testunitFlowId" prepend="AND">
