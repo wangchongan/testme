@@ -6,6 +6,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.alibaba.testme.dao.TestunitFlowCaseDetailDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO;
+import com.alibaba.testme.domain.vo.TestCaseDetailVO;
 
 /**
  * TestunitFlowCaseDetail Dao Implement
@@ -31,8 +32,8 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      */
     @Override
     public int updateTestunitFlowCaseDetailDO(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update(
-                "testunitFlowCaseDetail.update", testunitFlowCaseDetailDO);
+        Integer result = this.getSqlMapClientTemplate().update("testunitFlowCaseDetail.update",
+                testunitFlowCaseDetailDO);
         if (result == null) {
             return 0;
         }
@@ -45,12 +46,8 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
      */
     @Override
     public int deleteTestunitFlowCaseDetailDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
-                "testunitFlowCaseDetail.deleteById", id);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+        return this.getSqlMapClientTemplate().delete(
+                "testunitFlowCaseDetail.deleteByTestunitFlowCaseId", id);
     }
 
     /**
@@ -70,8 +67,8 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitFlowCaseDetailDO> findList(TestunitFlowCaseDetailDO testunitFlowCaseDetailDO) {
-        return (List<TestunitFlowCaseDetailDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunitFlowCaseDetail.findList", testunitFlowCaseDetailDO);
+        return this.getSqlMapClientTemplate().queryForList("testunitFlowCaseDetail.findList",
+                testunitFlowCaseDetailDO);
     }
 
     /*
@@ -84,6 +81,13 @@ public class TestunitFlowCaseDetailDaoImpl extends SqlMapClientDaoSupport implem
     public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId) {
         return (TestunitFlowCaseDetailDO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitFlowCaseDetail.findLast", testunitFlowCaseId);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<TestCaseDetailVO> queryTestCaseDetailList(Long id) {
+        return this.getSqlMapClientTemplate().queryForList(
+                "testunitFlowCaseDetail.queryTestCaseDetailList", id);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
 import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestCaseVO;
 import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 
 /**
@@ -45,5 +46,7 @@ public interface TestunitFlowCaseDao {
     public List<TestunitFlowCaseDO> findList(TestunitFlowCaseDO testunitFlowCaseDO);
 
     Page<TestunitFlowCaseVO> queryPage(TestunitFlowCaseQuery testunitFlowCaseQuery);
+
+    public TestCaseVO queryTestunitFlowCase(Long id);
 
 }

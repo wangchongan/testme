@@ -3,6 +3,7 @@ package com.alibaba.testme.dao;
 import java.util.List;
 
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO;
+import com.alibaba.testme.domain.vo.TestCaseDetailVO;
 
 /**
  * TestunitFlowCaseDetail Dao Interface
@@ -48,4 +49,6 @@ public interface TestunitFlowCaseDetailDao {
      * @return
      */
     public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId);
+
+    public List<TestCaseDetailVO> queryTestCaseDetailList(Long id);
 }

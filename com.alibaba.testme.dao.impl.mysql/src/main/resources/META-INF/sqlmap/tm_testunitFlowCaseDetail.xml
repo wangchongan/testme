@@ -3,6 +3,7 @@
 
 <sqlMap namespace="testunitFlowCaseDetail">
 <typeAlias alias="testunitFlowCaseDetailDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowCaseDetailDO" />
+<typeAlias alias="testCaseDetailVO"    type="com.alibaba.testme.domain.vo.TestCaseDetailVO" />
 
   <resultMap id="testunitFlowCaseDetailDO_resultMap" class="testunitFlowCaseDetailDO">
     <result property="id" column="ID" />
@@ -222,6 +223,13 @@
       WHERE id = #id#
     ]]>  
   </delete>
+  
+  <delete id="testunitFlowCaseDetail.deleteByTestunitFlowCaseId" parameterClass="java.lang.Long">
+    <![CDATA[  
+     DELETE FROM tm_testunit_flow_case_detail 
+      WHERE testunit_flow_case_id = #id#
+    ]]>  
+  </delete>
 
   <select id="testunitFlowCaseDetail.findList" resultMap="testunitFlowCaseDetailDO_resultMap" parameterClass="testunitFlowCaseDetailDO">
      SELECT 
@@ -229,6 +237,24 @@
      FROM tm_testunit_flow_case_detail
 	WHERE 1=1
     <include refid="testunitFlowCaseDetail.queryCondition" />
+  </select>
+  
+  <select id="testunitFlowCaseDetail.queryTestCaseDetailList" resultClass="testCaseDetailVO" parameterClass="Long">
+   <![CDATA[  
+		select 
+		  tcd.`id`,
+		  t.`name`,
+		  tcd.`in_param` inParam,
+		  tcd.`out_param` outParam,
+		  tcd.`status` 
+		from
+		  `tm_testunit_flow_case_detail` tcd,
+		  `tm_testunit_flow_detail` tfd,
+		  `tm_testunit` t 
+		where tcd.`testunit_flow_detail_id` = tfd.`id` 
+		  and tfd.`testunit_id` = t.`id` 
+		  and tcd.`testunit_flow_case_id` = #id#
+	]]>
   </select>
   
 </sqlMap>

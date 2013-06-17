@@ -3,7 +3,8 @@
 
 <sqlMap namespace="testunitFlowCase">
 <typeAlias alias="testunitFlowCaseDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO" />
-<typeAlias alias="TestunitFlowCaseVO"    type="com.alibaba.testme.domain.vo.TestunitFlowCaseVO" />
+<typeAlias alias="testunitFlowCaseVO"    type="com.alibaba.testme.domain.vo.TestunitFlowCaseVO" />
+<typeAlias alias="testCaseVO"    type="com.alibaba.testme.domain.vo.TestCaseVO" />
 <typeAlias alias="testunitFlowCaseQuery"    type="com.alibaba.testme.domain.query.TestunitFlowCaseQuery" />
 
   <resultMap id="testunitFlowCaseDO_resultMap" class="testunitFlowCaseDO">
@@ -266,6 +267,33 @@
 	<include refid="paginationCondition" />
   </select>
 
+
+  <select id="testunitFlowCase.queryTestunitFlowCase" parameterClass="Long" resultClass="testCaseVO">
+    <![CDATA[  
+		select 
+		  tc.`id`,
+		  tc.`status`,
+		  date_format(tc.`gmt_start`, '%Y-%m-%d %T') gmtStart,
+		  date_format(tc.`gmt_end`, '%Y-%m-%d %T') gmtEnd,
+		  tf.`name` testunitFlowName,
+		  tf.`remark`,
+		  tu.`user_name` userName,
+		  tu.`wangwang`,
+		  tse.`config_name` configName,
+		  ts.`name` 
+		from
+		  `tm_testunit_flow_case` tc,
+		  `tm_testunit_flow` tf,
+		  `tm_user` tu,
+		  `tm_system` ts,
+		  `tm_system_env` tse 
+		where tc.`testunit_flow_id` = tf.`id` 
+		  and tf.`user_id` = tu.`id` 
+		  and tc.`system_id` = ts.`id` 
+		  and tc.`system_env_id` = tse.`id` 
+		  and tc.`id` = #id#
+    ]]>  
+  </select>
 	
   
 </sqlMap>

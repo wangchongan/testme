@@ -5,6 +5,7 @@ import java.util.List;
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
 import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestCaseVO;
 import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 
 /**
@@ -28,9 +29,8 @@ public interface TestunitFlowCaseService {
 
     /**
      * @param id
-     * @return
      */
-    public int deleteTestunitFlowCaseDO(Long id);
+    public void deleteTestunitFlowCaseDO(Long id);
 
     /**
      * @param id
@@ -43,7 +43,9 @@ public interface TestunitFlowCaseService {
      * @return
      */
     public List<TestunitFlowCaseDO> findList(TestunitFlowCaseDO testunitFlowCaseDO);
-    
+
     public Page<TestunitFlowCaseVO> queryPage(TestunitFlowCaseQuery testunitFlowCaseQuery);
+
+    public TestCaseVO queryTestunitFlowCaseDetail(Long id);
 
 }

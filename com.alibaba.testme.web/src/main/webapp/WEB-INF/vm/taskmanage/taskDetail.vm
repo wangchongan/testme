@@ -3,12 +3,20 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>TestMe-便捷测试平台</title>
 </head>
-<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
 <link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/pagination.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+
+<script type="text/javascript">
+function goBack(){
+	window.history.go(-1);
+}
+</script>
 </head>
 
 <body class="ContentBody">
-<form  method="post" id="addSystemRequiredPropForm">
+<form  method="post">
 <div>
     <label name="resultMsg"><font color="red">$!resultMsg</font></label>
 </div>
@@ -27,25 +35,25 @@
 					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
 						  <tr>
 							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
-            				<td nowrap  height="30px" style="width:200px"> 4PL </td>
+            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.systemName} </td>
 						  </tr>
 
     					  <tr>
     					    <td nowrap align="right" width="13%" height="30px">测试单元流程名称:</td>
-							<td style="width:250px;height:30px"> 关联流程测试 </td>
+							<td style="width:250px;height:30px"> $!{testCaseVO.testunitFlowCaseName} </td>
 							<td nowrap align="right" height="30px">配置名称:</td>
-    					    <td> 测试 </td>
+    					    <td style="width:250px;height:30px"> $!{testCaseVO.configName} </td>
 						  </tr>
 
     					  <tr>
     					    <td nowrap align="right" width="13%" height="30px">作者:</td>
-							<td height="30px"></td>
+							<td height="30px"> $!{testCaseVO.userName} </td>
 							<td nowrap align="right" height="30px" width="13%"></td>
 							<td nowrap height="30px"></td>
     					  </tr>
 						  <tr>
 							<td height="30px" nowrap align="right" width="13%">测试单元流程描述:</td>
-							<td height="30px"> ssss</td>
+							<td height="30px"> $!{testCaseVO.remark} </td>
 						  </tr>
 					  </table>
 					  <br />
@@ -62,14 +70,14 @@
 					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
     					  <tr>
     					    <td nowrap align="right" width="13%" height="30px">任务执行结束时间:</td>
-							<td style="width:250px;height:30px"> 2013-06-12 17:00:00 </td>
+							<td style="width:250px;height:30px"> $!{testCaseVO.gmtStart} </td>
 							<td nowrap align="right" height="30px">任务执行结束时间:</td>
-    					    <td> 2013-06-12 17:00:00 </td>
+    					    <td> $!{testCaseVO.gmtEnd} </td>
 						  </tr>
 
 						  <tr>
 							<td nowrap align="right" width="13%" height="30px">任务执行状态:</td>
-            				<td nowrap  height="30px" style="width:200px"> 执行中  </td>
+            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.status}  </td>
 						  </tr>
 
     					  <tr>
@@ -94,12 +102,12 @@
 									<td width="30%">入参信息</td>
 									<td width="30%">出参信息</td>
 		                          </tr>
-								  #foreach($item in $queryPage.datas)
+								  #foreach($item in $testCaseVO.testCaseDetailList)
 		                          <tr bgcolor="#FFFFFF">                       
-		        					<td>$!{item.testunitFlowName}</td>
-		                            <td>$!{item.outparam}</td>
-		                            <td>$!{item.inputParam}</td>
+		        					<td>$!{item.testunitName}</td>
 		                            <td>$!{item.status}</td>
+		                            <td>$!{item.inParam}</td>
+		                            <td>$!{item.outParam}</td>
 		                          </tr>
 								  #end
 								</table>
@@ -108,10 +116,14 @@
 					  </table>
 					  <br />
 				</fieldset>	
-				<p>		
+				<p>
 			</td>
 		</tr>
+		<tr>
+			<td align="center"> <input name="Submit4" type="button" class="right-button02" value="返回" onclick="goBack()" />	</td>
+		</tr>
  </table>
+
 </div>
 </form>
 </body>

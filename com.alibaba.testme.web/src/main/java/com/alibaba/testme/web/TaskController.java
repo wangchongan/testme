@@ -18,6 +18,8 @@ package com.alibaba.testme.web;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,6 +33,7 @@ import com.alibaba.testme.domain.dataobject.SystemDO;
 import com.alibaba.testme.domain.dataobject.SystemEnvDO;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
 import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestCaseVO;
 import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 import com.alibaba.testme.service.SystemEnvService;
 import com.alibaba.testme.service.SystemService;
@@ -45,6 +48,8 @@ import com.alibaba.testme.service.TestunitFlowService;
 @Controller
 @RequestMapping(value = "/taskmanage/*")
 public class TaskController {
+
+    private static final Logger     logger = LoggerFactory.getLogger(TaskController.class);
 
     @Resource
     private SystemService           systemService;
@@ -88,7 +93,8 @@ public class TaskController {
 
     @RequestMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Long id) {
-
+        TestCaseVO testCaseVO = this.testunitFlowCaseService.queryTestunitFlowCaseDetail(id);
+        model.addAttribute("testCaseVO", testCaseVO);
         return "/taskmanage/taskDetail";
     }
 
@@ -97,11 +103,58 @@ public class TaskController {
                          HttpServletRequest request,
                          @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery,
                          @PathVariable("id") Long id) {
-        Page<TestunitFlowCaseVO> queryPage = testunitFlowCaseService
-                .queryPage(testunitFlowCaseQuery);
-        model.addAttribute("resultMsg", "删除成功");
-        model.addAttribute("queryPage", queryPage);
-        this.initParam(model, request);
-        return "/taskmanage/taskList";
+        String resultMsg = "删除成功";
+        try {
+            //this.testunitFlowCaseService.deleteTestunitFlowCaseDO(id);
+        } catch (Exception e) {
+            if (logger.isWarnEnabled()) {
+                logger.warn("删除测试任务出错, TestunitFlowCaseID: " + id);
+                resultMsg = "删除失败";
+            }
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return this.list(model, request, testunitFlowCaseQuery);
+    }
+
+    @RequestMapping
+    public String taskCreate(Model model, HttpServletRequest request) {
+
+        return "/taskmanage/taskCreate";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String doCreate(Model model,
+                           HttpServletRequest request,
+                           @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery,
+                           @PathVariable("id") Long id) {
+        String resultMsg = "删除成功";
+        try {
+            this.testunitFlowCaseService.deleteTestunitFlowCaseDO(id);
+        } catch (Exception e) {
+            if (logger.isWarnEnabled()) {
+                logger.warn("删除测试任务出错, TestunitFlowCaseID: " + id);
+                resultMsg = "删除失败";
+            }
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return this.list(model, request, testunitFlowCaseQuery);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String getStatus(Model model,
+                            HttpServletRequest request,
+                            @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery,
+                            @PathVariable("id") Long id) {
+        String resultMsg = "删除成功";
+        try {
+            this.testunitFlowCaseService.deleteTestunitFlowCaseDO(id);
+        } catch (Exception e) {
+            if (logger.isWarnEnabled()) {
+                logger.warn("删除测试任务出错, TestunitFlowCaseID: " + id);
+                resultMsg = "删除失败";
+            }
+        }
+        model.addAttribute("resultMsg", resultMsg);
+        return this.list(model, request, testunitFlowCaseQuery);
     }
 }

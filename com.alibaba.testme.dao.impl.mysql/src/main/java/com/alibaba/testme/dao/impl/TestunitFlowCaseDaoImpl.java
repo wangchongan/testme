@@ -7,6 +7,7 @@ import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
 import com.alibaba.testme.dao.TestunitFlowCaseDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowCaseDO;
 import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
+import com.alibaba.testme.domain.vo.TestCaseVO;
 import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 
 /**
@@ -47,11 +48,7 @@ public class TestunitFlowCaseDaoImpl extends PageSqlMapClientDaoSupport<Testunit
      */
     @Override
     public int deleteTestunitFlowCaseDO(Long id) {
-        Integer result = this.getSqlMapClientTemplate().delete("testunitFlowCase.deleteById", id);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+        return this.getSqlMapClientTemplate().delete("testunitFlowCase.deleteById", id);
     }
 
     /**
@@ -80,6 +77,12 @@ public class TestunitFlowCaseDaoImpl extends PageSqlMapClientDaoSupport<Testunit
         return this.page(testunitFlowCaseQuery.getPageIndex(),
                 testunitFlowCaseQuery.getSizePerPage(), testunitFlowCaseQuery,
                 "testunitFlowCase.getCount", "testunitFlowCase.pageList");
+    }
+
+    @Override
+    public TestCaseVO queryTestunitFlowCase(Long id) {
+        return (TestCaseVO) this.getSqlMapClientTemplate().queryForObject(
+                "testunitFlowCase.queryTestunitFlowCase", id);
     }
 
 }
