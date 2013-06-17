@@ -53,8 +53,22 @@ public class TestunitFlowVO {
      * 是否可用
      */
     private String isActive;
-
+    /**
+     * 创建者ID
+     */
     private Long   userId;
+    /**
+     * 创建者名称
+     */
+    private String userName;
+    /**
+     * 备注
+     */
+    private String remark;
+    /**
+     * 该测试流程包含的测试单元
+     */
+    private String testunitStr;
 
     /**
      * @return the testunitFlowId
@@ -180,6 +194,48 @@ public class TestunitFlowVO {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
+     * @return the remark
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * @param remark the remark to set
+     */
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    /**
+     * @return the testunitStr
+     */
+    public String getTestunitStr() {
+        return testunitStr;
+    }
+
+    /**
+     * @param testunitStr the testunitStr to set
+     */
+    public void setTestunitStr(String testunitStr) {
+        this.testunitStr = testunitStr;
     }
 
 }

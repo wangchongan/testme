@@ -55,4 +55,18 @@ public interface TestunitService {
     public Page<TestunitVO> queryPage(Integer index, Integer sizePerPage,
                                       TestunitQuery testUnitQuery);
 
+    /**
+     * @param idList
+     * @return
+     */
+    public List<TestunitDO> findByIdList(List<Long> idList);
+
+    /**
+     * 根据测试单元流程ID获取包含的测试单元信息
+     * 
+     * @param testunitFlowId
+     * @return
+     */
+    public List<TestunitDO> findByTestunitFlowId(Long testunitFlowId);
+
 }

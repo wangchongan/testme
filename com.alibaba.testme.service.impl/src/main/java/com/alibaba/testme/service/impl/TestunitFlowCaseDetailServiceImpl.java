@@ -77,14 +77,11 @@ public class TestunitFlowCaseDetailServiceImpl implements TestunitFlowCaseDetail
         return testunitFlowCaseDetailDao.findList(testunitFlowCaseDetailDO);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * com.alibaba.testme.service.TestunitFlowCaseDetailService#findLast(java
-     * .lang.Integer)
-     */
     @Override
     public TestunitFlowCaseDetailDO findLast(Long testunitFlowCaseId) {
+        if (testunitFlowCaseId == null || testunitFlowCaseId <= 0L) {
+            return null;
+        }
         return testunitFlowCaseDetailDao.findLast(testunitFlowCaseId);
     }
 

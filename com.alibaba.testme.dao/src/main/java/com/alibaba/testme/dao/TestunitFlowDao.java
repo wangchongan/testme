@@ -55,4 +55,12 @@ public interface TestunitFlowDao {
     public Page<TestunitFlowVO> queryPage(Integer index, Integer sizePerPage,
                                           TestunitFlowQuery testunitFlowQuery);
 
+    /**
+     * 根据ID查询测试流程
+     * 
+     * @param testunitFlowId
+     * @return
+     */
+    public TestunitFlowVO queryById(Long testunitFlowId);
+
 }

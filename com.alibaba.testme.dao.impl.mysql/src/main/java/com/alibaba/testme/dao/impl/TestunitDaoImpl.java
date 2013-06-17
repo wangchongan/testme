@@ -1,6 +1,8 @@
 package com.alibaba.testme.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
@@ -77,6 +79,22 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
                                       TestunitQuery testunitQuery) {
         return (Page<TestunitVO>) this.page(index, sizePerPage, testunitQuery, "testunit.getCount",
                 "testunit.pageList");
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<TestunitDO> findByIdList(List<Long> idList) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("idList", idList);
+        return (List<TestunitDO>) this.getSqlMapClientTemplate().queryForList(
+                "testunit.findByIdList", idList);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<TestunitDO> findByTestunitFlowId(Long testunitFlowId) {
+        return (List<TestunitDO>) this.getSqlMapClientTemplate().queryForList(
+                "testunit.findByTestunitFlowId", testunitFlowId);
     }
 
 }

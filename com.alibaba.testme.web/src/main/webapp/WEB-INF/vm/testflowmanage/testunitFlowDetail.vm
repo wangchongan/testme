@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>查看测试流程信息</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="ContentBody">
+<form  method="post" id="editTestunitFlowForm" name="editTestunitFlowForm">
+<input type="hidden" id="testunitIdStr" name="testunitIdStr"/>
+<input type="hidden" id="id" name="id" value="$!testunitFlowDO.id"/>
+<div>
+    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+</div>
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" >测试流程信息页面</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>查看测试流程</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+						  <tr>
+							<td nowrap align="right" width="13%" height="40px">测试流程名称:</td>
+                            <td style="width:250px;height:40px"><label name="testunitFlowName">$!testunitFlowVO.testunitFlowName</label></td>
+							<td nowrap align="right" width="13%" height="40px">测试流程编码:</td>
+							<td style="width:250px;height:40px"><label name="testunitFlowCode">$!testunitFlowVO.testunitFlowCode</label></td>
+						  </tr>
+    					  <tr>
+							<td nowrap align="right" width="13%" height="40px">测试流程标签:</td>
+							<td style="width:250px;height:40px"><label name="testunitFlowTag">$!testunitFlowVO.testunitFlowTag</label></td>
+    					    <td nowrap align="right" height="40px" width="13%">是否需要参数配置:</td>
+							#if($testunitFlowVO.envConfigRequired=="N")
+							<td nowrap height="40px"><input type="radio" name="envConfigRequired" value="Y" disabled/>是<input type="radio" name="envConfigRequired" value="N" checked="checked" disabled/>否</td>
+							#else
+							<td nowrap height="40px"><input type="radio" name="envConfigRequired" value="Y"  checked="checked" disabled/>是<input type="radio" name="envConfigRequired" value="N" disabled/>否</td>	
+							#end
+						  </tr>
+    					  <tr>
+							<td nowrap align="right" width="13%" height="40px">所属系统:</td>
+            				<td nowrap  style="width:200px;height:40px">
+            					<label name="systemName">$!testunitFlowVO.systemName</label>
+            				</td>
+							<td nowrap align="right" width="13%" height="30px">是否可用:</td>
+							<td style="width:250px;height:40px"><label name="isActive">$!testunitFlowVO.isActive</label></td>
+						  </tr>
+						  <tr>
+							<td nowrap align="right" width="13%" height="30px">创建者:</td>
+							<td style="width:250px;height:40px"><label name="userName">$!testunitFlowVO.userName</label></td>
+    					  </tr>
+						  <tr>
+    					    <td nowrap align="right">包含测试单元:</td>
+    					    <td colspan="3" style="height:40px"><label name="testunitStr">$!testunitFlowVO.testunitStr</label></td>
+    					  </tr>
+						  <tr>
+							<td nowrap align="right">备注:</td>
+    					    <td colspan="3" style="height:40px"><label name="remark">$!testunitFlowVO.remark</label></td>
+						  </tr>
+					  </table>
+	 </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center" height="50px">
+		<a href="${contextPath}/testflowmanage/testunitFlowList" target="mainFrame" class="left-font03">查询测试流程信息</a>
+     </td>
+	</tr>
+ </table>
+</div>
+</form>
+</body>
+
+</html>

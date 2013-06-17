@@ -96,10 +96,10 @@
 							<td>$!testunitFlowVO.isActive</td>
                             <td>
 								<a href="${contextPath}/testflowmanage/testunitFlowDetail?testunitFlowId=$!testunitFlowVO.testunitFlowId" target="mainFrame">查看</a>
-								#if($testUnitVO.userId==$userId)
-    							<a href="${contextPath}/testflowmanage/editTestunitFlow?testunitFlowId=$!testunitFlowVO.testunitFlowId" target="mainFrame">|编辑</a>
+
+    							<a href="${contextPath}/testflowmanage/goEditTestunitFlow?testunitFlowId=$!testunitFlowVO.testunitFlowId" target="mainFrame">|编辑</a>
 								<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testflowmanage/deleteTestunitFlow?testunitFlowId='+$!testunitFlowVO.testunitFlowId)">|删除</a>
-								#end
+
 							</td>
                           </tr>
 						  #end

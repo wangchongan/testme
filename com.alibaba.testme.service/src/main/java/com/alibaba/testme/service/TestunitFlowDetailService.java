@@ -49,4 +49,19 @@ public interface TestunitFlowDetailService {
      */
     public Long findFirstTestunitFlowDetailId(Long testunitFlowId);
 
+    /**
+     * 批量保存
+     * 
+     * @param testunitFlowDetailDOList
+     */
+    public void batchSaveTestunitFlowDetail(List<TestunitFlowDetailDO> testunitFlowDetailDOList);
+
+    /**
+     * 根据测试单元流程ID删除详情信息
+     * 
+     * @param testunitFlowId
+     * @return
+     */
+    public int deleteByTestunitFlowId(Long testunitFlowId);
+
 }

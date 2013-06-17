@@ -260,4 +260,27 @@
 	<include refid="paginationCondition" />
   </select>
   
+  <select id="testunit.findByIdList" parameterClass="map" resultClass="testunitDO">
+    <![CDATA[  
+     select id    as id
+	       ,name  as name
+	   from tm_testunit 
+      WHERE id in
+    ]]> 
+	<iterate property="idList" conjunction="," open="(" close=")">
+			#idList[]#
+    </iterate>
+  </select>
+  
+  <select id="testunit.findByTestunitFlowId" parameterClass="Long" resultClass="testunitDO">
+    <![CDATA[  
+     select tfd.testunit_id    as id
+	       ,tt.name            as name
+	   from tm_testunit tt
+	       ,tm_testunit_flow_detail tfd
+      where tfd.testunit_id=tt.id
+	    and tfd.testunit_flow_id=#testunitFlowId#
+    ]]> 
+  </select>
+  
 </sqlMap>

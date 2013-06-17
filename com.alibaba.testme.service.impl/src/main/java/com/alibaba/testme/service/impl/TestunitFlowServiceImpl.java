@@ -89,4 +89,12 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
         return testunitFlowDao.queryPage(index, sizePerPage, testunitFlowQuery);
     }
 
+    @Override
+    public TestunitFlowVO queryById(Long testunitFlowId) {
+        if (testunitFlowId == null || testunitFlowId <= 0L) {
+            return null;
+        }
+        return testunitFlowDao.queryById(testunitFlowId);
+    }
+
 }

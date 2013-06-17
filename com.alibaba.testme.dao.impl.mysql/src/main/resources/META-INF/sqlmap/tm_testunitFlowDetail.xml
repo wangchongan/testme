@@ -150,6 +150,14 @@
      FROM tm_testunit_flow_detail
 	WHERE 1=1
     <include refid="testunitFlowDetail.queryCondition" />
+	ORDER BY ID
   </select>
+  
+  <delete id="testunitFlowDetail.deleteByTestunitFlowId" parameterClass="Long">
+    <![CDATA[  
+     delete from tm_testunit_flow_detail 
+      where testunit_flow_id = #testunitFlowId#  
+    ]]>  
+  </delete>
   
 </sqlMap>

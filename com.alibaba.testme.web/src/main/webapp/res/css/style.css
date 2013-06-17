@@ -44,6 +44,14 @@ a:hover{
  border-bottom:1px solid #014B56;
 }
 
+.t_aera
+{ 
+ color:#000000;
+ background-color:#F6FEF6;
+ clip:rect('20', '80', '20', '2');
+ margin:-2px;
+}
+
 .menuBody{
  background:url('../images/menuB.jpg') repeat-y;
  text-align:left;

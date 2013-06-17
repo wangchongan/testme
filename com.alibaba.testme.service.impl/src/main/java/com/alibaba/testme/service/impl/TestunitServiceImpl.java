@@ -89,4 +89,20 @@ public class TestunitServiceImpl implements TestunitService {
         return testunitDao.queryPage(index, sizePerPage, testunitQuery);
     }
 
+    @Override
+    public List<TestunitDO> findByIdList(List<Long> idList) {
+        if (idList == null || idList.size() == 0) {
+            return null;
+        }
+        return testunitDao.findByIdList(idList);
+    }
+
+    @Override
+    public List<TestunitDO> findByTestunitFlowId(Long testunitFlowId) {
+        if (testunitFlowId == null || testunitFlowId <= 0L) {
+            return null;
+        }
+        return testunitDao.findByTestunitFlowId(testunitFlowId);
+    }
+
 }

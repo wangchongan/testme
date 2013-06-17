@@ -224,7 +224,7 @@
         ENV_CONFIG_REQUIRED = #envConfigRequired#  
         ]]>  
       </isNotEmpty>
-      <isNotEmpty property="是否可用" prepend=",">
+      <isNotEmpty property="isActive" prepend=",">
         <![CDATA[  
         IS_ACTIVE = #isActive#  
         ]]>  
@@ -290,6 +290,27 @@
     ]]>
 	<include refid="testunitFlow.pageCondition" />
 	<include refid="paginationCondition" />
+  </select>
+  
+  <select id="testunitFlow.queryById" parameterClass="Long" resultClass="testunitFlowVO">
+    <![CDATA[  
+     select distinct tf.id              as testunitFlowId
+	       ,tf.name                     as testunitFlowName
+		   ,tf.code                     as testunitFlowCode
+		   ,tf.tag                      as testunitFlowTag
+		   ,tf.user_id                  as userId
+		   ,tf.env_config_required      as envConfigRequired
+		   ,tf.is_active                as isActive
+		   ,tf.system_id                as systemId
+		   ,tf.remark                   as remark
+		   ,s.name                      as systemName
+		   ,u.user_name                 as userName
+	   from tm_testunit_flow tf
+		   ,tm_system s
+		   ,tm_user   u
+      where tf.system_id=s.id
+	    and tf.user_id=u.id
+    ]]>
   </select>
   
 </sqlMap>

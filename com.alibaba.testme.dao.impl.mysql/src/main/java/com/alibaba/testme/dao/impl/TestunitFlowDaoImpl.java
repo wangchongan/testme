@@ -81,4 +81,10 @@ public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlow
         return page(index, sizePerPage, testunitFlowQuery, "testunitFlow.getCount",
                 "testunitFlow.pageList");
     }
+
+    @Override
+    public TestunitFlowVO queryById(Long testunitFlowId) {
+        return (TestunitFlowVO) this.getSqlMapClientTemplate().queryForObject(
+                "testunitFlow.queryById", testunitFlowId);
+    }
 }
