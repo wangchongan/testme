@@ -16,6 +16,7 @@
 package com.alibaba.testme.core.testunitflowcase.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -130,7 +131,7 @@ public class TestunitFlowCaseAfterProcessor implements ITestunitFlowCaseAfterPro
         if (TestunitResultStatus.SUCCESS == testunitResult.getStatus()) {
 
             //更新状态，并且如果无下个节点，则结束
-            if (testunitFlowDetailDO.getNextTestunitFlowDetailId() == null) {
+            if (testunitFlowDetailDO.getNextTestunitId() == null) {
                 testunitFlowCaseDO.setStatus(TestunitFlowCaseStatusEnum.ALL_OVER.getKey());
                 testunitFlowCaseDO.setGmtEnd(new Date());
             } else {
@@ -176,8 +177,14 @@ public class TestunitFlowCaseAfterProcessor implements ITestunitFlowCaseAfterPro
         newNextTestunitFlowCaseDetailDO
                 .setStatus(TestunitFlowCaseDetailStatusEnum.WAITING.getKey());
         newNextTestunitFlowCaseDetailDO.setTestunitFlowCaseId(testunitFlowCaseId);
-        newNextTestunitFlowCaseDetailDO.setTestunitFlowDetailId(testunitFlowDetailDO
-                .getNextTestunitFlowDetailId());
+        TestunitFlowDetailDO query = new TestunitFlowDetailDO();
+        query.setTestunitId(testunitFlowDetailDO.getNextTestunitId());
+        query.setTestunitFlowId(testunitFlowDetailDO.getTestunitFlowId());
+        query.setPreTestunitId(testunitFlowDetailDO.getTestunitId());
+        List<TestunitFlowDetailDO> detailList = testunitFlowDetailService.findList(query);
+        if (detailList != null && detailList.size() > 0) {
+            newNextTestunitFlowCaseDetailDO.setTestunitFlowDetailId(detailList.get(0).getId());
+        }
 
         testunitFlowCaseDetailService.addTestunitFlowCaseDetailDO(newNextTestunitFlowCaseDetailDO);
     }

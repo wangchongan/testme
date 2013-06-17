@@ -15,6 +15,8 @@
  */
 package com.alibaba.testme.domain.query;
 
+import com.alibaba.testme.common.constants.CommonConstants;
+
 /**
  * 测试流程查询类
  * 
@@ -62,7 +64,7 @@ public class TestunitFlowQuery {
      * @return the pageIndex
      */
     public int getPageIndex() {
-        return pageIndex;
+        return pageIndex == 0 ? CommonConstants.PAGE_INDEX : pageIndex;
     }
 
     /**
@@ -76,7 +78,7 @@ public class TestunitFlowQuery {
      * @return the sizePerPage
      */
     public int getSizePerPage() {
-        return sizePerPage;
+        return sizePerPage == 0 ? CommonConstants.SIZE_PERPAGE : sizePerPage;
     }
 
     /**

@@ -48,7 +48,7 @@ public class TestunitFlowCaseHelper implements ITestunitFlowCaseHelper {
 
         TestunitFlowDetailDO testunitFlowDetailDO = testunitFlowDetailService
                 .findById(testunitFlowDetailId);
-        if (testunitFlowDetailDO.getNextTestunitFlowDetailId() != null) {
+        if (testunitFlowDetailDO.getNextTestunitId() != null) {
             return true;
         }
         return false;
