@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.SystemDO;
@@ -51,6 +52,34 @@ public class TestunitController {
     @Resource
     private TestunitService  testunitService;
 
+    //页面初始化
+    private void init(Model model) {
+        //获取工作空间列表
+        List<WorkSpaceDO> workSpaceDOList = workSpaceService.findList(new WorkSpaceDO());
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        model.addAttribute("workSpaceDOList", workSpaceDOList);
+        model.addAttribute("systemDOList", systemDOList);
+    }
+
+    //页面初始化
+    private void init(Model model, Long systemId) {
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        //获取工作空间列表
+        Long id = null;
+        if (systemId != null && systemId > 0L) {
+            id = systemId;
+        } else if (systemDOList != null && systemDOList.size() > 0) {
+            id = systemDOList.get(0).getId();
+        }
+        WorkSpaceDO query = new WorkSpaceDO();
+        query.setSystemId(id);
+        List<WorkSpaceDO> workSpaceDOList = workSpaceService.findList(query);
+        model.addAttribute("workSpaceDOList", workSpaceDOList);
+        model.addAttribute("systemDOList", systemDOList);
+    }
+
     /**
      * 进入测试单元页面
      * 
@@ -60,13 +89,8 @@ public class TestunitController {
      */
     @RequestMapping
     public String testunitList(Model model, HttpServletRequest request) {
-        //获取工作空间列表
-        List<WorkSpaceDO> workSpaceDOList = workSpaceService.findList(new WorkSpaceDO());
-        //获取系统列表
-        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
-        model.addAttribute("workSpaceDOList", workSpaceDOList);
-        model.addAttribute("systemDOList", systemDOList);
-
+        //初始化页面
+        init(model);
         return "testunitmanage/testunitList";
     }
 
@@ -95,6 +119,38 @@ public class TestunitController {
         model.addAttribute("testunitQuery", testunitQuery);
 
         return testunitList(model, request);
+    }
+
+    /**
+     * 进入新增测试单元页面
+     * 
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping
+    public String addTestunit(Model model, HttpServletRequest request) {
+        //页面初始化
+        init(model, null);
+        return "testunitmanage/addTestunit";
+    }
+
+    /**
+     * 根据系统ID获取工作空间
+     * 
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping
+    public String getWorkSpaceListBySystemId(Model model, HttpServletRequest request,
+                                             @RequestParam("systemId") Long systemId) {
+        if (systemId != null && systemId > 0L) {
+            //页面初始化
+            init(model, systemId);
+        }
+        model.addAttribute("systemId", systemId);
+        return "testunitmanage/addTestunit";
     }
 
 }

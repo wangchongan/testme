@@ -43,7 +43,7 @@ function deleteRecord(id) {
 				<tr>
 				  <td width="80">所属系统：</td>
 				  <td>
-					<select name="systemId" style="width:180px">
+					<select name="systemId" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($systemDO in ${systemList})
 							#if($!systemDO.id==$!testunitFlowCaseQuery.systemId)
@@ -56,7 +56,7 @@ function deleteRecord(id) {
 				  </td>
 				  <td width="80">配置名称：</td>
 				  <td>
-					  <select name="systemEnvId" style="width:180px">
+					  <select name="systemEnvId" style="width:180px;height:22px">
 	                  	<option value="">==请选择==</option>
 						  #foreach($item in ${systemEnvList})
 						  	<option value="$!item.id"
@@ -74,7 +74,7 @@ function deleteRecord(id) {
 				<tr>
 				  <td width="80">测试流程：</td>
 				  <td>
-					  <select name="testunitFlowId" style="width:180px">
+					  <select name="testunitFlowId" style="width:180px;height:22px">
 		                  <option value="">==请选择==</option>
 						  #foreach($testunitFlow in ${testunitFlowList})
 						  	<option value="$!testunitFlow.id"
@@ -87,7 +87,7 @@ function deleteRecord(id) {
 				  </td>
 				  <td width="80">执行状态：</td>
 				  <td>
-					<select name="testunitFlowCaseStatusEnum" style="width:180px">
+					<select name="testunitFlowCaseStatusEnum" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($item in ${statusList})
     						  #if($!item.key==$!testunitFlowCaseQuery.testunitFlowCaseStatusEnum.key)

@@ -28,7 +28,7 @@
 						  <tr>
 							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
             				<td nowrap  height="30px" style="width:200px">
-            					<select name="systemId" style="width:200px;height:25px">
+            					<select name="systemId" style="width:200px;height:22px">
             						  #foreach($systemDO in $systemDOList)
             							<option value="$!systemDO.id">$!systemDO.name</option>
             						  #end

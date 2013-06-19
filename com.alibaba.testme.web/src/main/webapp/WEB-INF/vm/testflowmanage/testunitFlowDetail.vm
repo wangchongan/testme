@@ -63,6 +63,10 @@
     					    <td colspan="3" style="height:40px"><label name="remark">$!testunitFlowVO.remark</label></td>
 						  </tr>
 					  </table>
+                </fieldset>
+			</td>
+        </tr>
+        </table>
 	 </td>
    </tr>
    <tr>

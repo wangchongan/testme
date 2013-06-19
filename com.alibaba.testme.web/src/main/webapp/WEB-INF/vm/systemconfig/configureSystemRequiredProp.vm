@@ -40,7 +40,7 @@ function isExistsConfigName(){
 							</td>
 							<td style="width:10%;height:30px">所属系统:</td>
             				<td style="width:20%;height:30px">
-            					<select name="systemId" style="width:200px;height:25px">
+            					<select name="systemId" style="width:200px;height:22px">
             						  #foreach($systemDO in $systemDOList)
 										#if($systemDO.id==$systemId)
 											<option value="$!systemDO.id" selected>$!systemDO.name</option>

@@ -153,7 +153,7 @@ function submitForm(formId,actionName,source){
     					  <tr>
 							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
             				<td nowrap  height="30px" style="width:200px">
-            					<select name="systemId" style="width:200px;height:25px">
+            					<select name="systemId" style="width:200px;height:22px">
             						  #foreach($systemDO in $systemDOList)
 										#if($testunitFlowDO.systemId==$systemDO.id)
             							<option value="$!systemDO.id" selected>$!systemDO.name</option>

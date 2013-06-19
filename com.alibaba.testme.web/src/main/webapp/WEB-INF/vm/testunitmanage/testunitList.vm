@@ -28,7 +28,7 @@
 				  <td><input name="testunitName" class="text" style="width:180px" type="text" size="40" value="$!testunitQuery.testunitName"/></td>
 				  <td width="100" align="right">所属系统：</td>
 				  <td>
-					<select name="systemId" style="width:180px">
+					<select name="systemId" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($systemDO in $systemDOList)
 							#if($!systemDO.id==$!testUnitQuery.systemId)
@@ -46,7 +46,7 @@
 				  <td><input name="testunitCode" class="text" style="width:180px" type="text" value="$!testunitQuery.testunitCode"/></td>
 				  <td width="100" align="right">所属工作空间：</td>
 				  <td>
-					<select name="systemId" style="width:180px">
+					<select name="systemId" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($workSpaceDO in $workSpaceDOList)
 							#if($!workSpaceDO.id==$!testUnitQuery.workSpaceId)
