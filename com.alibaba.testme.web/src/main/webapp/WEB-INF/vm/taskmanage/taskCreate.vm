@@ -1,131 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>TestMe-便捷测试平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+  <link href="${contextPath}/res/css/testme-all.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="${contextPath}/res/css/k2-layout.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="${contextPath}/res/css/testdata.css" media="screen" rel="stylesheet" type="text/css" />
+  <script defer="defer" src="${contextPath}/res/common/breadcrumb.js" type="text/javascript"></script>
+  <script src="${contextPath}/res/jquery/common-all.js"></script>
+
 </head>
-<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
-<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
-<link href="${contextPath}/res/css/pagination.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+
+
+<body>
+
+
+<div class="k2-layout-right" style="left:2px">
+  
+  <link href="${contextPath}/res/css/_webkit_scrollbar.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="${contextPath}/res/css/zTreeStyle.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="${contextPath}/res/css/tagcloud.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!--[if lt IE 9]>
+<script src="<script src="${contextPath}/res/common/html5shiv.js"></script>
+<![endif]-->
+
+<script src="${contextPath}/res/jquery/jquery.ztree.all-3.2.js" type="text/javascript"></script>
+<script src="${contextPath}/res/jquery/jquery.blockUI.js" type="text/javascript"></script>
+<script src="${contextPath}/res/jquery/jquery.cookie.js" type="text/javascript"></script>
+
+<script src="${contextPath}/res/common/grayscale.js" type="text/javascript"></script>
+<script src="${contextPath}/res/common/td.js" type="text/javascript"></script>
+<script src="${contextPath}/res/common/errorcode.js" type="text/javascript"></script>
+
+<script src="${contextPath}/res/common/waterFall.js"></script>
 
 <script type="text/javascript">
-function goBack(){
-	window.history.go(-1);
-}
+    setTimeout(function () {
+                $(".cell-list").waterFall({
+                    loadHref:"${contextPath}/taskmanage/changePage",
+                    scroller:".k2-layout-right",
+                    loadPages:4,
+                    loadType:'index',
+                    keyword:'${!tag}',
+                    colWidth:270
+                });
+            }, 1
+    );
 </script>
-</head>
 
-<body class="ContentBody">
-<form  method="post" id="taskCreate">
-<div>
-    <label name="resultMsg"><font color="red">$!resultMsg</font></label>
+
+<!--************   页面主区域  ******************-->
+<div id="td-list-wrap" style="position:absolute; top:0;  bottom:0;left:0;right:0;">
+  <div class="cell-list">
+    <div class="cell td">
+      <script src="${contextPath}/res/common/tagcanvas.js" type="text/javascript"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        TagCanvas.interval = 20;
+        TagCanvas.textFont = 'Microsoft YaHei';
+        TagCanvas.textColour = '#00f';
+        TagCanvas.textHeight = 25;
+        TagCanvas.outlineColour = '#f96';
+        TagCanvas.outlineThickness = 5;
+        TagCanvas.maxSpeed = 0.06;
+        TagCanvas.minBrightness = 0.1;
+        TagCanvas.depth = 0.92;
+        TagCanvas.pulsateTo = 0.2;
+        TagCanvas.pulsateTime = 0.75;
+        TagCanvas.initial = [0.1, -0.1];
+        TagCanvas.decel = 0.98;
+        TagCanvas.reverse = true;
+        TagCanvas.hideTags = true;
+        TagCanvas.shadow = '#ccf';
+        TagCanvas.shadowBlur = 3;
+        TagCanvas.weight = true;
+        TagCanvas.weightFrom = 'data-weight';
+        TagCanvas.dragControl = true;
+        try {
+            TagCanvas.Start('tagCanvas', 'tags', {weightMode:'both'});
+        } catch (e) {
+            $('#canvasTags').hide();
+            $('#tags').show();
+        }
+    };
+</script>
+
+<div id="canvasTags">
+  <canvas width="250" height="250" id="tagCanvas">
+    <p>In Internet Explorer versions up to 8, things inside the canvas are inaccessible!</p>
+  </canvas>
 </div>
-<div class="MainDiv">
-<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
-  <tr>
-      <th class="tablestyle_title" >测试任务详情</th>
-  </tr>
-  <tr>
-    <td class="CPanel">
-		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
-		<tr>
-			<td width="100%">
-				<fieldset style="height:100%;">
-				<legend>基本信息</legend>
-					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
-						  <tr>
-							<td nowrap align="right" width="13%" height="30px">所属系统:</td>
-            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.systemName} </td>
-						  </tr>
 
-    					  <tr>
-    					    <td nowrap align="right" width="13%" height="30px">测试单元流程名称:</td>
-							<td style="width:250px;height:30px"> $!{testCaseVO.testunitFlowCaseName} </td>
-							<td nowrap align="right" height="30px">配置名称:</td>
-    					    <td style="width:250px;height:30px"> $!{testCaseVO.configName} </td>
-						  </tr>
+<div id="tags" style="display: none;">
+  <ul>
+        <li>
+          <a href="/testdata/tds/tag/%E5%A4%A9%E7%8C%AB" data-weight="32" style="font-size:8ex">4PL</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E8%AE%A2%E5%8D%95" data-weight="23" style="font-size:10ex">订单流程</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E4%BC%9A%E5%91%98" data-weight="30" style="font-size:12ex">关联</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E5%BA%97%E9%93%BA" data-weight="33" style="font-size:8ex">合单</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E5%BA%97%E9%93%BA" data-weight="33" style="font-size:8ex">转化</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E8%AF%84%E4%BB%B7" data-weight="25" style="font-size:6ex">SCM</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E5%95%86%E5%93%81" data-weight="43" style="font-size:10ex">库存</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E4%BA%A4%E6%98%93" data-weight="24" style="font-size:6ex">店铺</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E7%89%A9%E6%B5%81" data-weight="23" style="font-size:5ex">货品</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E7%B1%BB%E7%9B%AE" data-weight="21" style="font-size:5ex">类目</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/SCM" data-weight="22" style="font-size:5ex">SCM</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/UMP" data-weight="30" style="font-size:7ex">WMS</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E8%81%9A%E5%88%92%E7%AE%97" data-weight="21" style="font-size:5ex">入库单</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E6%94%AF%E4%BB%98%E5%AE%9D" data-weight="42" style="font-size:10ex">结算</a>
+        </li>
+        <li>
+          <a href="/testdata/tds/tag/%E5%BA%93%E5%AD%98" data-weight="23" style="font-size:3ex">库存</a>
+        </li>
+  </ul>
+</div>
 
-    					  <tr>
-    					    <td nowrap align="right" width="13%" height="30px">作者:</td>
-							<td height="30px"> $!{testCaseVO.userName} </td>
-							<td nowrap align="right" height="30px" width="13%"></td>
-							<td nowrap height="30px"></td>
-    					  </tr>
-						  <tr>
-							<td height="30px" nowrap align="right" width="13%">测试单元流程描述:</td>
-							<td height="30px"> $!{testCaseVO.remark} </td>
-						  </tr>
-					  </table>
-					  <br />
-				</fieldset>			
-			</td>
-		</tr>
-		</table>
-	 </td>
-   </tr>
-		<tr>
-			<td width="100%">
-				<fieldset style="height:100%;">
-				<legend>执行结果</legend>
-					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
-    					  <tr>
-    					    <td nowrap align="right" width="13%" height="30px">任务执行结束时间:</td>
-							<td style="width:250px;height:30px"> $!{testCaseVO.gmtStart} </td>
-							<td nowrap align="right" height="30px">任务执行结束时间:</td>
-    					    <td> $!{testCaseVO.gmtEnd} </td>
-						  </tr>
+<div class="cloud-tool">
+  <a href="${contextPath}/testflowmanage/addTestunitFlow" class="link-icon grid-icon-add fl" title="新建workspace"></a>
+  <a href="${contextPath}/testflowmanage/testunitFlowList" class="link-icon grid-icon-edit fl" title="我的workspace"></a>
+  <a href="${contextPath}/testunitmanage/testunitList" class="link-icon grid-icon-edit fl" title="我的group"></a>
+  
+</div>
 
-						  <tr>
-							<td nowrap align="right" width="13%" height="30px">任务执行状态:</td>
-            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.status}  </td>
-						  </tr>
+    </div>
+  </div>
+</div>
+<div class="td_result" id="td_result">
+  <div id="td_invoke_result" class="td_invoke_result">
+	<ul id="td_param_tree" class="ztree"></ul>
+	<ul id="td_result_tree" class="ztree"></ul>
+</div>
+<div id="td_compare" class="td_compare">
+	<ul id="td_compare_param_tree" class="ztree"></ul>
+	<ul id="td_compare_tree" class="ztree"></ul>
+</div>
+<div id="td_history" class="td_history">
+	<table id="td_history_list">
+		<thead><tr><td><label>调用记录（近10次）：</label></td></tr></thead>
+		<tbody id="td_history_list_body"></tbody>
+	</table>
+</div>
+</div>
 
-    					  <tr>
-    					    <td nowrap align="right" width="13%" height="30px">任务执行链路:</td>
-							<td height="30px"></td>
-							<td nowrap align="right" height="30px" width="13%"></td>
-							<td nowrap height="30px"></td>
-    					  </tr>
-    					  <tr>
-    					    <td colspan="4">
-								<table width="100%" class="tableFixClass" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646">
-		        				  <col style="width: 20%" />
-								  <col style="width: 20%" />
-								  <col style="width: 30%" />
-								  <col style="width: 30%" />
-								  <tr class="CTitle" >
-		                            <td height="22" colspan="4" align="center" style="font-size:16px">配置信息列表</td>
-		                          </tr>
-		                          <tr bgcolor="#EEEEEE">
-		        					<td width="20%">测试单元流程名称</td>
-									<td width="20%">执行状态</td>
-									<td width="30%">入参信息</td>
-									<td width="30%">出参信息</td>
-		                          </tr>
-								  #foreach($item in $testCaseVO.testCaseDetailList)
-		                          <tr bgcolor="#FFFFFF">                       
-		        					<td>$!{item.testunitName}</td>
-		                            <td>$!{item.status}</td>
-		                            <td>$!{item.inParam}</td>
-		                            <td>$!{item.outParam}</td>
-		                          </tr>
-								  #end
-								</table>
-							</td>
-    					  </tr>
-					  </table>
-					  <br />
-				</fieldset>	
-				<p>
-			</td>
-		</tr>
-		<tr>
-			<td align="center"> <input name="Submit4" type="button" class="right-button02" value="返回" onclick="goBack()" />	</td>
-		</tr>
- </table>
 
 </div>
-</form>
+
+
+
 </body>
-
 </html>

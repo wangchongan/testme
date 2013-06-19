@@ -1,0 +1,4 @@
+checkVersion();
+saveHistoryify({"userNick":"alictest02","tid":"174"},{"body":{"\u5e97\u94fa\u4fe1\u606f":[{"shopId":"45397724","userId":"2011613874","\u5e97\u94fa\u540d\u79f0":"\u8fd9\u662f\u795e\u9a6c\u5e97\u94fa\u554a","\u5e97\u94fa\u7248\u672c":"\u65e0\u5370\u826f\u54c1","\u5e97\u94fa\u72b6\u6001":"\u6b63\u5e38","\u7528\u6237nick":"alictest02"}]},"errorCode":0,"errorMsg":null,"success":true});
+showResultTree({"userNick":"alictest02","tid":"174"},{"body":{"\u5e97\u94fa\u4fe1\u606f":[{"shopId":"45397724","userId":"2011613874","\u5e97\u94fa\u540d\u79f0":"\u8fd9\u662f\u795e\u9a6c\u5e97\u94fa\u554a","\u5e97\u94fa\u7248\u672c":"\u65e0\u5370\u826f\u54c1","\u5e97\u94fa\u72b6\u6001":"\u6b63\u5e38","\u7528\u6237nick":"alictest02"}]},"errorCode":0,"errorMsg":null,"success":true});
+showHistoryTree(174);

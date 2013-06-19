@@ -5,7 +5,9 @@ import java.util.List;
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitFlowDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestFlowParamVO;
 import com.alibaba.testme.domain.vo.TestunitFlowVO;
 import com.alibaba.testme.service.TestunitFlowService;
 
@@ -95,6 +97,12 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
             return null;
         }
         return testunitFlowDao.queryById(testunitFlowId);
+    }
+
+    @Override
+    public List<TestFlowParamVO> getTaskCreateParam(TaskCreateParamQuery taskCreateParamQuery) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

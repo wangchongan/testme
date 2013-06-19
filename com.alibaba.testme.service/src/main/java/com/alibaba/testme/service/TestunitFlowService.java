@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestFlowParamVO;
 import com.alibaba.testme.domain.vo.TestunitFlowVO;
 
 /**
@@ -62,5 +64,7 @@ public interface TestunitFlowService {
      * @return
      */
     public TestunitFlowVO queryById(Long testunitFlowId);
+
+    public List<TestFlowParamVO> getTaskCreateParam(TaskCreateParamQuery taskCreateParamQuery);
 
 }

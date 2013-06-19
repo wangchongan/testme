@@ -16,5 +16,8 @@
 
 	<bean id="testMeBundleContextAware" class="com.alibaba.testme.core.bundle.TestMeBundleContextAwareImpl">
 	</bean>
+	
+	<bean id="testunitFlowCaseHandler" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseHandler">
+	</bean>
 
 </beans>
