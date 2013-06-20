@@ -220,8 +220,8 @@ table.list tbody tr:hover td {border-right:1px solid #cfedc5; border-bottom:1px 
 table.list tbody tr:hover a { text-decoration: none; }
 table.list tbody tr.ui-selected,table.list tbody tr.ui-selected:hover { background: url(/images/theme/blue/table_bg.png) 0 -400px repeat-x;;color:#000;}
 table.list tbody tr.ui-selected td{border-right:1px solid #d3e1ff;}
-table.list a.grid-hd-btn { background: url(/images/kelude/public_icon.png) -183px -300px no-repeat;padding-right:5px;cursor: pointer; position: relative; height:25px; width: 14px; z-index: 2; float:right; }
-table.list a.grid-hd-btn:hover,table.list a.grid-hd-btn-hover  { background: url(/images/kelude/public_icon.png) -183px -329px no-repeat;}
+table.list a.grid-hd-btn { background: url(../../res/images/public_icon.png) -183px -300px no-repeat;padding-right:5px;cursor: pointer; position: relative; height:25px; width: 14px; z-index: 2; float:right; }
+table.list a.grid-hd-btn:hover,table.list a.grid-hd-btn-hover  { background: url(../../res/images/public_icon.png) -183px -329px no-repeat;}
 table.list tr.group { font-weight: bold; background-color: #dde3f1; font-family:Tahoma,Arial,Helvetica,sans-serif;  height:24px;cursor:pointer }
 table.list tr.group td .count { color: #999; font-family:SimSun,Tahoma,Arial,Helvetica,sans-serif; }
 table.list tr.group td { border-bottom: 1px solid #bfc7da; line-height:24px; padding:1px 0 1px 5px; border-right:1px solid #dde3f1; vertical-align:top;}
@@ -245,7 +245,7 @@ table .rtitle { text-align: right; font-weight: bold; padding-left: 0; font-size
 td #cancel_group_wrap a { font-size: 12px; text-align: center; font-family: sans-serif,Arial,Helvetica; margin-right: 4px; color: #635188; }
 td #cancel_group_wrap a:hover { color: #472788; }
 #cancel_group { text-decoration: underline; color: #aaa; margin-left: 8px; font-family: sans-serif; font-weight: bold; }
-.flt-btn,.icon-calendar,.icon-search,.text-btn{ background: url("/images/kelude/public_icon.png") -184px -213px no-repeat; height: 20px;padding-left: 20px !important;  display: inline-block;;}
+.flt-btn,.icon-calendar,.icon-search,.text-btn{ background: url("../../res/images/public_icon.png") -184px -213px no-repeat; height: 20px;padding-left: 20px !important;  display: inline-block;;}
 .flt-btn { position: absolute; right: 2px; top: 2px;  cursor: pointer;  height: 16px; padding-left: 16px;}
 .icon-calendar{ background-position: -182px -242px;}
 .icon-search,.text-btn { background-position: -94px -3px; cursor: pointer;  }
@@ -258,7 +258,7 @@ td #cancel_group_wrap a:hover { color: #472788; }
 #filter-info-list li { background: #FFFFFF; display:inline-block; position: relative; border: 1px solid #9ca9b9; padding:0 0 0 5px; margin:0 5px 10px; float:left;}
 #filter-info-list li b { font-weight: normal; font-size: 13px; vertical-align:top; height:18px; line-height:18px;}
 #filter-info-list li span.flt-del-btn { width: 17px; display: inline-block; height:18px; padding:0 2px; margin-left:5px;}
-.icon-close{ background: url(/images/kelude/public_icon.png) -181px -275px no-repeat;padding-left:22px;line-height:18px; height:18px; display:inline-block; vertical-align:top; text-indent: -100px; overflow: hidden;}
+.icon-close{ background: url(../../res/images/public_icon.png) -181px -275px no-repeat;padding-left:22px;line-height:18px; height:18px; display:inline-block; vertical-align:top; text-indent: -100px; overflow: hidden;}
 
 /* filter menu */
 .filter { display: none; z-index: 1; float: left; position: absolute; color: #333; font-weight: normal; }
@@ -327,7 +327,7 @@ form textarea { background: url(/images/theme/form/form_bg.png) no-repeat white;
 .combobox-wrap { z-index: 1;position: relative; display: inline-block;;}
 .combobox-wrap.focus input { border-color: #777; }
 .combobox-wrap input { width: 110px; height: 18px; padding: 2px 2px 0; border: 1px solid #C1C1C1; vertical-align: middle; background: url("/images/component/text-bg.gif") repeat-x scroll 0 0 transparent; }
-.combobox-wrap .trigger, .combobox-wrap .trigger-click { background:url(/images/kelude/public_icon.png) -124px 1px no-repeat;  white-space: nowrap; cursor: pointer; height: 21px; position: absolute; top: 0; right: 4px; width: 17px; border: 0;  }
+.combobox-wrap .trigger, .combobox-wrap .trigger-click { background:url(../../res/images/public_icon.png) -124px 1px no-repeat;  white-space: nowrap; cursor: pointer; height: 21px; position: absolute; top: 0; right: 4px; width: 17px; border: 0;  }
 .combobox-wrap .trigger:hover {  background-position:-141px 1px;}
 .combobox-wrap .trigger-click {  background-position:-158px 1px; }
 .combobox-content { z-index: 1; width: 131px; max-height: 219px; position: absolute; display: none; border: 1px solid #ccc; font-size: 12px; background-color: #fff; border-color: #ccc; }
@@ -341,7 +341,7 @@ form textarea { background: url(/images/theme/form/form_bg.png) no-repeat white;
 .mode-combobox-wrap.focus input { border-color: #777; }
 .mode-combobox-wrap.focus .trigger { border-bottom: 1px solid #777; }
 .mode-combobox-wrap input { width: 30px; height: 18px; padding: 2px 2px 0; border: 1px solid #C1C1C1; vertical-align: middle; background: url("/images/theme/form/text-bg.gif") repeat-x scroll 0 0 transparent; }
-.mode-combobox-wrap .trigger { background:url(/images/kelude/public_icon.png) -185px -1px no-repeat; white-space: nowrap; cursor: pointer; height: 21px; position: absolute; top: 0; right: 0; width: 17px; border: 0 none; }
+.mode-combobox-wrap .trigger { background:url(../../res/images/public_icon.png) -185px -1px no-repeat; white-space: nowrap; cursor: pointer; height: 21px; position: absolute; top: 0; right: 0; width: 17px; border: 0 none; }
 .mode-combobox-wrap .trigger-over { background-position:-202px -1px; }
 .mode-combobox-wrap .trigger-click { background-position:-219px -1px; }
 .mode-combobox-content { z-index: 9; width: 52px; max-height: 219px; position: absolute; display: none; border: 1px solid #ccc; font-size: 12px; background-color: #fff; }
@@ -419,18 +419,18 @@ label.error { color: red; background-color: transparent; }
 .btngrp,.onebtn,.menu-btn.ft-link,.grid-one .btn-text{background: url(/images/theme/blue/btngroup.png) 0 0 repeat-x;}
 .btngrp,.onebtn,.menu-btn,.btn_item{float:left; white-space:nowrap;}
 .btngrp a{ cursor: pointer;}
-.icon-unlock,.icon-locked,.icon-unalarm,.icon-alarmed {background: url(/images/kelude/public_icon.png) 0 0 no-repeat; height:20px;display:block;padding-left: 20px;margin:2px 0 0 10px }
+.icon-unlock,.icon-locked,.icon-unalarm,.icon-alarmed {background: url(../../res/images/public_icon.png) 0 0 no-repeat; height:20px;display:block;padding-left: 20px;margin:2px 0 0 10px }
 .icon-unlock,.icon-locked:hover {background-position:-25px -24px}
 .icon-unlock:hover,.icon-locked {background-position:-25px -44px}
 
-.link-icon{background: url(/images/kelude/public_icon.png) 0 0 no-repeat; display:block; border:1px solid #9ca9b9; border-left: none; padding:0 10px 0 25px; line-height: 22px;line-height: 24px\9; height: 22px; overflow: hidden; }
+.link-icon{background: url(../../res/images/public_icon.png) 0 0 no-repeat; display:block; border:1px solid #9ca9b9; border-left: none; padding:0 10px 0 25px; line-height: 22px;line-height: 24px\9; height: 22px; overflow: hidden; }
 
 .link-noicon{padding:0 10px;  display: block;border:1px solid #9ca9b9; border-left: none; line-height: 22px;line-height: 24px\9; height: 22px; overflow: hidden;}
 .grid-icon-add{background-position:-360px -60px;}
 .grid-icon-clone {background-position:-360px -90px;}
 .grid-icon-remove {background-position:-360px -120px;}
 .grid-icon-refresh {background-position:-360px -150px;}
-.grid-icon-down { position:absolute;right:5px; top:0; background: url(/images/kelude/public_icon.png) -125px 1px no-repeat; display:block; height:24px; width:15px;}
+.grid-icon-down { position:absolute;right:5px; top:0; background: url(../../res/images/public_icon.png) -125px 1px no-repeat; display:block; height:24px; width:15px;}
 .grid-icon-delete{background-position:6px -119px;}
 .grid-icon-edit{background-position:-360px -240px;}
 .grid-icon-back {background-position:-360px -270px;}
@@ -482,7 +482,7 @@ a:hover .grid-icon-down { background-position:-142px 1px; }
 .ft-btn a.ft-btn-link ins.edit { background: url(/images/theme/button_menu/button&menu_icon.png) no-repeat 0 -70px; text-decoration: none; }
 .ft-btn a.ft-btn-link ins.warning { background: url(/images/theme/button_menu/button&menu_icon.png) no-repeat 0 -220px; text-decoration: none; }
 .ft-btn a.ft-btn-link ins.back { background: url(/images/theme/button_menu/button&menu_icon.png) no-repeat 0 -295px; text-decoration: none; }
-.ft-btn a.ft-btn-link ins.excel,.ft-btn a.ft-btn-link ins.refresh,.ft-btn a.ft-btn-link ins.add,.ft-btn a.ft-btn-link ins.warning { display: block; height: 24px; line-height: 24px; padding-left: 20px; background: url(/images/kelude/public_icon.png) no-repeat 0 0; text-decoration: none; }
+.ft-btn a.ft-btn-link ins.excel,.ft-btn a.ft-btn-link ins.refresh,.ft-btn a.ft-btn-link ins.add,.ft-btn a.ft-btn-link ins.warning { display: block; height: 24px; line-height: 24px; padding-left: 20px; background: url(../../res/images/public_icon.png) no-repeat 0 0; text-decoration: none; }
 .ft-btn a.ft-btn-link ins.excel { background-position: -184px -421px; }
 .ft-btn a.ft-btn-link ins.refresh { background-position: -365px -149px ;}
 .ft-btn a.ft-btn-link ins.add{ background-position: -365px -59px}
@@ -662,7 +662,7 @@ http://yuilibrary.com/license/
 #top-alert-wrap { top:0; left:0; right:0; width:100%; position:absolute; display: block; z-index:3; height: 18px; line-height:18px; }
 #top-alert { text-align: center; opacity: 0.7; filter:alpha(opacity=70); color:red; background-color:#fff; 
     border-radius: 0 0 1.54em 1.54em; margin: 0 250px; position: relative; }
-#top-alert .icon-close {  background: url("/images/kelude/public_icon.png") no-repeat scroll -181px -275px transparent; display: inline-block;
+#top-alert .icon-close {  background: url("../../res/images/public_icon.png") no-repeat scroll -181px -275px transparent; display: inline-block;
     cursor:pointer; right: 10px; position:absolute; top: 0; z-index:4; width: 20px; line-height:25px; }
 
 .ww-inline { background: url(http://img04.taobaocdn.com/tps/i4/T1UPFAXnNfXXXXXXXX-130-60.gif) no-repeat 0 0;
@@ -690,7 +690,7 @@ text-decoration: none!important; display: inline-block; width: 67px; height: 20p
 #navigation_bread { float:left; width:100%;}
 #common-filter { position:absolute; top:-29px; right:0; line-height: 20px;  z-index:10;}
 #navigation_bread .ft-project-list em{ font-style:normal; float:left; margin: 4px 0 0 10px;background:url(/images/kelude/current_bread.png) 0 0 no-repeat; display: block; vertical-align: top;  width: 70px; padding-left: 8px; height: 19px; line-height: 19px; line-height: 22px\9; overflow: hidden; color: #fffc00;}
-.ft-project-list a.selector{ background:url(/images/kelude/public_icon.png) -124px 1px no-repeat; width:17px; display: block;height: 24px; position: absolute;right: 0; top:2px; }
+.ft-project-list a.selector{ background:url(../../res/images/public_icon.png) -124px 1px no-repeat; width:17px; display: block;height: 24px; position: absolute;right: 0; top:2px; }
 .ft-col-left-tree a.selector:hover , .ft-project-list a.selector:hover { background-position:-141px 1px; text-decoration:none; }
 .ft-col-left-tree a.selector:active ,.ft-project-list a.selector:active{ background-position:-158px 1px; text-decoration:none; }
 .ft-project-list .select_menu_area{ font-weight:bold; cursor:pointer; color:#333; font-size:13px; }
@@ -733,7 +733,7 @@ text-decoration: none!important; display: inline-block; width: 67px; height: 20p
 .module-search a{ margin-right:5px; color:#333333;padding:0px 5px; height:20px; display:inline-block; line-height:20px;}
 .module-search a:hover{ color:#314f91;}
 .module-search a.selected { background-color: #F0F5FF; border: 1px solid #adc8e4; -moz-border-radius: 3px; border-radius: 3px; color: #333333; text-decoration: none; margin-top:-1px;}
-#stats_button { padding-left:22px; background:url(/images/kelude/public_icon.png) -180px -362px no-repeat; }
+#stats_button { padding-left:22px; background:url(../../res/images/public_icon.png) -180px -362px no-repeat; }
 
 /* 左边导航样式 */
 .ft-navgtn{display: block; padding: 0; border-right: none; position: absolute; margin: 0; left: 5px; right: auto; top: 65px;  z-index: 1; width: 135px; visibility: visible; background-color:#fff;}
@@ -816,7 +816,7 @@ text-decoration: none!important; display: inline-block; width: 67px; height: 20p
 
 /*public_icon*/
 .icon-rt-on,.icon-lt-on,.icon-tab,.icon-paste ,.icon-cut,.icon-clone,.icon-copy,.icon-delete,.icon-remove,.icon-rename,.unchk-btn,.chk-btn,.icon-expand,.icon-unexpand ,
-.icon-right,.icon-left,.icon-add,.icon-up,.icon-down,.icon-navigation,.icon-tc{ background: url(/images/kelude/public_icon.png) 0 0 no-repeat; height: 22px; padding-left: 20px; line-height:22px;display: inline-block; vertical-align: top;}
+.icon-right,.icon-left,.icon-add,.icon-up,.icon-down,.icon-navigation,.icon-tc{ background: url(../../res/images/public_icon.png) 0 0 no-repeat; height: 22px; padding-left: 20px; line-height:22px;display: inline-block; vertical-align: top;}
 .icon-rt-on{ background-position:0 -91px;}
 .icon-lt-on{background-position:0 -61px;}
 .icon-tab{ background-position: 0 0;}

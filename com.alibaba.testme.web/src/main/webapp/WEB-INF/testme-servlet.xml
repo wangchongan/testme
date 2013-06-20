@@ -27,6 +27,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="prefix" value="/WEB-INF/webpages/" />
 		-->
 		<property name="suffix" value=".vm" />
+		<property name="redirectHttp10Compatible" value="false" />
 		<property name="exposeSpringMacroHelpers" value="true" />
 	    <property name="exposeRequestAttributes" value="true" />
 	    <property name="exposeSessionAttributes" value="true" />

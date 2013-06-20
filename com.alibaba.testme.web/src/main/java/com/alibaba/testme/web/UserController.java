@@ -19,11 +19,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.testme.common.constants.CommonConstants;
 import com.alibaba.testme.domain.dataobject.UserDO;
@@ -41,19 +41,16 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String main(Model model, HttpServletRequest request) {
-        return "login";
-    }
-
     @RequestMapping
-    public String login(Model model, HttpServletRequest request,
-                        @RequestParam(required = true) String userName,
-                        @RequestParam(required = true) String password) {
+    public String login(Model model, HttpServletRequest request, String userName, String password) {
+        if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+            return "login";
+        }
+
         UserDO user = userService.authenticate(userName, password);
         if (user != null) {
             request.getSession().setAttribute(CommonConstants.SESSION_USER, user);
-            return "index";
+            return "redirect:/";
         } else {
             model.addAttribute("errMsg", "用户名或密码错误");
             return "login";

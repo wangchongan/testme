@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -29,29 +30,29 @@ import com.alibaba.testme.web.common.PageUtil;
 
 /**
  * TODO Comment of ContentPathInterceptor
+ * 
  * @author lz
- *
  */
 public class TestMeWebRequestInterceptor extends HandlerInterceptorAdapter {
 
     @Resource
     private PageUtil pageUtil;
-    
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
         boolean handlerOk = super.preHandle(request, response, handler);
-        if(handlerOk){
+        if (handlerOk) {
             String url = request.getRequestURL().toString();
-            if(url.endsWith("/user/main") || url.endsWith("/user/login") )
+            if (url.endsWith("/user/login"))
                 return true;
-            
+
             HttpSession session = request.getSession();
-            UserDO user = (UserDO)session.getAttribute(CommonConstants.SESSION_USER);
-            if(user != null) {
+            UserDO user = (UserDO) session.getAttribute(CommonConstants.SESSION_USER);
+            if (user != null) {
                 return true;
-            } 
-            response.sendRedirect(request.getContextPath() + "/user/main");
+            }
+            response.sendRedirect(request.getContextPath() + "/user/login");
         }
         return false;
     }
@@ -60,8 +61,9 @@ public class TestMeWebRequestInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
         modelAndView.addObject("request", request);
-        modelAndView.addObject("contextPath", request.getContextPath());
+        if (!StringUtils.equals(modelAndView.getViewName(), "redirect:/")) {
+            modelAndView.addObject("contextPath", request.getContextPath());
+        }
         modelAndView.addObject("pageUtil", pageUtil);
     }
-
 }
