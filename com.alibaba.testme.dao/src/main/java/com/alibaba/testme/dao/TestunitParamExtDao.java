@@ -18,6 +18,12 @@ public interface TestunitParamExtDao {
     public Long addTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO);
 
     /**
+     * @param testunitParamExtDOList
+     * @return
+     */
+    public void batchSaveTestunitParamExtDO(List<TestunitParamExtDO> testunitParamExtDOList);
+
+    /**
      * @param testunitParamExtDO
      * @return
      */

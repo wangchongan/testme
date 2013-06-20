@@ -69,4 +69,12 @@ public interface TestunitService {
      */
     public List<TestunitDO> findByTestunitFlowId(Long testunitFlowId);
 
+    /**
+     * 根据测试单元ID获取测试单元详情信息
+     * 
+     * @param testunitId
+     * @return
+     */
+    public TestunitVO findTestunitVOById(Long testunitId);
+
 }

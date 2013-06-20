@@ -18,6 +18,12 @@ public interface TestunitParamService {
     public Long addTestunitParamDO(TestunitParamDO testunitParamDO);
 
     /**
+     * @param testunitParamDOList
+     * @return
+     */
+    public void batchSaveTestunitParamDO(List<TestunitParamDO> testunitParamDOList);
+
+    /**
      * @param DO
      * @return
      */

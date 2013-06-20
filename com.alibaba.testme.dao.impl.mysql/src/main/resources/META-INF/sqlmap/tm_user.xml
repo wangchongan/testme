@@ -101,4 +101,12 @@
     <include refid="user_queryParams" />
   </select>
   
+  <select id="user.findByNameAndPassword" resultMap="userDOResultMap" parameterClass="map" >
+     select 
+    <include refid="user_columns" />
+     from tm_user 
+    where user_name=#userName#
+	  and password=#password#
+  </select>
+  
 </sqlMap>

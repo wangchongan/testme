@@ -15,6 +15,8 @@
  */
 package com.alibaba.testme.domain.vo;
 
+import java.util.List;
+
 /**
  * 测试单元展示VO
  * 
@@ -24,44 +26,60 @@ public class TestunitVO {
     /**
      * 测试单元ID
      */
-    private Long   testunitId;
+    private Long                  testunitId;
     /**
      * 测试单元名称
      */
-    private String testunitName;
+    private String                testunitName;
     /**
      * 测试单元编码
      */
-    private String testunitCode;
+    private String                testunitCode;
     /**
      * 系统ID
      */
-    private Long   systemId;
+    private Long                  systemId;
     /**
      * 系统名称
      */
-    private String systemName;
+    private String                systemName;
     /**
      * 测试单元标签
      */
-    private String testunitTag;
+    private String                testunitTag;
     /**
      * 工作空间名称
      */
-    private String workSpaceName;
+    private String                workSpaceName;
     /**
      * 工作空间ID
      */
-    private String workSpaceId;
+    private Long                  workSpaceId;
+    /**
+     * 自定义工作空间名称
+     */
+    private String                customWorSpaceName;
     /**
      * 测试单元所在类路径
      */
-    private String classQualifiedName;
+    private String                classQualifiedName;
 
     /**
      * 测试单元创建者用户
      */
-    private Long   userId;
+    private Long                  userId;
+    /**
+     * 测试单元参数列表
+     */
+    private List<TestunitParamVO> testunitParamVOList;
+    /**
+     * 测试单元参数
+     */
+    private String                testunitParamVOStr;
+    /**
+     * 备注
+     */
+    private String                remark;
 
     /**
      * @return the testunitId
@@ -164,14 +182,14 @@ public class TestunitVO {
     /**
      * @return the workSpaceId
      */
-    public String getWorkSpaceId() {
+    public Long getWorkSpaceId() {
         return workSpaceId;
     }
 
     /**
      * @param workSpaceId the workSpaceId to set
      */
-    public void setWorkSpaceId(String workSpaceId) {
+    public void setWorkSpaceId(Long workSpaceId) {
         this.workSpaceId = workSpaceId;
     }
 
@@ -201,6 +219,62 @@ public class TestunitVO {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return the testunitParamVOList
+     */
+    public List<TestunitParamVO> getTestunitParamVOList() {
+        return testunitParamVOList;
+    }
+
+    /**
+     * @param testunitParamVOList the testunitParamVOList to set
+     */
+    public void setTestunitParamVOList(List<TestunitParamVO> testunitParamVOList) {
+        this.testunitParamVOList = testunitParamVOList;
+    }
+
+    /**
+     * @return the testunitParamVOStr
+     */
+    public String getTestunitParamVOStr() {
+        return testunitParamVOStr;
+    }
+
+    /**
+     * @param testunitParamVOStr the testunitParamVOStr to set
+     */
+    public void setTestunitParamVOStr(String testunitParamVOStr) {
+        this.testunitParamVOStr = testunitParamVOStr;
+    }
+
+    /**
+     * @return the customWorSpaceName
+     */
+    public String getCustomWorSpaceName() {
+        return customWorSpaceName;
+    }
+
+    /**
+     * @param customWorSpaceName the customWorSpaceName to set
+     */
+    public void setCustomWorSpaceName(String customWorSpaceName) {
+        this.customWorSpaceName = customWorSpaceName;
+    }
+
+    /**
+     * @return the remark
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * @param remark the remark to set
+     */
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

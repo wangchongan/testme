@@ -105,4 +105,13 @@ public class TestunitServiceImpl implements TestunitService {
         return testunitDao.findByTestunitFlowId(testunitFlowId);
     }
 
+    @Override
+    public TestunitVO findTestunitVOById(Long testunitId) {
+        if (testunitId == null || testunitId <= 0L) {
+            return null;
+        }
+
+        return testunitDao.findTestunitVOById(testunitId);
+    }
+
 }

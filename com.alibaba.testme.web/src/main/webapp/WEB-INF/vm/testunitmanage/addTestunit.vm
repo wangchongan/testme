@@ -4,43 +4,66 @@
     <title>新增测试单元信息</title>
 </head>
 <script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
-<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
-<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
-</head>
+<script type="text/javascript" src="${contextPath}/res/common/dialog.js"></script>
+<script type="text/javascript" src="${contextPath}/res/common/testunit.js"></script>
 <script>
-function getWorkSpaceList(){
-	var systemId = document.getElementById("systemId").value;
-	if(systemId){
-	   location.href= "${contextPath}/testunitmanage/getWorkSpaceListBySystemId?systemId="+systemId;
-	}
-}
-
 function addOneTestunitConfig(tableObject){
+   var i = tableObject.rows.length;//table的title占了两行，数据从第三行开始，即i=2，0表示第一行
+   var rankValue = tableObject.rows.length-1;
    var row = tableObject.insertRow(tableObject.rows.length);
-   var i = tableObject.rows.length - 2;
+   var configTableRownumberListValue = document.getElementById("configTableRownumberList").value;
+   if(configTableRownumberListValue){  
+   		document.getElementById("configTableRownumberList").value = configTableRownumberListValue+(i+"#");
+   }else{
+   		document.getElementById("configTableRownumberList").value =(i+"#");
+   }
    var col;
    col = row.insertCell(0);
    row.style.background="#FFFFFF";
-   col.innerHTML = "<input name='tag' class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
+   var labelName="labelName_"+i;
+   var paramName="paramName_"+i;
+   var formCtrlType="formCtrlType_"+i;
+   var defaultValue="defaultValue_"+i;
+   var rank="rank_"+i;
+   var isRequiredYes="isRequiredYes_"+i;
+   var isRequiredNo="isRequiredNo_"+i;
+   var help="help_"+i;
+   var paramExt = "paramExt_"+i;
+   var configSpanId = "configSpanId_"+i;
+   col.innerHTML = "<input id="+labelName+" class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
    col = row.insertCell(1);
-   col.innerHTML = "<input name='tag' class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+paramName+" class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
    col = row.insertCell(2);
-   col.innerHTML = "<select name='workSpaceId' style='width:140px;height:20px'><option value='0'>==请选择==</option></select>";
+   col.innerHTML = "<select id="+formCtrlType+" style='width:140px;height:20px' onchange='doShowConfig("+i+")'><option value='selectType'>下拉菜单</option><option value='textType'>文本框</option></select>";
    col = row.insertCell(3);
-   col.innerHTML = "<input name='tag' class='text' style='width:140px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+defaultValue+" class='text' style='width:140px' type='text' value='$!testunitFlowDO.tag'/>";
    col = row.insertCell(4);
-   col.innerHTML = "<input name='tag' class='text' style='width:40px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+rank+" class='text' style='width:40px' value="+rankValue+" type='text' />";
    col = row.insertCell(5);
-   col.innerHTML = "<input type='radio' name='envConfigRequired' value='Y' checked='checked'/>是<input type='radio' name='nullable' value='N' />否";
+   col.innerHTML = "<input type='radio' id="+isRequiredYes+" value='Y' checked='checked'/>是<input type='radio' id="+isRequiredNo+" value='N' />否";
    col = row.insertCell(6);
-   col.innerHTML = "<input name='tag' class='text' style='width:170px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+help+" class='text' style='width:230px' type='text' value='$!testunitFlowDO.tag'/>";
    col = row.insertCell(7);
-   col.innerHTML = "<a href='javascript:void(0)'>删除</a>";
+   col.innerHTML = "<input id="+paramExt+" type='hidden' /><span id="+configSpanId+" style='display:;'><a href='javascript:void(0)' onclick='addPropKey("+i+")'>配置项</a></span> <a href='javascript:void(0)' onclick='deleteRows("+i+",\"configTableRownumberList\" )'>&nbsp;删除</a>";
 }
 
+
 </script>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#drag{position:absolute;top:300px;right:100px;width:320px;height:190px;background:#e9e9e9;border:1px solid #444;border-radius:5px;box-shadow:0 1px 3px 2px #666;}
+#drag .title{position:relative;height:27px;margin:5px;}
+#drag .title h2{font-size:14px;height:27px;line-height:24px;border-bottom:1px solid #A1B4B0;}
+#drag .title div{position:absolute;height:19px;top:2px;right:0;}
+#drag .title a,a.open{float:left;width:21px;height:19px;display:block;margin-left:5px;background:url(/jscss/demoimg/201301/tool.png) no-repeat;}
+a.open{position:absolute;top:10px;left:50%;margin-left:-10px;background-position:0 0;}
+a.open:hover{background-position:0 -29px;}
+#drag .content{overflow:auto;margin:0 5px;}
+</style>
 <body class="ContentBody">
-<form  method="post" id="addTestunitForm" name="addTestunitForm">
+<form  method="post" id="addTestunitForm" name="addTestunitForm" enctype="multipart/form-data">
+<input type="hidden" id="testunitParamVOStr" name="testunitParamVOStr"/>
 <div>
     <label name="resultMsg"><font color="red">$!resultMsg</font></label>
 </div>
@@ -63,69 +86,75 @@ function addOneTestunitConfig(tableObject){
 						  <col style="width: 30%" />
 						  <tr>
 							<td nowrap align="right" width="13%" height="40px">测试单元名称:</td>
-							<td nowrap align="left" width="30%" height="40px"><input name="name" class="text" style="width:200px" type="text"  value="$!testunitDO.name"/><span class="red"> *</span></td>
+                            <td nowrap align="left" width="30%" height="40px"><input id="name" name="testunitName" class="text" style="width:200px" type="text"  value="$!testunitVO.testunitName"/><span class="red"> *</span><span class="red" style="display:none;" id="nameNotNull">&nbsp;必填</span></td>
 							<td nowrap align="right" width="13%" height="40px">测试单元编码:</td>
-							<td nowrap align="left" width="30%" height="40px"><input name="code" class="text" style="width:200px" type="text" value="$!testunitDO.code"/><span class="red"> *</span></td>
+							<td nowrap align="left" width="30%" height="40px"><input id="code" name="testunitCode" class="text" style="width:200px" type="text" value="$!testunitVO.testunitCode"/><span class="red"> *</span><span class="red" style="display:none;" id="codeNotNull">&nbsp;必填</span></td>
 						  </tr>
     					  <tr>
 							<td nowrap align="right" width="13%" height="40px">所属系统:</td>
             				<td nowrap align="left" width="30%" height="40px">
             					<select name="systemId" id="systemId" style="width:200px;height:22px" onchange="getWorkSpaceList()">
             						  #foreach($systemDO in $systemDOList)
-										#if($systemId==$systemDO.id)
+										#if($testunitVO.systemId==$systemDO.id)
             							<option value="$!systemDO.id" selected>$!systemDO.name</option>
 										#else
 										<option value="$!systemDO.id">$!systemDO.name</option>	
 										#end
             						  #end
             					</select>
-								<span class="red"> *</span>
+								<span class="red"> *</span><span class="red" style="display:none;" id="systemIdNotNull">&nbsp;必填</span>
             				</td>
 							<td nowrap align="right" width="13%" height="40px">测试单元标签:</td>
-							<td nowrap align="left" width="30%" height="40px"><input name="tag" class="text" style="width:200px" type="text" value="$!testunitFlowDO.tag"/><span class="red"> *</span></td>
+							<td nowrap align="left" width="30%" height="40px"><input id="tag" name="testunitTag" class="text" style="width:200px" type="text" value="$!testunitVO.testunitTag"/><span class="red"> *</span><span class="red" style="display:none;" id="tagNotNull">&nbsp;必填</span></td>
 						  </tr>
                           <tr>
 							<td nowrap align="right" width="13%" height="40px">所属工作空间:</td>
             				<td nowrap align="left" width="30%" height="40px">
-            					<select name="workSpaceId" style="width:200px;height:22px">
+            					<select id="workSpaceId" name="workSpaceId" style="width:200px;height:22px">
             						  <option value="0">==请选择==</option>
             						  #foreach($workSpaceDO in $workSpaceDOList)
-										#if($workSpaceId==$workSpaceDO.id)
+										#if($testunitVO.workSpaceId==$workSpaceDO.id)
             							<option value="$!workSpaceDO.id" selected>$!workSpaceDO.name</option>
 										#else
 										<option value="$!workSpaceDO.id">$!workSpaceDO.name</option>	
 										#end
             						  #end
             					</select>
+								<span class="red" style="display:none;" id="workSpaceIdNotNull">&nbsp;工作空间必填一项</span>
             				</td>
 							<td nowrap align="right" width="13%" height="40px">自定义工作空间:</td>
-							<td nowrap align="left" width="30%" height="40px"><input name="customWorkSpace" class="text" style="width:200px" type="text" value="$!customWorkSpace"/></td>
+							<td nowrap align="left" width="30%" height="40px"><input id="customWorkSpace" name="customWorSpaceName" class="text" style="width:200px" type="text" value="$!testunitVO.customWorSpaceName"/></td>
 						  </tr>
                           <tr>
 							<td nowrap align="right" width="13%" height="40px">包及类名:</td>
-    					    <td nowrap align="left" width="80%" height="40px" colspan="3"><input name="classQualifiedName" class="text" style="width:500px" type="text" value="$!testunitDO.classQualifiedName"/><span class="red"> *</span></td>
+    					    <td nowrap align="left" width="80%" height="40px" colspan="3"><input id="classQualifiedName" name="classQualifiedName" class="text" style="width:500px" type="text" value="$!testunitVO.classQualifiedName"/><span class="red"> *</span><span class="red" style="display:none;" id="classQualifiedNameNotNull">&nbsp;必填</span></td>
 						  </tr>
 						  <tr>
             				<td nowrap align="right" width="13%" height="40px">bundle文件:</td>
             				<td nowrap align="left"  width="20%" height="22px">
             					<input id="bundleFile" name="bundleFile" type="file"/>
+								<span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span>
             				</td>
             				<td width="67%"></td>
 						  </tr>
 						  <tr>
     					    <td nowrap align="right" width="13%" height="40px">备注:</td>
-    					    <td nowrap colspan="2" width="60%" height="40px"><textarea name="remark" rows="3" cols="80">$!testunitDO.remark</textarea></td>
+    					    <td nowrap colspan="2" width="60%" height="40px"><textarea name="remark" rows="3" cols="80">$!testunitVO.remark</textarea></td>
     					  </tr>
 					  </table>
 					  </fieldset>	
 					  <br />
 					  <fieldset style="height:100%;">
         				<legend>测试单元参数配置</legend>
+						  <!--记录参数配置表格中数据包含的行号，新增和删除行时都需要操作此记录-->
+						  <input type="hidden" id="configTableRownumberList" name="configTableRownumberList" value="$!configTableRownumberList"/>
 						  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                       	  <tr>
-                            <td height="30">
+                            <td height="30"  width="100%">
             	                <input name="addTestunitConfigBtn" type="button" onclick="addOneTestunitConfig(addTestunitConfigTable)" class="right-button08" value="添加一项" />
-        					</td>
+								<label class="red" style="display:none;" id="testunitConfigNotNull"/>&nbsp;包含*号的列属于必填项</label>
+                                <input type="text" style="width:600px;color:red;border:0;display:none;" id="selectTypeConfigNotNull"/>
+							</td>
                       	  </tr>
                           <tr>
                             <td height="40" class="font42">
@@ -134,58 +163,70 @@ function addOneTestunitConfig(tableObject){
         						  <col style="width: 10%" />
         						  <col style="width: 15%" />
         						  <col style="width: 15%" />
-								  <col style="width: 6%" />
-        						  <col style="width: 15%" />
-        						  <col style="width: 19%" />
+								  <col style="width: 7%" />
+        						  <col style="width: 10%" />
+        						  <col style="width: 23%" />
         						  <col style="width: 10%" />
         						  <tr class="CTitle" >
                                     <td height="22" colspan="8" align="center" style="font-size:16px">参数列表</td>
                                   </tr>
                                   <tr bgcolor="#EEEEEE">
-                                    <td width="10%" height="20px">控件显示名称</td>
-                					<td width="10%">参数名称</td>
-                					<td width="15%">表单控件类型</td>
+                                    <td width="10%" height="20px">控件显示名称<span class="red"> *</span></td>
+                					<td width="10%">参数名称<span class="red"> *</span></td>
+                					<td width="15%">表单控件类型<span class="red"> *</span></td>
 									<td width="15%">缺省值</td>
-									<td width="7%">位置序号</td>
-									<td width="15%">是否必填</td>
-									<td width="19%">填写提示</td>
+									<td width="7%">位置序号<span class="red"> *</span></td>
+									<td width="10%">是否必填<span class="red"> *</span></td>
+									<td width="23%">填写提示</td>
 									<td width="10%">操作</td>
                                   </tr>
-        						  <tr bgcolor="#FFFFFF">
+								  #foreach($testunitParamVO in $testunitParamVOList)
+                                  <tr bgcolor="#FFFFFF">
                 				    <td height="20px">
-										<input name="tag" class="text" style="width:90px" type="text" value="$!testunitFlowDO.tag"/>
+										<input name="labelName_$!testunitParamVO.rownumber" id="labelName_$!testunitParamVO.rownumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.labelName"/>
 									</td>
                 					<td>
-    									<input name="tag" class="text" style="width:90px" type="text" value="$!testunitFlowDO.tag"/>
+    									<input name="paramName_$!testunitParamVO.rownumber" id="paramName_$!testunitParamVO.rownumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.paramName"/>
     								</td>
                                     <td>
-    								  <select name="workSpaceId" style="width:140px;height:20px">
-                						  <option value="0">==请选择==</option>
-                						  #foreach($workSpaceDO in $workSpaceDOList)
-    										#if($workSpaceId==$workSpaceDO.id)
-                							<option value="$!workSpaceDO.id" selected>$!workSpaceDO.name</option>
-    										#else
-    										<option value="$!workSpaceDO.id">$!workSpaceDO.name</option>	
-    										#end
+    								  <select name="formCtrlType_$!testunitParamVO.rownumber" id="formCtrlType_$!testunitParamVO.rownumber" style="width:140px;height:20px" onchange="doShowConfig($!testunitParamVO.rownumber)">
+                						<option value="selectType">下拉菜单</option>
+    									<option value="textType">文本框</option>	
+										#foreach($formCtrlTypeEnum in $formCtrlTypeEnumList)
+                						  #if($!formCtrlTypeEnum.key==$!testunitParamVO.formCtrlType)
+                							<option value="$!formCtrlTypeEnum.key" selected="selected">$!formCtrlTypeEnum.value</option>
+                						  #else
+                							<option value="$!formCtrlTypeEnum.key">$!formCtrlTypeEnum.value</option>
                 						  #end
+            						   #end
 									  </select>
     								</td>
 									<td>
-    									<input name="tag" class="text" style="width:140px" type="text" value="$!testunitFlowDO.tag"/>
+    									<input name="defaultValue_$!testunitParamVO.rownumber" id="defaultValue_$!testunitParamVO.rownumber" class="text" style="width:140px" type="text" value="$!testunitParamVO.defaultValue"/>
     								</td>
 									<td>
-    									<input name="tag" class="text" style="width:40px" type="text" value="$!testunitFlowDO.tag"/>
+    									<input name="rank_$!testunitParamVO.rownumber"  id="rank_$!testunitParamVO.rownumber" class="text" style="width:40px" type="text" value="$!testunitParamVO.rank"/>
     								</td>
 									<td>
-    									<input type="radio" name="envConfigRequired" value="Y" checked="checked"/>是<input type="radio" name="nullable" value="N" />否
+										#if($!testunitParamVO.isRequired=="Y")
+											<input type="radio" id="isRequiredYes_$!testunitParamVO.rownumber" name="isRequired_$!testunitParamVO.rownumber" value="Y" checked="checked"/>是
+											<input type="radio" id="isRequiredNo_$!testunitParamVO.rownumber"  name="isRequired_$!testunitParamVO.rownumber" value="N" />否
+										#else
+											<input type="radio" id="isRequiredYes_$!testunitParamVO.rownumber" name="isRequired_$!testunitParamVO.rownumber"  value="Y"/>是
+											<input type="radio" id="isRequiredNo_$!testunitParamVO.rownumber"  name="isRequired_$!testunitParamVO.rownumber"  value="N" checked="checked"/>否
+										#end
+    									
     								</td>
 									<td>
-    									<input name="tag" class="text" style="width:170px" type="text" value="$!testunitFlowDO.tag"/>
+    									<input name="help_$!testunitParamVO.rownumber" id="help_$!testunitParamVO.rownumber" class="text" style="width:230px" type="text" value="$!testunitParamVO.help"/>
     								</td>
                                     <td>
-            							<a href="javascript:void(0)" onclick="delProcess('${contextPath}/systemconfig/deleteSystemConfig?id='+$!systemDO.id)">删除</a>
+										<input id="paramExt_$!testunitParamVO.rownumber" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
+										#if($!testunitParamVO.needParamExt)<span id="configSpanId_$!testunitParamVO.rownumber" style='display:;'><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.rownumber)'>配置项</a></span>#end
+            							<a href="javascript:void(0)" onclick="deleteRows($!testunitParamVO.rownumber,'configTableRownumberList')">删除</a>
             						</td>
-        						  </tr>  
+        						  </tr>
+								  #end
             					</table>
             				</td>
         				  </tr>
@@ -198,13 +239,40 @@ function addOneTestunitConfig(tableObject){
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
-		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitForm('addTestunitForm','${contextPath}/testunitmanage/saveTestunit',addTestunitForm.selectcolumns);"/>　
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitForm('addTestunitForm','${contextPath}/testunitmanage/saveTestunit',addTestunitConfigTable,'configTableRownumberList');"/>　
 		<a href="${contextPath}/testunitmanage/testunitList" target="mainFrame" class="left-font03">查询测试单元信息</a>
      </td>
 	</tr>
  </table>
 </div>
 </form>
+<div id="drag" style="display:none">
+    <div class="title">
+        <h2>添加配置项<font color="red">(控件显示名称和控件值按行对应)</font></h2>
+    </div>
+    <div class="content">
+		<form  method="post" id="addTestunitConfigForm" name="addTestunitConfigForm">
+		<input type="hidden" id="rownumber" />
+        <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+    	<tr>
+	    	<td nowrap align="left" width="50%" height="30px">控件显示名称:</td>
+			<td nowrap align="left" width="50%" height="30px">控件值:</td>
+		</tr>
+		<tr>
+			<td nowrap  width="50%" height="40px"><textarea id="paramKey" rows="5"></textarea></td>
+	    	<td nowrap  width="50%" height="40px"><textarea id="paramValue" rows="5"></textarea></td>
+		</tr>
+		<tr>
+            <td align="right">
+				<input type="button" name="saveBtn" value="确定" class="button" onclick="doConfirmProcess()"/>　
+			</td>
+			<td align="left">
+				<input type="button" name="cancelBtn" value="取消" class="button" onclick="doCancelProcess();"/>　
+			</td>
+		</tr>
+		</table>
+        </form>
+    </div>    
+</div>
 </body>
-
 </html>

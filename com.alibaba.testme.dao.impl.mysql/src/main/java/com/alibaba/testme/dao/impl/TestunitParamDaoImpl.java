@@ -1,11 +1,16 @@
 package com.alibaba.testme.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.orm.ibatis.SqlMapClientCallback;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.alibaba.testme.dao.TestunitParamDao;
 import com.alibaba.testme.domain.dataobject.TestunitParamDO;
+import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
  * TestunitParam Dao Implement
@@ -13,6 +18,7 @@ import com.alibaba.testme.domain.dataobject.TestunitParamDO;
  * @author xiaopenzi
  */
 public class TestunitParamDaoImpl extends SqlMapClientDaoSupport implements TestunitParamDao {
+    private static final Logger logger = LoggerFactory.getLogger(TestunitParamDaoImpl.class);
 
     /**
      * @param testunitParamDO
@@ -70,6 +76,33 @@ public class TestunitParamDaoImpl extends SqlMapClientDaoSupport implements Test
     public List<TestunitParamDO> findList(TestunitParamDO testunitParamDO) {
         return (List<TestunitParamDO>) this.getSqlMapClientTemplate().queryForList(
                 "testunitParam.findList", testunitParamDO);
+    }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+    public void batchSaveTestunitParamDO(final List<TestunitParamDO> testunitParamDOList) {
+        try {
+            getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
+
+                public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+                    executor.startBatch(); // 通知开始批量
+                    int batch = 1;
+                    for (TestunitParamDO testunitParamDO : testunitParamDOList) {
+                        executor.delete("testunitParam.add", testunitParamDO);
+                        if (batch % 100 == 0) { // 注意：executeBatch()会将inBatch属性置为false，当下一次调用delete的时候会直接执行
+                            executor.executeBatch();
+                            executor.startBatch(); // 因此，这里需要再start一次
+                        }
+                        batch++;
+                    }
+                    executor.executeBatch();
+                    return null;
+                }
+            });
+
+        } catch (Exception e) {
+            logger.error("批处理出现异常", e);
+        }
     }
 
 }

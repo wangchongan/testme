@@ -77,4 +77,12 @@ public class TestunitParamServiceImpl implements TestunitParamService {
         return testunitParamDao.findList(testunitParamDO);
     }
 
+    @Override
+    public void batchSaveTestunitParamDO(List<TestunitParamDO> testunitParamDOList) {
+        if (testunitParamDOList == null || testunitParamDOList.size() == 0) {
+            return;
+        }
+        testunitParamDao.batchSaveTestunitParamDO(testunitParamDOList);
+    }
+
 }

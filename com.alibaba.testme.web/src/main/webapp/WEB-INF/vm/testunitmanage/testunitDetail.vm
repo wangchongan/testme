@@ -1,0 +1,151 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>查看测试单元信息</title>
+</head>
+<script type="text/javascript" src="${contextPath}/res/common/commonConfig.js"></script>
+<script type="text/javascript" src="${contextPath}/res/common/dialog.js"></script>
+<script type="text/javascript" src="${contextPath}/res/common/testunit.js"></script>
+<link href="${contextPath}/res/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/res/css/css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#drag{position:absolute;top:300px;right:100px;width:320px;height:190px;background:#e9e9e9;border:1px solid #444;border-radius:5px;box-shadow:0 1px 3px 2px #666;}
+#drag .title{position:relative;height:27px;margin:5px;}
+#drag .title h2{font-size:14px;height:27px;line-height:24px;border-bottom:1px solid #A1B4B0;}
+#drag .title div{position:absolute;height:19px;top:2px;right:0;}
+#drag .title a,a.open{float:left;width:21px;height:19px;display:block;margin-left:5px;background:url(/jscss/demoimg/201301/tool.png) no-repeat;}
+a.open{position:absolute;top:10px;left:50%;margin-left:-10px;background-position:0 0;}
+a.open:hover{background-position:0 -29px;}
+#drag .content{overflow:auto;margin:0 5px;}
+</style>
+<body class="ContentBody">
+<form  method="post" id="testunitDetailForm" name="testunitDetailForm">
+<div class="MainDiv">
+<table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+  <tr>
+      <th class="tablestyle_title" >查看测试单元页面</th>
+  </tr>
+  <tr>
+    <td class="CPanel">
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<tr>
+			<td width="100%">
+				<fieldset style="height:100%;">
+				<legend>测试单元基本信息</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%" class="tableFixClass">
+						  <col style="width: 13%" />
+						  <col style="width: 30%" />
+						  <col style="width: 13%" />
+						  <col style="width: 30%" />
+						  <tr>
+							<td nowrap align="right" width="13%" height="40px">测试单元名称:</td>
+							<td style="width:250px;height:40px"><label name="testunitName">$!testunitVO.testunitName</label></td>
+							<td nowrap align="right" width="13%" height="40px">测试单元编码:</td>
+							<td style="width:250px;height:40px"><label name="testunitCode">$!testunitVO.testunitCode</label></td>
+						  </tr>
+    					  <tr>
+							<td nowrap align="right" width="13%" height="40px">所属系统:</td>
+							<td style="width:250px;height:40px"><label name="systemName">$!testunitVO.systemName</label></td>
+							<td nowrap align="right" width="13%" height="40px">测试单元标签:</td>
+							<td style="width:250px;height:40px"><label name="testunitTag">$!testunitVO.testunitTag</label></td>
+						  </tr>
+                          <tr>
+							<td nowrap align="right" width="13%" height="40px">所属工作空间:</td>
+							<td style="width:250px;height:40px"><label name="workSpaceName">$!testunitVO.workSpaceName</label></td>
+							<td nowrap align="right" width="13%" height="40px">包及类名:</td>
+							<td style="width:250px;height:40px"><label name="classQualifiedName">$!testunitVO.classQualifiedName</label></td>
+						  </tr>
+						  <tr>
+    					    <td nowrap align="right">备注:</td>
+    					    <td colspan="3" style="height:40px"><label name="remark">$!testunitVO.remark</label></td>
+    					  </tr>
+					  </table>
+					  </fieldset>	
+					  <br />
+					  <fieldset style="height:100%;">
+        				<legend>测试单元参数配置</legend>
+						  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td height="40" class="font42">
+                				<table style="width:100%;" id="testunitConfigDetailTable" name="testunitConfigDetailTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="tableFixClass">
+                				  <col style="width: 10%" />
+        						  <col style="width: 10%" />
+        						  <col style="width: 15%" />
+        						  <col style="width: 15%" />
+								  <col style="width: 7%" />
+        						  <col style="width: 10%" />
+        						  <col style="width: 23%" />
+        						  <col style="width: 10%" />
+        						  <tr class="CTitle" >
+                                    <td height="22" colspan="8" align="center" style="font-size:16px">参数列表</td>
+                                  </tr>
+                                  <tr bgcolor="#EEEEEE">
+                                    <td width="10%" height="20px">控件显示名称<span class="red"> *</span></td>
+                					<td width="10%">参数名称<span class="red"> *</span></td>
+                					<td width="15%">表单控件类型<span class="red"> *</span></td>
+									<td width="15%">缺省值</td>
+									<td width="7%">位置序号<span class="red"> *</span></td>
+									<td width="10%">是否必填<span class="red"> *</span></td>
+									<td width="23%">填写提示</td>
+									<td width="10%">操作</td>
+                                  </tr>
+								  #foreach($testunitParamVO in $testunitVO.testunitParamVOList)
+                                  <tr bgcolor="#FFFFFF">
+									<td>$!testunitParamVO.labelName</td>
+									<td>$!testunitParamVO.paramName</td>
+									<td>$!testunitParamVO.formCtrlType</td>
+									<td>$!testunitParamVO.defaultValue</td>
+									<td>$!testunitParamVO.rank</td>
+									<td>$!testunitParamVO.isRequired</td>
+									<td>$!testunitParamVO.help</td>
+                                    <td>
+										<input id="paramExt_$!testunitParamVO.id" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
+										#if($!testunitParamVO.needParamExt)<span><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.id)'>配置项</a></span>#end
+            						</td>
+        						  </tr>
+								  #end
+            					</table>
+            				</td>
+        				  </tr>
+        				</table>
+        			  </fieldset>			
+			</td>
+		</tr>
+		</table>
+	 </td>
+   </tr>
+   <tr>
+     <td colspan="2" align="center" height="50px">
+		<a href="${contextPath}/testunitmanage/testunitList" target="mainFrame" class="left-font03">查询测试单元信息</a>
+     </td>
+	</tr>
+ </table>
+</div>
+</form>
+<div id="drag" style="display:none">
+    <div class="title">
+        <h2>添加配置项<font color="red">(控件显示名称和控件值按行对应)</font></h2>
+    </div>
+    <div class="content">
+		<form  method="post" id="addTestunitConfigForm" name="addTestunitConfigForm">
+		<input type="hidden" id="rownumber" />
+        <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+    	<tr>
+	    	<td nowrap align="left" width="50%" height="30px">控件显示名称:</td>
+			<td nowrap align="left" width="50%" height="30px">控件值:</td>
+		</tr>
+		<tr>
+			<td nowrap  width="50%" height="40px"><textarea id="paramKey" rows="5"></textarea></td>
+	    	<td nowrap  width="50%" height="40px"><textarea id="paramValue" rows="5"></textarea></td>
+		</tr>
+		<tr>
+			<td align="left">
+				<input type="button" name="cancelBtn" value="关闭" class="button" onclick="doCancelProcess();"/>　
+			</td>
+		</tr>
+		</table>
+        </form>
+    </div>    
+</div>
+</body>
+</html>

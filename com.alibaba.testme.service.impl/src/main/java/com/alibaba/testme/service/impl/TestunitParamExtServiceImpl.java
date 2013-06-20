@@ -77,4 +77,12 @@ public class TestunitParamExtServiceImpl implements TestunitParamExtService {
         return testunitParamExtDao.findList(testunitParamExtDO);
     }
 
+    @Override
+    public void batchSaveTestunitParamExtDO(List<TestunitParamExtDO> testunitParamExtDOList) {
+        if (testunitParamExtDOList == null || testunitParamExtDOList.size() == 0) {
+            return;
+        }
+        testunitParamExtDao.batchSaveTestunitParamExtDO(testunitParamExtDOList);
+    }
+
 }

@@ -97,4 +97,10 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
                 "testunit.findByTestunitFlowId", testunitFlowId);
     }
 
+    @Override
+    public TestunitVO findTestunitVOById(Long testunitId) {
+        return (TestunitVO) this.getSqlMapClientTemplate().queryForObject(
+                "testunit.findTestunitVOById", testunitId);
+    }
+
 }

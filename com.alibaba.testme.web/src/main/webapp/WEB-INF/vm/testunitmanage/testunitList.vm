@@ -31,7 +31,7 @@
 					<select name="systemId" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($systemDO in $systemDOList)
-							#if($!systemDO.id==$!testUnitQuery.systemId)
+							#if($!systemDO.id==$!testunitQuery.systemId)
 								<option value="$!systemDO.id"  selected="selected">$!systemDO.name</option>
 							#else
 								<option value="$!systemDO.id">$!systemDO.name</option>
@@ -46,10 +46,10 @@
 				  <td><input name="testunitCode" class="text" style="width:180px" type="text" value="$!testunitQuery.testunitCode"/></td>
 				  <td width="100" align="right">所属工作空间：</td>
 				  <td>
-					<select name="systemId" style="width:180px;height:22px">
+					<select name="workSpaceId" style="width:180px;height:22px">
                           <option value="">==请选择==</option>
 						  #foreach($workSpaceDO in $workSpaceDOList)
-							#if($!workSpaceDO.id==$!testUnitQuery.workSpaceId)
+							#if($!workSpaceDO.id==$!testunitQuery.workSpaceId)
 								<option value="$!workSpaceDO.id"  selected="selected">$!workSpaceDO.name</option>
 							#else
 								<option value="$!workSpaceDO.id">$!workSpaceDO.name</option>
@@ -109,7 +109,7 @@
 							<td>$!testunitVO.testunitTag</td>
                             <td>
 								<a href="${contextPath}/testunitmanage/testunitDetail?testunitId=$!testunitVO.testunitId" target="mainFrame">查看</a>
-								#if($testUnitVO.userId==$userId)
+								#if($testunitVO.userId==$userId)
     							<a href="${contextPath}/testunitmanage/editTestunit?testunitId=$!testunitVO.testunitId" target="mainFrame">|编辑</a>
 								<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteTestunit?testunitId='+$!testunitVO.testunitId)">|删除</a>
 								#end
