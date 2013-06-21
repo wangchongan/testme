@@ -30,7 +30,6 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -570,7 +569,6 @@ public class SystemConfigController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    @Transactional
     public String saveSystemEnv(Model model, HttpServletRequest request,
                                 @RequestParam("configName") String configName,
                                 @RequestParam("systemId") Long systemId) {
@@ -842,7 +840,6 @@ public class SystemConfigController {
     /*
      * 保存系统环境配置，先删除该配置名称对应的所有用户自定义类型的参数信息，再批量插入配置信息
      */
-    @Transactional
     private String deleteAndSaveEnvDetails(String configName, Long systemId, Properties property,
                                            Model model, HttpServletRequest request) {
         SystemEnvDO systemEnvDO = new SystemEnvDO();

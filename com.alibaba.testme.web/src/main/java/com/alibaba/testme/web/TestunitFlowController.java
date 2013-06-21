@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,7 +128,6 @@ public class TestunitFlowController {
      * @param testunitFlowDO
      * @return
      */
-    @Transactional
     @RequestMapping(method = RequestMethod.POST)
     public String saveTestunitFlow(Model model, HttpServletRequest request,
                                    @ModelAttribute("testunitFlowDO") TestunitFlowDO testunitFlowDO,
@@ -199,7 +197,6 @@ public class TestunitFlowController {
     /**
      * 更新测试单元流程信息
      */
-    @Transactional
     @RequestMapping(method = RequestMethod.POST)
     public String updateTestunitFlow(Model model,
                                      HttpServletRequest request,
@@ -239,7 +236,6 @@ public class TestunitFlowController {
     /**
      * 删除测试单元流程信息
      */
-    @Transactional
     @RequestMapping
     public String deleteTestunitFlow(Model model, HttpServletRequest request,
                                      @RequestParam("testunitFlowId") Long testunitFlowId) {

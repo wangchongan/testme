@@ -99,8 +99,8 @@ a.open:hover{background-position:0 -29px;}
 									<td>$!testunitParamVO.isRequired</td>
 									<td>$!testunitParamVO.help</td>
                                     <td>
-										<input id="paramExt_$!testunitParamVO.id" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
-										#if($!testunitParamVO.needParamExt)<span><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.id)'>配置项</a></span>#end
+										<input id="paramExt_$!testunitParamVO.testunitParamId" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
+										<span><a href='javascript:void(0)' id="configSpanId_$!testunitParamVO.rownumber" style="display:$!testunitParamVO.needParamExt;" onclick='addPropKey($!testunitParamVO.testunitParamId)'>配置项</a></span>
             						</td>
         						  </tr>
 								  #end

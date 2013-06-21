@@ -28,7 +28,6 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -75,7 +74,9 @@ public class TestunitController {
     private TestunitParamService    testunitParamService;
     @Resource
     private TestunitParamExtService testunitParamExtService;
-    private static final Logger     logger = LoggerFactory.getLogger(TestunitController.class);
+    private static final Logger     logger         = LoggerFactory
+                                                           .getLogger(TestunitController.class);
+    private static final String     IS_ADD_PROCESS = "isAddProcess";
 
     //页面初始化
     private void init(Model model) {
@@ -164,49 +165,62 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
             return testunitList(model, request);
         }
-        TestunitVO testunitVO = testunitService.findTestunitVOById(testunitId);
-        TestunitParamDO query = new TestunitParamDO();
-        query.setTestunitId(testunitId);
-        List<TestunitParamDO> paramDOList = testunitParamService.findList(query);
-        if (paramDOList == null || paramDOList.size() == 0) {
-            model.addAttribute("testunitVO", testunitVO);
-            return "testunitmanage/testunitDetail";
-        }
-        List<TestunitParamVO> testunitParamVOList = new ArrayList<TestunitParamVO>();
-        for (TestunitParamDO paramDO : paramDOList) {
-            TestunitParamVO testunitParamVO = new TestunitParamVO();
-            testunitParamVO.setDefaultValue(paramDO.getDefaultValue());
-            testunitParamVO.setFormCtrlType(paramDO.getFormCtrlType());
-            testunitParamVO.setHelp(paramDO.getHelp());
-            testunitParamVO.setId(paramDO.getId());
-            testunitParamVO.setIsRequired(paramDO.getIsRequired());
-            testunitParamVO.setLabelName(paramDO.getLabelName());
-            testunitParamVO.setParamName(paramDO.getParamName());
-            testunitParamVO.setRank(paramDO.getRank());
-            testunitParamVO.setTestunitId(testunitId);
-            if (FormCtrlTypeEnum.SELECT_TYPE.getKey().equalsIgnoreCase(paramDO.getFormCtrlType())) {
-                TestunitParamExtDO extDO = new TestunitParamExtDO();
-                extDO.setTestunitParamId(paramDO.getId());
-                List<TestunitParamExtDO> paramExtList = testunitParamExtService.findList(extDO);
-                if (paramExtList != null && paramExtList.size() > 0) {
-                    StringBuffer testunitParamExt = new StringBuffer();
-                    for (int i = 0; i < paramExtList.size(); i++) {
-                        TestunitParamExtDO testunitParamExtDO = paramExtList.get(i);
-                        testunitParamExt.append(testunitParamExtDO.getValueName()).append("=")
-                                .append(testunitParamExtDO.getValue());
-                        if (i != paramExtList.size() - 1) {
-                            testunitParamExt.append(";");
-                        }
-                    }
-                    testunitParamVO.setTestunitParamExt(testunitParamExt.toString());
-                }
-            }
-            testunitParamVOList.add(testunitParamVO);
-        }
-
-        testunitVO.setTestunitParamVOList(testunitParamVOList);
+        //获取测试单元及包含的参数配置项信息
+        TestunitVO testunitVO = getTestunitInformation(testunitId);
         model.addAttribute("testunitVO", testunitVO);
         return "testunitmanage/testunitDetail";
+    }
+
+    /**
+     * 进入编辑测试单元页面
+     * 
+     * @param model
+     * @param request
+     * @param testunitId
+     * @return
+     */
+    @RequestMapping
+    public String editTestunit(Model model, HttpServletRequest request,
+                               @RequestParam("testunitId") Long testunitId) {
+        if (testunitId == null || testunitId <= 0L) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
+            return testunitList(model, request);
+        }
+        //页面初始化
+        init(model, null);
+        model.addAttribute(IS_ADD_PROCESS, false);
+        //获取测试单元及包含的参数配置项信息
+        TestunitVO testunitVO = getTestunitInformation(testunitId);
+        model.addAttribute("testunitVO", testunitVO);
+        return "testunitmanage/addEditTestunit";
+
+    }
+
+    /**
+     * 删除测试单元信息
+     * 
+     * @return
+     */
+    @RequestMapping
+    public String deleteTestunit(Model model, HttpServletRequest request,
+                                 @RequestParam("testunitId") Long testunitId) {
+        if (testunitId == null || testunitId <= 0L) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
+            return testunitList(model, request);
+        }
+        int result = testunitService.deleteTestunitDO(testunitId);
+        if (result <= 0) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除失败！");
+            return testunitList(model, request);
+        }
+        //先删除参数配置项信息,再删除参数信息
+        testunitParamExtService.deleteByTestunitId(testunitId);
+        result = testunitParamService.deleteByTestunitId(testunitId);
+        if (result <= 0) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除失败！");
+        }
+        model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除成功！");
+        return testunitList(model, request);
     }
 
     /**
@@ -217,10 +231,11 @@ public class TestunitController {
      * @return
      */
     @RequestMapping
-    public String addTestunit(Model model, HttpServletRequest request) {
+    public String addEditTestunit(Model model, HttpServletRequest request) {
         //页面初始化
         init(model, null);
-        return "testunitmanage/addTestunit";
+        model.addAttribute(IS_ADD_PROCESS, true);
+        return "testunitmanage/addEditTestunit";
     }
 
     /**
@@ -238,7 +253,70 @@ public class TestunitController {
             init(model, systemId);
         }
         model.addAttribute("systemId", systemId);
-        return "testunitmanage/addTestunit";
+        return "testunitmanage/addEditTestunit";
+    }
+
+    /**
+     * 更新测试单元信息
+     * 
+     * @param model
+     * @param request
+     * @param testunitVO
+     * @param configTableRownumberList
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String updateTestunit(Model model,
+                                 HttpServletRequest request,
+                                 @ModelAttribute("testunitVO") TestunitVO testunitVO,
+                                 @RequestParam("configTableRownumberList") String configTableRownumberList) {
+        //前置校验
+        model.addAttribute("testunitVO", testunitVO);
+        model.addAttribute("configTableRownumberList", configTableRownumberList);
+        if (testunitVO == null) {
+            model.addAttribute("resultMsg", "温馨提醒:参数获取失败！请联系技术解决！");
+            return editTestunit(model, request, 0L);
+        }
+        List<TestunitParamVO> testunitParamVOList = null;
+        try {
+            testunitParamVOList = JSON.parseArray(testunitVO.getTestunitParamVOStr(),
+                    TestunitParamVO.class);
+        } catch (Exception e) {
+            model.addAttribute("resultMsg", "温馨提醒：解析测试单元参数失败！" + e.getMessage());
+            return editTestunit(model, request, testunitVO.getTestunitId());
+        }
+        if (testunitParamVOList == null || testunitParamVOList.size() == 0) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元参数为空！");
+            return editTestunit(model, request, testunitVO.getTestunitId());
+        }
+        testunitVO.setTestunitParamVOList(testunitParamVOList);
+        String resultMsg = valideParams(testunitVO);
+        if (resultMsg != null) {
+            model.addAttribute("resultMsg", resultMsg);
+            return editTestunit(model, request, testunitVO.getTestunitId());
+        }
+        //更新测试单元信息
+        resultMsg = buildAndSaveUpdateTestunit(testunitParamVOList, testunitVO, request, false);
+        if (resultMsg != null) {
+            model.addAttribute("resultMsg", resultMsg);
+            return editTestunit(model, request, testunitVO.getTestunitId());
+        }
+        //保存bundle文件
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
+        if (multipartFile != null) {
+            try {
+                InputStream ins = multipartFile.getInputStream();
+                FileOutputStream out = new FileOutputStream(CommonConstants.BUNDLE_FILE_PATH
+                        + multipartFile.getOriginalFilename());
+                FileCopyUtils.copy(ins, out);
+            } catch (IOException e) {
+                logger.error("save bundle file error", e);
+                model.addAttribute("resultMsg", "温馨提醒：保存bundle文件失败！" + e.getMessage());
+            }
+        }
+        model.addAttribute("resultMsg", "温馨提醒：恭喜你！测试单元信息更新成功！");
+        return addEditTestunit(model, request);
     }
 
     /**
@@ -250,7 +328,6 @@ public class TestunitController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    @Transactional
     public String saveTestunit(Model model,
                                HttpServletRequest request,
                                @ModelAttribute("testunitVO") TestunitVO testunitVO,
@@ -259,8 +336,8 @@ public class TestunitController {
         model.addAttribute("testunitVO", testunitVO);
         model.addAttribute("configTableRownumberList", configTableRownumberList);
         if (testunitVO == null) {
-            model.addAttribute("resultMsg", "温馨提醒:参数校验失败！请联系技术解决！");
-            return addTestunit(model, request);
+            model.addAttribute("resultMsg", "温馨提醒:参数获取失败！请联系技术解决！");
+            return addEditTestunit(model, request);
         }
         List<TestunitParamVO> testunitParamVOList = null;
         try {
@@ -268,17 +345,17 @@ public class TestunitController {
                     TestunitParamVO.class);
         } catch (Exception e) {
             model.addAttribute("resultMsg", "温馨提醒：解析测试单元参数失败！" + e.getMessage());
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
         if (testunitParamVOList == null || testunitParamVOList.size() == 0) {
             model.addAttribute("resultMsg", "温馨提醒：测试单元参数为空！");
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
-        model.addAttribute("testunitParamVOList", testunitParamVOList);
+        testunitVO.setTestunitParamVOList(testunitParamVOList);
         String resultMsg = valideParams(testunitVO);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
         //唯一性校验，如果数据库中已经存在该测试单元，则忽略
         TestunitDO query = new TestunitDO();
@@ -287,22 +364,22 @@ public class TestunitController {
         if (testunitDOList != null && testunitDOList.size() > 0) {
             model.addAttribute("resultMsg",
                     "温馨提醒:该测试单元名称已经存在！测试单元名称：" + testunitVO.getTestunitName());
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
         //保存测试单元信息
-        resultMsg = buildAndSaveTestunit(testunitParamVOList, testunitVO, request);
+        resultMsg = buildAndSaveUpdateTestunit(testunitParamVOList, testunitVO, request, true);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
         //保存bundle文件
         resultMsg = saveBundleFile(request);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
-            return addTestunit(model, request);
+            return addEditTestunit(model, request);
         }
         model.addAttribute("resultMsg", "温馨提醒：恭喜你！测试单元信息保存成功！");
-        return addTestunit(model, request);
+        return addEditTestunit(model, request);
     }
 
     //保存bundle file文件
@@ -354,8 +431,9 @@ public class TestunitController {
     }
 
     //组装并保存测试单元信息
-    private String buildAndSaveTestunit(List<TestunitParamVO> testunitParamVOList,
-                                        TestunitVO testunitVO, HttpServletRequest request) {
+    private String buildAndSaveUpdateTestunit(List<TestunitParamVO> testunitParamVOList,
+                                              TestunitVO testunitVO, HttpServletRequest request,
+                                              boolean isAddProcess) {
         //组装并保存工作空间
         Long workSpaceId = testunitVO.getWorkSpaceId();
         if (StringUtils.isNotBlank(testunitVO.getCustomWorSpaceName())
@@ -366,10 +444,24 @@ public class TestunitController {
             }
         }
         //组装并保存测试单元基本信息
-        Long testunitId = assembleTestunitDO(testunitVO, request, workSpaceId);
-        if (testunitId == null || testunitId <= 0L) {
-            return "温馨提醒：测试单元信息保存失败！";
+        TestunitDO testunitDO = assembleTestunitDO(testunitVO, request, workSpaceId);
+        Long testunitId = testunitVO.getTestunitId();
+        if (isAddProcess) {
+            testunitId = testunitService.addTestunitDO(testunitDO);
+            if (testunitId == null || testunitId <= 0L) {
+                return "温馨提醒：测试单元信息保存失败！";
+            }
+        } else {
+            int result = testunitService.updateTestunitDO(testunitDO);
+            if (result == 0) {
+                return "温馨提醒：测试单元信息更新失败！";
+            }
         }
+        if (!isAddProcess) {
+            testunitParamExtService.deleteByTestunitId(testunitId);
+            testunitParamService.deleteByTestunitId(testunitId);
+        }
+
         //组装并保存测试单元参数信息
         String resultMsg = assembleTestunitParamDO(testunitParamVOList, request, testunitId);
         if (resultMsg != null) {
@@ -391,9 +483,9 @@ public class TestunitController {
         return workSpaceService.addWorkSpaceDO(workSpaceDO);
     }
 
-    //组装并保存测试单元基本信息
-    private Long assembleTestunitDO(TestunitVO testunitVO, HttpServletRequest request,
-                                    Long workSpaceId) {
+    //组装测试单元基本信息
+    private TestunitDO assembleTestunitDO(TestunitVO testunitVO, HttpServletRequest request,
+                                          Long workSpaceId) {
         TestunitDO testunitDO = new TestunitDO();
         testunitDO.setClassQualifiedName(testunitVO.getClassQualifiedName());
         testunitDO.setCode(testunitVO.getTestunitCode());
@@ -404,8 +496,9 @@ public class TestunitController {
         testunitDO.setTag(testunitVO.getTestunitTag());
         testunitDO.setWorkSpaceId(workSpaceId);
         testunitDO.setUserId(SessionUtils.getLoginUser(request).getId());
+        testunitDO.setId(testunitVO.getTestunitId());
 
-        return testunitService.addTestunitDO(testunitDO);
+        return testunitDO;
     }
 
     //组装并保存测试单元参数信息
@@ -471,9 +564,58 @@ public class TestunitController {
             testunitParamExtDO.setValue(keyAndValue[1]);
             testunitParamExtDOList.add(testunitParamExtDO);
         }
-
         testunitParamExtService.batchSaveTestunitParamExtDO(testunitParamExtDOList);
         return null;
     }
 
+    //获取测试单元对应的参数及配置项信息
+    private TestunitVO getTestunitInformation(Long testunitId) {
+        TestunitVO testunitVO = testunitService.findTestunitVOById(testunitId);
+        TestunitParamDO query = new TestunitParamDO();
+        query.setTestunitId(testunitId);
+        List<TestunitParamDO> paramDOList = testunitParamService.findList(query);
+        if (paramDOList == null || paramDOList.size() == 0) {
+            return testunitVO;
+        }
+        List<TestunitParamVO> testunitParamVOList = new ArrayList<TestunitParamVO>();
+        StringBuffer configTableRownumberList = new StringBuffer();
+        for (int k = 0; k < paramDOList.size(); k++) {
+            TestunitParamDO paramDO = paramDOList.get(k);
+            TestunitParamVO testunitParamVO = new TestunitParamVO();
+            testunitParamVO.setDefaultValue(paramDO.getDefaultValue());
+            testunitParamVO.setFormCtrlType(paramDO.getFormCtrlType());
+            testunitParamVO.setHelp(paramDO.getHelp());
+            testunitParamVO.setTestunitParamId(paramDO.getId());
+            testunitParamVO.setIsRequired(paramDO.getIsRequired());
+            testunitParamVO.setLabelName(paramDO.getLabelName());
+            testunitParamVO.setParamName(paramDO.getParamName());
+            testunitParamVO.setRank(paramDO.getRank());
+            testunitParamVO.setTestunitId(testunitId);
+            int rownumber = Integer.parseInt(Long.toString(paramDO.getId() + 1000L));//行号置为1000以后的数字，防止跟新增的行号重复
+            testunitParamVO.setRownumber(rownumber);
+            configTableRownumberList.append(rownumber).append("#");
+            if (FormCtrlTypeEnum.SELECT_TYPE.getKey().equalsIgnoreCase(paramDO.getFormCtrlType())) {
+                TestunitParamExtDO extDO = new TestunitParamExtDO();
+                extDO.setTestunitParamId(paramDO.getId());
+                List<TestunitParamExtDO> paramExtList = testunitParamExtService.findList(extDO);
+                if (paramExtList != null && paramExtList.size() > 0) {
+                    StringBuffer testunitParamExt = new StringBuffer();
+                    for (int i = 0; i < paramExtList.size(); i++) {
+                        TestunitParamExtDO testunitParamExtDO = paramExtList.get(i);
+                        testunitParamExt.append(testunitParamExtDO.getValueName()).append("=")
+                                .append(testunitParamExtDO.getValue());
+                        if (i != paramExtList.size() - 1) {
+                            testunitParamExt.append(";");
+                        }
+                    }
+                    testunitParamVO.setTestunitParamExt(testunitParamExt.toString());
+                }
+            }
+            testunitParamVOList.add(testunitParamVO);
+        }
+        testunitVO.setConfigTableRownumberList(configTableRownumberList.toString());
+        testunitVO.setTestunitParamVOList(testunitParamVOList);
+
+        return testunitVO;
+    }
 }

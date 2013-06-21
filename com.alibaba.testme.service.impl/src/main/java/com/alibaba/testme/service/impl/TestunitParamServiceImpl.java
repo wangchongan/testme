@@ -85,4 +85,12 @@ public class TestunitParamServiceImpl implements TestunitParamService {
         testunitParamDao.batchSaveTestunitParamDO(testunitParamDOList);
     }
 
+    @Override
+    public int deleteByTestunitId(Long testunitId) {
+        if (testunitId == null || testunitId <= 0L) {
+            return 0;
+        }
+        return testunitParamDao.deleteByTestunitId(testunitId);
+    }
+
 }

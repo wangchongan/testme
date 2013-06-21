@@ -7,7 +7,7 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 	var workSpaceId = document.getElementById("workSpaceId").value;
 	var customWorkSpace = document.getElementById("customWorkSpace").value;
 	var classQualifiedName = document.getElementById("classQualifiedName").value;
-	var bundleFile = document.getElementById("bundleFile").value;
+	//var bundleFile = document.getElementById("bundleFile").value;
 	if(!name){
 		document.getElementById("nameNotNull").style.display="";
 		validateResult=false;
@@ -49,12 +49,12 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 		document.getElementById("classQualifiedNameNotNull").style.display="none";
 	}
 	
-	if(!bundleFile){
-		document.getElementById("bundleFileNotNull").style.display="";
-		validateResult=false;
-	}else{
-		document.getElementById("bundleFileNotNull").style.display="none";
-	}
+	//if(!bundleFile){
+	//	document.getElementById("bundleFileNotNull").style.display="";
+	//	validateResult=false;
+	//}else{
+	//	document.getElementById("bundleFileNotNull").style.display="none";
+	//}
 	
 	var jsonParamList=[];
 	var rowLength = tableObject.rows.length;
@@ -71,6 +71,7 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 			if(!k.trim() || isNaN(k)){
 			   continue;
 			}
+			var testunitParamId="testunitParamId_"+k;
 			var labelName="labelName_"+k;
    			var paramName="paramName_"+k;
             var formCtrlType="formCtrlType_"+k;
@@ -80,6 +81,7 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 			var help="help_"+k;
             var paramExt = "paramExt_"+k;
 			
+			var testunitParamIdValue= document.getElementById(testunitParamId).value;
 			var labelNameValue = document.getElementById(labelName).value;
 			var paramNameValue = document.getElementById(paramName).value;
 			var formCtrlTypeValue = document.getElementById(formCtrlType).value;
@@ -109,6 +111,11 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 			}
 			//拼接json
 			jsonParamList.push("{");
+			jsonParamList.push("\"testunitParamId\":");
+			jsonParamList.push("\"");
+			jsonParamList.push(testunitParamIdValue);
+			jsonParamList.push("\",");
+			
 			jsonParamList.push("\"labelName\":");
 			jsonParamList.push("\"");
 			jsonParamList.push(labelNameValue);

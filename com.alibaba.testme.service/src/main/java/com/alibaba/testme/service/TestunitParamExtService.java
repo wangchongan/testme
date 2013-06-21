@@ -36,6 +36,14 @@ public interface TestunitParamExtService {
     public int deleteTestunitParamExtDO(Long id);
 
     /**
+     * 根据测试单元ID删除参数配置项信息
+     * 
+     * @param testunitId
+     * @return
+     */
+    public int deleteByTestunitId(Long testunitId);
+
+    /**
      * @param id
      * @return
      */

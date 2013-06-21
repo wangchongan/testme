@@ -30,19 +30,20 @@ function addOneTestunitConfig(tableObject){
    var help="help_"+i;
    var paramExt = "paramExt_"+i;
    var configSpanId = "configSpanId_"+i;
-   col.innerHTML = "<input id="+labelName+" class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
+   var testunitParamId ="testunitParamId_"+i;
+   col.innerHTML = "<input type='hidden' id="+testunitParamId+" value=''/><input id="+labelName+" class='text' style='width:90px' type='text' value=''/>";
    col = row.insertCell(1);
-   col.innerHTML = "<input id="+paramName+" class='text' style='width:90px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+paramName+" class='text' style='width:90px' type='text' value=''/>";
    col = row.insertCell(2);
    col.innerHTML = "<select id="+formCtrlType+" style='width:140px;height:20px' onchange='doShowConfig("+i+")'><option value='selectType'>下拉菜单</option><option value='textType'>文本框</option></select>";
    col = row.insertCell(3);
-   col.innerHTML = "<input id="+defaultValue+" class='text' style='width:140px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+defaultValue+" class='text' style='width:140px' type='text' value=''/>";
    col = row.insertCell(4);
    col.innerHTML = "<input id="+rank+" class='text' style='width:40px' value="+rankValue+" type='text' />";
    col = row.insertCell(5);
    col.innerHTML = "<input type='radio' id="+isRequiredYes+" value='Y' checked='checked'/>是<input type='radio' id="+isRequiredNo+" value='N' />否";
    col = row.insertCell(6);
-   col.innerHTML = "<input id="+help+" class='text' style='width:230px' type='text' value='$!testunitFlowDO.tag'/>";
+   col.innerHTML = "<input id="+help+" class='text' style='width:230px' type='text' value=''/>";
    col = row.insertCell(7);
    col.innerHTML = "<input id="+paramExt+" type='hidden' /><span id="+configSpanId+" style='display:;'><a href='javascript:void(0)' onclick='addPropKey("+i+")'>配置项</a></span> <a href='javascript:void(0)' onclick='deleteRows("+i+",\"configTableRownumberList\" )'>&nbsp;删除</a>";
 }
@@ -64,13 +65,14 @@ a.open:hover{background-position:0 -29px;}
 <body class="ContentBody">
 <form  method="post" id="addTestunitForm" name="addTestunitForm" enctype="multipart/form-data">
 <input type="hidden" id="testunitParamVOStr" name="testunitParamVOStr"/>
+<input type="hidden" name="testunitId" value="$!testunitVO.testunitId"/>
 <div>
     <label name="resultMsg"><font color="red">$!resultMsg</font></label>
 </div>
 <div class="MainDiv">
 <table width="99%" border="0" cellpadding="0" cellspacing="0" class="CContent">
   <tr>
-      <th class="tablestyle_title" >新增测试单元页面</th>
+      <th class="tablestyle_title" >测试单元页面</th>
   </tr>
   <tr>
     <td class="CPanel">
@@ -147,7 +149,7 @@ a.open:hover{background-position:0 -29px;}
 					  <fieldset style="height:100%;">
         				<legend>测试单元参数配置</legend>
 						  <!--记录参数配置表格中数据包含的行号，新增和删除行时都需要操作此记录-->
-						  <input type="hidden" id="configTableRownumberList" name="configTableRownumberList" value="$!configTableRownumberList"/>
+						  <input type="hidden" id="configTableRownumberList" name="configTableRownumberList" value="$!testunitVO.configTableRownumberList"/>
 						  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                       	  <tr>
                             <td height="30"  width="100%">
@@ -180,9 +182,10 @@ a.open:hover{background-position:0 -29px;}
 									<td width="23%">填写提示</td>
 									<td width="10%">操作</td>
                                   </tr>
-								  #foreach($testunitParamVO in $testunitParamVOList)
+								  #foreach($testunitParamVO in $!testunitVO.testunitParamVOList)
                                   <tr bgcolor="#FFFFFF">
                 				    <td height="20px">
+										<input type="hidden" id="testunitParamId_$!testunitParamVO.rownumber" value="$!testunitParamVO.testunitParamId"/>
 										<input name="labelName_$!testunitParamVO.rownumber" id="labelName_$!testunitParamVO.rownumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.labelName"/>
 									</td>
                 					<td>
@@ -190,8 +193,6 @@ a.open:hover{background-position:0 -29px;}
     								</td>
                                     <td>
     								  <select name="formCtrlType_$!testunitParamVO.rownumber" id="formCtrlType_$!testunitParamVO.rownumber" style="width:140px;height:20px" onchange="doShowConfig($!testunitParamVO.rownumber)">
-                						<option value="selectType">下拉菜单</option>
-    									<option value="textType">文本框</option>	
 										#foreach($formCtrlTypeEnum in $formCtrlTypeEnumList)
                 						  #if($!formCtrlTypeEnum.key==$!testunitParamVO.formCtrlType)
                 							<option value="$!formCtrlTypeEnum.key" selected="selected">$!formCtrlTypeEnum.value</option>
@@ -222,7 +223,7 @@ a.open:hover{background-position:0 -29px;}
     								</td>
                                     <td>
 										<input id="paramExt_$!testunitParamVO.rownumber" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
-										#if($!testunitParamVO.needParamExt)<span id="configSpanId_$!testunitParamVO.rownumber" style='display:;'><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.rownumber)'>配置项</a></span>#end
+										<span id="configSpanId_$!testunitParamVO.rownumber" style="display:$!testunitParamVO.needParamExt;"><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.rownumber)'>配置项</a></span>
             							<a href="javascript:void(0)" onclick="deleteRows($!testunitParamVO.rownumber,'configTableRownumberList')">删除</a>
             						</td>
         						  </tr>
@@ -239,7 +240,11 @@ a.open:hover{background-position:0 -29px;}
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
+		#if($!isAddProcess)
 		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitForm('addTestunitForm','${contextPath}/testunitmanage/saveTestunit',addTestunitConfigTable,'configTableRownumberList');"/>　
+		#else
+		<input type="button" name="saveBtn" value="保存" class="button" onclick="submitForm('addTestunitForm','${contextPath}/testunitmanage/updateTestunit',addTestunitConfigTable,'configTableRownumberList');"/>　
+		#end
 		<a href="${contextPath}/testunitmanage/testunitList" target="mainFrame" class="left-font03">查询测试单元信息</a>
      </td>
 	</tr>

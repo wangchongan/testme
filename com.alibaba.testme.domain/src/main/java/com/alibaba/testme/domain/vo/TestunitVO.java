@@ -80,6 +80,10 @@ public class TestunitVO {
      * 备注
      */
     private String                remark;
+    /**
+     * 测试单元参数表格的所有数据行号
+     */
+    private String                configTableRownumberList;
 
     /**
      * @return the testunitId
@@ -275,6 +279,20 @@ public class TestunitVO {
      */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /**
+     * @return the configTableRownumberList
+     */
+    public String getConfigTableRownumberList() {
+        return configTableRownumberList;
+    }
+
+    /**
+     * @param configTableRownumberList the configTableRownumberList to set
+     */
+    public void setConfigTableRownumberList(String configTableRownumberList) {
+        this.configTableRownumberList = configTableRownumberList;
     }
 
 }

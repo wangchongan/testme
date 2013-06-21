@@ -25,9 +25,9 @@ import com.alibaba.testme.common.enums.FormCtrlTypeEnum;
 public class TestunitParamVO {
 
     /**
-     * id
+     * testunitParamId
      */
-    private Long   id;
+    private Long   testunitParamId;
 
     /**
      * 控件显示名称
@@ -78,17 +78,17 @@ public class TestunitParamVO {
     private int    rownumber;
 
     /**
-     * @return the id
+     * @return the testunitParamId
      */
-    public Long getId() {
-        return id;
+    public Long getTestunitParamId() {
+        return testunitParamId;
     }
 
     /**
-     * @param id the id to set
+     * @param testunitParamId the testunitParamId to set
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setTestunitParamId(Long testunitParamId) {
+        this.testunitParamId = testunitParamId;
     }
 
     /**
@@ -232,16 +232,16 @@ public class TestunitParamVO {
     }
 
     /**
-     * 判断是否需要配置项
+     * 判断是否需要显示配置项（控件类型为下拉菜单时需显示）
      * 
      * @return
      */
-    public boolean getNeedParamExt() {
+    public String getNeedParamExt() {
         if (FormCtrlTypeEnum.SELECT_TYPE.getKey().equalsIgnoreCase(formCtrlType)) {
-            return true;
+            return "";
         }
 
-        return false;
+        return "none";
     }
 
 }

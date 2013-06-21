@@ -199,6 +199,13 @@
       WHERE id = #id#
     ]]>  
   </delete>
+  
+  <delete id="testunitParam.deleteByTestunitId" parameterClass="Long">
+    <![CDATA[  
+     delete from tm_testunit_param 
+      where testunit_id = #testunitId#
+    ]]>  
+  </delete>
 
   <select id="testunitParam.findList" resultMap="testunitParamDO_resultMap" parameterClass="testunitParamDO">
      SELECT 

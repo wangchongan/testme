@@ -137,4 +137,14 @@
     <include refid="testunitParamExt.queryCondition" />
   </select>
   
+  <delete id="testunitParamExt.deleteByTestunitId" parameterClass="Long">
+    <![CDATA[  
+     delete from tm_testunit_param_ext
+      where testunit_param_id in
+	  		(select id 
+	           from tm_testunit_param
+              where testunit_id = #testunitId#)
+    ]]>  
+  </delete>
+  
 </sqlMap>

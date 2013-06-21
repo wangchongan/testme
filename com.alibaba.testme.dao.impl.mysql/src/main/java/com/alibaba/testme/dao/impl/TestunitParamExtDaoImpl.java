@@ -106,4 +106,14 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
         }
     }
 
+    @Override
+    public int deleteByTestunitId(Long testunitId) {
+        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+                "testunitParamExt.deleteByTestunitId", testunitId);
+        if (result == null) {
+            return 0;
+        }
+        return result;
+    }
+
 }

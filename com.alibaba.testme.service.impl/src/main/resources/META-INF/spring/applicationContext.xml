@@ -30,7 +30,8 @@
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="batchSave*" propagation="REQUIRED" />
 			<tx:method name="query*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
