@@ -6,7 +6,9 @@ import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.common.ibatispage.PageSqlMapClientDaoSupport;
 import com.alibaba.testme.dao.TestunitFlowDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
+import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowQuery;
+import com.alibaba.testme.domain.vo.TestFlowInfoVO;
 import com.alibaba.testme.domain.vo.TestunitFlowVO;
 
 /**
@@ -14,8 +16,8 @@ import com.alibaba.testme.domain.vo.TestunitFlowVO;
  * 
  * @author xiaopenzi
  */
-public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlowVO> implements
-        TestunitFlowDao {
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport implements TestunitFlowDao {
 
     /**
      * @param testunitFlowDO
@@ -32,7 +34,7 @@ public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlow
      */
     @Override
     public int updateTestunitFlowDO(TestunitFlowDO testunitFlowDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update("testunitFlow.update",
+        Integer result = this.getSqlMapClientTemplate().update("testunitFlow.update",
                 testunitFlowDO);
         if (result == null) {
             return 0;
@@ -46,8 +48,7 @@ public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlow
      */
     @Override
     public int deleteTestunitFlowDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete("testunitFlow.deleteById",
-                id);
+        Integer result = this.getSqlMapClientTemplate().delete("testunitFlow.deleteById", id);
         if (result == null) {
             return 0;
         }
@@ -68,11 +69,9 @@ public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlow
      * @param id
      * @return
      */
-    @SuppressWarnings("unchecked")
     @Override
     public List<TestunitFlowDO> findList(TestunitFlowDO testunitFlowDO) {
-        return (List<TestunitFlowDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunitFlow.findList", testunitFlowDO);
+        return this.getSqlMapClientTemplate().queryForList("testunitFlow.findList", testunitFlowDO);
     }
 
     @Override
@@ -86,5 +85,11 @@ public class TestunitFlowDaoImpl extends PageSqlMapClientDaoSupport<TestunitFlow
     public TestunitFlowVO queryById(Long testunitFlowId) {
         return (TestunitFlowVO) this.getSqlMapClientTemplate().queryForObject(
                 "testunitFlow.queryById", testunitFlowId);
+    }
+
+    @Override
+    public Page<TestFlowInfoVO> getTestFlowInfos(TaskCreateParamQuery taskCreateParamQuery) {
+        return page(taskCreateParamQuery.getPageNo(), taskCreateParamQuery.getCellsPerPage(),
+                taskCreateParamQuery, "testFlowInfoVO.getCount", "testFlowInfoVO.pageList");
     }
 }

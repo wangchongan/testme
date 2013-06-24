@@ -10,6 +10,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.alibaba.testme.dao.TestunitParamExtDao;
 import com.alibaba.testme.domain.dataobject.TestunitParamExtDO;
+import com.alibaba.testme.domain.vo.TestunitParamExtInfoVO;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
@@ -36,7 +37,7 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      */
     @Override
     public int updateTestunitParamExtDO(TestunitParamExtDO testunitParamExtDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update("testunitParamExt.update",
+        Integer result = this.getSqlMapClientTemplate().update("testunitParamExt.update",
                 testunitParamExtDO);
         if (result == null) {
             return 0;
@@ -50,8 +51,7 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
      */
     @Override
     public int deleteTestunitParamExtDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
-                "testunitParamExt.deleteById", id);
+        Integer result = this.getSqlMapClientTemplate().delete("testunitParamExt.deleteById", id);
         if (result == null) {
             return 0;
         }
@@ -75,8 +75,8 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitParamExtDO> findList(TestunitParamExtDO testunitParamExtDO) {
-        return (List<TestunitParamExtDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunitParamExt.findList", testunitParamExtDO);
+        return this.getSqlMapClientTemplate().queryForList("testunitParamExt.findList",
+                testunitParamExtDO);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -85,6 +85,7 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
         try {
             getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
 
+                @Override
                 public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
                     executor.startBatch(); // 通知开始批量
                     int batch = 1;
@@ -108,12 +109,19 @@ public class TestunitParamExtDaoImpl extends SqlMapClientDaoSupport implements T
 
     @Override
     public int deleteByTestunitId(Long testunitId) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+        Integer result = this.getSqlMapClientTemplate().delete(
                 "testunitParamExt.deleteByTestunitId", testunitId);
         if (result == null) {
             return 0;
         }
         return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<TestunitParamExtInfoVO> getTestunitParamExtInfos(Long testunitParamId) {
+        return this.getSqlMapClientTemplate().queryForList(
+                "testunitParamExtInfo.getTestunitParamExtInfos", testunitParamId);
     }
 
 }

@@ -3,6 +3,7 @@
 
 <sqlMap namespace="testunitParam">
 <typeAlias alias="testunitParamDO"    type="com.alibaba.testme.domain.dataobject.TestunitParamDO" />
+<typeAlias alias="testunitParamInfoVO"    type="com.alibaba.testme.domain.vo.TestunitParamInfoVO" />
 
   <resultMap id="testunitParamDO_resultMap" class="testunitParamDO">
     <result property="id" column="ID" />
@@ -213,6 +214,23 @@
      FROM tm_testunit_param
 	WHERE 1=1
     <include refid="testunitParam.queryCondition" />
+  </select>
+  
+  <select id="testunitParamInfo.getTestunitParamInfos" resultClass="testunitParamInfoVO" parameterClass="Long">
+    <![CDATA[
+		select 
+		  tp.`id` testunitParamId,
+		  tp.`label_name` labelName,
+		  tp.`param_name` paramName,
+		  tp.`form_ctrl_type` formCtrlType,
+		  tp.`default_value` defaultValue,
+		  tp.`is_required` isRequired,
+		  tp.`help` 
+		from
+		  `tm_testunit_param` tp 
+		where tp.`testunit_id` = #value#
+    ]]>
+    
   </select>
   
 </sqlMap>

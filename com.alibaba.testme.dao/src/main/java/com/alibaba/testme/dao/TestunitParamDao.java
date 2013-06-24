@@ -3,6 +3,7 @@ package com.alibaba.testme.dao;
 import java.util.List;
 
 import com.alibaba.testme.domain.dataobject.TestunitParamDO;
+import com.alibaba.testme.domain.vo.TestunitParamInfoVO;
 
 /**
  * TestunitParam Dao Interface
@@ -54,5 +55,7 @@ public interface TestunitParamDao {
      * @return
      */
     public List<TestunitParamDO> findList(TestunitParamDO testunitParamDO);
+
+    public List<TestunitParamInfoVO> getTestunitParamInfos(Long testunitId);
 
 }

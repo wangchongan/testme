@@ -3,6 +3,7 @@
 
 <sqlMap namespace="testunitFlowDetail">
 <typeAlias alias="testunitFlowDetailDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO" />
+<typeAlias alias="testunitInfoVO"    type="com.alibaba.testme.domain.vo.TestunitInfoVO" />
 
   <resultMap id="testunitFlowDetailDO_resultMap" class="testunitFlowDetailDO">
     <result property="id" column="ID" />
@@ -159,5 +160,23 @@
       where testunit_flow_id = #testunitFlowId#  
     ]]>  
   </delete>
+  
+  <select id="testunitInfoVO.findByTestunitFlowId" resultClass="testunitInfoVO" parameterClass="Long">
+	<![CDATA[  
+		select 
+		  t.`id` testunitId,
+		  t.`name` testunitName,
+		  t.`code` testunitCode,
+		  t.`tag` testunitTag,
+		  t.`user_id` userName 
+		from
+		  `tm_testunit` t,
+		  `tm_testunit_flow_detail` tfd 
+		where t.`id` = tfd.`testunit_id` 
+		  and tfd.`pre_testunit_id` = 0 
+		  and tfd.`testunit_flow_id` = #value#
+	
+    ]]>  
+  </select>
   
 </sqlMap>

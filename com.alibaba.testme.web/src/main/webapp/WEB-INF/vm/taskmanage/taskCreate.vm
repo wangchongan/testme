@@ -43,7 +43,7 @@
                     scroller:".k2-layout-right",
                     loadPages:4,
                     loadType:'index',
-                    keyword:'${!tag}',
+                    keyword:'$!{tag}',
                     colWidth:270
                 });
             }, 1

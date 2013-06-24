@@ -2,8 +2,13 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import org.springframework.util.CollectionUtils;
+
 import com.alibaba.testme.dao.TestunitParamDao;
 import com.alibaba.testme.domain.dataobject.TestunitParamDO;
+import com.alibaba.testme.domain.vo.TestunitParamExtInfoVO;
+import com.alibaba.testme.domain.vo.TestunitParamInfoVO;
+import com.alibaba.testme.service.TestunitParamExtService;
 import com.alibaba.testme.service.TestunitParamService;
 
 /**
@@ -13,10 +18,16 @@ import com.alibaba.testme.service.TestunitParamService;
  */
 public class TestunitParamServiceImpl implements TestunitParamService {
 
-    private TestunitParamDao testunitParamDao;
+    private TestunitParamDao        testunitParamDao;
+
+    private TestunitParamExtService testunitParamExtService;
 
     public void setTestunitParamDao(TestunitParamDao testunitParamDao) {
         this.testunitParamDao = testunitParamDao;
+    }
+
+    public void setTestunitParamExtService(TestunitParamExtService testunitParamExtService) {
+        this.testunitParamExtService = testunitParamExtService;
     }
 
     /**
@@ -91,6 +102,20 @@ public class TestunitParamServiceImpl implements TestunitParamService {
             return 0;
         }
         return testunitParamDao.deleteByTestunitId(testunitId);
+    }
+
+    @Override
+    public List<TestunitParamInfoVO> getTestunitParamInfos(Long testunitId) {
+        List<TestunitParamInfoVO> testunitParamInfos = this.testunitParamDao
+                .getTestunitParamInfos(testunitId);
+        if (!CollectionUtils.isEmpty(testunitParamInfos)) {
+            for (TestunitParamInfoVO testunitParamInfoVO : testunitParamInfos) {
+                List<TestunitParamExtInfoVO> testunitParamExtInfos = this.testunitParamExtService
+                        .getTestunitParamExtInfos(testunitParamInfoVO.getTestunitParamId());
+                testunitParamInfoVO.setTestunitParamExtInfoVOs(testunitParamExtInfos);
+            }
+        }
+        return testunitParamInfos;
     }
 
 }

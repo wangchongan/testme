@@ -3,6 +3,7 @@ package com.alibaba.testme.service;
 import java.util.List;
 
 import com.alibaba.testme.domain.dataobject.TestunitParamExtDO;
+import com.alibaba.testme.domain.vo.TestunitParamExtInfoVO;
 
 /**
  * TestunitParamExt Service Interface
@@ -54,5 +55,7 @@ public interface TestunitParamExtService {
      * @return
      */
     public List<TestunitParamExtDO> findList(TestunitParamExtDO testunitParamExtDO);
+
+    public List<TestunitParamExtInfoVO> getTestunitParamExtInfos(Long testunitParamId);
 
 }

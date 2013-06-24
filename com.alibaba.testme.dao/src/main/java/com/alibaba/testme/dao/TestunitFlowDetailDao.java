@@ -3,6 +3,7 @@ package com.alibaba.testme.dao;
 import java.util.List;
 
 import com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO;
+import com.alibaba.testme.domain.vo.TestunitInfoVO;
 
 /**
  * TestunitFlowDetail Dao Interface
@@ -55,5 +56,7 @@ public interface TestunitFlowDetailDao {
      * @return
      */
     public int deleteByTestunitFlowId(Long testunitFlowId);
+
+    public TestunitInfoVO getFirstTestunitInfo(Long testunitFlowId);
 
 }

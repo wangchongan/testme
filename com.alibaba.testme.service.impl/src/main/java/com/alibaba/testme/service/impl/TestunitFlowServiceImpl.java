@@ -1,14 +1,19 @@
 package com.alibaba.testme.service.impl;
 
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.util.CollectionUtils;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitFlowDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
 import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowQuery;
-import com.alibaba.testme.domain.vo.TestFlowParamVO;
+import com.alibaba.testme.domain.vo.TestFlowInfoVO;
 import com.alibaba.testme.domain.vo.TestunitFlowVO;
+import com.alibaba.testme.domain.vo.TestunitInfoVO;
+import com.alibaba.testme.service.TestunitFlowDetailService;
 import com.alibaba.testme.service.TestunitFlowService;
 
 /**
@@ -18,10 +23,15 @@ import com.alibaba.testme.service.TestunitFlowService;
  */
 public class TestunitFlowServiceImpl implements TestunitFlowService {
 
-    private TestunitFlowDao testunitFlowDao;
+    private TestunitFlowDao           testunitFlowDao;
+    private TestunitFlowDetailService testunitFlowDetailService;
 
     public void setTestunitFlowDao(TestunitFlowDao testunitFlowDao) {
         this.testunitFlowDao = testunitFlowDao;
+    }
+
+    public void setTestunitFlowDetailService(TestunitFlowDetailService testunitFlowDetailService) {
+        this.testunitFlowDetailService = testunitFlowDetailService;
     }
 
     /**
@@ -100,9 +110,20 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
     }
 
     @Override
-    public List<TestFlowParamVO> getTaskCreateParam(TaskCreateParamQuery taskCreateParamQuery) {
-        //        testunitFlowDao.queryById(testunitFlowId);
-        return null;
+    public List<TestFlowInfoVO> getTestFlowInfos(TaskCreateParamQuery taskCreateParamQuery) {
+        Page<TestFlowInfoVO> page = testunitFlowDao.getTestFlowInfos(taskCreateParamQuery);
+        List<TestFlowInfoVO> testFlowInfoVOList = page.getDatas();
+        if (CollectionUtils.isEmpty(testFlowInfoVOList)) {
+            return Collections.emptyList();
+        }
+
+        for (TestFlowInfoVO testFlowInfoVO : testFlowInfoVOList) {
+            TestunitInfoVO testunitInfoVO = testunitFlowDetailService
+                    .getFirstTestunitInfo(testFlowInfoVO.getTestunitFlowId());
+            testFlowInfoVO.setTestunitInfoVO(testunitInfoVO);
+        }
+
+        return testFlowInfoVOList;
     }
 
 }

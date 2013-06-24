@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.alibaba.testme.dao.TestunitParamExtDao;
 import com.alibaba.testme.domain.dataobject.TestunitParamExtDO;
+import com.alibaba.testme.domain.vo.TestunitParamExtInfoVO;
 import com.alibaba.testme.service.TestunitParamExtService;
 
 /**
@@ -91,6 +92,11 @@ public class TestunitParamExtServiceImpl implements TestunitParamExtService {
             return 0;
         }
         return testunitParamExtDao.deleteByTestunitId(testunitId);
+    }
+
+    @Override
+    public List<TestunitParamExtInfoVO> getTestunitParamExtInfos(Long testunitParamId) {
+        return testunitParamExtDao.getTestunitParamExtInfos(testunitParamId);
     }
 
 }

@@ -15,33 +15,26 @@
  */
 package com.alibaba.testme.domain.vo;
 
-import java.util.List;
-
 /**
- * 任务建立输入参数VO
+ * 测试流程VO
  * 
  * @author lz
  */
-public class TestFlowParamVO {
-    private Long                      testunitFlowCaseId;
+public class TestFlowInfoVO {
+    private Long           testunitFlowCaseId;
 
-    private Long                      testunitFlowId;
-    private String                    testunitFlowName;
-    private String                    testunitFlowTag;
+    private Long           testunitFlowId;
+    private String         testunitFlowName;
+    private String         testunitFlowTag;
 
-    private Long                      systemEnvId;
+    private String         systemName;
 
-    private String                    userName;
-    private String                    wangwang;
+    private String         userName;
+    private String         wangwang;
 
-    // 当前测试单元
-    private Long                      testunitId;
-    private String                    testunitName;
-    private String                    testunitCode;
-    private String                    testunitTag;
+    private String         remark;
 
-    // 当前测试单元入参
-    private List<TestFlowUnitParamVO> testFlowUnitParamVOs;
+    private TestunitInfoVO testunitInfoVO;
 
     public Long getTestunitFlowId() {
         return testunitFlowId;
@@ -59,52 +52,12 @@ public class TestFlowParamVO {
         this.testunitFlowCaseId = testunitFlowCaseId;
     }
 
-    public Long getSystemEnvId() {
-        return systemEnvId;
+    public String getSystemName() {
+        return systemName;
     }
 
-    public void setSystemEnvId(Long systemEnvId) {
-        this.systemEnvId = systemEnvId;
-    }
-
-    public Long getTestunitId() {
-        return testunitId;
-    }
-
-    public void setTestunitId(Long testunitId) {
-        this.testunitId = testunitId;
-    }
-
-    public String getTestunitName() {
-        return testunitName;
-    }
-
-    public void setTestunitName(String testunitName) {
-        this.testunitName = testunitName;
-    }
-
-    public String getTestunitCode() {
-        return testunitCode;
-    }
-
-    public void setTestunitCode(String testunitCode) {
-        this.testunitCode = testunitCode;
-    }
-
-    public String getTestunitTag() {
-        return testunitTag;
-    }
-
-    public void setTestunitTag(String testunitTag) {
-        this.testunitTag = testunitTag;
-    }
-
-    public List<TestFlowUnitParamVO> getTestFlowUnitParamVOs() {
-        return testFlowUnitParamVOs;
-    }
-
-    public void setTestFlowUnitParamVOs(List<TestFlowUnitParamVO> testFlowUnitParamVOs) {
-        this.testFlowUnitParamVOs = testFlowUnitParamVOs;
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
     }
 
     public String getTestunitFlowName() {
@@ -147,4 +100,19 @@ public class TestFlowParamVO {
         this.wangwang = wangwang;
     }
 
+    public TestunitInfoVO getTestunitInfoVO() {
+        return testunitInfoVO;
+    }
+
+    public void setTestunitInfoVO(TestunitInfoVO testunitInfoVO) {
+        this.testunitInfoVO = testunitInfoVO;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 }

@@ -42,7 +42,7 @@ import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
 import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowCaseQuery;
 import com.alibaba.testme.domain.vo.TestCaseVO;
-import com.alibaba.testme.domain.vo.TestFlowParamVO;
+import com.alibaba.testme.domain.vo.TestFlowInfoVO;
 import com.alibaba.testme.domain.vo.TestunitFlowCaseVO;
 import com.alibaba.testme.service.SystemEnvService;
 import com.alibaba.testme.service.SystemService;
@@ -202,13 +202,13 @@ public class TaskController {
                              @RequestParam("cells_per_page") int cellsPerPage,
                              @RequestParam("type") String type,
                              @RequestParam("keyword") String keyword) {
-
         TaskCreateParamQuery taskCreateParamQuery = new TaskCreateParamQuery();
+        taskCreateParamQuery.setPageNo(pageNo);
         taskCreateParamQuery.setCellsPerPage(cellsPerPage);
         taskCreateParamQuery.setTag(keyword);
-
-        List<TestFlowParamVO> testFlowParamList = this.testunitFlowService
-                .getTaskCreateParam(taskCreateParamQuery);
+        //taskCreateParamQuery.setUserId(SessionUtils.getLoginUser(request).getId());
+        List<TestFlowInfoVO> testFlowParamList = this.testunitFlowService
+                .getTestFlowInfos(taskCreateParamQuery);
 
         model.addAttribute("testFlowParamList", testFlowParamList);
         return "/taskmanage/changePage";

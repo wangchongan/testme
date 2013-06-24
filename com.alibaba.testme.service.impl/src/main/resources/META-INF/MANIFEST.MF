@@ -8,8 +8,8 @@ Bundle-SymbolicName: com.alibaba.testme.service.impl
 Import-Package: com.alibaba.testme.common,
  com.alibaba.testme.common.basedao,
  com.alibaba.testme.common.baseservice,
- com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.common.enums,
+ com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.dao,
  com.alibaba.testme.dao.impl,
  com.alibaba.testme.domain,
@@ -23,5 +23,6 @@ Import-Package: com.alibaba.testme.common,
  org.springframework.aop;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
  org.springframework.aop.framework;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
  org.springframework.transaction;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
- org.springframework.transaction.support;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
+ org.springframework.transaction.support;version="[3.0.5.RELEASE,3.0.5.RELEASE]",
+ org.springframework.util;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
 

@@ -33,8 +33,7 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
      */
     @Override
     public int updateTestunitDO(TestunitDO testunitDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update("testunit.update",
-                testunitDO);
+        Integer result = this.getSqlMapClientTemplate().update("testunit.update", testunitDO);
         if (result == null) {
             return 0;
         }
@@ -47,7 +46,7 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
      */
     @Override
     public int deleteTestunitDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete("testunit.deleteById", id);
+        Integer result = this.getSqlMapClientTemplate().delete("testunit.deleteById", id);
         if (result == null) {
             return 0;
         }
@@ -70,14 +69,13 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitDO> findList(TestunitDO testunitDO) {
-        return (List<TestunitDO>) this.getSqlMapClientTemplate().queryForList("testunit.findList",
-                testunitDO);
+        return this.getSqlMapClientTemplate().queryForList("testunit.findList", testunitDO);
     }
 
     @Override
     public Page<TestunitVO> queryPage(Integer index, Integer sizePerPage,
                                       TestunitQuery testunitQuery) {
-        return (Page<TestunitVO>) this.page(index, sizePerPage, testunitQuery, "testunit.getCount",
+        return this.page(index, sizePerPage, testunitQuery, "testunit.getCount",
                 "testunit.pageList");
     }
 
@@ -86,15 +84,14 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
     public List<TestunitDO> findByIdList(List<Long> idList) {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("idList", idList);
-        return (List<TestunitDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunit.findByIdList", idList);
+        return this.getSqlMapClientTemplate().queryForList("testunit.findByIdList", paramMap);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitDO> findByTestunitFlowId(Long testunitFlowId) {
-        return (List<TestunitDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunit.findByTestunitFlowId", testunitFlowId);
+        return this.getSqlMapClientTemplate().queryForList("testunit.findByTestunitFlowId",
+                testunitFlowId);
     }
 
     @Override

@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.alibaba.testme.dao.TestunitFlowDetailDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO;
+import com.alibaba.testme.domain.vo.TestunitInfoVO;
+import com.alibaba.testme.domain.vo.TestunitParamInfoVO;
 import com.alibaba.testme.service.TestunitFlowDetailService;
+import com.alibaba.testme.service.TestunitParamService;
 
 /**
  * TestunitFlowDetail Service Implement
@@ -14,9 +17,14 @@ import com.alibaba.testme.service.TestunitFlowDetailService;
 public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService {
 
     private TestunitFlowDetailDao testunitFlowDetailDao;
+    private TestunitParamService  testunitParamService;
 
     public void setTestunitFlowDetailDao(TestunitFlowDetailDao testunitFlowDetailDao) {
         this.testunitFlowDetailDao = testunitFlowDetailDao;
+    }
+
+    public void setTestunitParamService(TestunitParamService testunitParamService) {
+        this.testunitParamService = testunitParamService;
     }
 
     /**
@@ -105,6 +113,17 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
             return 0;
         }
         return testunitFlowDetailDao.deleteByTestunitFlowId(testunitFlowId);
+    }
+
+    @Override
+    public TestunitInfoVO getFirstTestunitInfo(Long testunitFlowId) {
+        TestunitInfoVO testunitInfoVO = testunitFlowDetailDao.getFirstTestunitInfo(testunitFlowId);
+        if (testunitInfoVO != null) {
+            List<TestunitParamInfoVO> testunitParamInfoVOs = testunitParamService
+                    .getTestunitParamInfos(testunitInfoVO.getTestunitId());
+            testunitInfoVO.setTestunitParamInfoVOs(testunitParamInfoVOs);
+        }
+        return testunitInfoVO;
     }
 
 }

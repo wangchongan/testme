@@ -20,10 +20,10 @@ package com.alibaba.testme.domain.vo;
  * 
  * @author lz
  */
-public class TestFlowUnitParamExtVO {
+public class TestunitParamExtInfoVO {
 
     private String valueName;
-    private String valueId;
+    private String value;
 
     public String getValueName() {
         return valueName;
@@ -33,11 +33,11 @@ public class TestFlowUnitParamExtVO {
         this.valueName = valueName;
     }
 
-    public String getValueId() {
-        return valueId;
+    public String getValue() {
+        return value;
     }
 
-    public void setValueId(String valueId) {
-        this.valueId = valueId;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

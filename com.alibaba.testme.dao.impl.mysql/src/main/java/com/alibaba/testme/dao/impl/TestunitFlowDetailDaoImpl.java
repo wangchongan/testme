@@ -10,6 +10,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.alibaba.testme.dao.TestunitFlowDetailDao;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO;
+import com.alibaba.testme.domain.vo.TestunitInfoVO;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
@@ -37,8 +38,8 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
      */
     @Override
     public int updateTestunitFlowDetailDO(TestunitFlowDetailDO testunitFlowDetailDO) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().update(
-                "testunitFlowDetail.update", testunitFlowDetailDO);
+        Integer result = this.getSqlMapClientTemplate().update("testunitFlowDetail.update",
+                testunitFlowDetailDO);
         if (result == null) {
             return 0;
         }
@@ -51,8 +52,7 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
      */
     @Override
     public int deleteTestunitFlowDetailDO(Long id) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
-                "testunitFlowDetail.deleteById", id);
+        Integer result = this.getSqlMapClientTemplate().delete("testunitFlowDetail.deleteById", id);
         if (result == null) {
             return 0;
         }
@@ -76,8 +76,8 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
     @SuppressWarnings("unchecked")
     @Override
     public List<TestunitFlowDetailDO> findList(TestunitFlowDetailDO testunitFlowDetailDO) {
-        return (List<TestunitFlowDetailDO>) this.getSqlMapClientTemplate().queryForList(
-                "testunitFlowDetail.findList", testunitFlowDetailDO);
+        return this.getSqlMapClientTemplate().queryForList("testunitFlowDetail.findList",
+                testunitFlowDetailDO);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -86,6 +86,7 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
         try {
             getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
 
+                @Override
                 public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
                     executor.startBatch(); // 通知开始批量
                     int batch = 1;
@@ -109,12 +110,18 @@ public class TestunitFlowDetailDaoImpl extends SqlMapClientDaoSupport implements
 
     @Override
     public int deleteByTestunitFlowId(Long testunitFlowId) {
-        Integer result = (Integer) this.getSqlMapClientTemplate().delete(
+        Integer result = this.getSqlMapClientTemplate().delete(
                 "testunitFlowDetail.deleteByTestunitFlowId", testunitFlowId);
         if (result == null) {
             return 0;
         }
         return result;
+    }
+
+    @Override
+    public TestunitInfoVO getFirstTestunitInfo(Long testunitFlowId) {
+        return (TestunitInfoVO) this.getSqlMapClientTemplate().queryForObject(
+                "testunitInfoVO.findByTestunitFlowId", testunitFlowId);
     }
 
 }

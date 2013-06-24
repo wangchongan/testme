@@ -24,8 +24,8 @@ import com.alibaba.testme.common.enums.FormCtrlTypeEnum;
  * 
  * @author lz
  */
-public class TestFlowUnitParamVO {
-
+public class TestunitParamInfoVO {
+    private Long                         testunitParamId;
     private String                       labelName;
     private String                       paramName;
     private FormCtrlTypeEnum             formCtrlType;
@@ -33,7 +33,15 @@ public class TestFlowUnitParamVO {
     private String                       isRequired;
     private String                       help;
 
-    private List<TestFlowUnitParamExtVO> testFlowUnitParamExtVOs;
+    private List<TestunitParamExtInfoVO> testunitParamExtInfoVOs;
+
+    public Long getTestunitParamId() {
+        return testunitParamId;
+    }
+
+    public void setTestunitParamId(Long testunitParamId) {
+        this.testunitParamId = testunitParamId;
+    }
 
     public String getLabelName() {
         return labelName;
@@ -55,8 +63,8 @@ public class TestFlowUnitParamVO {
         return formCtrlType;
     }
 
-    public void setFormCtrlType(FormCtrlTypeEnum formCtrlType) {
-        this.formCtrlType = formCtrlType;
+    public void setFormCtrlType(String formCtrlType) {
+        this.formCtrlType = FormCtrlTypeEnum.parse(formCtrlType);
     }
 
     public String getDefaultValue() {
@@ -83,12 +91,12 @@ public class TestFlowUnitParamVO {
         this.help = help;
     }
 
-    public List<TestFlowUnitParamExtVO> getTestFlowUnitParamExtVOs() {
-        return testFlowUnitParamExtVOs;
+    public List<TestunitParamExtInfoVO> getTestunitParamExtInfoVOs() {
+        return testunitParamExtInfoVOs;
     }
 
-    public void setTestFlowUnitParamExtVOs(List<TestFlowUnitParamExtVO> testFlowUnitParamExtVOs) {
-        this.testFlowUnitParamExtVOs = testFlowUnitParamExtVOs;
+    public void setTestunitParamExtInfoVOs(List<TestunitParamExtInfoVO> testunitParamExtInfoVOs) {
+        this.testunitParamExtInfoVOs = testunitParamExtInfoVOs;
     }
 
 }

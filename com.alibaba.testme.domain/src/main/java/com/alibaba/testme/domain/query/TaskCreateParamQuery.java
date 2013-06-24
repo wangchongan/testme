@@ -24,6 +24,7 @@ public class TaskCreateParamQuery {
     private int    pageNo;
     private int    cellsPerPage;
     private String tag;
+    private Long   userId;
 
     public int getPageNo() {
         return pageNo;
@@ -47,6 +48,14 @@ public class TaskCreateParamQuery {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
 }

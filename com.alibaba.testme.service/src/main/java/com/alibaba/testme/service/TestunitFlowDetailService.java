@@ -3,6 +3,7 @@ package com.alibaba.testme.service;
 import java.util.List;
 
 import com.alibaba.testme.domain.dataobject.TestunitFlowDetailDO;
+import com.alibaba.testme.domain.vo.TestunitInfoVO;
 
 /**
  * TestunitFlowDetail Service Interface
@@ -63,5 +64,7 @@ public interface TestunitFlowDetailService {
      * @return
      */
     public int deleteByTestunitFlowId(Long testunitFlowId);
+
+    public TestunitInfoVO getFirstTestunitInfo(Long testunitFlowId);
 
 }

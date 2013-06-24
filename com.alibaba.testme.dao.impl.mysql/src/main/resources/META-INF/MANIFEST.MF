@@ -6,6 +6,7 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.dao.impl.mysql
 Import-Package: com.alibaba.testme.common,
  com.alibaba.testme.common.basedao,
+ com.alibaba.testme.common.enums,
  com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.dao,
  com.alibaba.testme.domain,

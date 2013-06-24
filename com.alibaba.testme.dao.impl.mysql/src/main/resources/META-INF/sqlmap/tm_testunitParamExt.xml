@@ -3,6 +3,7 @@
 
 <sqlMap namespace="testunitParamExt">
 <typeAlias alias="testunitParamExtDO"    type="com.alibaba.testme.domain.dataobject.TestunitParamExtDO" />
+<typeAlias alias="testunitParamExtInfoVO"    type="com.alibaba.testme.domain.vo.TestunitParamExtInfoVO" />
 
   <resultMap id="testunitParamExtDO_resultMap" class="testunitParamExtDO">
     <result property="id" column="ID" />
@@ -146,5 +147,17 @@
               where testunit_id = #testunitId#)
     ]]>  
   </delete>
+  
+
+  <select id="testunitParamExtInfo.getTestunitParamExtInfos" resultClass="testunitParamExtInfoVO" parameterClass="Long">
+    <![CDATA[  
+		select 
+		  tpe.`value_name` valueName,
+		  tpe.`value` 
+		from
+		  `tm_testunit_param_ext` tpe 
+		where tpe.`testunit_param_id` = #value# 
+    ]]>
+  </select>  
   
 </sqlMap>

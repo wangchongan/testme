@@ -5,6 +5,9 @@
 <typeAlias alias="testunitFlowDO"    type="com.alibaba.testme.domain.dataobject.TestunitFlowDO" />
 <typeAlias alias="testunitFlowVO"    type="com.alibaba.testme.domain.vo.TestunitFlowVO" />
 <typeAlias alias="testunitFlowQuery"    type="com.alibaba.testme.domain.query.TestunitFlowQuery" />
+<typeAlias alias="testFlowInfoVO"    type="com.alibaba.testme.domain.vo.TestFlowInfoVO" />
+
+
   <resultMap id="testunitFlowDO_resultMap" class="testunitFlowDO">
     <result property="id" column="ID" />
     <result property="gmtCreate" column="GMT_CREATE" />
@@ -313,4 +316,53 @@
     ]]>
   </select>
   
+  
+    <!-- 测试流程列表-任务创建 -->
+    <sql id="testFlowInfoVO.page.sql">
+	    <![CDATA[  
+			select 
+			  tf.`id` testunitFlowId,
+			  tf.`name` testunitFlowName,
+			  tf.`tag` testunitFlowTag,
+			  tf.`remark` remark,
+			  tu.`user_name` userName,
+			  tu.`wangwang`,
+			  ts.`name` systemName 
+			from
+			  `tm_testunit_flow` tf,
+			  `tm_system` ts,
+			  `tm_user` tu 
+			where tf.`system_id` = ts.`id` 
+			  and tf.`user_id` = tu.`id` 
+    	]]>
+    	<dynamic>
+	    	<isNotEmpty property="tag" prepend="and">
+		        <![CDATA[  
+		        	tf.`tag`= #tag# 
+		        ]]>
+	      	</isNotEmpty>
+	    	<isNotEmpty property="userId" prepend="and">
+		        <![CDATA[  
+		        	tf.`user_id` = #userId#
+		        ]]>
+	      	</isNotEmpty>
+      	</dynamic>
+	</sql>
+    
+   <select id="testFlowInfoVO.getCount" parameterClass="map" resultClass="java.lang.Integer">
+    <![CDATA[  
+     select count(1)
+	   from (
+	]]>
+	   <include refid="testFlowInfoVO.page.sql" />
+	<![CDATA[  
+	   ) t2
+    ]]>
+  </select>	
+  
+  <select id="testFlowInfoVO.pageList" parameterClass="map" resultClass="testFlowInfoVO">
+	<include refid="testFlowInfoVO.page.sql" />
+	<include refid="paginationCondition" />
+  </select>
+
 </sqlMap>
