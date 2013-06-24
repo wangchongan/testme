@@ -15,6 +15,7 @@
     <result property="name" column="NAME" />
     <result property="workSpaceId" column="WORK_SPACE_ID" />
     <result property="classQualifiedName" column="CLASS_QUALIFIED_NAME" />
+	<result property="bundleFileName" column="BUNDLE_FILE_NAME" />
     <result property="tag" column="TAG" />
     <result property="userId" column="USER_ID" />
     <result property="remark" column="REMARK" />
@@ -31,6 +32,7 @@
 		   ,NAME
 		   ,WORK_SPACE_ID
 		   ,CLASS_QUALIFIED_NAME
+		   ,BUNDLE_FILE_NAME
 		   ,TAG
 		   ,USER_ID
 		   ,REMARK 
@@ -133,6 +135,7 @@
    			   ,NAME
    			   ,WORK_SPACE_ID
    			   ,CLASS_QUALIFIED_NAME
+			   ,BUNDLE_FILE_NAME
    			   ,TAG
    			   ,USER_ID
    			   ,REMARK) VALUES (
@@ -144,6 +147,7 @@
    			   ,#name#
    			   ,#workSpaceId#
    			   ,#classQualifiedName#
+			   ,#bundleFileName#
    			   ,#tag#
    			   ,#userId#
    			   ,#remark#)
@@ -180,6 +184,11 @@
       <isNotEmpty property="classQualifiedName" prepend=",">
         <![CDATA[  
         CLASS_QUALIFIED_NAME = #classQualifiedName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="bundleFileName" prepend=",">
+        <![CDATA[  
+        BUNDLE_FILE_NAME = #bundleFileName#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="tag" prepend=",">
@@ -247,6 +256,7 @@
 		   ,tu.work_space_id            as workSpaceId
 		   ,tu.user_id                  as userId
 		   ,tu.class_qualified_name     as classQualifiedName
+		   ,tu.bundle_file_name         as bundleFileName
 		   ,ws.name                     as workSpaceName        
 		   ,ws.system_id                as systemId
 		   ,s.name                      as systemName
@@ -292,6 +302,7 @@
 		   ,tu.work_space_id            as workSpaceId
 		   ,tu.user_id                  as userId
 		   ,tu.class_qualified_name     as classQualifiedName
+		   ,tu.bundle_file_name         as bundleFileName
 		   ,tu.remark                   as remark
 		   ,ws.name                     as workSpaceName        
 		   ,ws.system_id                as systemId

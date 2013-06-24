@@ -8,34 +8,41 @@
 <script type="text/javascript" src="${contextPath}/res/common/testunit.js"></script>
 <script>
 function addOneTestunitConfig(tableObject){
-   var i = tableObject.rows.length;//table的title占了两行，数据从第三行开始，即i=2，0表示第一行
+   var marknumber=tableObject.rows.length;
+   var rownumber = tableObject.rows.length;
    var rankValue = tableObject.rows.length-1;
    var row = tableObject.insertRow(tableObject.rows.length);
    var configTableRownumberListValue = document.getElementById("configTableRownumberList").value;
-   if(configTableRownumberListValue){  
-   		document.getElementById("configTableRownumberList").value = configTableRownumberListValue+(i+"#");
+   if(configTableRownumberListValue){
+   		var rownumbers = configTableRownumberListValue.split("#");
+		for(var d=0;d<rownumbers.length;d++){
+			if(rownumbers[d]>marknumber){
+				marknumber = eval(rownumbers[d])+1;
+			}
+		}
+   		document.getElementById("configTableRownumberList").value = configTableRownumberListValue+(marknumber+"#");
    }else{
-   		document.getElementById("configTableRownumberList").value =(i+"#");
+   		document.getElementById("configTableRownumberList").value =(marknumber+"#");
    }
    var col;
    col = row.insertCell(0);
    row.style.background="#FFFFFF";
-   var labelName="labelName_"+i;
-   var paramName="paramName_"+i;
-   var formCtrlType="formCtrlType_"+i;
-   var defaultValue="defaultValue_"+i;
-   var rank="rank_"+i;
-   var isRequiredYes="isRequiredYes_"+i;
-   var isRequiredNo="isRequiredNo_"+i;
-   var help="help_"+i;
-   var paramExt = "paramExt_"+i;
-   var configSpanId = "configSpanId_"+i;
-   var testunitParamId ="testunitParamId_"+i;
+   var labelName="labelName_"+marknumber;
+   var paramName="paramName_"+marknumber;
+   var formCtrlType="formCtrlType_"+marknumber;
+   var defaultValue="defaultValue_"+marknumber;
+   var rank="rank_"+marknumber;
+   var isRequiredYes="isRequiredYes_"+marknumber;
+   var isRequiredNo="isRequiredNo_"+marknumber;
+   var help="help_"+marknumber;
+   var paramExt = "paramExt_"+marknumber;
+   var configSpanId = "configSpanId_"+marknumber;
+   var testunitParamId ="testunitParamId_"+marknumber;
    col.innerHTML = "<input type='hidden' id="+testunitParamId+" value=''/><input id="+labelName+" class='text' style='width:90px' type='text' value=''/>";
    col = row.insertCell(1);
    col.innerHTML = "<input id="+paramName+" class='text' style='width:90px' type='text' value=''/>";
    col = row.insertCell(2);
-   col.innerHTML = "<select id="+formCtrlType+" style='width:140px;height:20px' onchange='doShowConfig("+i+")'><option value='selectType'>下拉菜单</option><option value='textType'>文本框</option></select>";
+   col.innerHTML = "<select id="+formCtrlType+" style='width:140px;height:20px' onchange='doShowConfig("+marknumber+")'><option value='selectType'>下拉菜单</option><option value='textType'>文本框</option></select>";
    col = row.insertCell(3);
    col.innerHTML = "<input id="+defaultValue+" class='text' style='width:140px' type='text' value=''/>";
    col = row.insertCell(4);
@@ -45,7 +52,7 @@ function addOneTestunitConfig(tableObject){
    col = row.insertCell(6);
    col.innerHTML = "<input id="+help+" class='text' style='width:230px' type='text' value=''/>";
    col = row.insertCell(7);
-   col.innerHTML = "<input id="+paramExt+" type='hidden' /><span id="+configSpanId+" style='display:;'><a href='javascript:void(0)' onclick='addPropKey("+i+")'>配置项</a></span> <a href='javascript:void(0)' onclick='deleteRows("+i+",\"configTableRownumberList\" )'>&nbsp;删除</a>";
+   col.innerHTML = "<input id="+paramExt+" type='hidden' /><span id="+configSpanId+" style='display:;'><a href='javascript:void(0)' onclick='addPropKey("+marknumber+")'>配置项</a></span> <a href='javascript:void(0)' onclick='deleteRows("+rownumber+","+marknumber+",\"configTableRownumberList\" )'>&nbsp;删除</a>";
 }
 
 
@@ -132,11 +139,16 @@ a.open:hover{background-position:0 -29px;}
     					    <td nowrap align="left" width="80%" height="40px" colspan="3"><input id="classQualifiedName" name="classQualifiedName" class="text" style="width:500px" type="text" value="$!testunitVO.classQualifiedName"/><span class="red"> *</span><span class="red" style="display:none;" id="classQualifiedNameNotNull">&nbsp;必填</span></td>
 						  </tr>
 						  <tr>
+							#if($!isAddProcess)
             				<td nowrap align="right" width="13%" height="40px">bundle文件:</td>
             				<td nowrap align="left"  width="20%" height="22px">
             					<input id="bundleFile" name="bundleFile" type="file"/>
 								<span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span>
             				</td>
+							#else
+							<td nowrap align="right" width="13%" height="40px">bundle文件名:</td>
+							<td style="width:250px;height:40px"><input id="bundleFile" type="text" style="border:0;" value="$!testunitVO.bundleFileName"/><span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span></td>
+							#end
             				<td width="67%"></td>
 						  </tr>
 						  <tr>
@@ -156,6 +168,7 @@ a.open:hover{background-position:0 -29px;}
             	                <input name="addTestunitConfigBtn" type="button" onclick="addOneTestunitConfig(addTestunitConfigTable)" class="right-button08" value="添加一项" />
 								<label class="red" style="display:none;" id="testunitConfigNotNull"/>&nbsp;包含*号的列属于必填项</label>
                                 <input type="text" style="width:600px;color:red;border:0;display:none;" id="selectTypeConfigNotNull"/>
+								<label class="red" style="display:none;" id="rankValueNotRepeat"/>&nbsp;位置序号不能重复</label>
 							</td>
                       	  </tr>
                           <tr>
@@ -185,14 +198,14 @@ a.open:hover{background-position:0 -29px;}
 								  #foreach($testunitParamVO in $!testunitVO.testunitParamVOList)
                                   <tr bgcolor="#FFFFFF">
                 				    <td height="20px">
-										<input type="hidden" id="testunitParamId_$!testunitParamVO.rownumber" value="$!testunitParamVO.testunitParamId"/>
-										<input name="labelName_$!testunitParamVO.rownumber" id="labelName_$!testunitParamVO.rownumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.labelName"/>
+										<input type="hidden" id="testunitParamId_$!testunitParamVO.rowMarkNumber" value="$!testunitParamVO.testunitParamId"/>
+										<input id="labelName_$!testunitParamVO.rowMarkNumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.labelName"/>
 									</td>
                 					<td>
-    									<input name="paramName_$!testunitParamVO.rownumber" id="paramName_$!testunitParamVO.rownumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.paramName"/>
+    									<input id="paramName_$!testunitParamVO.rowMarkNumber" class="text" style="width:90px" type="text" value="$!testunitParamVO.paramName"/>
     								</td>
                                     <td>
-    								  <select name="formCtrlType_$!testunitParamVO.rownumber" id="formCtrlType_$!testunitParamVO.rownumber" style="width:140px;height:20px" onchange="doShowConfig($!testunitParamVO.rownumber)">
+    								  <select id="formCtrlType_$!testunitParamVO.rowMarkNumber" style="width:140px;height:20px" onchange="doShowConfig($!testunitParamVO.rowMarkNumber)">
 										#foreach($formCtrlTypeEnum in $formCtrlTypeEnumList)
                 						  #if($!formCtrlTypeEnum.key==$!testunitParamVO.formCtrlType)
                 							<option value="$!formCtrlTypeEnum.key" selected="selected">$!formCtrlTypeEnum.value</option>
@@ -203,28 +216,28 @@ a.open:hover{background-position:0 -29px;}
 									  </select>
     								</td>
 									<td>
-    									<input name="defaultValue_$!testunitParamVO.rownumber" id="defaultValue_$!testunitParamVO.rownumber" class="text" style="width:140px" type="text" value="$!testunitParamVO.defaultValue"/>
+    									<input id="defaultValue_$!testunitParamVO.rowMarkNumber" class="text" style="width:140px" type="text" value="$!testunitParamVO.defaultValue"/>
     								</td>
 									<td>
-    									<input name="rank_$!testunitParamVO.rownumber"  id="rank_$!testunitParamVO.rownumber" class="text" style="width:40px" type="text" value="$!testunitParamVO.rank"/>
+    									<input id="rank_$!testunitParamVO.rowMarkNumber" class="text" style="width:40px" type="text" value="$!testunitParamVO.rank"/>
     								</td>
 									<td>
 										#if($!testunitParamVO.isRequired=="Y")
-											<input type="radio" id="isRequiredYes_$!testunitParamVO.rownumber" name="isRequired_$!testunitParamVO.rownumber" value="Y" checked="checked"/>是
-											<input type="radio" id="isRequiredNo_$!testunitParamVO.rownumber"  name="isRequired_$!testunitParamVO.rownumber" value="N" />否
+											<input type="radio" id="isRequiredYes_$!testunitParamVO.rowMarkNumber" value="Y" checked="checked"/>是
+											<input type="radio" id="isRequiredNo_$!testunitParamVO.rowMarkNumber"  value="N" />否
 										#else
-											<input type="radio" id="isRequiredYes_$!testunitParamVO.rownumber" name="isRequired_$!testunitParamVO.rownumber"  value="Y"/>是
-											<input type="radio" id="isRequiredNo_$!testunitParamVO.rownumber"  name="isRequired_$!testunitParamVO.rownumber"  value="N" checked="checked"/>否
+											<input type="radio" id="isRequiredYes_$!testunitParamVO.rowMarkNumber" value="Y"/>是
+											<input type="radio" id="isRequiredNo_$!testunitParamVO.rowMarkNumber"  value="N" checked="checked"/>否
 										#end
     									
     								</td>
 									<td>
-    									<input name="help_$!testunitParamVO.rownumber" id="help_$!testunitParamVO.rownumber" class="text" style="width:230px" type="text" value="$!testunitParamVO.help"/>
+    									<input id="help_$!testunitParamVO.rowMarkNumber" class="text" style="width:230px" type="text" value="$!testunitParamVO.help"/>
     								</td>
                                     <td>
-										<input id="paramExt_$!testunitParamVO.rownumber" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
-										<span id="configSpanId_$!testunitParamVO.rownumber" style="display:$!testunitParamVO.needParamExt;"><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.rownumber)'>配置项</a></span>
-            							<a href="javascript:void(0)" onclick="deleteRows($!testunitParamVO.rownumber,'configTableRownumberList')">删除</a>
+										<input id="paramExt_$!testunitParamVO.rowMarkNumber" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
+										<span id="configSpanId_$!testunitParamVO.rowMarkNumber" style="display:$!testunitParamVO.needParamExt;"><a href='javascript:void(0)' onclick='addPropKey($!testunitParamVO.rowMarkNumber)'>配置项</a></span>
+            							<a href="javascript:void(0)" onclick="deleteRows(eval($velocityCount+1),$!testunitParamVO.rowMarkNumber,'configTableRownumberList')">删除</a>
             						</td>
         						  </tr>
 								  #end
@@ -257,7 +270,7 @@ a.open:hover{background-position:0 -29px;}
     </div>
     <div class="content">
 		<form  method="post" id="addTestunitConfigForm" name="addTestunitConfigForm">
-		<input type="hidden" id="rownumber" />
+		<input type="hidden" id="rowmarknumber" />
         <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
     	<tr>
 	    	<td nowrap align="left" width="50%" height="30px">控件显示名称:</td>

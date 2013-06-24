@@ -73,9 +73,9 @@ public class TestunitParamVO {
      */
     private String testunitParamExt;
     /**
-     * 页面中所在的行号
+     * 页面中所在的行标号，每行数据的控件名称都是以指定字符串加上行标号
      */
-    private int    rownumber;
+    private int    rowMarkNumber;
 
     /**
      * @return the testunitParamId
@@ -218,17 +218,17 @@ public class TestunitParamVO {
     }
 
     /**
-     * @return the rownumber
+     * @return the rowMarkNumber
      */
-    public int getRownumber() {
-        return rownumber;
+    public int getRowMarkNumber() {
+        return rowMarkNumber;
     }
 
     /**
-     * @param rownumber the rownumber to set
+     * @param rowMarkNumber the rowMarkNumber to set
      */
-    public void setRownumber(int rownumber) {
-        this.rownumber = rownumber;
+    public void setRowMarkNumber(int rowMarkNumber) {
+        this.rowMarkNumber = rowMarkNumber;
     }
 
     /**

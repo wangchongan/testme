@@ -63,6 +63,10 @@ public class TestunitVO {
      * 测试单元所在类路径
      */
     private String                classQualifiedName;
+    /**
+     * bundle文件名称
+     */
+    private String                bundleFileName;
 
     /**
      * 测试单元创建者用户
@@ -265,6 +269,20 @@ public class TestunitVO {
      */
     public void setCustomWorSpaceName(String customWorSpaceName) {
         this.customWorSpaceName = customWorSpaceName;
+    }
+
+    /**
+     * @return the bundleFileName
+     */
+    public String getBundleFileName() {
+        return bundleFileName;
+    }
+
+    /**
+     * @param bundleFileName the bundleFileName to set
+     */
+    public void setBundleFileName(String bundleFileName) {
+        this.bundleFileName = bundleFileName;
     }
 
     /**

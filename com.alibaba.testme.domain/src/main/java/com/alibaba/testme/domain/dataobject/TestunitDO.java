@@ -51,6 +51,10 @@ public class TestunitDO {
      * classQualifiedName
      */
     private String classQualifiedName;
+    /**
+     * bundle 文件名称
+     */
+    private String bundleFileName;
 
     /**
      * tag
@@ -137,6 +141,20 @@ public class TestunitDO {
 
     public String getClassQualifiedName() {
         return this.classQualifiedName;
+    }
+
+    /**
+     * @return the bundleFileName
+     */
+    public String getBundleFileName() {
+        return bundleFileName;
+    }
+
+    /**
+     * @param bundleFileName the bundleFileName to set
+     */
+    public void setBundleFileName(String bundleFileName) {
+        this.bundleFileName = bundleFileName;
     }
 
     public void setTag(String tag) {

@@ -497,7 +497,11 @@ public class TestunitController {
         testunitDO.setWorkSpaceId(workSpaceId);
         testunitDO.setUserId(SessionUtils.getLoginUser(request).getId());
         testunitDO.setId(testunitVO.getTestunitId());
-
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
+        if (multipartFile != null) {
+            testunitDO.setBundleFileName(multipartFile.getOriginalFilename());
+        }
         return testunitDO;
     }
 
@@ -591,9 +595,9 @@ public class TestunitController {
             testunitParamVO.setParamName(paramDO.getParamName());
             testunitParamVO.setRank(paramDO.getRank());
             testunitParamVO.setTestunitId(testunitId);
-            int rownumber = Integer.parseInt(Long.toString(paramDO.getId() + 1000L));//行号置为1000以后的数字，防止跟新增的行号重复
-            testunitParamVO.setRownumber(rownumber);
-            configTableRownumberList.append(rownumber).append("#");
+            int rowMarkNumber = Integer.parseInt(Long.toString(paramDO.getId() + 1000L));//行号置为1000以后的数字，防止跟新增的行号重复
+            testunitParamVO.setRowMarkNumber(rowMarkNumber);
+            configTableRownumberList.append(rowMarkNumber).append("#");
             if (FormCtrlTypeEnum.SELECT_TYPE.getKey().equalsIgnoreCase(paramDO.getFormCtrlType())) {
                 TestunitParamExtDO extDO = new TestunitParamExtDO();
                 extDO.setTestunitParamId(paramDO.getId());

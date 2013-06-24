@@ -56,6 +56,10 @@ a.open:hover{background-position:0 -29px;}
 							<td style="width:250px;height:40px"><label name="classQualifiedName">$!testunitVO.classQualifiedName</label></td>
 						  </tr>
 						  <tr>
+							<td nowrap align="right" width="13%" height="40px">bundle文件名:</td>
+							<td style="width:250px;height:40px"><label name="bundleFileName">$!testunitVO.bundleFileName</label></td>
+						  </tr>
+						  <tr>
     					    <td nowrap align="right">备注:</td>
     					    <td colspan="3" style="height:40px"><label name="remark">$!testunitVO.remark</label></td>
     					  </tr>
@@ -100,7 +104,7 @@ a.open:hover{background-position:0 -29px;}
 									<td>$!testunitParamVO.help</td>
                                     <td>
 										<input id="paramExt_$!testunitParamVO.testunitParamId" type='hidden' value="$!testunitParamVO.testunitParamExt"/>
-										<span><a href='javascript:void(0)' id="configSpanId_$!testunitParamVO.rownumber" style="display:$!testunitParamVO.needParamExt;" onclick='addPropKey($!testunitParamVO.testunitParamId)'>配置项</a></span>
+										<span><a href='javascript:void(0)' id="configSpanId_$!testunitParamVO.rowMarkNumber" style="display:$!testunitParamVO.needParamExt;" onclick='addPropKey($!testunitParamVO.testunitParamId)'>配置项</a></span>
             						</td>
         						  </tr>
 								  #end
@@ -128,7 +132,7 @@ a.open:hover{background-position:0 -29px;}
     </div>
     <div class="content">
 		<form  method="post" id="addTestunitConfigForm" name="addTestunitConfigForm">
-		<input type="hidden" id="rownumber" />
+		<input type="hidden" id="rowmarknumber" />
         <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
     	<tr>
 	    	<td nowrap align="left" width="50%" height="30px">控件显示名称:</td>
