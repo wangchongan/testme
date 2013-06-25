@@ -95,7 +95,8 @@ public class TestFlowInfoVO {
     public String[] getTestunitFlowTags() {
         String[] result = new String[0];
         if (testunitFlowTag != null && testunitFlowTag.length() > 0) {
-            result = this.testunitFlowTag.split(",");
+            String tmp = testunitFlowTag.replace("，", ",");
+            result = tmp.split(",");
         }
         return result;
     }
