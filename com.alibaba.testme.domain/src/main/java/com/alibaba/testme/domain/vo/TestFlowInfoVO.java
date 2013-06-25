@@ -15,26 +15,30 @@
  */
 package com.alibaba.testme.domain.vo;
 
+import java.util.List;
+
+import com.alibaba.testme.domain.dataobject.SystemEnvDO;
+
 /**
  * 测试流程VO
  * 
  * @author lz
  */
 public class TestFlowInfoVO {
-    private Long           testunitFlowCaseId;
+    private Long              testunitFlowCaseId;
 
-    private Long           testunitFlowId;
-    private String         testunitFlowName;
-    private String         testunitFlowTag;
+    private Long              testunitFlowId;
+    private String            testunitFlowName;
+    private String            testunitFlowTag;
+    private Long              systemId;
+    private String            systemName;
+    private String            userName;
+    private String            wangwang;
+    private String            remark;
+    private String            isActive;
 
-    private String         systemName;
-
-    private String         userName;
-    private String         wangwang;
-
-    private String         remark;
-
-    private TestunitInfoVO testunitInfoVO;
+    private TestunitInfoVO    testunitInfoVO;
+    private List<SystemEnvDO> systemEnvs;
 
     public Long getTestunitFlowId() {
         return testunitFlowId;
@@ -58,6 +62,22 @@ public class TestFlowInfoVO {
 
     public void setSystemName(String systemName) {
         this.systemName = systemName;
+    }
+
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
+    }
+
+    public Long getSystemId() {
+        return systemId;
+    }
+
+    public List<SystemEnvDO> getSystemEnvs() {
+        return systemEnvs;
+    }
+
+    public void setSystemEnvs(List<SystemEnvDO> systemEnvs) {
+        this.systemEnvs = systemEnvs;
     }
 
     public String getTestunitFlowName() {
@@ -114,5 +134,13 @@ public class TestFlowInfoVO {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
     }
 }

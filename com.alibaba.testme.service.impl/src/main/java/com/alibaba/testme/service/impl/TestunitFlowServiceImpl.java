@@ -7,12 +7,14 @@ import org.springframework.util.CollectionUtils;
 
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitFlowDao;
+import com.alibaba.testme.domain.dataobject.SystemEnvDO;
 import com.alibaba.testme.domain.dataobject.TestunitFlowDO;
 import com.alibaba.testme.domain.query.TaskCreateParamQuery;
 import com.alibaba.testme.domain.query.TestunitFlowQuery;
 import com.alibaba.testme.domain.vo.TestFlowInfoVO;
 import com.alibaba.testme.domain.vo.TestunitFlowVO;
 import com.alibaba.testme.domain.vo.TestunitInfoVO;
+import com.alibaba.testme.service.SystemEnvService;
 import com.alibaba.testme.service.TestunitFlowDetailService;
 import com.alibaba.testme.service.TestunitFlowService;
 
@@ -25,6 +27,7 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
 
     private TestunitFlowDao           testunitFlowDao;
     private TestunitFlowDetailService testunitFlowDetailService;
+    private SystemEnvService          systemEnvService;
 
     public void setTestunitFlowDao(TestunitFlowDao testunitFlowDao) {
         this.testunitFlowDao = testunitFlowDao;
@@ -32,6 +35,10 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
 
     public void setTestunitFlowDetailService(TestunitFlowDetailService testunitFlowDetailService) {
         this.testunitFlowDetailService = testunitFlowDetailService;
+    }
+
+    public void setSystemEnvService(SystemEnvService systemEnvService) {
+        this.systemEnvService = systemEnvService;
     }
 
     /**
@@ -121,6 +128,12 @@ public class TestunitFlowServiceImpl implements TestunitFlowService {
             TestunitInfoVO testunitInfoVO = testunitFlowDetailService
                     .getFirstTestunitInfo(testFlowInfoVO.getTestunitFlowId());
             testFlowInfoVO.setTestunitInfoVO(testunitInfoVO);
+
+            SystemEnvDO systemEnvDO = new SystemEnvDO();
+            systemEnvDO.setSystemId(testFlowInfoVO.getSystemId());
+            //            systemEnvDO.setUserId(taskCreateParamQuery.getUserId());
+            List<SystemEnvDO> systemEnvs = systemEnvService.findList(systemEnvDO);
+            testFlowInfoVO.setSystemEnvs(systemEnvs);
         }
 
         return testFlowInfoVOList;

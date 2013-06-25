@@ -296,7 +296,7 @@ td #cancel_group_wrap a:hover { color: #472788; }
 
 
 /***** Menu *****/
-.ft-contextmenu {position: absolute;z-index: 1; display:none; border: 1px solid #989898;background:url(/images/theme/form/form_bg.png) no-repeat white;width:180px;}
+.ft-contextmenu {position: absolute;z-index: 1; display:none; border: 1px solid #989898;background:url(../../res/images/form_bg.png) no-repeat white;width:180px;}
 .ft-contextmenu ul { margin:0; padding:1px; }
 .ft-contextmenu ul li { list-style:none; padding:0; margin:0; }
 .ft-contextmenu ul a {display:block; height:23px; line-height:23px;font-size:12px;  color:#000; text-decoration:none;  cursor:pointer; position:relative; padding:0px 10px; vertical-align:middle}
@@ -305,11 +305,11 @@ td #cancel_group_wrap a:hover { color: #472788; }
 .ft-contextmenu .shadow_b {background: url(/images/theme/button_menu/button&menu_rx.png) repeat-x 0 0;position: absolute;left: 2px;right: -2px;bottom: -4px;height: 4px;}
 
 /***** Form *****/
-form input[type="text"],form input[type="password"] { font-size: 12px; padding: 0 1px; border: 1px solid #ABADB3; height: 20px; line-height:20px; font-family: Verdana, Arial, Helvetica, sans-serif; background: url(/images/theme/form/form_bg.png) no-repeat white; }
+form input[type="text"],form input[type="password"] { font-size: 12px; padding: 0 1px; border: 1px solid #ABADB3; height: 20px; line-height:20px; font-family: Verdana, Arial, Helvetica, sans-serif; background: url(../../res/images/form_bg.png) no-repeat white; }
 .form_fieldset input[type="text"] { width:120px; }
-form select { border: 1px solid #ABADB3; background: url(/images/theme/form/form_bg.png) no-repeat white; padding: 1px;  margin: 0; font-family: Verdana, Arial, Helvetica, sans-serif; }
+form select { border: 1px solid #ABADB3; background: url(../../res/images/form_bg.png) no-repeat white; padding: 1px;  margin: 0; font-family: Verdana, Arial, Helvetica, sans-serif; }
 .form_fieldset select { width:125px; }
-form textarea { background: url(/images/theme/form/form_bg.png) no-repeat white; border: 1px solid #ABADB3; font-size: 12px;  resize: none; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 2px 0; }
+form textarea { background: url(../../res/images/form_bg.png) no-repeat white; border: 1px solid #ABADB3; font-size: 12px;  resize: none; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 2px 0; }
 
 .form_fieldset {padding:10px;background:#F7F9FD;border:1px solid #C5DDF6;margin-bottom:10px; word-break:break-all;}
 .form_fieldset legend{font-size:14px;font-weight:bold;color:#0066CC}
@@ -340,7 +340,7 @@ form textarea { background: url(/images/theme/form/form_bg.png) no-repeat white;
 .mode-combobox-wrap { z-index: 1; width: 53px; left: 0; position: relative; text-align: left; top: 0; white-space: nowrap; line-height: 18px; }
 .mode-combobox-wrap.focus input { border-color: #777; }
 .mode-combobox-wrap.focus .trigger { border-bottom: 1px solid #777; }
-.mode-combobox-wrap input { width: 30px; height: 18px; padding: 2px 2px 0; border: 1px solid #C1C1C1; vertical-align: middle; background: url("/images/theme/form/text-bg.gif") repeat-x scroll 0 0 transparent; }
+.mode-combobox-wrap input { width: 30px; height: 18px; padding: 2px 2px 0; border: 1px solid #C1C1C1; vertical-align: middle; background: url("../../res/images/text-bg.gif") repeat-x scroll 0 0 transparent; }
 .mode-combobox-wrap .trigger { background:url(../../res/images/public_icon.png) -185px -1px no-repeat; white-space: nowrap; cursor: pointer; height: 21px; position: absolute; top: 0; right: 0; width: 17px; border: 0 none; }
 .mode-combobox-wrap .trigger-over { background-position:-202px -1px; }
 .mode-combobox-wrap .trigger-click { background-position:-219px -1px; }
@@ -844,7 +844,7 @@ text-decoration: none!important; display: inline-block; width: 67px; height: 20p
 
 
 /*td驱动 自定义参数列*/
-#data_selected_columns, #default_columns  { width:150px; height: 180px; overflow-y: scroll; overflow-x: hidden; border: 1px solid #ABADB3; background: url("/images/theme/form/form_bg.png") no-repeat scroll 0 0 white; }
+#data_selected_columns, #default_columns  { width:150px; height: 180px; overflow-y: scroll; overflow-x: hidden; border: 1px solid #ABADB3; background: url("../../res/images/form_bg.png") no-repeat scroll 0 0 white; }
 #data_fields_columns li div { cursor: default; }
 .data_fields_columns_selected { background-color: #316ac4; color: #FFF; }
 

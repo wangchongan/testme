@@ -1,18 +1,16 @@
-
 #foreach($item in ${testFlowParamList})
 <div class="cell td">
 	<div class="td" id="td_$!{item.testunitFlowId}">
-		<div class="activate">
-		
+		<div #if($!{item.isActive} == "Y")class="activate" #else class="inactivate"  style="color: rgb(0, 0, 0); border-color: rgb(0, 0, 0);"#end >
 			<div class="basic">
 				<img alt="$!{item.testunitFlowName}" class="fl tds-icon" src="${contextPath}/res/images/tm_50x50.jpg" />
 				<div class="basic-info">
 					<div class="title">
-						<a href="${contextPath}/testunitFlow/$!{item.testunitFlowId}">$!{item.testunitFlowName}</a>
+						<a href="${contextPath}/testflowmanage/testunitFlowDetail?testunitFlowId=$!{item.testunitFlowId}">$!{item.testunitFlowName}</a>
 					</div>
 					<div class="title-info">
 						#foreach($itemTag in ${item.testunitFlowTags})
-							<a href="${contextPath}/taskmanage/tags/$!{itemTag}" class="tdLable">$!{itemTag}</a>
+							<a href="${contextPath}/taskmanage/tag/$!{itemTag}" class="tdLable">$!{itemTag}</a>
 						#end
 					</div>
 				</div>
@@ -26,23 +24,29 @@
 				<form accept-charset="UTF-8" action="${contextPath}/taskmanage/submitTask" data-remote="true" method="post">
 					<div style="margin: 0; padding: 0; display: inline">
 						<input name="testunitFlowCaseId" type="hidden" value="$!{item.testunitFlowCaseId}" />
-						<input name="systemEnvId" type="hidden" value="$!{item.systemEnvId}" />
 					</div>
 					<input id="td_$!{item.testunitFlowId}" name="testunitFlowId" type="hidden" value="$!{item.testunitFlowId}" />
+					<div class="title-info"> 系统环境变量配置： 
+						<select id="td_param_$!{itemUnit.paramName}" name="systemEnvId" title="系统环境变量配置">
+							#foreach($sysEnv in ${item.systemEnvs})
+								<option value="$!{sysEnv.id}">$!{sysEnv.configName}</option>
+							#end
+						</select>
+					 </div>					
 					
 					#foreach($itemUnit in ${item.testunitInfoVO.testunitParamInfoVOs})
 						<ul class="alignment-left">
 							<label class="table-head" for="td_param_$!{itemUnit.paramName}">$!{itemUnit.labelName}( $!{itemUnit.paramName} )</label>
 							<li class="alignment-left-child">
 							#if("textType"==$!{itemUnit.formCtrlType.key})
-								<input class="Ptext" id="td_param_$!itemUnit.paramName" name="$!itemUnit.paramName" onkeydown="doInvoke(this)" 
-										placeholder="" size="25" title="$!itemUnit.help" type="text" value="$!itemUnit.defaultValue"/>
+								<input class="Ptext" id="td_param_$!itemUnit.paramName" name="param_$!itemUnit.paramName" onkeydown="doInvoke(this)" 
+										placeholder="$!{itemUnit.help}" size="25" title="$!{itemUnit.help}" type="text" value="$!itemUnit.defaultValue"/>
 							#else
-								<select id="td_param_$!{itemUnit.paramName}" name="td_param_$!{itemUnit.paramName}" 
+								<select id="td_param_$!{itemUnit.paramName}" name="param_$!{itemUnit.paramName}" 
 									onkeydown="doInvoke(this)" title="$!itemUnit.help">
 									<option value=""></option>
 									#foreach($itemUnitExt in ${itemUnit.testunitParamExtInfoVOs})
-										<option value="$!{itemUnitExt.valueId}">$!{itemUnitExt.valueName}</option>
+										<option value="$!{itemUnitExt.value}">$!{itemUnitExt.valueName}</option>
 									#end
 								</select>
 							#end
@@ -77,6 +81,3 @@
 	</div>
 </div>
 #end
-
-
-

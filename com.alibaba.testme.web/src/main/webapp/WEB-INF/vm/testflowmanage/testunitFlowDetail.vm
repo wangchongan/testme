@@ -71,6 +71,7 @@
    </tr>
    <tr>
      <td colspan="2" align="center" height="50px">
+		<a href="javascript:history.go(-1)" target="mainFrame" class="left-font03">返回</a> &nbsp;&nbsp;
 		<a href="${contextPath}/testflowmanage/testunitFlowList" target="mainFrame" class="left-font03">查询测试流程信息</a>
      </td>
 	</tr>

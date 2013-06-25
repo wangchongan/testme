@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,9 @@ import com.alibaba.testme.web.common.SessionUtils;
 @RequestMapping(value = "/taskmanage/*")
 public class TaskController {
 
-    private static final Logger      logger = LoggerFactory.getLogger(TaskController.class);
+    private static final String      PARAM_PREFIX = "param_";
+
+    private static final Logger      logger       = LoggerFactory.getLogger(TaskController.class);
 
     @Resource
     private SystemService            systemService;
@@ -134,27 +137,26 @@ public class TaskController {
         return "/taskmanage/taskCreate";
     }
 
-    @SuppressWarnings("unchecked")
+    @RequestMapping(value = "/tag/{tag}")
+    public String taskTag(Model model, HttpServletRequest request, @PathVariable("tag") String tag) {
+        model.addAttribute("tag", tag);
+        return "/taskmanage/taskCreate";
+    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public String submitTask(Model model, HttpServletRequest request) {
-
-        Map<String, String> userInputParamsMap = request.getParameterMap();
+    public String submitTask(Model model, HttpServletRequest request,
+                             @RequestParam("systemEnvId") Long systemEnvId,
+                             @RequestParam("testunitFlowCaseId") Long testunitFlowCaseId,
+                             @RequestParam("testunitFlowId") Long testunitFlowId) {
         TestRequestDTO testRequestDTO = new TestRequestDTO();
-
-        Long systemEnvId = 0L;
-        Long testunitFlowId = 0L;
-        Long testunitFlowCaseId = 0L;
-        Long userId = SessionUtils.getLoginUser(request).getId();
-
         testRequestDTO.setSystemEnvId(systemEnvId);
         testRequestDTO.setTestunitFlowCaseId(testunitFlowCaseId);
         testRequestDTO.setTestunitFlowId(testunitFlowId);
-        testRequestDTO.setUserId(userId);
-
-        testRequestDTO.setUserInputParamsMap(userInputParamsMap);
-        TestunitFlowCaseResult testunitFlowCaseResult = null;
+        testRequestDTO.setUserId(SessionUtils.getLoginUser(request).getId());
+        testRequestDTO.setUserInputParamsMap(this.parseUserInputParamsMap(request));
 
         // invoke TestunitFlowCaseHandler
+        TestunitFlowCaseResult testunitFlowCaseResult = null;
         try {
             //            testunitFlowCaseResult = iTestunitFlowCaseHandler.deal(testRequestDTO);
         } catch (Exception e) {
@@ -167,22 +169,16 @@ public class TaskController {
         return "/taskmanage/dealResult";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String getStatus(Model model,
-                            HttpServletRequest request,
-                            @ModelAttribute("testunitFlowCaseQuery") TestunitFlowCaseQuery testunitFlowCaseQuery,
-                            @PathVariable("id") Long id) {
-        String resultMsg = "删除成功";
-        try {
-            this.testunitFlowCaseService.deleteTestunitFlowCaseDO(id);
-        } catch (Exception e) {
-            if (logger.isWarnEnabled()) {
-                logger.warn("删除测试任务出错, TestunitFlowCaseID: " + id);
-                resultMsg = "删除失败";
+    @SuppressWarnings("unchecked")
+    private Map<String, String> parseUserInputParamsMap(HttpServletRequest request) {
+        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        for (Map.Entry<String, String[]> item : parameterMap.entrySet()) {
+            if (item.getKey() != null && item.getKey().startsWith(PARAM_PREFIX)) {
+                result.put(item.getKey().substring(PARAM_PREFIX.length()), item.getValue()[0]);
             }
         }
-        model.addAttribute("resultMsg", resultMsg);
-        return this.list(model, request, testunitFlowCaseQuery);
+        return result;
     }
 
     /**

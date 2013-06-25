@@ -326,6 +326,7 @@
 			  tf.`name` testunitFlowName,
 			  tf.`tag` testunitFlowTag,
 			  tf.`remark` remark,
+			  tf.`is_active` isActive,
 			  tu.`user_name` userName,
 			  tu.`wangwang`,
 			  ts.`name` systemName 
@@ -339,7 +340,7 @@
     	<dynamic>
 	    	<isNotEmpty property="tag" prepend="and">
 		        <![CDATA[  
-		        	tf.`tag`= #tag# 
+		        	tf.`tag` like CONCAT('%', #tag#, '%')
 		        ]]>
 	      	</isNotEmpty>
 	    	<isNotEmpty property="userId" prepend="and">
