@@ -78,7 +78,7 @@
 							<td width="22%" align="left">
                                 <select name="selectcolumns" size="15" style="width:200px;" multiple="multiple" class="t_aera">
 									 #foreach($testunitIdAndName in $testunitMap.entrySet())
-									   <option value="$testunitIdAndName.key">$testunitIdAndName.value</option>
+									   <option value="$!testunitIdAndName.key">$!testunitIdAndName.value</option>
                                      #end
 								</select>
 							</td>

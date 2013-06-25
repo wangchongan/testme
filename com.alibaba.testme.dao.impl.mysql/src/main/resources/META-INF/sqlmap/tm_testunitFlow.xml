@@ -313,6 +313,7 @@
 		   ,tm_user   u
       where tf.system_id=s.id
 	    and tf.user_id=u.id
+		and tf.id=#testunitFlowId#
     ]]>
   </select>
   

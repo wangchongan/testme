@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.web;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -391,6 +392,10 @@ public class TestunitController {
         }
         try {
             InputStream ins = multipartFile.getInputStream();
+            File file1 = new File(CommonConstants.BUNDLE_FILE_PATH);
+            if (!file1.exists()) {
+                file1.mkdirs();
+            }
             FileOutputStream out = new FileOutputStream(CommonConstants.BUNDLE_FILE_PATH
                     + multipartFile.getOriginalFilename());
             FileCopyUtils.copy(ins, out);

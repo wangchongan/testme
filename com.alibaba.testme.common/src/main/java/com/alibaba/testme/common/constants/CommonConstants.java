@@ -36,8 +36,8 @@ public class CommonConstants {
      */
     public static final Integer SIZE_PERPAGE     = 50;
     /**
-     * bundle文件存放路径
+     * bundle文件存放相对路径
      */
-    public static final String  BUNDLE_FILE_PATH = "d:/home/xiaopenzi/bundleFile/";
+    public static final String  BUNDLE_FILE_PATH = "/home/admin/bundleFile/";
 
 }

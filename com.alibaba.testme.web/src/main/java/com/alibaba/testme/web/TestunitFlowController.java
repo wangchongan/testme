@@ -331,16 +331,22 @@ public class TestunitFlowController {
             testunitFlowDetailDO.setModifier(SessionUtils.getLoginUser(request).getUserName());
             testunitFlowDetailDO.setTestunitFlowId(testunitFlowId);
             testunitFlowDetailDO.setTestunitId(Long.parseLong(testunitIds[i]));
-            if (i == 0) {
-                testunitFlowDetailDO.setPreTestunitId(0L);
-                testunitFlowDetailDO.setNextTestunitId(Long.parseLong(testunitIds[i + 1]));
-            } else if (i == testunitIds.length - 1) {
-                testunitFlowDetailDO.setPreTestunitId(Long.parseLong(testunitIds[i - 1]));
-                testunitFlowDetailDO.setNextTestunitId(0L);
+            if (testunitIds.length > 1) {
+                if (i == 0) {
+                    testunitFlowDetailDO.setPreTestunitId(0L);
+                    testunitFlowDetailDO.setNextTestunitId(Long.parseLong(testunitIds[i + 1]));
+                } else if (i == testunitIds.length - 1) {
+                    testunitFlowDetailDO.setPreTestunitId(Long.parseLong(testunitIds[i - 1]));
+                    testunitFlowDetailDO.setNextTestunitId(0L);
+                } else {
+                    testunitFlowDetailDO.setPreTestunitId(Long.parseLong(testunitIds[i - 1]));
+                    testunitFlowDetailDO.setNextTestunitId(Long.parseLong(testunitIds[i + 1]));
+                }
             } else {
-                testunitFlowDetailDO.setPreTestunitId(Long.parseLong(testunitIds[i - 1]));
-                testunitFlowDetailDO.setNextTestunitId(Long.parseLong(testunitIds[i + 1]));
+                testunitFlowDetailDO.setPreTestunitId(0L);
+                testunitFlowDetailDO.setNextTestunitId(0L);
             }
+
             testunitFlowDetailList.add(testunitFlowDetailDO);
         }
         testunitFlowDetailService.batchSaveTestunitFlowDetail(testunitFlowDetailList);
@@ -362,7 +368,7 @@ public class TestunitFlowController {
             }
         }
         for (int k = 0; k < testunitIds.length; k++) {
-            testunitMap.put(testunitIds[k], map.get(testunitIds[k]));
+            testunitMap.put(testunitIds[k], map.get(Long.parseLong(testunitIds[k])));
         }
         model.addAttribute("testunitMap", testunitMap);
     }
