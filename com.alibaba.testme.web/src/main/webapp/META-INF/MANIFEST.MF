@@ -22,6 +22,7 @@ Import-Package:
  com.alibaba.testme.common.enums,
  com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.core.bundle,
+ com.alibaba.testme.core.bundle.manager,
  com.alibaba.testme.core.testunitflowcase,
  com.alibaba.testme.core.testunitflowcase.dto,
  com.alibaba.testme.domain.dataobject,

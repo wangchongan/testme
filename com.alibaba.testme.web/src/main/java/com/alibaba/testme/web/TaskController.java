@@ -75,6 +75,7 @@ public class TaskController {
 
     @Resource
     private TestunitFlowCaseService  testunitFlowCaseService;
+
     @Resource
     private ITestunitFlowCaseHandler iTestunitFlowCaseHandler;
 
@@ -158,7 +159,7 @@ public class TaskController {
         // invoke TestunitFlowCaseHandler
         TestunitFlowCaseResult testunitFlowCaseResult = null;
         try {
-            //            testunitFlowCaseResult = iTestunitFlowCaseHandler.deal(testRequestDTO);
+            testunitFlowCaseResult = iTestunitFlowCaseHandler.deal(testRequestDTO);
         } catch (Exception e) {
             if (logger.isWarnEnabled()) {
                 logger.warn("处理任务错误: ", e);

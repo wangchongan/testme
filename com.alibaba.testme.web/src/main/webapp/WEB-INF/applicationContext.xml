@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<osgi:reference id="testMeBundleContextAware" interface="com.alibaba.testme.core.bundle.TestMeBundleContextAware" />
+	<osgi:reference id="testMeBundleManager" interface="com.alibaba.testme.core.bundle.manager.TestMeBundleManager" />
 	
 	<osgi:reference id="userService" interface="com.alibaba.testme.service.UserService"/>
 	<osgi:reference id="systemService" interface="com.alibaba.testme.service.SystemService"/>

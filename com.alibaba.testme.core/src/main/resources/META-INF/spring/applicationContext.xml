@@ -14,10 +14,18 @@
 
 	<context:component-scan base-package="com.alibaba.testme.core" />
 
-	<bean id="testMeBundleContextAware" class="com.alibaba.testme.core.bundle.TestMeBundleContextAwareImpl">
-	</bean>
+	<bean id="testMeBundleManager" class="com.alibaba.testme.core.bundle.manager.impl.TestMeBundleManagerImpl"/>
+	<bean id="testunitFlowCaseHandler" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseHandler"/>
 	
-	<bean id="testunitFlowCaseHandler" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseHandler">
-	</bean>
+	<bean id="testRequestChecker" class="com.alibaba.testme.core.testunitflowcase.checker.TestRequestChecker"/>
+	<bean id="beforeTestunitFlowCaseWorkChecker" class="com.alibaba.testme.core.testunitflowcase.checker.BeforeTestunitFlowCaseWorkChecker"/>
+	<bean id="testunitFlowCaseStatusChecker" class="com.alibaba.testme.core.testunitflowcase.checker.TestunitFlowCaseStatusChecker"/>
+	
+	<bean id="testunitFlowCaseContextBuilder" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseContextBuilder"/>
+	
+	<bean id="testunitFlowCaseWorker" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseWorker"/>
+	<bean id="testunitFlowCaseHelper" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseHelper"/>
+	<bean id="testunitFlowCaseGenerator" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseGenerator"/>
+	
 
 </beans>

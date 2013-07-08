@@ -65,6 +65,12 @@
 		     <groupId>org.eclipse.gemini.blueprint</groupId>
 		     <artifactId>gemini-blueprint-io</artifactId>
 	    </dependency>
-		    
+	    
+	    <dependency>
+		     <groupId>org.eclipse.virgo</groupId>
+		     <artifactId>org.eclipse.virgo.deployer.api</artifactId>
+		     <version>3.5.0.RELEASE</version>
+	    </dependency>
+
 	</dependencies>
 </project>

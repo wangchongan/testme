@@ -6,11 +6,14 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.core
 Import-Package: com.alibaba.testme.common.basedto,
  com.alibaba.testme.domain,
+ com.alibaba.testme.domain.dataobject,
  com.alibaba.testme.service,
  org.eclipse.gemini.blueprint.context;version="[1.0.0.RELEASE,1.0.0.RELEASE]",
+ org.eclipse.virgo.kernel.deployer.core;version="[3.5.0.RELEASE,3.5.0.RELEASE]",
  org.osgi.framework;version="[1.7.0,1.7.0]",
  org.slf4j;version="[1.6.1,1.6.4]"
 Export-Package: com.alibaba.testme.core.bundle,
+ com.alibaba.testme.core.bundle.manager,
  com.alibaba.testme.core.testunitflowcase,
  com.alibaba.testme.core.testunitflowcase.dto
 

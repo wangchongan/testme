@@ -5,7 +5,25 @@
 		http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
 	xmlns:osgi="http://www.springframework.org/schema/osgi">
 
-	<osgi:service ref="testMeBundleContextAware" interface="com.alibaba.testme.core.bundle.TestMeBundleContextAware"></osgi:service>
-	<osgi:service ref="testunitFlowCaseHandler" interface="com.alibaba.testme.core.testunitflowcase.ITestunitFlowCaseHandler"></osgi:service>
+	<osgi:reference id="applicationDeployer" interface="org.eclipse.virgo.kernel.deployer.core.ApplicationDeployer" />
+	
+	<osgi:reference id="userService" interface="com.alibaba.testme.service.UserService"/>
+	<osgi:reference id="systemService" interface="com.alibaba.testme.service.SystemService"/>
+	<osgi:reference id="systemEnvService" interface="com.alibaba.testme.service.SystemEnvService"/>
+	<osgi:reference id="systemEnvDetailService" interface="com.alibaba.testme.service.SystemEnvDetailService"/>
+	<osgi:reference id="systemRequirePropService" interface="com.alibaba.testme.service.SystemRequirePropService"/>
+	<osgi:reference id="testunitService" interface="com.alibaba.testme.service.TestunitService"/>
+	<osgi:reference id="testunitFlowService" interface="com.alibaba.testme.service.TestunitFlowService"/>
+	<osgi:reference id="testunitFlowCaseService" interface="com.alibaba.testme.service.TestunitFlowCaseService"/>
+	<osgi:reference id="testunitFlowCaseDetailService" interface="com.alibaba.testme.service.TestunitFlowCaseDetailService"/>
+	<osgi:reference id="testunitFlowDetailService" interface="com.alibaba.testme.service.TestunitFlowDetailService"/>
+	<osgi:reference id="testunitParamService" interface="com.alibaba.testme.service.TestunitParamService"/>
+	<osgi:reference id="testunitParamExtService" interface="com.alibaba.testme.service.TestunitParamExtService"/>
+	<osgi:reference id="workSpaceService" interface="com.alibaba.testme.service.WorkSpaceService"/>
+	
+	
+	<osgi:service ref="testMeBundleManager" interface="com.alibaba.testme.core.bundle.manager.TestMeBundleManager"></osgi:service>
+	<osgi:service ref="testunitFlowCaseHandler" interface="com.alibaba.testme.core.testunitflowcase.ITestunitFlowCaseHandler"/>
 
 </beans>
+
