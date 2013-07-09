@@ -146,10 +146,12 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String submitTask(Model model, HttpServletRequest request,
+                             @RequestParam("systemId") Long systemId,
                              @RequestParam("systemEnvId") Long systemEnvId,
                              @RequestParam("testunitFlowCaseId") Long testunitFlowCaseId,
                              @RequestParam("testunitFlowId") Long testunitFlowId) {
         TestRequestDTO testRequestDTO = new TestRequestDTO();
+        testRequestDTO.setSystemId(systemId);
         testRequestDTO.setSystemEnvId(systemEnvId);
         testRequestDTO.setTestunitFlowCaseId(testunitFlowCaseId);
         testRequestDTO.setTestunitFlowId(testunitFlowId);

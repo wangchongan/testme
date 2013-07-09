@@ -62,6 +62,7 @@ public class TestunitFlowCaseDO {
      */
     private Long   systemEnvId;
 
+    private Long   systemId;
     /**
      * gmtNextRetry
      */
@@ -161,6 +162,14 @@ public class TestunitFlowCaseDO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
     }
 
 }

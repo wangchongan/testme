@@ -33,6 +33,8 @@ public class TestRequestDTO {
     //用户ID
     private Long                userId;
 
+    private Long                systemId;
+
     //系统环境变量ID，用户在执行是选择的系统环境参数ID
     private Long                systemEnvId;
 
@@ -77,6 +79,14 @@ public class TestRequestDTO {
 
     public void setSystemEnvId(Long systemEnvId) {
         this.systemEnvId = systemEnvId;
+    }
+
+    public Long getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(Long systemId) {
+        this.systemId = systemId;
     }
 
 }

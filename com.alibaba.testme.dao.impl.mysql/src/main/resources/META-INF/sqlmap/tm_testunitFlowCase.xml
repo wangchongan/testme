@@ -18,6 +18,7 @@
     <result property="gmtStart" column="GMT_START" />
     <result property="gmtEnd" column="GMT_END" />
     <result property="userId" column="USER_ID" />
+    <result property="systemId" column="SYSTEM_ID" />
     <result property="systemEnvId" column="SYSTEM_ENV_ID" />
     <result property="gmtNextRetry" column="GMT_NEXT_RETRY" />
   </resultMap>
@@ -35,6 +36,7 @@
 		  ,GMT_END
 		  ,USER_ID
 		  ,SYSTEM_ENV_ID
+		  ,SYSTEM_ID
 		  ,GMT_NEXT_RETRY 
   </sql>
    
@@ -85,6 +87,11 @@
         SYSTEM_ENV_ID = #systemEnvId#  
         ]]>  
       </isNotEmpty>
+      <isNotEmpty property="systemId" prepend="AND">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
+        ]]>  
+      </isNotEmpty>
       <isNotEmpty property="gmtNextRetry" prepend="AND">
         <![CDATA[  
         GMT_NEXT_RETRY = #gmtNextRetry#  
@@ -105,6 +112,7 @@
 			   ,GMT_END 
 			   ,USER_ID 
 			   ,SYSTEM_ENV_ID 
+			   ,SYSTEM_ID 
 			   ,GMT_NEXT_RETRY) VALUES (
 			    now()
 			   ,#creator# 
@@ -115,7 +123,8 @@
 			   ,#gmtStart#
 			   ,#gmtEnd# 
 			   ,#userId# 
-			   ,#systemEnvId# 
+			   ,#systemEnvId#
+			   ,#systemId# 
 			   ,#gmtNextRetry#)
   
       <selectKey keyProperty="id" resultClass="Long">
@@ -160,6 +169,11 @@
       <isNotEmpty property="systemEnvId" prepend=",">
         <![CDATA[  
         SYSTEM_ENV_ID = #systemEnvId#  
+        ]]>  
+      </isNotEmpty>
+      <isNotEmpty property="systemId" prepend=",">
+        <![CDATA[  
+        SYSTEM_ID = #systemId#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="gmtNextRetry" prepend=",">
@@ -280,7 +294,7 @@
 		  tu.`user_name` userName,
 		  tu.`wangwang`,
 		  tse.`config_name` configName,
-		  ts.`name` 
+		  ts.`name` systemName
 		from
 		  `tm_testunit_flow_case` tc,
 		  `tm_testunit_flow` tf,

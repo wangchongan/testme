@@ -17,23 +17,25 @@ package com.alibaba.testme.domain.vo;
 
 import java.util.List;
 
+import com.alibaba.testme.common.enums.TestunitFlowCaseStatusEnum;
+
 /**
  * 测试任务详情
  * 
  * @author lz
  */
 public class TestCaseVO {
-    private Long                   id;
-    private String                 testunitFlowCaseName; // 测试单元流程名称
-    private String                 gmtStart;            // 开始执行时间
-    private String                 gmtEnd;              // 任务结束时间
-    private String                 status;              // 任务执行状态
+    private Long                   id;                //TestCaseId
+    private String                 testunitFlowName;  // 测试单元流程名称
+    private String                 gmtStart;          // 开始执行时间
+    private String                 gmtEnd;            // 任务结束时间
+    private String                 status;            // 任务执行状态
 
-    private String                 systemName;          // 所属系统
-    private String                 configName;          // 配置名称
+    private String                 systemName;        // 所属系统
+    private String                 configName;        // 配置名称
 
-    private String                 userName;            // 作者
-    private String                 remark;              // 测试单元流程描述
+    private String                 userName;          // 作者
+    private String                 remark;            // 测试单元流程描述
 
     private List<TestCaseDetailVO> testCaseDetailList;
 
@@ -53,12 +55,12 @@ public class TestCaseVO {
         this.systemName = systemName;
     }
 
-    public String getTestunitFlowCaseName() {
-        return testunitFlowCaseName;
+    public String getTestunitFlowName() {
+        return testunitFlowName;
     }
 
-    public void setTestunitFlowCaseName(String testunitFlowCaseName) {
-        this.testunitFlowCaseName = testunitFlowCaseName;
+    public void setTestunitFlowName(String testunitFlowName) {
+        this.testunitFlowName = testunitFlowName;
     }
 
     public String getUserName() {
@@ -103,6 +105,13 @@ public class TestCaseVO {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getStatusStr() {
+        if (this.status != null) {
+            return TestunitFlowCaseStatusEnum.getName(this.status);
+        }
+        return "未知";
     }
 
     public void setStatus(String status) {

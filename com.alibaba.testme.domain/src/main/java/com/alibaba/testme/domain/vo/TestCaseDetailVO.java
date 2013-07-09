@@ -15,6 +15,8 @@
  */
 package com.alibaba.testme.domain.vo;
 
+import com.alibaba.testme.common.enums.TestunitFlowCaseDetailStatusEnum;
+
 /**
  * 测试任务单元明细
  * 
@@ -61,6 +63,13 @@ public class TestCaseDetailVO {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getStatusStr() {
+        if (this.status != null) {
+            return TestunitFlowCaseDetailStatusEnum.getName(this.status);
+        }
+        return "未知";
     }
 
     public void setStatus(String status) {

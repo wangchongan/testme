@@ -92,7 +92,8 @@ public class TestunitFlowDetailServiceImpl implements TestunitFlowDetailService 
         List<TestunitFlowDetailDO> testunitFlowDetailDOList = findList(testunitFlowDetailQuery);
 
         for (TestunitFlowDetailDO testunitFlowDetailDO : testunitFlowDetailDOList) {
-            if (testunitFlowDetailDO.getPreTestunitId() == null) {
+            if (testunitFlowDetailDO.getPreTestunitId() == null
+                    || testunitFlowDetailDO.getPreTestunitId() == 0L) {
                 return testunitFlowDetailDO.getId();
             }
         }

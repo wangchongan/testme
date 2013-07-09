@@ -15,6 +15,7 @@
  */
 package com.alibaba.testme.core.testunitflowcase.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
@@ -37,6 +38,13 @@ public class TestunitFlowCaseResult extends BaseResult {
 
     //缺少的必录参数
     private List<TestunitDefParam> absentParamsList;
+
+    public TestunitFlowCaseResult() {
+        super();
+        this.testunitFlowCaseId = 0L;
+        this.status = TestunitDealStatusEnum.FAIL;
+        this.absentParamsList = new ArrayList<TestunitDefParam>();
+    }
 
     public TestunitDealStatusEnum getStatus() {
         return status;

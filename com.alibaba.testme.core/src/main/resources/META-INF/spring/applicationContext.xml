@@ -26,6 +26,9 @@
 	<bean id="testunitFlowCaseWorker" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseWorker"/>
 	<bean id="testunitFlowCaseHelper" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseHelper"/>
 	<bean id="testunitFlowCaseGenerator" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseGenerator"/>
+	<bean id="testunitRequester" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitRequester"/>
+	<bean id="testunitClient" class="com.alibaba.testme.core.testunit.impl.TestunitClient"/>
+	<bean id="testunitFlowCaseAfterProcessor" class="com.alibaba.testme.core.testunitflowcase.impl.TestunitFlowCaseAfterProcessor"/>
 	
 
 </beans>

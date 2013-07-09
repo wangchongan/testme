@@ -65,4 +65,8 @@ public class TestunitRequester implements ITestunitRequester {
         this.testunitClient = testunitClient;
     }
 
+    public void setSystemEnvService(SystemEnvService systemEnvService) {
+        this.systemEnvService = systemEnvService;
+    }
+
 }

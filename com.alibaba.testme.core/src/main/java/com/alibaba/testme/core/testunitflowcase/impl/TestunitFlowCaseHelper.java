@@ -45,14 +45,14 @@ public class TestunitFlowCaseHelper implements ITestunitFlowCaseHelper {
      */
     @Override
     public boolean hasExecutableNode(Long testunitFlowDetailId) {
-
-        TestunitFlowDetailDO testunitFlowDetailDO = testunitFlowDetailService
-                .findById(testunitFlowDetailId);
-        if (testunitFlowDetailDO.getNextTestunitId() != null) {
-            return true;
+        if (testunitFlowDetailId != null) {
+            TestunitFlowDetailDO testunitFlowDetailDO = testunitFlowDetailService
+                    .findById(testunitFlowDetailId);
+            if (testunitFlowDetailDO != null && testunitFlowDetailDO.getNextTestunitId() != null) {
+                return true;
+            }
         }
         return false;
-
     }
 
     /*

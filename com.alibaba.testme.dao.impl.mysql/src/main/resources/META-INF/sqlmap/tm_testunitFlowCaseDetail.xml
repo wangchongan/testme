@@ -243,7 +243,7 @@
    <![CDATA[  
 		select 
 		  tcd.`id`,
-		  t.`name`,
+		  t.`name` testunitName,
 		  tcd.`in_param` inParam,
 		  tcd.`out_param` outParam,
 		  tcd.`status` 

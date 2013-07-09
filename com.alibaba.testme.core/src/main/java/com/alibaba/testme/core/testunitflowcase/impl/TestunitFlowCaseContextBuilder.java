@@ -84,6 +84,7 @@ public class TestunitFlowCaseContextBuilder implements ITestunitFlowCaseContextB
         /****************** 设置属性 *******************/
         //设置属性
         TestunitFlowCaseContext context = new TestunitFlowCaseContext();
+        context.setTestunitFlowDetailId(testunitFlowCaseDetailDO.getTestunitFlowDetailId());
         context.setTestunitFlowCaseId(testunitFlowCaseId);
         context.setUserId(Long.valueOf(testunitFlowCaseDO.getUserId()));
         context.setTestunitClassQualifiedName(testunitDO.getClassQualifiedName());

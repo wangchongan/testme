@@ -4,11 +4,18 @@ Tool: Bundlor 1.1.0.M04
 Bundle-Name: com.alibaba.testme.core
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.core
-Import-Package: com.alibaba.testme.common.basedto,
+Import-Package: com.alibaba.fastjson;version="[1.1.31,1.1.31]",
+ com.alibaba.testme.client.testunit,
+ com.alibaba.testme.client.testunit.context,
+ com.alibaba.testme.client.testunit.dto,
+ com.alibaba.testme.client.testunit.enums,
+ com.alibaba.testme.common.basedto,
+ com.alibaba.testme.common.enums,
  com.alibaba.testme.domain,
  com.alibaba.testme.domain.dataobject,
  com.alibaba.testme.service,
  org.eclipse.gemini.blueprint.context;version="[1.0.0.RELEASE,1.0.0.RELEASE]",
+ org.eclipse.gemini.blueprint.util;version="[1.0.0.RELEASE,1.0.0.RELEASE]",
  org.eclipse.virgo.kernel.deployer.core;version="[3.5.0.RELEASE,3.5.0.RELEASE]",
  org.osgi.framework;version="[1.7.0,1.7.0]",
  org.slf4j;version="[1.6.1,1.6.4]"

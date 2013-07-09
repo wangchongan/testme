@@ -27,6 +27,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import com.alibaba.testme.client.testunit.ITestunitHandler;
 import com.alibaba.testme.core.bundle.exception.BundleManagerException;
 import com.alibaba.testme.core.bundle.manager.TestMeBundleManager;
 import com.alibaba.testme.core.utils.tuple.Tuple;
@@ -60,8 +61,19 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
+    public ITestunitHandler getBundleService(Class<? extends ITestunitHandler> clazz) {
+        ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
+                .getServiceReference(clazz);
+        ITestunitHandler result = this.bundleContext.getService(serviceReference);
+        return result;
+    }
+
+    @Override
     public boolean isActive(String symbolicName) {
         Bundle bundle = OsgiBundleUtils.findBundleBySymbolicName(bundleContext, symbolicName);
+        if (bundle == null) {
+            return false;
+        }
         return OsgiBundleUtils.isBundleActive(bundle);
     }
 

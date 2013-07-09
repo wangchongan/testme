@@ -24,6 +24,7 @@
 				<form accept-charset="UTF-8" action="${contextPath}/taskmanage/submitTask" data-remote="true" method="post">
 					<div style="margin: 0; padding: 0; display: inline">
 						<input name="testunitFlowCaseId" type="hidden" value="$!{item.testunitFlowCaseId}" />
+						<input name="systemId" type="hidden" value="$!{item.systemId}" />
 					</div>
 					<input id="td_$!{item.testunitFlowId}" name="testunitFlowId" type="hidden" value="$!{item.testunitFlowId}" />
 					<div class="title-info"> 系统环境变量配置： 

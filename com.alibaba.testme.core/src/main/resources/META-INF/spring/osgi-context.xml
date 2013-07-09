@@ -21,7 +21,6 @@
 	<osgi:reference id="testunitParamExtService" interface="com.alibaba.testme.service.TestunitParamExtService"/>
 	<osgi:reference id="workSpaceService" interface="com.alibaba.testme.service.WorkSpaceService"/>
 	
-	
 	<osgi:service ref="testMeBundleManager" interface="com.alibaba.testme.core.bundle.manager.TestMeBundleManager"></osgi:service>
 	<osgi:service ref="testunitFlowCaseHandler" interface="com.alibaba.testme.core.testunitflowcase.ITestunitFlowCaseHandler"/>
 

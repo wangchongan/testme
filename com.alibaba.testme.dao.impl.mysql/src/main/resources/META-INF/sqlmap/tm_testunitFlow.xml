@@ -327,6 +327,7 @@
 			  tf.`tag` testunitFlowTag,
 			  tf.`remark` remark,
 			  tf.`is_active` isActive,
+			  tf.`system_id` systemId,
 			  tu.`user_name` userName,
 			  tu.`wangwang`,
 			  ts.`name` systemName 

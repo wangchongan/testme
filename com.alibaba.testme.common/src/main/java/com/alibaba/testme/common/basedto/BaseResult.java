@@ -29,12 +29,22 @@ public class BaseResult {
 
     private List<String> msgsList;
 
+    public BaseResult() {
+        super();
+        this.errorMsgsList = new ArrayList<String>();
+        this.msgsList = new ArrayList<String>();
+    }
+
     public void addAllErrorMsgs(List<String> errorMsgsList) {
-        this.errorMsgsList.addAll(errorMsgsList);
+        if (errorMsgsList != null) {
+            this.errorMsgsList.addAll(errorMsgsList);
+        }
     }
 
     public void addAllMsgs(List<String> msgsList) {
-        this.msgsList.addAll(msgsList);
+        if (msgsList != null) {
+            this.msgsList.addAll(msgsList);
+        }
     }
 
     /**
@@ -43,6 +53,10 @@ public class BaseResult {
      * @param errorMsg
      */
     public void addErrorMsg(String errorMsg) {
+        if (errorMsg == null) {
+            return;
+        }
+
         if (this.errorMsgsList == null) {
             this.errorMsgsList = new ArrayList<String>();
         }
@@ -55,6 +69,10 @@ public class BaseResult {
      * @param msg
      */
     public void addMsg(String msg) {
+        if (msg == null) {
+            return;
+        }
+
         if (this.msgsList == null) {
             this.msgsList = new ArrayList<String>();
         }

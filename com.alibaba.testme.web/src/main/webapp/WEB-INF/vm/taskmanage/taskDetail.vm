@@ -40,7 +40,7 @@ function goBack(){
 
     					  <tr>
     					    <td nowrap align="right" width="13%" height="30px">测试单元流程名称:</td>
-							<td style="width:250px;height:30px"> $!{testCaseVO.testunitFlowCaseName} </td>
+							<td style="width:250px;height:30px"> $!{testCaseVO.testunitFlowName} </td>
 							<td nowrap align="right" height="30px">配置名称:</td>
     					    <td style="width:250px;height:30px"> $!{testCaseVO.configName} </td>
 						  </tr>
@@ -77,15 +77,8 @@ function goBack(){
 
 						  <tr>
 							<td nowrap align="right" width="13%" height="30px">任务执行状态:</td>
-            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.status}  </td>
+            				<td nowrap  height="30px" style="width:200px"> $!{testCaseVO.statusStr}  </td>
 						  </tr>
-
-    					  <tr>
-    					    <td nowrap align="right" width="13%" height="30px">任务执行链路:</td>
-							<td height="30px"></td>
-							<td nowrap align="right" height="30px" width="13%"></td>
-							<td nowrap height="30px"></td>
-    					  </tr>
     					  <tr>
     					    <td colspan="4">
 								<table width="100%" class="tableFixClass" id="systemConfigTable" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646">
@@ -105,7 +98,7 @@ function goBack(){
 								  #foreach($item in $testCaseVO.testCaseDetailList)
 		                          <tr bgcolor="#FFFFFF">                       
 		        					<td>$!{item.testunitName}</td>
-		                            <td>$!{item.status}</td>
+		                            <td>$!{item.statusStr}</td>
 		                            <td>$!{item.inParam}</td>
 		                            <td>$!{item.outParam}</td>
 		                          </tr>

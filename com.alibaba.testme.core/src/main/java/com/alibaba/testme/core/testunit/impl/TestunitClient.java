@@ -15,8 +15,12 @@
  */
 package com.alibaba.testme.core.testunit.impl;
 
+import com.alibaba.testme.client.testunit.ITestunitHandler;
 import com.alibaba.testme.client.testunit.context.TestunitContext;
 import com.alibaba.testme.client.testunit.dto.TestunitResult;
+import com.alibaba.testme.client.testunit.enums.TestunitResultStatus;
+import com.alibaba.testme.core.bundle.exception.BundleManagerException;
+import com.alibaba.testme.core.bundle.manager.TestMeBundleManager;
 import com.alibaba.testme.core.testunit.ITestunitClient;
 
 /**
@@ -26,16 +30,36 @@ import com.alibaba.testme.core.testunit.ITestunitClient;
  */
 public class TestunitClient implements ITestunitClient {
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * com.alibaba.testme.core.testunit.ITestunitClient#invoke(com.alibaba.testme
-     * .client.testunit.dto.TestunitContext)
-     */
+    private TestMeBundleManager testMeBundleManager;
+
     @Override
+    @SuppressWarnings("unchecked")
     public TestunitResult invoke(TestunitContext testunitContext) {
-        //TODO-获取Testunit并且执行调用动作
-        return null;
+        //获取Testunit并且执行调用动作
+        TestunitResult result = new TestunitResult();
+        try {
+            String serviceName = testunitContext.getClassQualifiedName();
+            if (!testMeBundleManager.isActive(serviceName)) {
+                throw new BundleManagerException("bundle: " + serviceName
+                        + " is not active, process could not continue");
+            }
+
+            Class<ITestunitHandler> clazz = (Class<ITestunitHandler>) Class.forName(serviceName);
+            ITestunitHandler testunitHandler = testMeBundleManager.getBundleService(clazz);
+            return testunitHandler.deal(testunitContext);
+        } catch (ClassNotFoundException e) {
+            result.addErrorMsg("Class Not Found , Class: "
+                    + testunitContext.getClassQualifiedName());
+        } catch (Exception e) {
+            result.addErrorMsg(e.getMessage());
+        }
+
+        result.setStatus(TestunitResultStatus.FAIL);
+
+        return result;
     }
 
+    public void setTestMeBundleManager(TestMeBundleManager testMeBundleManager) {
+        this.testMeBundleManager = testMeBundleManager;
+    }
 }

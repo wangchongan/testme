@@ -56,6 +56,7 @@ public class TestunitFlowCaseGenerator implements ITestunitFlowCaseGenerator {
         testunitFlowCaseDO.setCreator(CommonConstants.CREATOR);
         testunitFlowCaseDO.setModifier(CommonConstants.MODIFIER);
         testunitFlowCaseDO.setStatus(TestunitFlowCaseStatusEnum.WAITING.getKey());
+        testunitFlowCaseDO.setSystemId(testRequestDTO.getSystemId());
         testunitFlowCaseDO.setSystemEnvId(testRequestDTO.getSystemEnvId());
         testunitFlowCaseDO.setTestunitFlowId(testRequestDTO.getTestunitFlowId());
         testunitFlowCaseDO.setUserId(testRequestDTO.getUserId());
@@ -64,6 +65,7 @@ public class TestunitFlowCaseGenerator implements ITestunitFlowCaseGenerator {
         /******************** 新建TestunitFlowCaseDetail ********************/
         TestunitFlowCaseDetailDO testunitFlowCaseDetailDO = new TestunitFlowCaseDetailDO();
         testunitFlowCaseDetailDO.setCreator(CommonConstants.CREATOR);
+        testunitFlowCaseDetailDO.setModifier(CommonConstants.MODIFIER);
         if (testRequestDTO.getUserInputParamsMap() != null) {
             String inputParamsMapJSON = JSON.toJSONString(testRequestDTO.getUserInputParamsMap());
             testunitFlowCaseDetailDO.setInParam(inputParamsMapJSON);
