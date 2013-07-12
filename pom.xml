@@ -119,7 +119,11 @@
 				<artifactId>buc.sso.client</artifactId>
 				<version>0.3.6</version>
 			</dependency>
-
+		<dependency>
+			<groupId>com.taobao.hsf</groupId>
+			<artifactId>hsf-standalone</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		</dependencies>
 	</dependencyManagement>
 

@@ -9,11 +9,13 @@ import com.alibaba.testme.core.utils.tuple.Tuple3;
 
 public interface TestMeBundleManager extends BundleContextAware {
 
-    Object getBundleService(String serviceName);
+    Object getService(String bundleName, String version, String serviceName);
+
+    Object getService(String serviceName);
 
     boolean isActive(String symbolicName);
 
-    boolean exist(String name, String version);
+    boolean exist(String symbolicName, String version);
 
     Tuple3<String, String, String> deploy(File stagedFile);
 
@@ -21,6 +23,6 @@ public interface TestMeBundleManager extends BundleContextAware {
 
     Tuple3<String, String, String> install(File stagedFile);
 
-    ITestunitHandler getBundleService(Class<? extends ITestunitHandler> clazz);
+    ITestunitHandler getService(Class<? extends ITestunitHandler> clazz);
 
 }

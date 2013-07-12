@@ -15,11 +15,17 @@
  */
 package com.alibaba.testme.remote.http;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.Map;
+
 /**
  * TODO Comment of HttpClient
+ * 
  * @author lz
- *
  */
-public class HttpClient {
+public interface HttpClient {
 
+    public String sendHttpPost(String destUrl, Map<String, String> httpParams)
+            throws MalformedURLException, IOException;
 }

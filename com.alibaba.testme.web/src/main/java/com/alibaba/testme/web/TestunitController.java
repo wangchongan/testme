@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.testme.common.constants.CommonConstants;
 import com.alibaba.testme.common.enums.FormCtrlTypeEnum;
 import com.alibaba.testme.common.ibatispage.Page;
+import com.alibaba.testme.core.bundle.manager.TestMeBundleManager;
 import com.alibaba.testme.domain.dataobject.SystemDO;
 import com.alibaba.testme.domain.dataobject.TestunitDO;
 import com.alibaba.testme.domain.dataobject.TestunitParamDO;
@@ -75,6 +78,9 @@ public class TestunitController {
     private TestunitParamService    testunitParamService;
     @Resource
     private TestunitParamExtService testunitParamExtService;
+
+    @Resource
+    private TestMeBundleManager     testMeBundleManager;
     private static final Logger     logger         = LoggerFactory
                                                            .getLogger(TestunitController.class);
     private static final String     IS_ADD_PROCESS = "isAddProcess";
@@ -374,7 +380,8 @@ public class TestunitController {
             return addEditTestunit(model, request);
         }
         //保存bundle文件
-        resultMsg = saveBundleFile(request);
+        resultMsg = saveAndDeployBundleFile(request);
+
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
             return addEditTestunit(model, request);
@@ -383,8 +390,8 @@ public class TestunitController {
         return addEditTestunit(model, request);
     }
 
-    //保存bundle file文件
-    private String saveBundleFile(HttpServletRequest request) {
+    //保存并部署bundle file文件
+    private String saveAndDeployBundleFile(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
         if (multipartFile == null) {
@@ -396,15 +403,37 @@ public class TestunitController {
             if (!file1.exists()) {
                 file1.mkdirs();
             }
-            FileOutputStream out = new FileOutputStream(CommonConstants.BUNDLE_FILE_PATH
-                    + multipartFile.getOriginalFilename());
+            String filePath = CommonConstants.BUNDLE_FILE_PATH
+                    + multipartFile.getOriginalFilename();
+            FileOutputStream out = new FileOutputStream(filePath);
             FileCopyUtils.copy(ins, out);
+
+            File bundleFile = new File(filePath);
+
+            //  校验bundle文件格式
+            checkBundleFile(bundleFile);
+
+            // 部署bundle文件到osgi容器
+            this.testMeBundleManager.deploy(bundleFile);
+
         } catch (IOException e) {
             logger.error("save bundle file error", e);
             return e.getMessage();
         }
 
         return null;
+    }
+
+    // 校验bundle文件格式
+    private void checkBundleFile(File bundleFile) throws IOException {
+        JarFile jar = new JarFile(bundleFile);
+        Attributes attrs = jar.getManifest().getMainAttributes();
+        String bundleVersion = attrs.getValue("Bundle-Version");
+        String symbolicName = attrs.getValue("Bundle-SymbolicName");
+
+        if (StringUtils.isBlank(symbolicName) || StringUtils.isBlank(bundleVersion)) {
+            throw new RuntimeException("bundle 文件不合法");
+        }
     }
 
     //前置校验

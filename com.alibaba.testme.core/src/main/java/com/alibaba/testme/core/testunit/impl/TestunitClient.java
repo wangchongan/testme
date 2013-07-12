@@ -39,13 +39,12 @@ public class TestunitClient implements ITestunitClient {
         TestunitResult result = new TestunitResult();
         try {
             String serviceName = testunitContext.getClassQualifiedName();
-            if (!testMeBundleManager.isActive(serviceName)) {
-                throw new BundleManagerException("bundle: " + serviceName
-                        + " is not active, process could not continue");
-            }
-
             Class<ITestunitHandler> clazz = (Class<ITestunitHandler>) Class.forName(serviceName);
-            ITestunitHandler testunitHandler = testMeBundleManager.getBundleService(clazz);
+            ITestunitHandler testunitHandler = testMeBundleManager.getService(clazz);
+            if (testunitHandler == null) {
+                throw new BundleManagerException("serviceName : " + serviceName
+                        + " is not found, process could not continue");
+            }
             return testunitHandler.deal(testunitContext);
         } catch (ClassNotFoundException e) {
             result.addErrorMsg("Class Not Found , Class: "

@@ -20,11 +20,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.gemini.blueprint.util.OsgiBundleUtils;
+import org.eclipse.gemini.blueprint.util.OsgiServiceReferenceUtils;
 import org.eclipse.virgo.kernel.deployer.core.ApplicationDeployer;
 import org.eclipse.virgo.kernel.deployer.core.DeploymentException;
 import org.eclipse.virgo.kernel.deployer.core.DeploymentIdentity;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
 
 import com.alibaba.testme.client.testunit.ITestunitHandler;
@@ -54,14 +56,50 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
-    public Object getBundleService(String serviceName) {
+    public Object getService(String serviceName) {
         ServiceReference<?> serviceReference = this.bundleContext.getServiceReference(serviceName);
-        Object result = this.bundleContext.getService(serviceReference);
+        Object result = this.getService_(serviceReference);
         return result;
     }
 
     @Override
-    public ITestunitHandler getBundleService(Class<? extends ITestunitHandler> clazz) {
+    public Object getService(String bundleName, String version, String serviceName) {
+        ServiceReference<?>[] serviceReferences = OsgiServiceReferenceUtils.getServiceReferences(
+                this.bundleContext, new String[] { serviceName });
+        if (null != serviceReferences) {
+            Bundle bundle = getBundle(bundleName, version);
+            for (ServiceReference<?> serviceReference : serviceReferences) {
+                if (serviceReference.getBundle().getBundleId() == bundle.getBundleId()) {
+                    return getService_(serviceReference);
+                }
+            }
+        }
+        return null;
+    }
+
+    private Object getService_(ServiceReference<?> serviceReference) {
+        if (null != serviceReference) {
+            Bundle bundle = serviceReference.getBundle();
+            if (!OsgiBundleUtils.isBundleActive(bundle)) {
+                try {
+                    if (bundle.getState() == Bundle.RESOLVED) {
+                        bundle.start(Bundle.ACTIVE);
+                    }
+                } catch (BundleException e) {
+                    throw new BundleManagerException("The bundle is " + bundle.getState()
+                            + " in osgi container.");
+                }
+            }
+            Object service = this.bundleContext.getService(serviceReference);
+            if (null != service) {
+                return service;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public ITestunitHandler getService(Class<? extends ITestunitHandler> clazz) {
         ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
                 .getServiceReference(clazz);
         ITestunitHandler result = this.bundleContext.getService(serviceReference);
@@ -78,9 +116,9 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
-    public boolean exist(String name, String version) {
+    public boolean exist(String symbolicName, String version) {
         try {
-            if (null != getBundle(name, version)) {
+            if (null != getBundle(symbolicName, version)) {
                 return true;
             }
         } catch (BundleManagerException e) {
@@ -88,12 +126,12 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
         return false;
     }
 
-    private Bundle getBundle(String name, String version) {
+    private Bundle getBundle(String symbolicName, String version) {
         Set<Bundle> temp = new HashSet<Bundle>();
-        if (name != null && version != null) {
+        if (symbolicName != null && version != null) {
             Bundle[] allBundles = this.bundleContext.getBundles();
             for (Bundle quasiBundle : allBundles) {
-                if (quasiBundle.getSymbolicName().equals(name)) {
+                if (quasiBundle.getSymbolicName().equals(symbolicName)) {
                     temp.add(quasiBundle);
                     if (quasiBundle.getVersion().toString().equals(version)) {
                         return quasiBundle;
@@ -104,7 +142,7 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
                 return temp.iterator().next();
             }
         }
-        throw new BundleManagerException("Cannot find any bundle with name[" + name
+        throw new BundleManagerException("Cannot find any bundle with name[" + symbolicName
                 + "] and version[" + version + "].");
     }
 
