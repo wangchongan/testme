@@ -5,7 +5,8 @@ Bundle-Name: com.alibaba.testme.client
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.client
 Import-Package: com.alibaba.testme.domain
-Export-Package: com.alibaba.testme.client.testunit,
+Export-Package: com.alibaba.testme.client.common,
+ com.alibaba.testme.client.testunit,
  com.alibaba.testme.client.testunit.context,
  com.alibaba.testme.client.testunit.dto,
  com.alibaba.testme.client.testunit.enums

@@ -17,5 +17,9 @@
 			<artifactId>com.alibaba.testme.domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+		     <groupId>com.alibaba</groupId>
+		     <artifactId>fastjson</artifactId>
+		</dependency>		
 	</dependencies>
 </project>

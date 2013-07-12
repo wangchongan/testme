@@ -19,6 +19,7 @@ Import-Package:
  com.alibaba.fastjson.serializer;version="[1.1.31,1.1.31]",
  com.alibaba.fastjson.support.spring;version="[1.1.31,1.1.31]",
  com.alibaba.fastjson.util;version="[1.1.31,1.1.31]",
+ com.alibaba.testme.client.common,
  com.alibaba.testme.common.enums,
  com.alibaba.testme.common.ibatispage,
  com.alibaba.testme.core.bundle,

@@ -21,5 +21,6 @@
 	<osgi:reference id="testunitParamExtService" interface="com.alibaba.testme.service.TestunitParamExtService"/>
 	<osgi:reference id="workSpaceService" interface="com.alibaba.testme.service.WorkSpaceService"/>
 	<osgi:reference id="testunitFlowCaseHandler" interface="com.alibaba.testme.core.testunitflowcase.ITestunitFlowCaseHandler"/>
+	<osgi:reference id="remoteApiCallbackDataCache" interface="com.alibaba.testme.client.common.RemoteApiCallbackDataCache"/>
 	
 </beans>
