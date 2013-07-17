@@ -28,7 +28,7 @@ import com.alibaba.testme.client.common.FeedbackResult;
 import com.alibaba.testme.client.common.RemoteApiCallbackDataCache;
 
 /**
- * TODO Comment of RemoteApiCallback
+ * Comment of RemoteApiCallback
  * 
  * @author lz
  */
@@ -43,6 +43,7 @@ public class RemoteApiCallback {
     private RemoteApiCallbackDataCache remoteApiCallbackDataCache;
 
     @ResponseBody
+    @RequestMapping
     public String belfryInvoke(Model model, @RequestParam("result") String callBackResult) {
         FeedbackResult parseObject = JSON.parseObject(callBackResult, FeedbackResult.class);
         String jobId = parseObject.getJobRunId();

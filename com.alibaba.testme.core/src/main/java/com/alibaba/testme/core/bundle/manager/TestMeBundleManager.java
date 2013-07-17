@@ -27,4 +27,8 @@ public interface TestMeBundleManager extends BundleContextAware {
 
     void undeploy(String symbolicName, String version);
 
+    Object getService(String serviceName, String filter);
+
+    ITestunitHandler getService(Class<? extends ITestunitHandler> clazz, String filter);
+
 }
