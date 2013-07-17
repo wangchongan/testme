@@ -4,4 +4,7 @@ Tool: Bundlor 1.1.0.M04
 Bundle-Name: com.alibaba.testme.remote.http
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: com.alibaba.testme.remote.http
+Export-Package: com.alibaba.testme.remote.belfry,
+ com.alibaba.testme.remote.http,
+ com.alibaba.testme.remote.http.impl;uses:="com.alibaba.testme.remote.http"
 

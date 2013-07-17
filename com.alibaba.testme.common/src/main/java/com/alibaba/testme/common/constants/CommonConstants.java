@@ -38,6 +38,6 @@ public class CommonConstants {
     /**
      * bundle文件存放相对路径
      */
-    public static final String  BUNDLE_FILE_PATH = "/home/admin/bundleFile/";
+    public static final String  BUNDLE_FILE_PATH = "g:/home/admin/bundleFile/";
 
 }

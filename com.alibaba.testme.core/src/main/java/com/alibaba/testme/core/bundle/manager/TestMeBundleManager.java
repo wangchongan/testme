@@ -15,7 +15,7 @@ public interface TestMeBundleManager extends BundleContextAware {
 
     boolean isActive(String symbolicName);
 
-    boolean exist(String symbolicName, String version);
+    boolean isExist(String symbolicName, String version);
 
     Tuple3<String, String, String> deploy(File stagedFile);
 

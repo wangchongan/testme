@@ -28,6 +28,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.ServiceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.testme.client.testunit.ITestunitHandler;
 import com.alibaba.testme.core.bundle.exception.BundleManagerException;
@@ -41,7 +43,7 @@ import com.alibaba.testme.core.utils.tuple.Tuple3;
  * @author lz
  */
 public class TestMeBundleManagerImpl implements TestMeBundleManager {
-
+    private static final Logger logger = LoggerFactory.getLogger(TestMeBundleManagerImpl.class);
     private BundleContext       bundleContext;
 
     private ApplicationDeployer applicationDeployer;
@@ -116,12 +118,13 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
-    public boolean exist(String symbolicName, String version) {
+    public boolean isExist(String symbolicName, String version) {
         try {
             if (null != getBundle(symbolicName, version)) {
                 return true;
             }
         } catch (BundleManagerException e) {
+            logger.error("invoke isExist error: ", e);
         }
         return false;
     }
