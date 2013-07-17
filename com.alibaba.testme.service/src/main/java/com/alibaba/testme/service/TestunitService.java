@@ -77,4 +77,26 @@ public interface TestunitService {
      */
     public TestunitVO findTestunitVOById(Long testunitId);
 
+    /**
+     * 重置bundle信息
+     * 
+     * @param testunitId
+     * @return
+     */
+    public int setBundleInformationNull(Long testunitId, String modifier);
+
+    /**
+     * 更新bundle信息
+     * 
+     * @param testunitId 测试单元ID
+     * @param symbolicName MF文件名
+     * @param bundleVersion bundle版本
+     * @param bundleFileName bundle文件名
+     * @param classQualifiedName 类名
+     * @return
+     */
+    public int updateBundleInformation(Long testunitId, String symbolicName, String bundleVersion,
+                                       String bundleFileName, String classQualifiedName,
+                                       String modifier);
+
 }

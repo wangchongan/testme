@@ -139,18 +139,14 @@ a.open:hover{background-position:0 -29px;}
     					    <td nowrap align="left" width="80%" height="40px" colspan="3"><input id="classQualifiedName" name="classQualifiedName" class="text" style="width:500px" type="text" value="$!testunitVO.classQualifiedName"/><span class="red"> *</span><span class="red" style="display:none;" id="classQualifiedNameNotNull">&nbsp;必填</span></td>
 						  </tr>
 						  <tr>
-							#if($!isAddProcess)
-            				<td nowrap align="right" width="13%" height="40px">bundle文件:</td>
+							<td nowrap align="right" width="13%" height="40px">bundle文件:</td>
             				<td nowrap align="left"  width="20%" height="22px">
             					<input id="bundleFile" name="bundleFile" type="file"/>
 								<span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span>
             				</td>
-							#else
-							<td nowrap align="right" width="13%" height="40px">bundle文件名:</td>
-							<td style="width:250px;height:40px">
-								<input id="bundleFile" type="file"  style="border:0;"/>
-                                <label name="bundleFileName">$!testunitVO.bundleFileName &nbsp;<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteBundleFile?testunitId='+$!testunitVO.testunitId+'&bundleFileName='+$!testunitVO.bundleFileName)"><font color="red">x</font></a></label>
-								<span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span>
+							#if(!$!isAddProcess)
+                            <td>
+								<label id="bundleFileName" name="bundleFileName">$!testunitVO.bundleFileName &nbsp;<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteBundleFile?testunitId='+$!testunitVO.testunitId)"><font color="red">x</font></a></label>
 							</td>
 							#end
             				<td width="67%"></td>

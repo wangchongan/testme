@@ -48,13 +48,14 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 	}else{
 		document.getElementById("classQualifiedNameNotNull").style.display="none";
 	}
-	
-	if(!bundleFile){
-		document.getElementById("bundleFileNotNull").style.display="";
-		validateResult=false;
-	}else{
-		document.getElementById("bundleFileNotNull").style.display="none";
-	}
+	if(!document.getElementById("bundleFileName")){
+    	if(!bundleFile){
+    		document.getElementById("bundleFileNotNull").style.display="";
+    		validateResult=false;
+    	}else{
+    		document.getElementById("bundleFileNotNull").style.display="none";
+    	}
+	}	
 	
 	var jsonParamList=[];
 	var rowLength = tableObject.rows.length;
@@ -172,7 +173,7 @@ function submitForm(formId,actionName,tableObject,configTableRownumberListId){
 			jsonParamList.push(paramExtValue);
 			jsonParamList.push("\",");
 			
-			jsonParamList.push("\"rownumber\":");
+			jsonParamList.push("\"rowMarkNumber\":");
 			jsonParamList.push("\"");
 			jsonParamList.push(k);
 			jsonParamList.push("\"}");

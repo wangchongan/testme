@@ -45,6 +45,7 @@ import com.alibaba.testme.common.constants.CommonConstants;
 import com.alibaba.testme.common.enums.FormCtrlTypeEnum;
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.core.bundle.manager.TestMeBundleManager;
+import com.alibaba.testme.core.utils.tuple.Tuple3;
 import com.alibaba.testme.domain.dataobject.SystemDO;
 import com.alibaba.testme.domain.dataobject.TestunitDO;
 import com.alibaba.testme.domain.dataobject.TestunitParamDO;
@@ -89,8 +90,10 @@ public class TestunitController {
     private void init(Model model) {
         //获取工作空间列表
         List<WorkSpaceDO> workSpaceDOList = workSpaceService.findList(new WorkSpaceDO());
+
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+
         model.addAttribute("workSpaceDOList", workSpaceDOList);
         model.addAttribute("systemDOList", systemDOList);
     }
@@ -99,6 +102,7 @@ public class TestunitController {
     private void init(Model model, Long systemId) {
         //获取系统列表
         List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+
         //获取工作空间列表
         Long id = null;
         if (systemId != null && systemId > 0L) {
@@ -106,11 +110,15 @@ public class TestunitController {
         } else if (systemDOList != null && systemDOList.size() > 0) {
             id = systemDOList.get(0).getId();
         }
+
         //获取表单控件类型
         List<FormCtrlTypeEnum> formCtrlTypeEnumList = FormCtrlTypeEnum.getList();
+
+        //获取工作空间列表
         WorkSpaceDO query = new WorkSpaceDO();
         query.setSystemId(id);
         List<WorkSpaceDO> workSpaceDOList = workSpaceService.findList(query);
+
         model.addAttribute("formCtrlTypeEnumList", formCtrlTypeEnumList);
         model.addAttribute("workSpaceDOList", workSpaceDOList);
         model.addAttribute("systemDOList", systemDOList);
@@ -127,6 +135,7 @@ public class TestunitController {
     public String testunitList(Model model, HttpServletRequest request) {
         //初始化页面
         init(model);
+
         return "testunitmanage/testunitList";
     }
 
@@ -144,11 +153,13 @@ public class TestunitController {
         if (testunitQuery == null) {
             testunitQuery = new TestunitQuery();
         }
+        //分页查询
         Page<TestunitVO> resultPage = testunitService.queryPage(testunitQuery.getPageIndex(),
                 testunitQuery.getSizePerPage(), testunitQuery);
         if (resultPage == null) {
             resultMsg = "温馨提醒：异常原因，查询失败！";
         }
+
         model.addAttribute("userId", SessionUtils.getLoginUser(request).getId());
         model.addAttribute("testunitVOPage", resultPage);
         model.addAttribute("resultMsg", resultMsg);
@@ -168,13 +179,16 @@ public class TestunitController {
     @RequestMapping
     public String testunitDetail(Model model, HttpServletRequest request,
                                  @RequestParam("testunitId") Long testunitId) {
+        //前置校验
         if (testunitId == null || testunitId <= 0L) {
             model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
             return testunitList(model, request);
         }
+
         //获取测试单元及包含的参数配置项信息
         TestunitVO testunitVO = getTestunitInformation(testunitId);
         model.addAttribute("testunitVO", testunitVO);
+
         return "testunitmanage/testunitDetail";
     }
 
@@ -193,14 +207,44 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
             return testunitList(model, request);
         }
+
         //页面初始化
         init(model, null);
         model.addAttribute(IS_ADD_PROCESS, false);
+
         //获取测试单元及包含的参数配置项信息
         TestunitVO testunitVO = getTestunitInformation(testunitId);
         model.addAttribute("testunitVO", testunitVO);
+
         return "testunitmanage/addEditTestunit";
 
+    }
+
+    /**
+     * 删除bundlefile文件
+     * 
+     * @param model
+     * @param request
+     * @param testunitId
+     * @param bundleFileName
+     * @return
+     */
+    @RequestMapping
+    public String deleteBundleFile(Model model, HttpServletRequest request,
+                                   @RequestParam("testunitId") Long testunitId) {
+        //前置校验
+        if (testunitId == null || testunitId <= 0L) {
+            model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
+            return editTestunit(model, request, testunitId);
+        }
+
+        //解部署并删除bundle文件
+        String resultMsg = deleteAndUndeployBundleFile(testunitId, request);
+        if (StringUtils.isNotBlank(resultMsg)) {
+            model.addAttribute("resultMsg", resultMsg);
+        }
+
+        return editTestunit(model, request, testunitId);
     }
 
     /**
@@ -215,11 +259,21 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒：测试单元Id为空！");
             return testunitList(model, request);
         }
+
+        //解部署并删除bundle文件
+        String resultMsg = deleteAndUndeployBundleFile(testunitId, request);
+        if (StringUtils.isNotBlank(resultMsg)) {
+            model.addAttribute("resultMsg", resultMsg);
+            return testunitList(model, request);
+        }
+
+        //删除测试单元信息
         int result = testunitService.deleteTestunitDO(testunitId);
         if (result <= 0) {
             model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除失败！");
             return testunitList(model, request);
         }
+
         //先删除参数配置项信息,再删除参数信息
         testunitParamExtService.deleteByTestunitId(testunitId);
         result = testunitParamService.deleteByTestunitId(testunitId);
@@ -227,6 +281,7 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除失败！");
         }
         model.addAttribute("resultMsg", "温馨提醒：测试单元信息删除成功！");
+
         return testunitList(model, request);
     }
 
@@ -242,6 +297,7 @@ public class TestunitController {
         //页面初始化
         init(model, null);
         model.addAttribute(IS_ADD_PROCESS, true);
+
         return "testunitmanage/addEditTestunit";
     }
 
@@ -260,6 +316,7 @@ public class TestunitController {
             init(model, systemId);
         }
         model.addAttribute("systemId", systemId);
+
         return "testunitmanage/addEditTestunit";
     }
 
@@ -284,6 +341,8 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒:参数获取失败！请联系技术解决！");
             return editTestunit(model, request, 0L);
         }
+
+        //解析参数，将json串转化为List对象
         List<TestunitParamVO> testunitParamVOList = null;
         try {
             testunitParamVOList = JSON.parseArray(testunitVO.getTestunitParamVOStr(),
@@ -297,31 +356,34 @@ public class TestunitController {
             return editTestunit(model, request, testunitVO.getTestunitId());
         }
         testunitVO.setTestunitParamVOList(testunitParamVOList);
+
+        //参数校验
         String resultMsg = valideParams(testunitVO);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
             return editTestunit(model, request, testunitVO.getTestunitId());
         }
+
+        //判断测试单元对应的bundle信息是否存在，如果不存在，说明删除了老的bundle文件，此时需要保存并部署新的bundle文件
+        TestunitDO testunitDO = testunitService.findById(testunitVO.getTestunitId());
+        if (testunitDO == null || StringUtils.isBlank(testunitDO.getBundleFileName())
+                || StringUtils.isBlank(testunitDO.getBundleVersion())
+                || StringUtils.isBlank(testunitDO.getSymbolicName())) {
+            //保存bundle文件
+            resultMsg = saveAndDeployBundleFile(request, testunitVO);
+            if (resultMsg != null) {
+                model.addAttribute("resultMsg", resultMsg);
+                return addEditTestunit(model, request);
+            }
+        }
+
         //更新测试单元信息
         resultMsg = buildAndSaveUpdateTestunit(testunitParamVOList, testunitVO, request, false);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
             return editTestunit(model, request, testunitVO.getTestunitId());
         }
-        //保存bundle文件
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
-        if (multipartFile != null) {
-            try {
-                InputStream ins = multipartFile.getInputStream();
-                FileOutputStream out = new FileOutputStream(CommonConstants.BUNDLE_FILE_PATH
-                        + multipartFile.getOriginalFilename());
-                FileCopyUtils.copy(ins, out);
-            } catch (IOException e) {
-                logger.error("save bundle file error", e);
-                model.addAttribute("resultMsg", "温馨提醒：保存bundle文件失败！" + e.getMessage());
-            }
-        }
+
         model.addAttribute("resultMsg", "温馨提醒：恭喜你！测试单元信息更新成功！");
         return addEditTestunit(model, request);
     }
@@ -346,6 +408,7 @@ public class TestunitController {
             model.addAttribute("resultMsg", "温馨提醒:参数获取失败！请联系技术解决！");
             return addEditTestunit(model, request);
         }
+        //解析JSON串
         List<TestunitParamVO> testunitParamVOList = null;
         try {
             testunitParamVOList = JSON.parseArray(testunitVO.getTestunitParamVOStr(),
@@ -364,6 +427,7 @@ public class TestunitController {
             model.addAttribute("resultMsg", resultMsg);
             return addEditTestunit(model, request);
         }
+
         //唯一性校验，如果数据库中已经存在该测试单元，则忽略
         TestunitDO query = new TestunitDO();
         query.setName(testunitVO.getTestunitName());
@@ -373,25 +437,59 @@ public class TestunitController {
                     "温馨提醒:该测试单元名称已经存在！测试单元名称：" + testunitVO.getTestunitName());
             return addEditTestunit(model, request);
         }
+
+        //保存bundle文件
+        resultMsg = saveAndDeployBundleFile(request, testunitVO);
+        if (resultMsg != null) {
+            model.addAttribute("resultMsg", resultMsg);
+            return addEditTestunit(model, request);
+        }
+
         //保存测试单元信息
         resultMsg = buildAndSaveUpdateTestunit(testunitParamVOList, testunitVO, request, true);
         if (resultMsg != null) {
             model.addAttribute("resultMsg", resultMsg);
             return addEditTestunit(model, request);
         }
-        //保存bundle文件
-        resultMsg = saveAndDeployBundleFile(request);
 
-        if (resultMsg != null) {
-            model.addAttribute("resultMsg", resultMsg);
-            return addEditTestunit(model, request);
-        }
         model.addAttribute("resultMsg", "温馨提醒：恭喜你！测试单元信息保存成功！");
         return addEditTestunit(model, request);
     }
 
+    //解部署bundle并删除bundle文件
+    private String deleteAndUndeployBundleFile(Long testunitId, HttpServletRequest request) {
+        //取得bundle文件的相关信息
+        TestunitDO testunitDO = testunitService.findById(testunitId);
+        if (testunitDO == null || StringUtils.isBlank(testunitDO.getSymbolicName())
+                || StringUtils.isBlank(testunitDO.getBundleFileName())
+                || StringUtils.isBlank(testunitDO.getBundleVersion())) {
+            return "温馨提醒：部署的bundle文件信息为空！";
+        }
+
+        try {
+            //解部署
+            testMeBundleManager.undeploy(testunitDO.getSymbolicName(),
+                    testunitDO.getBundleVersion());
+
+            //删除bundlefile文件
+            File file1 = new File(CommonConstants.BUNDLE_FILE_PATH + testunitDO.getBundleFileName());
+            if (file1.exists()) {
+                file1.delete();
+            }
+
+            //清空测试单元bundle文件信息
+            testunitService.setBundleInformationNull(testunitId, SessionUtils.getLoginUser(request)
+                    .getUserName());
+        } catch (Exception e) {
+            logger.error("delete bundle File error", e);
+            return "温馨提醒：删除bundle文件失败！" + e.getMessage();
+        }
+
+        return null;
+    }
+
     //保存并部署bundle file文件
-    private String saveAndDeployBundleFile(HttpServletRequest request) {
+    private String saveAndDeployBundleFile(HttpServletRequest request, TestunitVO testunitVO) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
         if (multipartFile == null) {
@@ -414,9 +512,15 @@ public class TestunitController {
             checkBundleFile(bundleFile);
 
             // 部署bundle文件到osgi容器
-            this.testMeBundleManager.deploy(bundleFile);
+            Tuple3<String, String, String> tuple = this.testMeBundleManager.deploy(bundleFile);
+            if (tuple == null) {
+                return "温馨提醒：bundle文件部署失败！";
+            }
+            testunitVO.setSymbolicName(tuple._1());
+            testunitVO.setBundleVersion(tuple._2());
+            testunitVO.setBundleFileName(multipartFile.getOriginalFilename());
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("save bundle file error", e);
             return e.getMessage();
         }
@@ -477,6 +581,7 @@ public class TestunitController {
                 return "温馨提醒：工作空间保存失败！";
             }
         }
+
         //组装并保存测试单元基本信息
         TestunitDO testunitDO = assembleTestunitDO(testunitVO, request, workSpaceId);
         Long testunitId = testunitVO.getTestunitId();
@@ -531,11 +636,10 @@ public class TestunitController {
         testunitDO.setWorkSpaceId(workSpaceId);
         testunitDO.setUserId(SessionUtils.getLoginUser(request).getId());
         testunitDO.setId(testunitVO.getTestunitId());
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        MultipartFile multipartFile = multipartRequest.getFile("bundleFile");
-        if (multipartFile != null) {
-            testunitDO.setBundleFileName(multipartFile.getOriginalFilename());
-        }
+        testunitDO.setBundleFileName(testunitVO.getBundleFileName());
+        testunitDO.setBundleVersion(testunitVO.getBundleVersion());
+        testunitDO.setSymbolicName(testunitVO.getSymbolicName());
+
         return testunitDO;
     }
 

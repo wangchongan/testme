@@ -100,4 +100,39 @@ public class TestunitDaoImpl extends PageSqlMapClientDaoSupport<TestunitVO> impl
                 "testunit.findTestunitVOById", testunitId);
     }
 
+    @Override
+    public int setBundleInformationNull(Long testunitId, String modifier) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("testunitId", testunitId);
+        paramMap.put("modifier", modifier);
+        Integer result = this.getSqlMapClientTemplate().update("testunit.setBundleInformationNull",
+                paramMap);
+        if (result == null) {
+            return 0;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int updateBundleInformation(Long testunitId, String symbolicName, String bundleVersion,
+                                       String bundleFileName, String classQualifiedName,
+                                       String modifier) {
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("testunitId", testunitId);
+        paramMap.put("symbolicName", symbolicName);
+        paramMap.put("bundleVersion", bundleVersion);
+        paramMap.put("bundleFileName", bundleFileName);
+        paramMap.put("classQualifiedName", classQualifiedName);
+        paramMap.put("modifier", modifier);
+
+        Integer result = this.getSqlMapClientTemplate().update("testunit.updateBundleInformation",
+                paramMap);
+        if (result == null) {
+            return 0;
+        }
+
+        return result;
+    }
+
 }

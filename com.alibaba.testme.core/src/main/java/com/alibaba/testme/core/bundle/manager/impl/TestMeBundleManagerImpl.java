@@ -187,8 +187,6 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     public Tuple3<String, String, String> deploy(File stagedFile) {
         try {
             DeploymentIdentity identity = this.applicationDeployer.deploy(stagedFile.toURI());
-            applicationDeployer.undeploy("bundle", identity.getSymbolicName(),
-                    identity.getVersion());
             return Tuple.tuple3(identity.getSymbolicName(), identity.getVersion(),
                     identity.getType());
         } catch (DeploymentException e) {

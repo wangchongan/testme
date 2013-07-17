@@ -2,6 +2,8 @@ package com.alibaba.testme.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.alibaba.testme.common.ibatispage.Page;
 import com.alibaba.testme.dao.TestunitDao;
 import com.alibaba.testme.domain.dataobject.TestunitDO;
@@ -112,6 +114,28 @@ public class TestunitServiceImpl implements TestunitService {
         }
 
         return testunitDao.findTestunitVOById(testunitId);
+    }
+
+    @Override
+    public int setBundleInformationNull(Long testunitId, String modifier) {
+        if (testunitId == null || testunitId <= 0L) {
+            return 0;
+        }
+        return testunitDao.setBundleInformationNull(testunitId, modifier);
+    }
+
+    @Override
+    public int updateBundleInformation(Long testunitId, String symbolicName, String bundleVersion,
+                                       String bundleFileName, String classQualifiedName,
+                                       String modifier) {
+        if (testunitId == null || testunitId <= 0L || StringUtils.isBlank(classQualifiedName)
+                || StringUtils.isBlank(bundleVersion) || StringUtils.isBlank(bundleFileName)
+                || StringUtils.isBlank(symbolicName)) {
+            return 0;
+        }
+
+        return testunitDao.updateBundleInformation(testunitId, symbolicName, bundleVersion,
+                bundleFileName, classQualifiedName, modifier);
     }
 
 }

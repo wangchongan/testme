@@ -338,4 +338,44 @@
     ]]>
   </select>
   
+  <update id="testunit.setBundleInformationNull" parameterClass="map">
+    update tm_testunit
+	   set gmt_modified = now()
+          ,modifier = #modifier#  
+          ,class_qualified_name=null 
+          ,bundle_file_name =null
+          ,symbolic_name =null
+          ,bundle_version =null
+     where id = #testunitId#  
+  </update>
+  
+  <update id="testunit.updateBundleInformation" parameterClass="map">
+    update tm_testunit
+	   set gmt_modified = now()
+          ,modifier = #modifier#
+	<dynamic>
+      <isNotEmpty property="classQualifiedName" prepend=",">
+        <![CDATA[  
+        CLASS_QUALIFIED_NAME = #classQualifiedName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="bundleFileName" prepend=",">
+        <![CDATA[  
+        BUNDLE_FILE_NAME = #bundleFileName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="symbolicName" prepend=",">
+        <![CDATA[  
+        SYMBOLIC_NAME = #symbolicName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="bundleVersion" prepend=",">
+        <![CDATA[  
+        BUNDLE_VERSION = #bundleVersion#  
+        ]]>  
+      </isNotEmpty>
+    </dynamic>
+     where id = #testunitId#  
+  </update>
+  
 </sqlMap>
