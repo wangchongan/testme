@@ -15,6 +15,8 @@
  */
 package com.alibaba.testme.web.interceptor;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +37,11 @@ import com.alibaba.testme.web.common.PageUtil;
  */
 public class TestMeWebRequestInterceptor extends HandlerInterceptorAdapter {
 
+    private static final String USER_LOGIN = "/user/login";
+
     @Resource
-    private PageUtil pageUtil;
+    private PageUtil            pageUtil;
+    private List<String>        whiteList;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
@@ -44,17 +49,25 @@ public class TestMeWebRequestInterceptor extends HandlerInterceptorAdapter {
         boolean handlerOk = super.preHandle(request, response, handler);
         if (handlerOk) {
             String url = request.getRequestURL().toString();
-            if (url.endsWith("/user/login"))
-                return true;
+            if (whiteList != null && !whiteList.isEmpty()) {
+                for (String whiteUrl : whiteList) {
+                    if (url.endsWith(whiteUrl))
+                        return true;
+                }
+            }
 
             HttpSession session = request.getSession();
             UserDO user = (UserDO) session.getAttribute(CommonConstants.SESSION_USER);
             if (user != null) {
                 return true;
             }
-            response.sendRedirect(request.getContextPath() + "/user/login");
+            response.sendRedirect(request.getContextPath() + USER_LOGIN);
         }
         return false;
+    }
+
+    public void setWhiteList(List<String> whiteList) {
+        this.whiteList = whiteList;
     }
 
     @Override

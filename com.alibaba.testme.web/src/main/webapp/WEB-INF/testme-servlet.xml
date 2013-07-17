@@ -50,7 +50,14 @@ http://www.springframework.org/schema/context/spring-context.xsd">
  		<property name="order" value="1"/>
  		<property name="interceptors">
 			<list>
-					<bean class="com.alibaba.testme.web.interceptor.TestMeWebRequestInterceptor"/>
+				<bean class="com.alibaba.testme.web.interceptor.TestMeWebRequestInterceptor">
+					<property name="whiteList">
+						<list>
+							<value>/user/login</value>
+							<value>/callback//belfryInvoke</value>
+						</list>
+					</property>
+				</bean>
 			</list>
 		</property>
  	</bean>

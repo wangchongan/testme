@@ -16,6 +16,7 @@
 package com.alibaba.testme.core.bundle.manager.impl;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import org.eclipse.virgo.kernel.deployer.core.DeploymentIdentity;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +57,21 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     @Override
     public void setBundleContext(BundleContext bundleContext) {
         this.bundleContext = bundleContext;
+    }
+
+    @Override
+    public Object getService(String serviceName, String filter) {
+        Object result = null;
+        try {
+            ServiceReference<?>[] serviceReferences = this.bundleContext.getServiceReferences(
+                    serviceName, "(org.springframework.osgi.bean.name=" + filter + ")");
+            if (serviceReferences != null && serviceReferences.length > 0) {
+                result = this.getService_(serviceReferences[0]);
+            }
+        } catch (InvalidSyntaxException e) {
+            throw new BundleManagerException("getService error: ", e);
+        }
+        return result;
     }
 
     @Override
@@ -105,6 +122,23 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
         ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
                 .getServiceReference(clazz);
         ITestunitHandler result = this.bundleContext.getService(serviceReference);
+        return result;
+    }
+
+    @Override
+    public ITestunitHandler getService(Class<? extends ITestunitHandler> clazz, String filter) {
+        ITestunitHandler result = null;
+        try {
+            Collection<?> serviceReferences = this.bundleContext.getServiceReferences(clazz,
+                    "(org.springframework.osgi.bean.name=" + filter + ")");
+            if (serviceReferences != null && !serviceReferences.isEmpty()) {
+                ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
+                        .getServiceReference(clazz);
+                result = this.bundleContext.getService(serviceReference);
+            }
+        } catch (InvalidSyntaxException e) {
+            throw new BundleManagerException("getService error: ", e);
+        }
         return result;
     }
 

@@ -33,22 +33,18 @@ public class TestunitClient implements ITestunitClient {
     private TestMeBundleManager testMeBundleManager;
 
     @Override
-    @SuppressWarnings("unchecked")
     public TestunitResult invoke(TestunitContext testunitContext) {
         //获取Testunit并且执行调用动作
         TestunitResult result = new TestunitResult();
         try {
-            String serviceName = testunitContext.getClassQualifiedName();
-            Class<ITestunitHandler> clazz = (Class<ITestunitHandler>) Class.forName(serviceName);
-            ITestunitHandler testunitHandler = testMeBundleManager.getService(clazz);
+            String className = testunitContext.getClassQualifiedName();
+            ITestunitHandler testunitHandler = testMeBundleManager.getService(
+                    ITestunitHandler.class, className);
             if (testunitHandler == null) {
-                throw new BundleManagerException("serviceName : " + serviceName
+                throw new BundleManagerException("serviceName : " + className
                         + " is not found, process could not continue");
             }
             return testunitHandler.deal(testunitContext);
-        } catch (ClassNotFoundException e) {
-            result.addErrorMsg("Class Not Found , Class: "
-                    + testunitContext.getClassQualifiedName());
         } catch (Exception e) {
             result.addErrorMsg(e.getMessage());
         }

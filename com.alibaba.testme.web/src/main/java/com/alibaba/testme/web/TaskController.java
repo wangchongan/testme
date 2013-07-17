@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alibaba.testme.common.enums.TestunitFlowCaseStatusEnum;
 import com.alibaba.testme.common.ibatispage.Page;
+import com.alibaba.testme.core.bundle.manager.TestMeBundleManager;
 import com.alibaba.testme.core.testunitflowcase.ITestunitFlowCaseHandler;
 import com.alibaba.testme.core.testunitflowcase.dto.TestRequestDTO;
 import com.alibaba.testme.core.testunitflowcase.dto.TestunitFlowCaseResult;
@@ -78,6 +79,8 @@ public class TaskController {
 
     @Resource
     private ITestunitFlowCaseHandler iTestunitFlowCaseHandler;
+    @Resource
+    private TestMeBundleManager      testMeBundleManager;
 
     public void initParam(Model model, HttpServletRequest request) {
         model.addAttribute("statusList", TestunitFlowCaseStatusEnum.values());
