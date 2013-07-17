@@ -55,6 +55,14 @@ public class TestunitDO {
      * bundle 文件名称
      */
     private String bundleFileName;
+    /**
+     * bundle的MF文件名
+     */
+    private String symbolicName;
+    /**
+     * bundle版本号
+     */
+    private String bundleVersion;
 
     /**
      * tag
@@ -155,6 +163,34 @@ public class TestunitDO {
      */
     public void setBundleFileName(String bundleFileName) {
         this.bundleFileName = bundleFileName;
+    }
+
+    /**
+     * @return the symbolicName
+     */
+    public String getSymbolicName() {
+        return symbolicName;
+    }
+
+    /**
+     * @param symbolicName the symbolicName to set
+     */
+    public void setSymbolicName(String symbolicName) {
+        this.symbolicName = symbolicName;
+    }
+
+    /**
+     * @return the bundleVersion
+     */
+    public String getBundleVersion() {
+        return bundleVersion;
+    }
+
+    /**
+     * @param bundleVersion the bundleVersion to set
+     */
+    public void setBundleVersion(String bundleVersion) {
+        this.bundleVersion = bundleVersion;
     }
 
     public void setTag(String tag) {

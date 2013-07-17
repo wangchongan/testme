@@ -84,4 +84,19 @@ public class TestunitResult {
         this.msgsList = msgsList;
     }
 
+    /**
+     * 判断结果是否有错 <br>
+     * 有错误：返回true<br>
+     * 无错误：返回false
+     * 
+     * @return
+     */
+    public boolean isHasError() {
+        if (TestunitResultStatus.FAIL.equals(this.status)) {
+            return Boolean.TRUE;
+        }
+
+        return Boolean.FALSE;
+    }
+
 }

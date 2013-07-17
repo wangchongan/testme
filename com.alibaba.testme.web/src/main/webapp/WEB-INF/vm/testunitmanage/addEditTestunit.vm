@@ -147,7 +147,11 @@ a.open:hover{background-position:0 -29px;}
             				</td>
 							#else
 							<td nowrap align="right" width="13%" height="40px">bundle文件名:</td>
-							<td style="width:250px;height:40px"><input id="bundleFile" type="text" style="border:0;" value="$!testunitVO.bundleFileName"/><span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span></td>
+							<td style="width:250px;height:40px">
+								<input id="bundleFile" type="file"  style="border:0;"/>
+                                <label name="bundleFileName">$!testunitVO.bundleFileName &nbsp;<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteBundleFile?testunitId='+$!testunitVO.testunitId+'&bundleFileName='+$!testunitVO.bundleFileName)"><font color="red">x</font></a></label>
+								<span class="red" style="display:none;" id="bundleFileNotNull">&nbsp;必填</span>
+							</td>
 							#end
             				<td width="67%"></td>
 						  </tr>

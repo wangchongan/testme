@@ -16,6 +16,8 @@
     <result property="workSpaceId" column="WORK_SPACE_ID" />
     <result property="classQualifiedName" column="CLASS_QUALIFIED_NAME" />
 	<result property="bundleFileName" column="BUNDLE_FILE_NAME" />
+	<result property="symbolicName" column="SYMBOLIC_NAME" />
+	<result property="bundleVersion" column="BUNDLE_VERSION" />
     <result property="tag" column="TAG" />
     <result property="userId" column="USER_ID" />
     <result property="remark" column="REMARK" />
@@ -33,6 +35,8 @@
 		   ,WORK_SPACE_ID
 		   ,CLASS_QUALIFIED_NAME
 		   ,BUNDLE_FILE_NAME
+		   ,SYMBOLIC_NAME
+		   ,BUNDLE_VERSION
 		   ,TAG
 		   ,USER_ID
 		   ,REMARK 
@@ -136,6 +140,8 @@
    			   ,WORK_SPACE_ID
    			   ,CLASS_QUALIFIED_NAME
 			   ,BUNDLE_FILE_NAME
+			   ,SYMBOLIC_NAME
+			   ,BUNDLE_VERSION
    			   ,TAG
    			   ,USER_ID
    			   ,REMARK) VALUES (
@@ -148,6 +154,8 @@
    			   ,#workSpaceId#
    			   ,#classQualifiedName#
 			   ,#bundleFileName#
+			   ,#symbolicName#
+		       ,#bundleVersion#
    			   ,#tag#
    			   ,#userId#
    			   ,#remark#)
@@ -189,6 +197,16 @@
 	  <isNotEmpty property="bundleFileName" prepend=",">
         <![CDATA[  
         BUNDLE_FILE_NAME = #bundleFileName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="symbolicName" prepend=",">
+        <![CDATA[  
+        SYMBOLIC_NAME = #symbolicName#  
+        ]]>  
+      </isNotEmpty>
+	  <isNotEmpty property="bundleVersion" prepend=",">
+        <![CDATA[  
+        BUNDLE_VERSION = #bundleVersion#  
         ]]>  
       </isNotEmpty>
       <isNotEmpty property="tag" prepend=",">
@@ -257,6 +275,8 @@
 		   ,tu.user_id                  as userId
 		   ,tu.class_qualified_name     as classQualifiedName
 		   ,tu.bundle_file_name         as bundleFileName
+		   ,tu.symbolic_name            as symbolicName
+		   ,tu.bundle_version           as bundleVersion
 		   ,ws.name                     as workSpaceName        
 		   ,ws.system_id                as systemId
 		   ,s.name                      as systemName
@@ -303,6 +323,8 @@
 		   ,tu.user_id                  as userId
 		   ,tu.class_qualified_name     as classQualifiedName
 		   ,tu.bundle_file_name         as bundleFileName
+		   ,tu.symbolic_name            as symbolicName
+		   ,tu.bundle_version           as bundleVersion
 		   ,tu.remark                   as remark
 		   ,ws.name                     as workSpaceName        
 		   ,ws.system_id                as systemId

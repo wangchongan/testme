@@ -69,6 +69,15 @@ public class TestunitVO {
     private String                bundleFileName;
 
     /**
+     * bundle的MF文件名
+     */
+    private String                symbolicName;
+    /**
+     * bundle版本号
+     */
+    private String                bundleVersion;
+
+    /**
      * 测试单元创建者用户
      */
     private Long                  userId;
@@ -311,6 +320,34 @@ public class TestunitVO {
      */
     public void setConfigTableRownumberList(String configTableRownumberList) {
         this.configTableRownumberList = configTableRownumberList;
+    }
+
+    /**
+     * @return the symbolicName
+     */
+    public String getSymbolicName() {
+        return symbolicName;
+    }
+
+    /**
+     * @param symbolicName the symbolicName to set
+     */
+    public void setSymbolicName(String symbolicName) {
+        this.symbolicName = symbolicName;
+    }
+
+    /**
+     * @return the bundleVersion
+     */
+    public String getBundleVersion() {
+        return bundleVersion;
+    }
+
+    /**
+     * @param bundleVersion the bundleVersion to set
+     */
+    public void setBundleVersion(String bundleVersion) {
+        this.bundleVersion = bundleVersion;
     }
 
 }
