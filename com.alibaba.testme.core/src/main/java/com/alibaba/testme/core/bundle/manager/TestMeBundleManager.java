@@ -23,12 +23,12 @@ public interface TestMeBundleManager extends BundleContextAware {
 
     Tuple3<String, String, String> install(File stagedFile);
 
-    ITestunitHandler getService(Class<? extends ITestunitHandler> clazz);
+    ITestunitHandler getService(Class<ITestunitHandler> clazz);
 
     void undeploy(String symbolicName, String version);
 
     Object getService(String serviceName, String filter);
 
-    ITestunitHandler getService(Class<? extends ITestunitHandler> clazz, String filter);
+    ITestunitHandler getService(Class<ITestunitHandler> clazz, String filter);
 
 }
