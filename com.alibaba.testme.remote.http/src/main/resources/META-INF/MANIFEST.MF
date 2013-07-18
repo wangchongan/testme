@@ -7,4 +7,5 @@ Bundle-SymbolicName: com.alibaba.testme.remote.http
 Export-Package: com.alibaba.testme.remote.belfry,
  com.alibaba.testme.remote.http,
  com.alibaba.testme.remote.http.impl;uses:="com.alibaba.testme.remote.http"
+Import-Package: org.springframework.util;version="[3.0.5.RELEASE,3.0.5.RELEASE]"
 

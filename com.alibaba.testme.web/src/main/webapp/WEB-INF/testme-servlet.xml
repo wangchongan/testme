@@ -54,7 +54,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 					<property name="whiteList">
 						<list>
 							<value>/user/login</value>
-							<value>/callback//belfryInvoke</value>
+							<value>/callback/httpInvoke</value>
 						</list>
 					</property>
 				</bean>
