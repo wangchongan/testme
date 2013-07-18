@@ -197,7 +197,9 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     @Override
     public void undeploy(String symbolicName, String version) {
         try {
-            applicationDeployer.undeploy("bundle", symbolicName, version);
+            if (this.isExist(symbolicName, version)) {
+                applicationDeployer.undeploy("bundle", symbolicName, version);
+            }
         } catch (DeploymentException e) {
             throw new BundleManagerException(e);
         }

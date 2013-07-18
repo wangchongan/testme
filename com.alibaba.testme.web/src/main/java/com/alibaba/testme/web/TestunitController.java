@@ -373,7 +373,7 @@ public class TestunitController {
             resultMsg = saveAndDeployBundleFile(request, testunitVO);
             if (resultMsg != null) {
                 model.addAttribute("resultMsg", resultMsg);
-                return addEditTestunit(model, request);
+                return editTestunit(model, request, testunitVO.getTestunitId());
             }
         }
 
@@ -385,7 +385,7 @@ public class TestunitController {
         }
 
         model.addAttribute("resultMsg", "温馨提醒：恭喜你！测试单元信息更新成功！");
-        return addEditTestunit(model, request);
+        return editTestunit(model, request, testunitVO.getTestunitId());
     }
 
     /**

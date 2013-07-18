@@ -146,7 +146,7 @@ a.open:hover{background-position:0 -29px;}
             				</td>
 							#if(!$!isAddProcess)
                             <td>
-								<label id="bundleFileName" name="bundleFileName">$!testunitVO.bundleFileName &nbsp;<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteBundleFile?testunitId='+$!testunitVO.testunitId)"><font color="red">x</font></a></label>
+								<label id="bundleFileName" name="bundleFileName">$!testunitVO.bundleFileName &nbsp;<a href="javascript:void(0)" onclick="delProcess('${contextPath}/testunitmanage/deleteBundleFile?testunitId='+$!testunitVO.testunitId)">#if($!testunitVO.bundleFileName)<font color="red">x</font>#end</a></label>
 							</td>
 							#end
             				<td width="67%"></td>
