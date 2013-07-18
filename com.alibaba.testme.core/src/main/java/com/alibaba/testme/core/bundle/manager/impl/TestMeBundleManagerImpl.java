@@ -118,7 +118,7 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
-    public ITestunitHandler getService(Class<? extends ITestunitHandler> clazz) {
+    public ITestunitHandler getService(Class<ITestunitHandler> clazz) {
         ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
                 .getServiceReference(clazz);
         ITestunitHandler result = this.bundleContext.getService(serviceReference);
@@ -126,15 +126,18 @@ public class TestMeBundleManagerImpl implements TestMeBundleManager {
     }
 
     @Override
-    public ITestunitHandler getService(Class<? extends ITestunitHandler> clazz, String filter) {
+    public ITestunitHandler getService(Class<ITestunitHandler> clazz, String filter) {
         ITestunitHandler result = null;
         try {
-            Collection<?> serviceReferences = this.bundleContext.getServiceReferences(clazz,
-                    "(org.springframework.osgi.bean.name=" + filter + ")");
+            Collection<ServiceReference<ITestunitHandler>> serviceReferences = this.bundleContext
+                    .getServiceReferences(clazz, "(org.springframework.osgi.bean.name=" + filter
+                            + ")");
+
             if (serviceReferences != null && !serviceReferences.isEmpty()) {
-                ServiceReference<? extends ITestunitHandler> serviceReference = this.bundleContext
-                        .getServiceReference(clazz);
-                result = this.bundleContext.getService(serviceReference);
+                for (ServiceReference<ITestunitHandler> handler : serviceReferences) {
+                    result = this.bundleContext.getService(handler);
+                    break;
+                }
             }
         } catch (InvalidSyntaxException e) {
             throw new BundleManagerException("getService error: ", e);
