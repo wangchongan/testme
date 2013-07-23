@@ -9,4 +9,5 @@ Import-Package: com.mysql.jdbc;version="[5.1.6,5.1.6]",
  javax.sql,
  org.apache.commons.dbcp;version="[1.2.2.osgi,1.2.2.osgi]",
  org.apache.commons.dbcp.datasources;version="[1.2.2.osgi,1.2.2.osgi]"
+Export-Package: com.alibaba.testme.datasource
 
