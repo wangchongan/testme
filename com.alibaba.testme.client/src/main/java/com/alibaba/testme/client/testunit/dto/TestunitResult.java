@@ -38,7 +38,7 @@ public class TestunitResult {
     private List<String>         msgsList;
 
     //输出参数
-    private Map<String, String>  outputParamsMap;
+    private Map<String, Object>  outputParamsMap;
 
     /**
      * 添加异常信息
@@ -68,11 +68,11 @@ public class TestunitResult {
         this.errorMsgsList = errorMsgsList;
     }
 
-    public Map<String, String> getOutputParamsMap() {
+    public Map<String, Object> getOutputParamsMap() {
         return outputParamsMap;
     }
 
-    public void setOutputParamsMap(Map<String, String> outputParamsMap) {
+    public void setOutputParamsMap(Map<String, Object> outputParamsMap) {
         this.outputParamsMap = outputParamsMap;
     }
 

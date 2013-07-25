@@ -90,7 +90,7 @@ public class TestunitFlowCaseAfterProcessor implements ITestunitFlowCaseAfterPro
         testunitFlowCaseDetailDO.setGmtLastRun(new Date());
         testunitFlowCaseDetailDO.setInParam(testunitFlowCaseContext.getInputParams()
                 .getFromLastAndUserParamsJSON());
-        Map<String, String> outputParamsMap = testunitResult.getOutputParamsMap();
+        Map<String, Object> outputParamsMap = testunitResult.getOutputParamsMap();
         String outputParamsMapJSON = JSON.toJSONString(outputParamsMap);
         if (outputParamsMap != null) {
             testunitFlowCaseDetailDO.setOutParam(outputParamsMapJSON);

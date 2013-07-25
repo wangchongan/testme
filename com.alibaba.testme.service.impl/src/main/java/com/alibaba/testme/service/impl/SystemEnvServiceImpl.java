@@ -1,10 +1,13 @@
 package com.alibaba.testme.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.testme.dao.SystemEnvDao;
+import com.alibaba.testme.dao.SystemEnvDetailDao;
 import com.alibaba.testme.domain.dataobject.SystemEnvDO;
+import com.alibaba.testme.domain.dataobject.SystemEnvDetailDO;
 import com.alibaba.testme.service.SystemEnvService;
 
 /**
@@ -14,10 +17,18 @@ import com.alibaba.testme.service.SystemEnvService;
  */
 public class SystemEnvServiceImpl implements SystemEnvService {
 
-    private SystemEnvDao systemEnvDao;
+    private SystemEnvDao       systemEnvDao;
+    private SystemEnvDetailDao systemEnvDetailDao;
 
     public void setSystemEnvDao(SystemEnvDao systemEnvDao) {
         this.systemEnvDao = systemEnvDao;
+    }
+
+    /**
+     * @param systemEnvDetailDao the systemEnvDetailDao to set
+     */
+    public void setSystemEnvDetailDao(SystemEnvDetailDao systemEnvDetailDao) {
+        this.systemEnvDetailDao = systemEnvDetailDao;
     }
 
     /**
@@ -86,8 +97,19 @@ public class SystemEnvServiceImpl implements SystemEnvService {
      */
     @Override
     public Map<String, String> buildSystemEnvParamsMap(Long systemEnvId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+        Map<String, String> resultMap = new HashMap<String, String>();
+        if (systemEnvId == null || systemEnvId <= 0L) {
+            return resultMap;
+        }
+        SystemEnvDetailDO systemEnvDetailDO = new SystemEnvDetailDO();
+        systemEnvDetailDO.setSystemEnvId(systemEnvId);
+        List<SystemEnvDetailDO> deatilList = systemEnvDetailDao.findList(systemEnvDetailDO);
+        if (deatilList != null && deatilList.size() > 0) {
+            for (SystemEnvDetailDO detailDO : deatilList) {
+                resultMap.put(detailDO.getPropKey(), detailDO.getPropValue());
+            }
+        }
 
+        return resultMap;
+    }
 }

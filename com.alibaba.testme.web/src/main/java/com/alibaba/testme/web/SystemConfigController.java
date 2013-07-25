@@ -613,6 +613,31 @@ public class SystemConfigController {
     }
 
     /**
+     * 根据系统ID查询系统必要参数
+     * 
+     * @param model
+     * @param request
+     * @param systemId
+     * @return
+     */
+    @RequestMapping
+    public String getSystemRequirePropBySystemId(Model model, HttpServletRequest request,
+                                                 @RequestParam("systemId") Long systemId) {
+        //获取系统列表
+        List<SystemDO> systemDOList = systemService.findList(new SystemDO());
+        SystemRequirePropDO systemRequirePropDO = new SystemRequirePropDO();
+        systemRequirePropDO.setCreator(SessionUtils.getLoginUser(request).getUserName());
+        systemRequirePropDO.setSystemId(systemId);
+        List<SystemRequirePropDO> entityList = systemRequirePropService
+                .findList(systemRequirePropDO);
+        model.addAttribute("systemDOList", systemDOList);
+        model.addAttribute("systemRequirePropDOList", entityList);
+        model.addAttribute("systemId", systemId);
+
+        return "systemconfig/configureSystemRequiredProp";
+    }
+
+    /**
      * 进入参数配置信息页面systemEnv
      * 
      * @return
